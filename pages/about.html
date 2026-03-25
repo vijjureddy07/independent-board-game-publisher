@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — TabletopForge</title>
+  <meta name="description" content="Born from a love of games and a refusal to compromise on craft. Learn the story behind TabletopForge — our mission, our team, and how we got here." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tabletopforge.com/about" />
+  <meta property="og:title"       content="About Us — TabletopForge" />
+  <meta property="og:description" content="The story behind TabletopForge — independent board game publisher since 2018." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<header class="nav" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+            <path d="M9 9h6"/>
+            <circle cx="12" cy="6" r="1"/>
+          </svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+
+      <ul class="nav__links" role="list">
+
+        <li class="nav__item">
+          <a href="index.html" class="nav__link" aria-haspopup="true">
+            Home
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="index.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-house" aria-hidden="true"></i>
+              <div>Home Page 1 <span>Main landing experience</span></div>
+            </a>
+            <a href="index-2.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <div>Home Page 2 <span>Campaign-focused layout</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="about.html" class="nav__link active">About</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="games.html" class="nav__link" aria-haspopup="true">
+            Games
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="games.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-dice" aria-hidden="true"></i>
+              <div>All Titles <span>Browse our full catalogue</span></div>
+            </a>
+            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
+              <div>Coming Soon <span>Upcoming campaigns</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="blog.html" class="nav__link">Blog</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="contact.html" class="nav__link">Contact</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="dashboard-user.html" class="nav__link" aria-haspopup="true">
+            Dashboard
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="dashboard-user.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <div>User Dashboard <span>Orders, downloads, forum</span></div>
+            </a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
+              <div>Admin Dashboard <span>Manage campaigns &amp; users</span></div>
+            </a>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
+        <a href="dashboard-user.html" class="btn btn--ghost nav__login">Login</a>
+      </div>
+
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html"           class="nav__mobile-link">Home</a>
+  <a href="index-2.html"         class="nav__mobile-link nav__mobile-sub">Home Page 2</a>
+  <a href="about.html"           class="nav__mobile-link">About</a>
+  <a href="games.html"           class="nav__mobile-link">Games</a>
+  <a href="blog.html"            class="nav__mobile-link">Blog</a>
+  <a href="contact.html"         class="nav__mobile-link">Contact</a>
+  <a href="dashboard-user.html"  class="nav__mobile-link">User Dashboard</a>
+  <a href="dashboard-admin.html" class="nav__mobile-link nav__mobile-sub">Admin Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
+  </div>
+  <a href="dashboard-user.html" class="btn btn--primary" style="margin-top:1rem;width:100%;justify-content:center;">Login</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════ -->
+<main id="main-content">
+<section class="page-hero" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="page-hero__eyebrow"><span class="tag">Our Story</span></div>
+    <h1 id="about-heading" class="display-xl page-hero__title">
+      <span class="hero__title-line"><span>Made by gamers.</span></span>
+      <span class="hero__title-line"><span>Built for backers.</span></span>
+    </h1>
+    <p class="page-hero__sub">
+      TabletopForge began as a spreadsheet, a shared obsession,
+      and four friends who refused to wait for someone else to
+      make the games they wanted to play.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     INTRO SPLIT
+═══════════════════════════════════════════ -->
+<section class="about-intro section-pad" aria-labelledby="story-heading">
+  <div class="container">
+    <div class="about-intro__layout">
+
+      <div class="about-intro__visual reveal">
+        <div class="about-intro__img-frame" aria-hidden="true">
+          <!-- decorative FA icon instead of emoji -->
+          <i class="fa-solid fa-dice-d20" style="font-size:5rem;color:var(--text-muted);position:relative;z-index:1;"></i>
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,var(--border) 40px,var(--border) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,var(--border) 40px,var(--border) 41px);opacity:0.4;pointer-events:none;" aria-hidden="true"></div>
+        </div>
+        <div class="about-intro__card" aria-hidden="true">
+          <span class="about-intro__card-value" data-count="97" data-suffix="%">97%</span>
+          <span class="about-intro__card-label">On-time delivery rate</span>
+        </div>
+      </div>
+
+      <div class="about-intro__text">
+        <div class="section-eyebrow reveal" style="margin-bottom:var(--sp-4);"><span class="tag">Founded 2018</span></div>
+        <h2 id="story-heading" class="display-md reveal reveal--delay-1">We build the games<br>we couldn't find.</h2>
+        <div class="reveal reveal--delay-2">
+          <p>It started in 2018 when four friends decided that the games they wanted to play simply didn't exist yet. We pooled what little we had, rented a studio space, and launched our first Kickstarter with nothing but a spreadsheet and a shared conviction.</p>
+          <p>What we didn't anticipate: 4,200 backers in the first 48 hours. That campaign — The Iron Pact — shipped on time, under budget, and with a 97% satisfaction rate. We've never looked back.</p>
+          <p>Today we operate as a fully independent studio. We answer to our backers, not shareholders. Every decision — from component quality to shipping partners — is made with the person waiting at home in mind.</p>
+          <a href="games.html" class="btn btn--primary" style="margin-top:var(--sp-2);">
+            See our games
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     VALUES GRID
+═══════════════════════════════════════════ -->
+<section class="values section-pad" aria-labelledby="values-heading">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal"><span class="tag">What we stand for</span></div>
+        <h2 id="values-heading" class="display-md reveal reveal--delay-1">Our principles.</h2>
+      </div>
+    </div>
+
+    <div class="values__grid">
+
+      <div class="value-card reveal">
+        <div class="value-card__num">01</div>
+        <div class="value-card__icon" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></div>
+        <h3>Craft over compromise</h3>
+        <p>Every component is held to the same standard we'd demand as players. We'd rather delay a game than ship something that disappoints.</p>
+      </div>
+
+      <div class="value-card reveal reveal--delay-1">
+        <div class="value-card__num">02</div>
+        <div class="value-card__icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <h3>Radical transparency</h3>
+        <p>Manufacturing delays, cost overruns, design pivots — our backers hear about it first, always. No spin, no silence.</p>
+      </div>
+
+      <div class="value-card reveal reveal--delay-2">
+        <div class="value-card__num">03</div>
+        <div class="value-card__icon" aria-hidden="true"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Community as collaborators</h3>
+        <p>Backer feedback has directly shaped every game we've made. Forum suggestions have become official variants. You're not a customer — you're a co-creator.</p>
+      </div>
+
+      <div class="value-card reveal reveal--delay-1">
+        <div class="value-card__num">04</div>
+        <div class="value-card__icon" aria-hidden="true"><i class="fa-solid fa-recycle"></i></div>
+        <h3>Sustainable by design</h3>
+        <p>We print regionally where possible, use FSC-certified materials, and offset the carbon footprint of every fulfilment run.</p>
+      </div>
+
+      <div class="value-card reveal reveal--delay-2">
+        <div class="value-card__num">05</div>
+        <div class="value-card__icon" aria-hidden="true"><i class="fa-solid fa-earth-europe"></i></div>
+        <h3>Accessible to everyone</h3>
+        <p>From print-and-play files to colour-blind-safe component design, we build games that as many people as possible can actually play.</p>
+      </div>
+
+      <div class="value-card reveal reveal--delay-3">
+        <div class="value-card__num">06</div>
+        <div class="value-card__icon" aria-hidden="true"><i class="fa-solid fa-lock-open"></i></div>
+        <h3>Fully independent</h3>
+        <p>No investors, no licence obligations, no brand deals. Our only obligation is to make great games and treat the people who fund them with respect.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TEAM
+═══════════════════════════════════════════ -->
+<section class="team section-pad" aria-labelledby="team-heading">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal"><span class="tag">The people</span></div>
+        <h2 id="team-heading" class="display-md reveal reveal--delay-1">Meet the team.</h2>
+      </div>
+    </div>
+
+    <div class="team__grid">
+
+      <article class="team-card reveal">
+        <div class="team-card__photo" aria-hidden="true"><i class="fa-solid fa-pen-nib"></i></div>
+        <h3 class="team-card__name">Elena Voss</h3>
+        <p class="team-card__role">Founder &amp; Art Director</p>
+        <p class="team-card__bio">Concept artist turned game designer. Elena is responsible for our distinctive visual language — and for saying no to anything that looks like everything else.</p>
+      </article>
+
+      <article class="team-card reveal reveal--delay-1">
+        <div class="team-card__photo" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3 class="team-card__name">David Osei</h3>
+        <p class="team-card__role">Lead Game Designer</p>
+        <p class="team-card__bio">Mechanics obsessive. David playtests every game over 200 times before it ships. He also holds the studio record for most rules arguments started in a single lunch break.</p>
+      </article>
+
+      <article class="team-card reveal reveal--delay-2">
+        <div class="team-card__photo" aria-hidden="true"><i class="fa-solid fa-truck"></i></div>
+        <h3 class="team-card__name">Noa Bergman</h3>
+        <p class="team-card__role">Fulfilment Director</p>
+        <p class="team-card__bio">The reason 97% of orders arrive on time and undamaged. Noa has renegotiated our freight contracts three times and once personally re-packed 400 damaged shipments overnight.</p>
+      </article>
+
+      <article class="team-card reveal reveal--delay-3">
+        <div class="team-card__photo" aria-hidden="true"><i class="fa-solid fa-message"></i></div>
+        <h3 class="team-card__name">Priya Kaur</h3>
+        <p class="team-card__role">Community Manager</p>
+        <p class="team-card__bio">Reads every single forum post. Genuinely responds to every backer message. Has turned more than a dozen backer suggestions into official game content.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TIMELINE
+═══════════════════════════════════════════ -->
+<section class="timeline section-pad" aria-labelledby="timeline-heading">
+  <div class="container container--narrow">
+    <div class="section-head" style="flex-direction:column;align-items:flex-start;">
+      <div class="section-eyebrow reveal"><span class="tag">Since 2018</span></div>
+      <h2 id="timeline-heading" class="display-md reveal reveal--delay-1" style="margin-top:var(--sp-4);">Our journey so far.</h2>
+    </div>
+
+    <div class="timeline__inner" role="list">
+
+      <div class="timeline-item reveal" role="listitem">
+        <span class="timeline-item__year">2018</span>
+        <div class="timeline-item__body">
+          <h3>The Iron Pact launches on Kickstarter</h3>
+          <p>4,200 backers in 48 hours. $312K raised. The four founders quit their day jobs the following Monday.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal--delay-1" role="listitem">
+        <span class="timeline-item__year">2019</span>
+        <div class="timeline-item__body">
+          <h3>Studio opens in Bristol, UK</h3>
+          <p>First permanent studio space. First full-time hire. First time we bought a proper coffee machine instead of using the one from someone's flat.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal--delay-2" role="listitem">
+        <span class="timeline-item__year">2020</span>
+        <div class="timeline-item__body">
+          <h3>The Iron Pact — Deluxe Edition ships</h3>
+          <p>Despite a global pandemic disrupting our freight routes, every backer received their copy within six weeks of the original estimated window.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal--delay-1" role="listitem">
+        <span class="timeline-item__year">2021</span>
+        <div class="timeline-item__body">
+          <h3>Verdant Empires — our biggest campaign yet</h3>
+          <p>5,120 backers. $612K raised. Nominated for three Gen Con awards. The print-and-play alone was downloaded 28,000 times before the physical game shipped.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal--delay-2" role="listitem">
+        <span class="timeline-item__year">2023</span>
+        <div class="timeline-item__body">
+          <h3>Backer Portal launches</h3>
+          <p>Real-time shipping tracker, PnP file library, and community forum — all in one place. Built entirely based on backer feedback collected over three years.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item active reveal reveal--delay-3" role="listitem">
+        <span class="timeline-item__year">2026</span>
+        <div class="timeline-item__body">
+          <h3>Citadels of the Deep — live now</h3>
+          <p>342% funded. 2,847 backers. 14 days left. Our most ambitious game yet — and Moonfall Chronicles is already in development right behind it.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CTA BANNER
+═══════════════════════════════════════════ -->
+<section class="about-cta section-pad" aria-labelledby="about-cta-heading">
+  <div class="container">
+    <div class="about-cta__inner">
+      <div class="about-cta__text reveal">
+        <h2 class="display-md" id="about-cta-heading">Ready to back something bold?</h2>
+        <p>Browse our active campaigns or join the backer community — free and open to anyone who's ever backed a title.</p>
+      </div>
+      <div class="about-cta__actions reveal reveal--delay-2">
+        <a href="games.html" class="btn btn--primary">
+          Explore Games
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="dashboard-user.html" class="btn btn--ghost">Join Community</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+
+      <div>
+        <div class="footer__brand-name">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+          TabletopForge
+        </div>
+        <p class="footer__brand-desc">Independent board game publisher crafting bold tabletop experiences since 2018. Every game tells a story.</p>
+        <nav class="footer__social" aria-label="Social links">
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </nav>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Company</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="about.html"   class="footer__col-link">About</a></li>
+          <li><a href="blog.html"    class="footer__col-link">Blog</a></li>
+          <li><a href="contact.html" class="footer__col-link">Contact</a></li>
+          <li><a href="#"            class="footer__col-link">Press Kit</a></li>
+          <li><a href="#"            class="footer__col-link">Careers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Games</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="games.html"          class="footer__col-link">All Titles</a></li>
+          <li><a href="games.html"          class="footer__col-link">Active Campaigns</a></li>
+          <li><a href="coming-soon.html"    class="footer__col-link">Coming Soon</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Print &amp; Play</a></li>
+          <li><a href="#"                   class="footer__col-link">Retailer Info</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Client Area</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="dashboard-user.html" class="footer__col-link">Login</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Dashboard</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Shipping Status</a></li>
+          <li><a href="forum.html"          class="footer__col-link">Forum</a></li>
+          <li><a href="#"                   class="footer__col-link">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Support &amp; Legal</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#"            class="footer__col-link">Privacy Policy</a></li>
+          <li><a href="#"            class="footer__col-link">Terms &amp; Conditions</a></li>
+          <li><a href="contact.html" class="footer__col-link">Support</a></li>
+        </ul>
+        <div style="margin-top:1.5rem;">
+          <p class="footer__col-title" style="margin-bottom:0.75rem;">Newsletter</p>
+          <form data-newsletter-form style="display:flex;gap:8px;flex-direction:column;" aria-label="Footer newsletter">
+            <input class="newsletter__input" type="email" placeholder="Enter email" aria-label="Email" style="min-width:unset;font-size:0.82rem;padding:10px 14px;" />
+            <button class="btn btn--primary btn--sm" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 TabletopForge Ltd. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <a href="mailto:hello@tabletopforge.com" class="footer__copy">hello@tabletopforge.com</a>
+        <span class="footer__copy">·</span>
+        <span class="footer__copy">+1 (000) 000-0000</span>
+      </div>
+      <nav class="footer__bottom-links" aria-label="Legal">
+        <a href="#" class="footer__bottom-link">Privacy</a>
+        <a href="#" class="footer__bottom-link">Terms</a>
+        <a href="#" class="footer__bottom-link">Cookies</a>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

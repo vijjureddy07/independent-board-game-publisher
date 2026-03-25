@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why the Tide Mechanic took three years to get right — TabletopForge</title>
+  <meta name="description" content="David Osei walks through 47 discarded prototypes and the breakthrough moment that made the Tide Mechanic in Citadels of the Deep finally work." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tabletopforge.com/blog/tide-mechanic" />
+  <meta property="og:title"       content="Why the Tide Mechanic took three years to get right" />
+  <meta property="og:description" content="47 discarded prototypes and the single playthrough that made everything click." />
+  <meta property="og:type"        content="article" />
+  <meta property="article:author" content="David Osei" />
+  <meta property="article:published_time" content="2026-03-18" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/games.css" />
+  <link rel="stylesheet" href="../assets/css/blog.css" />
+</head>
+<body>
+
+<!-- Reading progress bar -->
+<div class="bs-progress-bar" aria-hidden="true">
+  <div class="bs-progress-fill" id="read-progress"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<header class="nav" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li class="nav__item">
+          <a href="index.html" class="nav__link" aria-haspopup="true">
+            Home <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="index.html"   class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-house" aria-hidden="true"></i><div>Home Page 1 <span>Main landing experience</span></div></a>
+            <a href="index-2.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><div>Home Page 2 <span>Campaign-focused layout</span></div></a>
+          </div>
+        </li>
+        <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+        <li class="nav__item">
+          <a href="games.html" class="nav__link" aria-haspopup="true">
+            Games <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="games.html"       class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-dice" aria-hidden="true"></i><div>All Titles <span>Browse our full catalogue</span></div></a>
+            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-moon" aria-hidden="true"></i><div>Coming Soon <span>Upcoming campaigns</span></div></a>
+          </div>
+        </li>
+        <li class="nav__item"><a href="blog.html" class="nav__link active">Blog</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__item">
+          <a href="dashboard-user.html" class="nav__link" aria-haspopup="true">
+            Dashboard <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="dashboard-user.html"  class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-user" aria-hidden="true"></i><div>User Dashboard <span>Orders, downloads, forum</span></div></a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-gear" aria-hidden="true"></i><div>Admin Dashboard <span>Manage campaigns &amp; users</span></div></a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
+        <a href="dashboard-user.html" class="btn btn--ghost nav__login">Login</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html"           class="nav__mobile-link">Home</a>
+  <a href="about.html"           class="nav__mobile-link">About</a>
+  <a href="games.html"           class="nav__mobile-link">Games</a>
+  <a href="blog.html"            class="nav__mobile-link">Blog</a>
+  <a href="contact.html"         class="nav__mobile-link">Contact</a>
+  <a href="dashboard-user.html"  class="nav__mobile-link">User Dashboard</a>
+  <a href="dashboard-admin.html" class="nav__mobile-link nav__mobile-sub">Admin Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
+  </div>
+  <a href="dashboard-user.html" class="btn btn--primary" style="margin-top:1rem;width:100%;justify-content:center;">Login</a>
+</nav>
+
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════
+     ARTICLE HERO
+═══════════════════════════════════════════ -->
+<section class="bs-hero" aria-labelledby="bs-title">
+  <div class="bs-hero__orb" aria-hidden="true"></div>
+  <div class="container">
+    <div class="bs-hero__inner">
+
+      <nav class="bs-hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        <a href="blog.html">Blog</a>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        <span aria-current="page">Designer Diary</span>
+      </nav>
+
+      <div class="bs-hero__eyebrow">
+        <span class="tag">Designer Diary</span>
+        <span class="tag">Citadels of the Deep</span>
+      </div>
+
+      <h1 id="bs-title" class="bs-hero__title">
+        Why the Tide Mechanic took three years to get right
+      </h1>
+
+      <p class="bs-hero__excerpt">
+        47 discarded prototypes, two failed playtest sessions with professional reviewers,
+        and one breakthrough moment in a friend's kitchen in Clifton. The full story of
+        how Citadels of the Deep got its defining feature.
+      </p>
+
+      <div class="bs-hero__meta">
+        <div class="blog-author">
+          <div class="blog-author__avatar" aria-hidden="true">DO</div>
+          <div>
+            <p class="blog-author__name">David Osei</p>
+            <p class="blog-author__role">Lead Game Designer</p>
+          </div>
+        </div>
+        <div class="blog-meta-item">
+          <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+          March 18, 2026
+        </div>
+        <div class="blog-meta-item">
+          <i class="fa-regular fa-clock" aria-hidden="true"></i>
+          12 min read
+        </div>
+        <div class="blog-meta-item">
+          <i class="fa-solid fa-eye" aria-hidden="true"></i>
+          4,280 views
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     COVER IMAGE
+═══════════════════════════════════════════ -->
+<div class="bs-cover">
+  <div class="container" style="padding:0;">
+    <div class="bs-cover__frame" aria-hidden="true">
+      <i class="fa-solid fa-water"></i>
+    </div>
+    <p class="bs-cover__caption">
+      <i class="fa-regular fa-image" aria-hidden="true"></i>
+      Prototype v31 of the Tide Mechanic — the last version before we got it right. Photo: Elena Voss
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     ARTICLE BODY + SIDEBAR
+═══════════════════════════════════════════ -->
+<section class="bs-body section-pad" aria-label="Article content">
+  <div class="container">
+    <div class="bs-body__layout">
+
+      <!-- Article prose -->
+      <article class="bs-article" id="article-content">
+
+        <p>
+          The Tide Mechanic is the thing people talk about after playing Citadels of the Deep.
+          Not the faction asymmetry, not the modular board, not the treaty system — the tides.
+          Specifically, the moment the water rises and floods three of your carefully built
+          fortifications, and you realise you should have seen it coming.
+        </p>
+
+        <p>
+          What they don't know is that version one of that mechanic was just a die roll.
+          You rolled at the end of each round. Low numbers meant flooding. That's it.
+          It was terrible.
+        </p>
+
+        <h2 id="section-1">The problem with randomness at the wrong moment</h2>
+
+        <p>
+          The original Tide was a punishment system. You built, you rolled, sometimes you lost.
+          There was no meaningful decision point — just a tax on success that felt arbitrary
+          and, frankly, unfair. Playtesters hated it uniformly.
+        </p>
+
+        <p>
+          But the core instinct was right. I wanted games to have a <strong>geological
+          inevitability</strong> — the sense that forces larger than any player were at work,
+          indifferent to anyone's plans. I just needed players to be able to read, and
+          respond to, those forces.
+        </p>
+
+        <blockquote>
+          "The best mechanics feel like physics. You don't fight them — you work within them.
+          The Tide needed to feel like weather, not like a random penalty."
+        </blockquote>
+
+        <p>
+          The second version gave each tide phase a visible countdown. You could see the
+          water coming. That was better — but it created the opposite problem. Players
+          optimised completely around the countdown, and the board became a game of
+          pure accounting. Nobody was building fortresses because they wanted to. They
+          were building them in whichever square the countdown said was safe.
+        </p>
+
+        <!-- Inline image -->
+        <div class="bs-inline-img" aria-label="Prototype board showing tide countdown tokens" role="img">
+          <i class="fa-solid fa-table-cells" aria-hidden="true"></i>
+        </div>
+
+        <!-- Callout box -->
+        <div class="bs-callout">
+          <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+          <p>
+            <strong>Designer note:</strong> Versions 3 through 19 are documented in the
+            TabletopForge design archive. If you ever back the Warlord tier, you'll get
+            access to the full prototype library — including the embarrassing early builds.
+          </p>
+        </div>
+
+        <h2 id="section-2">The hidden information breakthrough</h2>
+
+        <p>
+          Prototype v20 introduced hidden tide cards. Each player secretly held a card
+          showing which zone would flood next. You knew your card — but not anyone else's.
+          This created real bluffing, real negotiation, and for the first time, the tides
+          became a social lever rather than a random one.
+        </p>
+
+        <p>
+          But it broke two-player. With only two people, hidden information collapsed into
+          pure deduction — you knew what you held, so you could always infer what your
+          opponent held. The mechanic worked for four and five players but fell apart at
+          the table sizes we needed most.
+        </p>
+
+        <h2 id="section-3">The kitchen playtest</h2>
+
+        <p>
+          It was Elena's kitchen. January 2025. We'd been testing v31 for three hours and
+          something was almost working — but not quite. The tide was now driven by an
+          evolving pressure track shared by all players, with each player contributing
+          tokens that shifted the trajectory of flooding in different directions.
+        </p>
+
+        <p>
+          Halfway through the third act, Elena built in a zone she'd been avoiding for
+          two hours. I asked why she'd changed her mind. She said: "Because you just moved
+          that token. It changed where I thought the water would go."
+        </p>
+
+        <p>
+          That was it. That was the mechanic. Not hidden information, not a countdown,
+          not a random roll — a shared, evolving pressure system where every player's
+          action influenced the tide, and where reading other players' token placements
+          was as important as reading the board itself.
+        </p>
+
+        <h2 id="section-4">What we shipped</h2>
+
+        <p>
+          The final Tide Mechanic uses a six-zone pressure track with four token types.
+          Each round, players allocate tide tokens as part of their normal action economy —
+          they're not a separate phase, not a tax, just part of what you do on your turn.
+          The accumulation of tokens shifts the pressure, and the flood targets the
+          highest-pressure zone at the end of each Act.
+        </p>
+
+        <p>
+          The elegant part — the part I'm most proud of — is that you're always doing
+          two things with every token: managing your immediate position, and signalling
+          something to every other player about where you want the water to go. Whether
+          that signal is honest or not is your choice.
+        </p>
+
+        <div class="bs-inline-img" aria-label="Final tide pressure track from the production version" role="img">
+          <i class="fa-solid fa-water" aria-hidden="true"></i>
+        </div>
+
+        <p>
+          If you want to see the mechanic in action before your copy arrives, the
+          print-and-play files are live in the Backer Portal. Every backer — including
+          Scout tier — has access right now.
+        </p>
+
+        <!-- Tags + share -->
+        <div class="bs-article__footer">
+          <div class="bs-tags">
+            <span class="bs-tags__label">Tags</span>
+            <span class="tag">Designer Diary</span>
+            <span class="tag">Game Design</span>
+            <span class="tag">Citadels of the Deep</span>
+            <span class="tag">Mechanics</span>
+          </div>
+          <div class="bs-share" style="margin-top:var(--sp-4);">
+            <span class="bs-share__label">Share</span>
+            <button class="bs-share__btn" type="button" aria-label="Share on Twitter / X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </button>
+            <button class="bs-share__btn" type="button" aria-label="Share on LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </button>
+            <button class="bs-share__btn" type="button" aria-label="Copy link">
+              <i class="fa-solid fa-link"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Author box -->
+        <div class="bs-author-box" aria-label="About the author">
+          <div class="bs-author-box__avatar" aria-hidden="true">DO</div>
+          <div>
+            <p class="bs-author-box__name">David Osei</p>
+            <p class="bs-author-box__role">Lead Game Designer</p>
+            <p class="bs-author-box__bio">
+              David has designed all three TabletopForge titles since 2018. Before that he
+              spent four years as a board game reviewer and six years as a software engineer.
+              He believes the best games are the ones where you understand why you lost.
+            </p>
+          </div>
+        </div>
+
+      </article>
+
+
+      <!-- Sidebar -->
+      <aside class="bs-sidebar" aria-label="Article sidebar">
+
+        <!-- Table of contents -->
+        <div class="blog-sidebar__card">
+          <p class="blog-sidebar__title">
+            <i class="fa-solid fa-list" aria-hidden="true"></i> Contents
+          </p>
+          <nav class="bs-toc" aria-label="Table of contents">
+            <a href="#section-1" class="bs-toc__item active">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              Randomness at the wrong moment
+            </a>
+            <a href="#section-2" class="bs-toc__item">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              The hidden information breakthrough
+            </a>
+            <a href="#section-3" class="bs-toc__item">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              The kitchen playtest
+            </a>
+            <a href="#section-4" class="bs-toc__item">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              What we shipped
+            </a>
+          </nav>
+        </div>
+
+        <!-- About the game -->
+        <div class="blog-sidebar__card">
+          <p class="blog-sidebar__title">
+            <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Featured in
+          </p>
+          <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4);">
+            <div style="width:48px;height:48px;border-radius:var(--r-md);background:var(--bg-card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--text-muted);">
+              <i class="fa-solid fa-chess-rook" aria-hidden="true"></i>
+            </div>
+            <div>
+              <p style="font-family:var(--font-head);font-size:0.88rem;font-weight:700;margin-bottom:2px;">Citadels of the Deep</p>
+              <p style="font-size:0.75rem;color:var(--text-muted);">Strategy · Live Campaign</p>
+            </div>
+          </div>
+          <a href="game-single.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            Back the campaign
+          </a>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="blog-sidebar__card">
+          <p class="blog-sidebar__title">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Newsletter
+          </p>
+          <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:var(--sp-4);line-height:1.6;">
+            Get new designer diaries and campaign updates straight to your inbox.
+          </p>
+          <form data-newsletter-form novalidate aria-label="Article sidebar newsletter">
+            <input class="sidebar-nl-input" type="email" placeholder="your@email.com" aria-label="Email address" />
+            <button class="btn btn--primary" style="width:100%;justify-content:center;" type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RELATED POSTS
+═══════════════════════════════════════════ -->
+<section class="bs-related section-pad" aria-labelledby="related-heading">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal"><span class="tag">Keep reading</span></div>
+        <h2 id="related-heading" class="display-md reveal reveal--delay-1">More from the journal.</h2>
+      </div>
+      <a href="blog.html" class="arrow-link reveal reveal--delay-1">
+        All posts
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <div class="bs-related__grid">
+
+      <a href="blog-single.html" class="bs-related-card reveal" aria-label="Read: Citadels hits 300%" style="text-decoration:none;color:inherit;">
+        <div class="bs-related-card__thumb" aria-hidden="true">
+          <i class="fa-solid fa-chess-rook"></i>
+        </div>
+        <div class="bs-related-card__body">
+          <div class="bs-related-card__tag"><span class="tag" style="font-size:0.65rem;">Campaign Update</span></div>
+          <h3 class="bs-related-card__title">Citadels hits 300% — what that means for backers</h3>
+          <div class="bs-related-card__meta">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i> Mar 20, 2026
+            <i class="fa-regular fa-clock" aria-hidden="true"></i> 5 min
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-single.html" class="bs-related-card reveal reveal--delay-1" aria-label="Read: What 200 playtests taught us" style="text-decoration:none;color:inherit;">
+        <div class="bs-related-card__thumb" aria-hidden="true">
+          <i class="fa-solid fa-dice"></i>
+        </div>
+        <div class="bs-related-card__body">
+          <div class="bs-related-card__tag"><span class="tag" style="font-size:0.65rem;">Playtesting</span></div>
+          <h3 class="bs-related-card__title">What 200 playtests taught us about player AP</h3>
+          <div class="bs-related-card__meta">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i> Mar 5, 2026
+            <i class="fa-regular fa-clock" aria-hidden="true"></i> 8 min
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-single.html" class="bs-related-card reveal reveal--delay-2" aria-label="Read: Designing Moonfall Chronicles" style="text-decoration:none;color:inherit;">
+        <div class="bs-related-card__thumb" aria-hidden="true">
+          <i class="fa-solid fa-moon"></i>
+        </div>
+        <div class="bs-related-card__body">
+          <div class="bs-related-card__tag"><span class="tag" style="font-size:0.65rem;">Designer Diary</span></div>
+          <h3 class="bs-related-card__title">Designing Moonfall Chronicles without a map</h3>
+          <div class="bs-related-card__meta">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 28, 2026
+            <i class="fa-regular fa-clock" aria-hidden="true"></i> 10 min
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+          TabletopForge
+        </div>
+        <p class="footer__brand-desc">Independent board game publisher crafting bold tabletop experiences since 2018. Every game tells a story.</p>
+        <nav class="footer__social" aria-label="Social links">
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer__col-title">Company</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="about.html"   class="footer__col-link">About</a></li>
+          <li><a href="blog.html"    class="footer__col-link">Blog</a></li>
+          <li><a href="contact.html" class="footer__col-link">Contact</a></li>
+          <li><a href="#"            class="footer__col-link">Press Kit</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Games</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="games.html"          class="footer__col-link">All Titles</a></li>
+          <li><a href="games.html"          class="footer__col-link">Active Campaigns</a></li>
+          <li><a href="coming-soon.html"    class="footer__col-link">Coming Soon</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Print &amp; Play</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Client Area</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="dashboard-user.html" class="footer__col-link">Login</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Dashboard</a></li>
+          <li><a href="forum.html"          class="footer__col-link">Forum</a></li>
+          <li><a href="#"                   class="footer__col-link">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Support &amp; Legal</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#"            class="footer__col-link">Privacy Policy</a></li>
+          <li><a href="#"            class="footer__col-link">Terms &amp; Conditions</a></li>
+          <li><a href="contact.html" class="footer__col-link">Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 TabletopForge Ltd. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <a href="mailto:hello@tabletopforge.com" class="footer__copy">hello@tabletopforge.com</a>
+        <span class="footer__copy">·</span>
+        <span class="footer__copy">+1 (000) 000-0000</span>
+      </div>
+      <nav class="footer__bottom-links" aria-label="Legal">
+        <a href="#" class="footer__bottom-link">Privacy</a>
+        <a href="#" class="footer__bottom-link">Terms</a>
+        <a href="#" class="footer__bottom-link">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/blog.js"></script>
+</body>
+</html>

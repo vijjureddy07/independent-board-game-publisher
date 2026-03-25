@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backer Dashboard — TabletopForge</title>
+  <meta name="description" content="Your TabletopForge backer portal. Track shipments, download print-and-play files, manage your orders, and access the community forum." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav scrolled" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"   class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="about.html"   class="nav__link">About</a></li>
+        <li class="nav__item"><a href="games.html"   class="nav__link">Games</a></li>
+        <li class="nav__item"><a href="blog.html"    class="nav__link">Blog</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__item">
+          <a href="dashboard-user.html" class="nav__link active" aria-haspopup="true">
+            Dashboard <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="dashboard-user.html"  class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-user" aria-hidden="true"></i><div>User Dashboard <span>Orders, downloads, forum</span></div></a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-gear" aria-hidden="true"></i><div>Admin Dashboard <span>Manage campaigns &amp; users</span></div></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
+        <a href="index.html" class="btn btn--ghost nav__login">
+          <i class="fa-solid fa-right-from-bracket" style="font-size:12px;" aria-hidden="true"></i> Logout
+        </a>
+      </div>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html"           class="nav__mobile-link">Back to Site</a>
+  <a href="dashboard-user.html"  class="nav__mobile-link">Dashboard</a>
+  <a href="dashboard-admin.html" class="nav__mobile-link">Admin Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     DASHBOARD SHELL
+═══════════════════════════════════════════ -->
+<div class="dash-shell">
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="dash-sidebar" id="dash-sidebar" aria-label="Dashboard navigation">
+
+    <div class="dash-profile">
+      <div class="dash-profile__avatar" aria-hidden="true">JD</div>
+      <div>
+        <p class="dash-profile__name">James Doe</p>
+        <p class="dash-profile__role">Backer since 2021 · 6 campaigns</p>
+      </div>
+    </div>
+
+    <nav class="dash-nav" aria-label="Dashboard sections">
+
+      <p class="dash-nav__section-label">Overview</p>
+      <a href="#overview"   class="dash-nav__item active" data-panel="overview">
+        <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboard
+      </a>
+      <a href="#campaigns"  class="dash-nav__item" data-panel="campaigns">
+        <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> My Campaigns
+        <span class="dash-nav__badge">3</span>
+      </a>
+
+      <p class="dash-nav__section-label">Orders</p>
+      <a href="#shipping"   class="dash-nav__item" data-panel="shipping">
+        <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Shipping Tracker
+      </a>
+      <a href="#orders"     class="dash-nav__item" data-panel="orders">
+        <i class="fa-solid fa-box-open" aria-hidden="true"></i> Order History
+      </a>
+
+      <p class="dash-nav__section-label">Content</p>
+      <a href="#pnp"        class="dash-nav__item" data-panel="pnp">
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Print &amp; Play
+        <span class="dash-nav__badge dash-nav__badge--accent">3</span>
+      </a>
+      <a href="#exclusives" class="dash-nav__item" data-panel="exclusives">
+        <i class="fa-solid fa-star" aria-hidden="true"></i> Exclusives
+      </a>
+
+      <p class="dash-nav__section-label">Community</p>
+      <a href="#forum"      class="dash-nav__item" data-panel="forum">
+        <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum
+        <span class="dash-nav__badge">12</span>
+      </a>
+      <a href="#messages"   class="dash-nav__item" data-panel="messages">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages
+        <span class="dash-nav__badge">2</span>
+      </a>
+
+      <p class="dash-nav__section-label">Account</p>
+      <a href="#profile"    class="dash-nav__item" data-panel="profile">
+        <i class="fa-solid fa-user" aria-hidden="true"></i> Profile
+      </a>
+      <a href="#settings"   class="dash-nav__item" data-panel="settings">
+        <i class="fa-solid fa-gear" aria-hidden="true"></i> Settings
+      </a>
+
+    </nav>
+
+    <div class="dash-sidebar__footer">
+      <a href="dashboard-admin.html">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Switch to Admin
+      </a>
+      <a href="index.html">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
+      </a>
+      <a href="index.html">
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
+  <main class="dash-main" id="dash-main">
+
+    <!-- Mobile sidebar toggle -->
+    <div style="margin-bottom:var(--sp-5);">
+      <button class="dash-sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open sidebar" aria-expanded="false" aria-controls="dash-sidebar">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
+      </button>
+    </div>
+
+    <!-- Page header -->
+    <div class="dash-page-header">
+      <div>
+        <h1>Welcome back, James</h1>
+        <p>
+          <i class="fa-regular fa-clock" style="font-size:11px;margin-right:4px;" aria-hidden="true"></i>
+          Last login: today at 9:42 AM · 3 active campaigns
+        </p>
+      </div>
+      <a href="games.html" class="btn btn--ghost btn--sm">
+        <i class="fa-solid fa-plus" aria-hidden="true"></i> Back a new game
+      </a>
+    </div>
+
+    <!-- ─── STAT CARDS ───────────────────────────────────────────── -->
+    <div class="dash-stats">
+      <div class="dash-stat-card">
+        <div class="dash-stat-card__label">
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Backed Campaigns
+        </div>
+        <span class="dash-stat-card__value" data-count="8">—</span>
+        <div class="dash-stat-card__delta up">
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 currently in fulfilment
+        </div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-card__label">
+          <i class="fa-solid fa-coins" aria-hidden="true"></i> Total Pledged
+        </div>
+        <span class="dash-stat-card__value" data-count="642" data-prefix="$">—</span>
+        <div class="dash-stat-card__delta">
+          <i class="fa-solid fa-circle-dot" aria-hidden="true"></i> Lifetime value
+        </div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-card__label">
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> PnP Files
+        </div>
+        <span class="dash-stat-card__value" data-count="14">—</span>
+        <div class="dash-stat-card__delta up">
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 new since last login
+        </div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-card__label">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum Posts
+        </div>
+        <span class="dash-stat-card__value" data-count="38">—</span>
+        <div class="dash-stat-card__delta up">
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 12 unread replies
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── ROW 1: Shipping + PnP ───────────────────────────────── -->
+    <div class="dash-grid-2">
+
+      <!-- Shipping tracker -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h2 class="dash-card__title">
+            <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+            Shipping — Verdant Empires
+          </h2>
+          <a href="#orders" class="dash-card__action" data-panel="orders">
+            All orders <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="dash-card__body">
+          <div class="dash-tracker" aria-label="Shipping progress">
+            <div class="tracker-step done">
+              <span class="tracker-step__label">Order confirmed</span>
+              <span class="tracker-step__date">Jan 12, 2026</span>
+            </div>
+            <div class="tracker-step done">
+              <span class="tracker-step__label">Production complete</span>
+              <span class="tracker-step__date">Feb 28, 2026</span>
+            </div>
+            <div class="tracker-step done">
+              <span class="tracker-step__label">Freight departed — Shenzhen</span>
+              <span class="tracker-step__date">Mar 5, 2026</span>
+            </div>
+            <div class="tracker-step done">
+              <span class="tracker-step__label">Arrived at fulfilment hub</span>
+              <span class="tracker-step__date">Mar 18, 2026</span>
+            </div>
+            <div class="tracker-step active">
+              <span class="tracker-step__label">Preparing for dispatch <span style="font-size:0.72rem;color:var(--text-muted);">← You are here</span></span>
+              <span class="tracker-step__date">Est. Mar 25–28, 2026</span>
+            </div>
+            <div class="tracker-step">
+              <span class="tracker-step__label">Delivered</span>
+              <span class="tracker-step__date">Est. Apr 1–5, 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PnP Downloads -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h2 class="dash-card__title">
+            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+            Print &amp; Play Files
+          </h2>
+          <a href="#pnp" class="dash-card__action" data-panel="pnp">
+            View all <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="dash-card__body">
+          <div class="pnp-list">
+            <div class="pnp-item">
+              <div class="pnp-item__icon"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i></div>
+              <span class="pnp-item__name">Citadels of the Deep v1.2</span>
+              <span class="pnp-item__size">48 MB</span>
+              <span class="pnp-item__new">New</span>
+              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Citadels of the Deep">
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="pnp-item">
+              <div class="pnp-item__icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+              <span class="pnp-item__name">Verdant Empires — Deluxe</span>
+              <span class="pnp-item__size">72 MB</span>
+              <span class="pnp-item__new">New</span>
+              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Verdant Empires">
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="pnp-item">
+              <div class="pnp-item__icon"><i class="fa-solid fa-moon" aria-hidden="true"></i></div>
+              <span class="pnp-item__name">Moonfall Chronicles Preview</span>
+              <span class="pnp-item__size">18 MB</span>
+              <span class="pnp-item__new">New</span>
+              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Moonfall Chronicles">
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="pnp-item">
+              <div class="pnp-item__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+              <span class="pnp-item__name">The Iron Pact — Complete</span>
+              <span class="pnp-item__size">55 MB</span>
+              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download The Iron Pact">
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ─── ROW 2: Active Orders + Forum ────────────────────────── -->
+    <div class="dash-grid-2">
+
+      <!-- Active orders table -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h2 class="dash-card__title">
+            <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+            Active Orders
+          </h2>
+          <a href="#orders" class="dash-card__action" data-panel="orders">
+            Full history <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="dash-card__body" style="padding:0;">
+          <table class="dash-table" aria-label="Active orders">
+            <thead>
+              <tr>
+                <th>Campaign</th>
+                <th>Tier</th>
+                <th>Status</th>
+                <th>ETA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Citadels of the Deep</strong></td>
+                <td>Sailor · $65</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle" style="font-size:6px;"></i> Live</span></td>
+                <td>Q4 2026</td>
+              </tr>
+              <tr>
+                <td><strong>Verdant Empires</strong></td>
+                <td>Deluxe All-In · $145</td>
+                <td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck" style="font-size:8px;"></i> Shipping</span></td>
+                <td>Apr 1–5</td>
+              </tr>
+              <tr>
+                <td><strong>The Iron Pact</strong></td>
+                <td>Standard · $55</td>
+                <td><span class="status-pill status-pill--delivered"><i class="fa-solid fa-check" style="font-size:8px;"></i> Delivered</span></td>
+                <td>Feb 10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Forum activity -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h2 class="dash-card__title">
+            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+            Forum Activity
+          </h2>
+          <a href="forum.html" class="dash-card__action">
+            Open forum <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="dash-card__body" style="padding:0;">
+          <div class="forum-list">
+            <div class="forum-thread-item">
+              <div class="forum-thread-item__avatar" aria-hidden="true">MR</div>
+              <span class="forum-thread-item__title">Best solo strategies for Verdant Empires?</span>
+              <span class="forum-thread-item__meta">42 · 2h ago</span>
+            </div>
+            <div class="forum-thread-item">
+              <div class="forum-thread-item__avatar" aria-hidden="true">SL</div>
+              <span class="forum-thread-item__title">[Update] Shipping delay — EU backers</span>
+              <span class="forum-thread-item__meta">28 · 5h ago</span>
+            </div>
+            <div class="forum-thread-item">
+              <div class="forum-thread-item__avatar" aria-hidden="true">TK</div>
+              <span class="forum-thread-item__title">House rule: asymmetric starting VP</span>
+              <span class="forum-thread-item__meta">15 · 1d ago</span>
+            </div>
+            <div class="forum-thread-item">
+              <div class="forum-thread-item__avatar" aria-hidden="true">AK</div>
+              <span class="forum-thread-item__title">Citadels preview unboxing — images inside</span>
+              <span class="forum-thread-item__meta">67 · 3d ago</span>
+            </div>
+            <div class="forum-thread-item">
+              <div class="forum-thread-item__avatar" aria-hidden="true">PK</div>
+              <span class="forum-thread-item__title">Faction tier list — community consensus</span>
+              <span class="forum-thread-item__meta">31 · 4d ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ─── ROW 3: Notifications + Quick Actions ─────────────────── -->
+    <div class="dash-grid-2">
+
+      <!-- Notifications -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h2 class="dash-card__title">
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+            Notifications
+          </h2>
+          <button class="dash-card__action" type="button" style="background:none;border:none;cursor:pointer;">
+            Mark all read <i class="fa-solid fa-check" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="dash-card__body" style="padding:0;">
+          <div class="notif-list">
+            <div class="notif-item unread">
+              <div class="notif-item__dot" aria-label="Unread"></div>
+              <span class="notif-item__text"><strong>Verdant Empires</strong> — Your order is being prepared for dispatch.</span>
+              <span class="notif-item__time">2h ago</span>
+            </div>
+            <div class="notif-item unread">
+              <div class="notif-item__dot" aria-label="Unread"></div>
+              <span class="notif-item__text"><strong>New PnP file:</strong> Moonfall Chronicles backer preview is now available.</span>
+              <span class="notif-item__time">5h ago</span>
+            </div>
+            <div class="notif-item">
+              <div class="notif-item__dot"></div>
+              <span class="notif-item__text"><strong>Citadels of the Deep</strong> — Stretch goal #3 unlocked: Deluxe Faction Boards!</span>
+              <span class="notif-item__time">1d ago</span>
+            </div>
+            <div class="notif-item">
+              <div class="notif-item__dot"></div>
+              <span class="notif-item__text">Forum reply: Someone responded to your post in <em>House rule: asymmetric VP</em>.</span>
+              <span class="notif-item__time">2d ago</span>
+            </div>
+            <div class="notif-item">
+              <div class="notif-item__dot"></div>
+              <span class="notif-item__text"><strong>Campaign update #8</strong> from Citadels of the Deep — read it now.</span>
+              <span class="notif-item__time">3d ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h2 class="dash-card__title">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            Quick Actions
+          </h2>
+        </div>
+        <div class="dash-card__body">
+          <div class="quick-actions">
+            <a href="games.html" class="quick-action">
+              <i class="fa-solid fa-chess-rook" aria-hidden="true"></i>
+              Browse campaigns
+            </a>
+            <a href="#pnp" class="quick-action" data-panel="pnp">
+              <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+              Download PnP files
+            </a>
+            <a href="forum.html" class="quick-action">
+              <i class="fa-solid fa-comments" aria-hidden="true"></i>
+              Visit the forum
+            </a>
+            <a href="#profile" class="quick-action" data-panel="profile">
+              <i class="fa-solid fa-user-pen" aria-hidden="true"></i>
+              Edit profile
+            </a>
+            <a href="contact.html" class="quick-action">
+              <i class="fa-solid fa-headset" aria-hidden="true"></i>
+              Contact support
+            </a>
+            <a href="#settings" class="quick-action" data-panel="settings">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
+              Account settings
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — TabletopForge</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  <link rel="stylesheet" href="../assets/css/games.css" />
+  <link rel="stylesheet" href="../assets/css/remaining-pages.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav scrolled" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"  class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="games.html"  class="nav__link">Games</a></li>
+        <li class="nav__item"><a href="blog.html"   class="nav__link">Blog</a></li>
+        <li class="nav__item"><a href="forum.html"  class="nav__link">Forum</a></li>
+        <li class="nav__item"><a href="dashboard-user.html" class="nav__link active">Dashboard</a></li>
+      </ul>
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
+        <a href="dashboard-user.html" class="btn btn--ghost nav__login">Dashboard</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html"          class="nav__mobile-link">Home</a>
+  <a href="games.html"          class="nav__mobile-link">Games</a>
+  <a href="blog.html"           class="nav__mobile-link">Blog</a>
+  <a href="forum.html"          class="nav__mobile-link">Forum</a>
+  <a href="dashboard-user.html" class="nav__mobile-link">Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- Profile header with avatar + tabs -->
+<div class="profile-header">
+
+  <div class="profile-avatar-wrap">
+    <div class="profile-avatar" aria-label="Profile avatar: JD">JD</div>
+    <button class="profile-avatar-edit" aria-label="Edit avatar" type="button">
+      <i class="fa-solid fa-pen" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="profile-info">
+    <h1 class="profile-name">James Donnelly</h1>
+    <p class="profile-handle">@jamesdonnelly · Backer since 2021</p>
+    <div class="profile-badges">
+      <span class="tag">Backer</span>
+      <span class="tag tag--accent">8 campaigns</span>
+      <span class="tag">Forum member</span>
+    </div>
+  </div>
+
+  <!-- Tab nav sitting at bottom-right of the header -->
+  <nav class="profile-tabs" aria-label="Profile sections">
+    <button class="gs-tab active" data-ptab="overview" type="button">Overview</button>
+    <button class="gs-tab" data-ptab="settings"  type="button">Settings</button>
+    <button class="gs-tab" data-ptab="security"  type="button">Security</button>
+    <button class="gs-tab" data-ptab="notifs"    type="button">Notifications</button>
+  </nav>
+
+</div>
+
+<!-- Profile body -->
+<div style="background:var(--bg-primary);padding:var(--sp-7);">
+  <div style="max-width:900px;margin:0 auto;">
+
+    <!-- OVERVIEW PANEL -->
+    <div id="ptab-overview" class="gs-panel active" role="tabpanel">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);">
+
+        <!-- Backer stats -->
+        <div class="dash-card">
+          <div class="dash-card__head">
+            <span class="dash-card__title"><i class="fa-solid fa-chart-bar"></i> Backer Stats</span>
+          </div>
+          <div class="dash-card__body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);">
+              <div>
+                <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;display:block;">8</span>
+                <span style="font-size:0.75rem;color:var(--text-muted);">Campaigns backed</span>
+              </div>
+              <div>
+                <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;display:block;">$642</span>
+                <span style="font-size:0.75rem;color:var(--text-muted);">Total pledged</span>
+              </div>
+              <div>
+                <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;display:block;">14</span>
+                <span style="font-size:0.75rem;color:var(--text-muted);">PnP files</span>
+              </div>
+              <div>
+                <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;display:block;">38</span>
+                <span style="font-size:0.75rem;color:var(--text-muted);">Forum posts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backed titles -->
+        <div class="dash-card">
+          <div class="dash-card__head">
+            <span class="dash-card__title"><i class="fa-solid fa-dice"></i> Backed Titles</span>
+            <a href="dashboard-user.html" class="dash-card__link">View all <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+          <div class="dash-card__body" style="display:flex;flex-direction:column;gap:var(--sp-3);">
+            <div style="display:flex;align-items:center;gap:var(--sp-3);">
+              <div style="width:36px;height:36px;border-radius:var(--r-sm);background:var(--bg-card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted);flex-shrink:0;"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i></div>
+              <div style="flex:1;"><p style="font-size:0.85rem;font-weight:600;">Citadels of the Deep</p><p style="font-size:0.72rem;color:var(--text-muted);">Sailor Edition · $65</p></div>
+              <span class="status-badge status-live"><i class="fa-solid fa-circle"></i> Live</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:var(--sp-3);">
+              <div style="width:36px;height:36px;border-radius:var(--r-sm);background:var(--bg-card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted);flex-shrink:0;"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+              <div style="flex:1;"><p style="font-size:0.85rem;font-weight:600;">Verdant Empires</p><p style="font-size:0.72rem;color:var(--text-muted);">Deluxe All-In · $145</p></div>
+              <span class="status-badge status-transit"><i class="fa-solid fa-circle"></i> Transit</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:var(--sp-3);">
+              <div style="width:36px;height:36px;border-radius:var(--r-sm);background:var(--bg-card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted);flex-shrink:0;"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+              <div style="flex:1;"><p style="font-size:0.85rem;font-weight:600;">The Iron Pact</p><p style="font-size:0.72rem;color:var(--text-muted);">Standard · $55</p></div>
+              <span class="status-badge status-delivered"><i class="fa-solid fa-check"></i> Delivered</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent forum activity -->
+        <div class="dash-card" style="grid-column:span 2;">
+          <div class="dash-card__head">
+            <span class="dash-card__title"><i class="fa-solid fa-comments"></i> Recent Forum Activity</span>
+            <a href="forum.html" class="dash-card__link">Go to forum <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+          <div class="dash-card__body">
+            <div style="display:flex;flex-direction:column;">
+              <div class="forum-row">
+                <div class="forum-row__avatar">JD</div>
+                <div style="flex:1;">
+                  <p class="forum-row__title">Re: Best solo strategies for Verdant Empires?</p>
+                  <p class="forum-row__meta">Gameplay Strategies · 2h ago</p>
+                </div>
+                <div class="forum-row__stats">42 replies</div>
+              </div>
+              <div class="forum-row">
+                <div class="forum-row__avatar">JD</div>
+                <div style="flex:1;">
+                  <p class="forum-row__title">House rule: asymmetric starting VP — it works!</p>
+                  <p class="forum-row__meta">House Rules · 3d ago</p>
+                </div>
+                <div class="forum-row__stats">15 replies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <div id="ptab-settings" class="gs-panel" role="tabpanel">
+
+      <div class="settings-section">
+        <div class="settings-section__head">
+          <i class="fa-solid fa-user" aria-hidden="true"></i>
+          <h3>Personal Information</h3>
+        </div>
+        <div class="settings-section__body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-bottom:var(--sp-4);">
+            <div class="cf-field">
+              <label class="cf-label">First Name</label>
+              <input class="cf-input" type="text" value="James" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">Last Name</label>
+              <input class="cf-input" type="text" value="Donnelly" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">Email</label>
+              <input class="cf-input" type="email" value="james@email.com" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">Display Name</label>
+              <input class="cf-input" type="text" value="jamesdonnelly" />
+            </div>
+          </div>
+          <div class="cf-field" style="margin-bottom:var(--sp-5);">
+            <label class="cf-label">Bio <span>(optional)</span></label>
+            <textarea class="cf-textarea" style="min-height:80px;">Backed 8 TabletopForge titles. Strategy gamer. Bristol, UK.</textarea>
+          </div>
+          <button class="btn btn--primary btn--sm" type="button">Save changes</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section__head">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <h3>Shipping Address</h3>
+        </div>
+        <div class="settings-section__body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-bottom:var(--sp-4);">
+            <div class="cf-field" style="grid-column:span 2;">
+              <label class="cf-label">Address Line 1</label>
+              <input class="cf-input" type="text" placeholder="Street address" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">City</label>
+              <input class="cf-input" type="text" placeholder="City" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">Postcode</label>
+              <input class="cf-input" type="text" placeholder="Postcode" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">Country</label>
+              <select class="cf-select">
+                <option>United Kingdom</option>
+                <option>United States</option>
+                <option>Germany</option>
+                <option>France</option>
+                <option>Australia</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn--primary btn--sm" type="button">Save address</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECURITY PANEL -->
+    <div id="ptab-security" class="gs-panel" role="tabpanel">
+
+      <div class="settings-section">
+        <div class="settings-section__head">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i>
+          <h3>Change Password</h3>
+        </div>
+        <div class="settings-section__body">
+          <div style="max-width:440px;display:flex;flex-direction:column;gap:var(--sp-4);margin-bottom:var(--sp-5);">
+            <div class="cf-field">
+              <label class="cf-label">Current password</label>
+              <input class="cf-input" type="password" placeholder="••••••••" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">New password</label>
+              <input class="cf-input" type="password" placeholder="••••••••" />
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">Confirm new password</label>
+              <input class="cf-input" type="password" placeholder="••••••••" />
+            </div>
+          </div>
+          <button class="btn btn--primary btn--sm" type="button">Update password</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section__head">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <h3>Two-Factor Authentication</h3>
+        </div>
+        <div class="settings-section__body">
+          <div class="settings-row">
+            <div class="settings-row__info">
+              <h4>Authenticator App</h4>
+              <p>Use Google Authenticator or Authy for 2FA codes.</p>
+            </div>
+            <label class="toggle" aria-label="Enable authenticator app">
+              <input type="checkbox" />
+              <div class="toggle__track"></div>
+              <div class="toggle__thumb"></div>
+            </label>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row__info">
+              <h4>SMS Backup</h4>
+              <p>Receive a code by text message as a backup method.</p>
+            </div>
+            <label class="toggle" aria-label="Enable SMS backup">
+              <input type="checkbox" />
+              <div class="toggle__track"></div>
+              <div class="toggle__thumb"></div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NOTIFICATIONS PANEL -->
+    <div id="ptab-notifs" class="gs-panel" role="tabpanel">
+
+      <div class="settings-section">
+        <div class="settings-section__head">
+          <i class="fa-solid fa-bell" aria-hidden="true"></i>
+          <h3>Email Notifications</h3>
+        </div>
+        <div class="settings-section__body">
+          <div class="settings-row">
+            <div class="settings-row__info"><h4>Campaign updates</h4><p>News and stretch goal unlocks for campaigns you've backed.</p></div>
+            <label class="toggle" aria-label="Toggle campaign updates"><input type="checkbox" checked /><div class="toggle__track"></div><div class="toggle__thumb"></div></label>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row__info"><h4>Shipping notifications</h4><p>Updates when your order status changes.</p></div>
+            <label class="toggle" aria-label="Toggle shipping notifications"><input type="checkbox" checked /><div class="toggle__track"></div><div class="toggle__thumb"></div></label>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row__info"><h4>New PnP files</h4><p>Alerts when new print-and-play files are available.</p></div>
+            <label class="toggle" aria-label="Toggle PnP file alerts"><input type="checkbox" checked /><div class="toggle__track"></div><div class="toggle__thumb"></div></label>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row__info"><h4>Forum replies</h4><p>Notify when someone replies to your posts.</p></div>
+            <label class="toggle" aria-label="Toggle forum reply alerts"><input type="checkbox" checked /><div class="toggle__track"></div><div class="toggle__thumb"></div></label>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row__info"><h4>New campaign launches</h4><p>Be the first to know when we launch something new.</p></div>
+            <label class="toggle" aria-label="Toggle new campaign notifications"><input type="checkbox" /><div class="toggle__track"></div><div class="toggle__thumb"></div></label>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row__info"><h4>Marketing emails</h4><p>Occasional offers, merchandise, and partner news.</p></div>
+            <label class="toggle" aria-label="Toggle marketing emails"><input type="checkbox" /><div class="toggle__track"></div><div class="toggle__thumb"></div></label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+<script>
+  // Profile tab switcher
+  document.querySelectorAll('[data-ptab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-ptab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.gs-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById('ptab-' + btn.dataset.ptab);
+      if (panel) panel.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

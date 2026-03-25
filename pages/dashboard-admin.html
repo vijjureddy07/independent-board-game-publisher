@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — TabletopForge</title>
+  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV  (minimal — dashboard is full-screen app)
+═══════════════════════════════════════════ -->
+<header class="nav scrolled" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"   class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="games.html"   class="nav__link">Games</a></li>
+        <li class="nav__item"><a href="blog.html"    class="nav__link">Blog</a></li>
+        <li class="nav__item">
+          <a href="dashboard-admin.html" class="nav__link active" aria-haspopup="true">
+            Dashboard <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="dashboard-user.html"  class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-user" aria-hidden="true"></i><div>User Dashboard <span>Orders, downloads, forum</span></div></a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-gear" aria-hidden="true"></i><div>Admin Dashboard <span>Manage campaigns &amp; users</span></div></a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
+        <a href="index.html" class="btn btn--ghost nav__login">
+          <i class="fa-solid fa-right-from-bracket" style="font-size:12px;" aria-hidden="true"></i> Logout
+        </a>
+      </div>
+
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-admin" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav id="mobile-menu-admin" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html"            class="nav__mobile-link">Back to Site</a>
+  <a href="dashboard-user.html"   class="nav__mobile-link">User Dashboard</a>
+  <a href="dashboard-admin.html"  class="nav__mobile-link">Admin Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     DASHBOARD SHELL
+═══════════════════════════════════════════ -->
+<div class="dash-shell">
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="dash-sidebar" id="dash-sidebar-admin" aria-label="Admin navigation">
+
+    <!-- Admin profile badge -->
+    <div class="dash-sidebar__top">
+      <div class="dash-profile">
+        <div class="dash-profile__avatar" aria-hidden="true">AD</div>
+        <div>
+          <p class="dash-profile__name">Admin</p>
+          <p class="dash-profile__role">
+            <i class="fa-solid fa-shield-halved" style="font-size:9px;margin-right:3px;" aria-hidden="true"></i>
+            Full access
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav sections -->
+    <nav class="dash-sidebar__nav" aria-label="Admin sections">
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="#" class="dash-nav-item active" data-admin-panel="overview">
+          <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Overview
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="analytics">
+          <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Analytics
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Campaigns</span>
+        <a href="#" class="dash-nav-item" data-admin-panel="campaigns">
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <span class="dash-nav-badge">4</span>
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="orders">
+          <i class="fa-solid fa-box-open" aria-hidden="true"></i> Orders
+          <span class="dash-nav-badge dash-nav-badge--alert">12</span>
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="fulfillment">
+          <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Fulfilment
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="pnp">
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> PnP Files
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Users</span>
+        <a href="#" class="dash-nav-item" data-admin-panel="users">
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <span class="dash-nav-badge">48.2K</span>
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="messages">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages
+          <span class="dash-nav-badge dash-nav-badge--alert">5</span>
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Content</span>
+        <a href="#" class="dash-nav-item" data-admin-panel="blog">
+          <i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Blog Posts
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="forum">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum Moderation
+          <span class="dash-nav-badge dash-nav-badge--alert">3</span>
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">System</span>
+        <a href="#" class="dash-nav-item" data-admin-panel="reports">
+          <i class="fa-solid fa-file-chart-column" aria-hidden="true"></i> Reports
+        </a>
+        <a href="#" class="dash-nav-item" data-admin-panel="settings">
+          <i class="fa-solid fa-sliders" aria-hidden="true"></i> Settings
+        </a>
+      </div>
+
+    </nav>
+
+    <!-- Sidebar footer -->
+    <div class="dash-sidebar__bottom">
+      <a href="dashboard-user.html" class="dash-nav-item">
+        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
+      </a>
+      <a href="index.html" class="dash-nav-item">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
+      </a>
+      <a href="index.html" class="dash-nav-item">
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
+      </a>
+    </div>
+
+  </aside>
+
+
+  <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
+  <main class="dash-main" id="admin-main">
+
+    <!-- Sticky topbar -->
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:var(--sp-4);">
+        <button class="dash-mobile-toggle" id="admin-sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="dash-sidebar-admin">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <span class="dash-topbar__title" id="admin-page-title">Overview</span>
+      </div>
+      <div class="dash-topbar__actions">
+        <div class="dash-topbar__search">
+          <i class="fa-solid fa-magnifying-glass dash-search-icon" aria-hidden="true"></i>
+          <input class="dash-search-input" type="search" placeholder="Search..." aria-label="Admin search" />
+        </div>
+        <button class="dash-icon-btn" type="button" aria-label="Notifications">
+          <i class="fa-solid fa-bell" aria-hidden="true"></i>
+          <span class="dash-notif-dot" aria-hidden="true"></span>
+        </button>
+        <button class="dash-icon-btn" type="button" aria-label="Settings">
+          <i class="fa-solid fa-gear" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── CONTENT AREA ─────────────────────────────────────────── -->
+    <div class="dash-content">
+
+
+      <!-- ════════════════════════════════
+           PAGE: OVERVIEW  (default)
+      ════════════════════════════════ -->
+      <div class="dash-page active" id="admin-panel-overview">
+
+        <div class="dash-section-head">
+          <div>
+            <h1 style="font-family:var(--font-head);font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;">Good morning, Admin</h1>
+            <p style="font-size:0.83rem;color:var(--text-muted);">
+              <i class="fa-regular fa-calendar" style="font-size:10px;margin-right:4px;" aria-hidden="true"></i>
+              Wednesday, March 25, 2026 · Citadels of the Deep has 14 days remaining
+            </p>
+          </div>
+          <a href="game-single.html" class="btn btn--ghost btn--sm">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i> View live campaign
+          </a>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="dash-stats">
+          <div class="dash-stat-card">
+            <div class="dash-stat-card__icon"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
+            <span class="dash-stat-card__value" data-count="48200">—</span>
+            <span class="dash-stat-card__label">Total backers</span>
+            <div class="dash-stat-card__change change--up">
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +847 this week
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-card__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></div>
+            <span class="dash-stat-card__value" data-count="284" data-prefix="$" data-suffix="K">—</span>
+            <span class="dash-stat-card__label">Raised this campaign</span>
+            <div class="dash-stat-card__change change--up">
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +$12K today
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-card__icon"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
+            <span class="dash-stat-card__value" data-count="437">—</span>
+            <span class="dash-stat-card__label">Orders pending dispatch</span>
+            <div class="dash-stat-card__change change--down">
+              <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 12 flagged
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-card__icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
+            <span class="dash-stat-card__value" data-count="3">—</span>
+            <span class="dash-stat-card__label">Posts awaiting review</span>
+            <div class="dash-stat-card__change change--down">
+              <i class="fa-solid fa-flag" aria-hidden="true"></i> Needs attention
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 1: Revenue chart + Recent activity -->
+        <div class="dash-grid-3">
+
+          <!-- Revenue mini chart -->
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h2 class="dash-card__title">
+                <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Daily Pledges — Citadels
+              </h2>
+              <span class="dash-card__link">Last 14 days</span>
+            </div>
+            <div class="dash-card__body">
+              <div style="display:flex;align-items:baseline;gap:var(--sp-3);margin-bottom:var(--sp-5);">
+                <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;">$284K</span>
+                <span style="font-size:0.78rem;color:var(--text-muted);">of $80K goal · 342% funded</span>
+              </div>
+              <div class="mini-chart" aria-label="Daily pledge chart" role="img">
+                <div class="mini-bar" style="height:35%;" title="Mar 11 — $8.2K"></div>
+                <div class="mini-bar" style="height:52%;" title="Mar 12 — $12.4K"></div>
+                <div class="mini-bar" style="height:44%;" title="Mar 13 — $10.5K"></div>
+                <div class="mini-bar" style="height:60%;" title="Mar 14 — $14.3K"></div>
+                <div class="mini-bar" style="height:48%;" title="Mar 15 — $11.5K"></div>
+                <div class="mini-bar" style="height:38%;" title="Mar 16 — $9.1K"></div>
+                <div class="mini-bar" style="height:55%;" title="Mar 17 — $13.2K"></div>
+                <div class="mini-bar highlight" style="height:72%;" title="Mar 18 — $17.2K"></div>
+                <div class="mini-bar" style="height:50%;" title="Mar 19 — $12.0K"></div>
+                <div class="mini-bar highlight" style="height:88%;" title="Mar 20 — $21.0K"></div>
+                <div class="mini-bar" style="height:62%;" title="Mar 21 — $14.8K"></div>
+                <div class="mini-bar" style="height:54%;" title="Mar 22 — $12.9K"></div>
+                <div class="mini-bar" style="height:68%;" title="Mar 23 — $16.2K"></div>
+                <div class="mini-bar highlight" style="height:100%;" title="Mar 24 — $23.8K"></div>
+              </div>
+              <div class="mini-chart__labels">
+                <span>Mar 11</span><span>Mar 14</span><span>Mar 17</span><span>Mar 20</span><span>Mar 24</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent activity feed -->
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h2 class="dash-card__title">
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i> Recent Activity
+              </h2>
+              <span class="dash-card__link">Live</span>
+            </div>
+            <div class="dash-card__body" style="padding:var(--sp-4) var(--sp-5);">
+              <div class="activity-feed">
+                <div class="activity-item">
+                  <div class="activity-item__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></div>
+                  <span class="activity-item__text"><strong>New pledge</strong> — Warlord tier ($145) from @aiko_naka</span>
+                  <span class="activity-item__time">2 min</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon"><i class="fa-solid fa-user-plus" aria-hidden="true"></i></div>
+                  <span class="activity-item__text"><strong>New backer</strong> — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8de0ecffeef8fea3ffcde8e0ece4e1a3eee2e0">[email&#160;protected]</a> joined via Kickstarter</span>
+                  <span class="activity-item__time">8 min</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon"><i class="fa-solid fa-flag" aria-hidden="true"></i></div>
+                  <span class="activity-item__text"><strong>Forum flag</strong> — Post in "Citadels strategy" reported for spam</span>
+                  <span class="activity-item__time">14 min</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon"><i class="fa-solid fa-truck" aria-hidden="true"></i></div>
+                  <span class="activity-item__text"><strong>Shipment update</strong> — 127 Verdant Empires orders marked dispatched</span>
+                  <span class="activity-item__time">1h</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+                  <span class="activity-item__text"><strong>Support message</strong> — Backer #4821 reports missing promo card</span>
+                  <span class="activity-item__time">2h</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i></div>
+                  <span class="activity-item__text"><strong>Stretch goal unlocked</strong> — Citadels reached 300% · Deluxe boards added</span>
+                  <span class="activity-item__time">3h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Row 2: Pending orders + Forum flags -->
+        <div class="dash-grid-2">
+
+          <!-- Pending orders -->
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h2 class="dash-card__title">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Flagged Orders
+              </h2>
+              <a href="#" class="dash-card__link" data-admin-panel="orders">
+                All orders <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="dash-table-wrap">
+              <table class="dash-table" aria-label="Flagged orders">
+                <thead>
+                  <tr>
+                    <th>Order</th>
+                    <th>Backer</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="dash-table__name">#VE-4821</span></td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9fecf0eff7f6fab1f3dffaf2fef6f3b1fcf0f2">[email&#160;protected]</a></td>
+                    <td>Missing promo card</td>
+                    <td><span class="status-pill status-pill--alert"><i class="fa-solid fa-circle"></i> Open</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="dash-table__name">#VE-3309</span></td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84f0ebe9e5f7aaefc4e1e9e5ede8aae7ebe9">[email&#160;protected]</a></td>
+                    <td>Damaged box on arrival</td>
+                    <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-circle"></i> In review</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="dash-table__name">#IP-1102</span></td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="543935263721277a26143139353d387a373b39">[email&#160;protected]</a></td>
+                    <td>Wrong address on label</td>
+                    <td><span class="status-pill status-pill--alert"><i class="fa-solid fa-circle"></i> Open</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="dash-table__name">#CD-0091</span></td>
+                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2140484a4e0f4f61444c40484d0f424e4c">[email&#160;protected]</a></td>
+                    <td>Upgrade tier mismatch</td>
+                    <td><span class="status-pill status-pill--done"><i class="fa-solid fa-check"></i> Resolved</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Forum moderation queue -->
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h2 class="dash-card__title">
+                <i class="fa-solid fa-flag" aria-hidden="true"></i> Moderation Queue
+              </h2>
+              <a href="#" class="dash-card__link" data-admin-panel="forum">
+                Full queue <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="dash-card__body" style="padding:0;">
+              <div class="forum-list">
+
+                <div class="forum-row">
+                  <div class="forum-row__avatar" aria-hidden="true">??</div>
+                  <div style="flex:1;">
+                    <div class="forum-row__title">Spam post — "Buy cheap meeples at..."</div>
+                    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Citadels · flagged by 3 users · 5 min ago</div>
+                  </div>
+                  <div style="display:flex;gap:var(--sp-2);">
+                    <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
+                      <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="forum-row">
+                  <div class="forum-row__avatar" aria-hidden="true">TK</div>
+                  <div style="flex:1;">
+                    <div class="forum-row__title">Off-topic: "Anyone want to trade Kickstarters?"</div>
+                    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">General · flagged by 1 user · 1h ago</div>
+                  </div>
+                  <div style="display:flex;gap:var(--sp-2);">
+                    <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
+                      <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="forum-row">
+                  <div class="forum-row__avatar" aria-hidden="true">AN</div>
+                  <div style="flex:1;">
+                    <div class="forum-row__title">Disputed rules interpretation — needs mod clarity</div>
+                    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Citadels Strategy · 2h ago</div>
+                  </div>
+                  <div style="display:flex;gap:var(--sp-2);">
+                    <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
+                      <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- end overview panel -->
+
+
+      <!-- ════════════════════════════════
+           PAGE: CAMPAIGNS
+      ════════════════════════════════ -->
+      <div class="dash-page" id="admin-panel-campaigns">
+
+        <div class="dash-section-head">
+          <h2 class="dash-section-title">
+            <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          </h2>
+          <button class="btn btn--primary btn--sm" type="button">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> New campaign
+          </button>
+        </div>
+
+        <div class="dash-table-wrap">
+          <table class="dash-table" aria-label="Campaign management">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Platform</th>
+                <th>Backers</th>
+                <th>Raised</th>
+                <th>Funded %</th>
+                <th>Ends / Shipped</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="dash-table__name">Citadels of the Deep</span></td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td>
+                <td>Kickstarter</td>
+                <td>2,847</td>
+                <td>$284K</td>
+                <td>342%</td>
+                <td>Apr 8, 2026</td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="Edit campaign" style="margin-right:4px;">
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View campaign">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">Verdant Empires</span></td>
+                <td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> Fulfilment</span></td>
+                <td>Kickstarter</td>
+                <td>5,120</td>
+                <td>$612K</td>
+                <td>765%</td>
+                <td>89% shipped</td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="Edit campaign" style="margin-right:4px;">
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View campaign">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">Moonfall Chronicles</span></td>
+                <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Pre-launch</span></td>
+                <td>Kickstarter</td>
+                <td>3,200 waitlist</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Q2 2026</td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="Edit campaign" style="margin-right:4px;">
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View campaign">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">The Iron Pact</span></td>
+                <td><span class="status-pill status-pill--done"><i class="fa-solid fa-check"></i> Complete</span></td>
+                <td>Kickstarter</td>
+                <td>4,200</td>
+                <td>$312K</td>
+                <td>390%</td>
+                <td>Delivered</td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="Edit campaign" style="margin-right:4px;">
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View campaign">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!-- end campaigns panel -->
+
+
+      <!-- ════════════════════════════════
+           PAGE: USERS / BACKERS
+      ════════════════════════════════ -->
+      <div class="dash-page" id="admin-panel-users">
+
+        <div class="dash-section-head">
+          <h2 class="dash-section-title">
+            <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          </h2>
+          <div style="display:flex;gap:var(--sp-3);">
+            <div class="dash-topbar__search" style="position:relative;">
+              <i class="fa-solid fa-magnifying-glass dash-search-icon" aria-hidden="true"></i>
+              <input class="dash-search-input" type="search" placeholder="Search backers..." aria-label="Search backers" />
+            </div>
+            <button class="btn btn--ghost btn--sm" type="button">
+              <i class="fa-solid fa-file-export" aria-hidden="true"></i> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="dash-table-wrap">
+          <table class="dash-table" aria-label="Backer management">
+            <thead>
+              <tr>
+                <th>Backer</th>
+                <th>Email</th>
+                <th>Campaigns</th>
+                <th>Total pledged</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                    <div style="width:30px;height:30px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">MR</div>
+                    <span class="dash-table__name">Marcus R.</span>
+                  </div>
+                </td>
+                <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6dbd7c4d5c3c598c4f6d3dbd7dfda98d5d9db">[email&#160;protected]</a></td>
+                <td>6</td>
+                <td>$642</td>
+                <td>Mar 2021</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Active</span></td>
+                <td>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                    <div style="width:30px;height:30px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">SL</div>
+                    <span class="dash-table__name">Sophie L.</span>
+                  </div>
+                </td>
+                <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="addec2ddc5c4c883c1edc8c0ccc4c183cec2c0">[email&#160;protected]</a></td>
+                <td>9</td>
+                <td>$1,140</td>
+                <td>Jan 2020</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Active</span></td>
+                <td>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                    <div style="width:30px;height:30px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">TK</div>
+                    <span class="dash-table__name">Tomáš K.</span>
+                  </div>
+                </td>
+                <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4809b999587da9fb49199959d98da979b99">[email&#160;protected]</a></td>
+                <td>4</td>
+                <td>$380</td>
+                <td>Nov 2022</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Active</span></td>
+                <td>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:var(--sp-3);">
+                    <div style="width:30px;height:30px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">AN</div>
+                    <span class="dash-table__name">Aiko N.</span>
+                  </div>
+                </td>
+                <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="33525a585c1d5d73565e525a5f1d505c5e">[email&#160;protected]</a></td>
+                <td>3</td>
+                <td>$290</td>
+                <td>Feb 2023</td>
+                <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Unverified</span></td>
+                <td>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:var(--sp-5);padding-top:var(--sp-4);border-top:1px solid var(--border);font-size:0.82rem;color:var(--text-muted);">
+          <span>Showing 1–4 of 48,200 backers</span>
+          <div style="display:flex;gap:var(--sp-2);">
+            <button class="btn btn--ghost btn--sm" type="button" disabled aria-label="Previous page">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn--ghost btn--sm" type="button" aria-label="Next page">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- end users panel -->
+
+
+      <!-- ════════════════════════════════
+           PAGE: BLOG MANAGEMENT
+      ════════════════════════════════ -->
+      <div class="dash-page" id="admin-panel-blog">
+
+        <div class="dash-section-head">
+          <h2 class="dash-section-title">
+            <i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Blog Posts
+          </h2>
+          <a href="blog.html" class="btn btn--primary btn--sm">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> New post
+          </a>
+        </div>
+
+        <div class="dash-table-wrap">
+          <table class="dash-table" aria-label="Blog post management">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Published</th>
+                <th>Views</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="dash-table__name">Why the Tide Mechanic took three years to get right</span></td>
+                <td>David Osei</td>
+                <td>Designer Diary</td>
+                <td>Mar 18, 2026</td>
+                <td>4,280</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit post"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View post"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">Citadels hits 300% — what that means for backers</span></td>
+                <td>Elena Voss</td>
+                <td>Campaign Update</td>
+                <td>Mar 20, 2026</td>
+                <td>3,140</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit post"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View post"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">Moonfall Chronicles — first look (DRAFT)</span></td>
+                <td>David Osei</td>
+                <td>Designer Diary</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Draft</span></td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit post"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Publish post"><i class="fa-solid fa-rocket" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!-- end blog panel -->
+
+
+      <!-- ════════════════════════════════
+           PAGE: SETTINGS
+      ════════════════════════════════ -->
+      <div class="dash-page" id="admin-panel-settings">
+
+        <div class="dash-section-head">
+          <h2 class="dash-section-title">
+            <i class="fa-solid fa-sliders" aria-hidden="true"></i> System Settings
+          </h2>
+        </div>
+
+        <div class="dash-grid-2">
+
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h3 class="dash-card__title"><i class="fa-solid fa-palette" aria-hidden="true"></i> Site Appearance</h3>
+            </div>
+            <div class="dash-card__body" style="display:flex;flex-direction:column;gap:var(--sp-5);">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Dark mode default</p>
+                  <p style="font-size:0.78rem;color:var(--text-muted);">New visitors see dark theme by default</p>
+                </div>
+                <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;" aria-label="Toggle dark mode default">
+                  <input type="checkbox" checked style="opacity:0;width:0;height:0;position:absolute;" />
+                  <span style="position:absolute;inset:0;background:var(--text-primary);border-radius:99px;transition:background 0.2s;"></span>
+                  <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--bg-primary);border-radius:50%;transition:transform 0.2s;transform:translateX(20px);"></span>
+                </label>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Maintenance mode</p>
+                  <p style="font-size:0.78rem;color:var(--text-muted);">Show coming-soon page to public</p>
+                </div>
+                <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;" aria-label="Toggle maintenance mode">
+                  <input type="checkbox" style="opacity:0;width:0;height:0;position:absolute;" />
+                  <span style="position:absolute;inset:0;background:var(--border-hover);border-radius:99px;transition:background 0.2s;"></span>
+                  <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--bg-primary);border-radius:50%;transition:transform 0.2s;"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h3 class="dash-card__title"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Notifications</h3>
+            </div>
+            <div class="dash-card__body" style="display:flex;flex-direction:column;gap:var(--sp-5);">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">New pledge alerts</p>
+                  <p style="font-size:0.78rem;color:var(--text-muted);">Email on every new Kickstarter pledge</p>
+                </div>
+                <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;" aria-label="Toggle pledge alerts">
+                  <input type="checkbox" checked style="opacity:0;width:0;height:0;position:absolute;" />
+                  <span style="position:absolute;inset:0;background:var(--text-primary);border-radius:99px;"></span>
+                  <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--bg-primary);border-radius:50%;transform:translateX(20px);"></span>
+                </label>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Forum flag alerts</p>
+                  <p style="font-size:0.78rem;color:var(--text-muted);">Email when posts are flagged for review</p>
+                </div>
+                <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;" aria-label="Toggle forum flag alerts">
+                  <input type="checkbox" checked style="opacity:0;width:0;height:0;position:absolute;" />
+                  <span style="position:absolute;inset:0;background:var(--text-primary);border-radius:99px;"></span>
+                  <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--bg-primary);border-radius:50%;transform:translateX(20px);"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- end settings panel -->
+
+
+      <!-- Other panels (fulfillment, pnp, orders, messages, forum, analytics, reports)
+           are placeholder pages — developer can add content following the same pattern -->
+      <div class="dash-page" id="admin-panel-fulfillment">
+        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Fulfilment</h2></div>
+        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
+          <i class="fa-solid fa-truck-fast" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
+          <p>Fulfilment management panel — connect your logistics API or fulfilment partner here.</p>
+        </div>
+      </div>
+
+      <div class="dash-page" id="admin-panel-pnp">
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Print &amp; Play Files</h2>
+          <button class="btn btn--primary btn--sm" type="button"><i class="fa-solid fa-upload" aria-hidden="true"></i> Upload file</button>
+        </div>
+        <div class="dash-table-wrap">
+          <table class="dash-table" aria-label="PnP file management">
+            <thead><tr><th>File</th><th>Campaign</th><th>Version</th><th>Size</th><th>Downloads</th><th>Uploaded</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><span class="dash-table__name">Citadels of the Deep v1.2</span></td><td>Citadels</td><td>v1.2</td><td>48 MB</td><td>2,341</td><td>Mar 10, 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="Delete file"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Verdant Empires Deluxe</span></td><td>Verdant</td><td>v2.0</td><td>72 MB</td><td>4,890</td><td>Jan 5, 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="Delete file"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Moonfall Chronicles Preview</span></td><td>Moonfall</td><td>v0.1</td><td>18 MB</td><td>1,204</td><td>Mar 15, 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="Delete file"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dash-page" id="admin-panel-orders">
+        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Orders</h2></div>
+        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
+          <i class="fa-solid fa-box-open" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
+          <p>Full orders table — connect your pledge manager (Kickstarter / BackerKit / Gamefound) API here.</p>
+        </div>
+      </div>
+
+      <div class="dash-page" id="admin-panel-messages">
+        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages</h2></div>
+        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
+          <i class="fa-solid fa-envelope" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
+          <p>Support message inbox — connect your helpdesk integration here.</p>
+        </div>
+      </div>
+
+      <div class="dash-page" id="admin-panel-forum">
+        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-flag" aria-hidden="true"></i> Forum Moderation</h2></div>
+        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
+          <i class="fa-solid fa-comments" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
+          <p>Full moderation queue — manage reported posts and banned users here.</p>
+        </div>
+      </div>
+
+      <div class="dash-page" id="admin-panel-analytics">
+        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Analytics</h2></div>
+        <div st

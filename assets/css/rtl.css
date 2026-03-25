@@ -1,0 +1,651 @@
+/* ============================================================
+   TabletopForge — rtl.css
+   Full right-to-left layout overrides.
+   Applied when dir="rtl" is set on <html>.
+   Toggled by RTLManager in main.js.
+
+   Principle: flip directional properties using logical
+   equivalents where possible, and explicit mirroring where not.
+   ============================================================ */
+
+/* ─── GLOBAL DIRECTION ───────────────────────────────────────── */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ─── TYPOGRAPHY — letter-spacing works opposite in RTL ─────── */
+[dir="rtl"] .label,
+[dir="rtl"] .filter-bar__label,
+[dir="rtl"] .blog-filter__label,
+[dir="rtl"] .dash-nav__section-label,
+[dir="rtl"] .footer__col-title,
+[dir="rtl"] .cs-label {
+  letter-spacing: 0; /* Arabic/Hebrew don't use Latin letter-spacing */
+}
+
+/* ─── NAV ────────────────────────────────────────────────────── */
+[dir="rtl"] .nav__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav__links {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav__controls {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav__link {
+  flex-direction: row-reverse;
+}
+
+/* Dropdown opens to the left in RTL */
+[dir="rtl"] .nav__dropdown {
+  left     : auto;
+  right    : 50%;
+  transform: translateX(50%) translateY(8px);
+}
+
+[dir="rtl"] .nav__item:hover .nav__dropdown,
+[dir="rtl"] .nav__item:focus-within .nav__dropdown {
+  transform: translateX(50%) translateY(0);
+}
+
+[dir="rtl"] .nav__dropdown-link {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+/* Mobile drawer slides from left in RTL */
+[dir="rtl"] .nav__mobile {
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .nav__mobile.open {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .nav__mobile-link {
+  text-align: right;
+}
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+[dir="rtl"] .hero__label {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__label-line {
+  order: -1;
+}
+
+[dir="rtl"] .hero__ctas {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__stats {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero__scroll {
+  left : var(--sp-6);
+  right: auto;
+}
+
+/* ─── MARQUEE — reverse direction in RTL ────────────────────── */
+[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
+}
+
+/* ─── SECTION HEADS ──────────────────────────────────────────── */
+[dir="rtl"] .section-head {
+  flex-direction: row-reverse;
+}
+
+/* ─── CAMPAIGNS GRID ─────────────────────────────────────────── */
+[dir="rtl"] .campaign-card__number {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .campaign-card__footer {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .progress__meta {
+  flex-direction: row-reverse;
+}
+
+/* ─── FEATURES LAYOUT ────────────────────────────────────────── */
+[dir="rtl"] .features__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .feature-item__head {
+  flex-direction: row-reverse;
+}
+
+/* Active border flips side */
+[dir="rtl"] .features__list {
+  border-right: none;
+}
+
+/* ─── TESTIMONIALS ───────────────────────────────────────────── */
+[dir="rtl"] .testi-card__author {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .testi-controls {
+  flex-direction: row-reverse;
+}
+
+/* ─── ARROW LINKS — flip the SVG ────────────────────────────── */
+[dir="rtl"] .arrow-link {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .arrow-link svg {
+  transform: rotate(180deg);
+}
+
+/* ─── BUTTONS WITH ICONS ─────────────────────────────────────── */
+[dir="rtl"] .btn {
+  flex-direction: row-reverse;
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+[dir="rtl"] .footer__top {
+  direction: rtl;
+}
+
+[dir="rtl"] .footer__brand-name {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer__col-links {
+  align-items: flex-end;
+}
+
+[dir="rtl"] .footer__social {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer__bottom {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer__bottom-links {
+  flex-direction: row-reverse;
+}
+
+/* ─── ABOUT PAGE ─────────────────────────────────────────────── */
+[dir="rtl"] .about-intro__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .about-intro__card {
+  right: auto;
+  left : calc(-1 * var(--sp-6));
+}
+
+[dir="rtl"] .story-content { text-align: right; }
+
+/* Timeline flips to right side */
+[dir="rtl"] .timeline__inner::before {
+  left : auto;
+  right: 0;
+}
+
+[dir="rtl"] .timeline-item {
+  padding: 0 var(--sp-6) var(--sp-7) 0;
+}
+
+[dir="rtl"] .timeline-item::before {
+  left : auto;
+  right: -5px;
+}
+
+[dir="rtl"] .timeline-item__year {
+  text-align: right;
+}
+
+[dir="rtl"] .about-cta__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .about-cta__actions {
+  flex-direction: row-reverse;
+}
+
+/* Values grid numbers */
+[dir="rtl"] .value-card { text-align: right; }
+[dir="rtl"] .team-card  { text-align: right; }
+
+/* ─── GAMES PAGE ─────────────────────────────────────────────── */
+[dir="rtl"] .games-hero__layout {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .games-featured__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .games-featured__ctas {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .filter-bar__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .game-card__meta {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .game-card__chips {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .game-card__footer {
+  flex-direction: row-reverse;
+}
+
+/* Game single */
+[dir="rtl"] .gs-hero__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .gs-detail__breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .gs-specs {
+  direction: rtl;
+}
+
+[dir="rtl"] .gs-spec {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .gs-detail__ctas {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .gs-detail__note {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .gs-funding__header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .gs-funding__row {
+  direction: rtl;
+}
+
+/* Tabs flip */
+[dir="rtl"] .gs-tabs {
+  flex-direction: row-reverse;
+}
+
+/* Sidebar */
+[dir="rtl"] .gs-body__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .gs-tier__popular-badge {
+  right: auto;
+  left : var(--sp-3);
+}
+
+/* ─── BLOG PAGE ──────────────────────────────────────────────── */
+[dir="rtl"] .blog-hero__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .blog-featured__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .blog-featured__eyebrow {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .blog-featured__meta {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .blog-layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .post-card {
+  direction: rtl;
+}
+
+[dir="rtl"] .post-card__eyebrow {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .post-card__footer {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .blog-author {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .blog-filter__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .blog-pagination {
+  flex-direction: row-reverse;
+}
+
+/* Blog single */
+[dir="rtl"] .bs-hero__breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-hero__eyebrow {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-hero__meta {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-body__layout {
+  direction: rtl;
+}
+
+/* Article text — RTL prose */
+[dir="rtl"] .bs-article {
+  text-align: right;
+}
+
+[dir="rtl"] .bs-article blockquote {
+  border-left : none;
+  border-right: 2px solid var(--text-muted);
+  border-radius: var(--r-md) 0 0 var(--r-md);
+}
+
+[dir="rtl"] .bs-callout {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-tags {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-share {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-author-box {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .bs-toc__item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .bs-related__grid {
+  direction: rtl;
+}
+
+/* ─── CONTACT PAGE ───────────────────────────────────────────── */
+[dir="rtl"] .contact-layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .contact-detail {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .contact-social {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cf-grid-2 {
+  direction: rtl;
+}
+
+[dir="rtl"] .cf-submit-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cf-privacy {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .faq-item__q {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+/* ─── DASHBOARD ──────────────────────────────────────────────── */
+[dir="rtl"] .dash-page {
+  direction: rtl;
+}
+
+/* Sidebar moves to right */
+[dir="rtl"] .dash-sidebar {
+  border-right: none;
+  border-left : 1px solid var(--border);
+  order       : 2;
+}
+
+[dir="rtl"] .dash-main {
+  order: 1;
+}
+
+[dir="rtl"] .dash-user-card {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .dash-nav-item {
+  flex-direction : row-reverse;
+  border-left    : none;
+  border-right   : 2px solid transparent;
+  text-align     : right;
+  padding        : var(--sp-3) var(--sp-5);
+}
+
+[dir="rtl"] .dash-nav-item.active {
+  border-right-color: var(--accent);
+  border-left-color : transparent;
+}
+
+[dir="rtl"] .dash-nav-badge {
+  margin-left : 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .dash-topbar {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dash-topbar__actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dash-stat-card__header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dash-card__head {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .dash-table th,
+[dir="rtl"] .dash-table td {
+  text-align: right;
+}
+
+/* Track line — right side in RTL */
+[dir="rtl"] .track-line {
+  padding: 0 var(--sp-5) 0 0;
+}
+
+[dir="rtl"] .track-line::before {
+  left : auto;
+  right: 6px;
+}
+
+[dir="rtl"] .track-step::before {
+  left : auto;
+  right: calc(-1 * var(--sp-5) + 2px);
+}
+
+/* File list */
+[dir="rtl"] .file-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .file-item__size,
+[dir="rtl"] .file-item__new {
+  margin-left : 0;
+  margin-right: auto;
+}
+
+/* Forum rows */
+[dir="rtl"] .forum-row,
+[dir="rtl"] .forum-row__stats { text-align: right; }
+
+[dir="rtl"] .forum-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .forum-row__stats {
+  margin-left : 0;
+  margin-right: auto;
+}
+
+/* ─── FORUM PAGE ─────────────────────────────────────────────── */
+[dir="rtl"] .forum-hero__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .forum-cat {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .forum-cat__stats {
+  text-align : left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .thread-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .thread-item__meta {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .thread-item__stats {
+  text-align : left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ─── PROFILE PAGE ───────────────────────────────────────────── */
+[dir="rtl"] .profile-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .profile-info { text-align: right; }
+
+[dir="rtl"] .profile-badges {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+[dir="rtl"] .profile-tabs {
+  margin-left : 0;
+  margin-right: auto;
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .settings-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .settings-row__info { text-align: right; }
+
+/* ─── INDEX-2 LAYOUT ─────────────────────────────────────────── */
+[dir="rtl"] .h2-hero__inner {
+  direction: rtl;
+}
+
+[dir="rtl"] .h2-hero__live-pill {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-hero__ctas {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-trust {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-trust__item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-featured-card__header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-meter-labels {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-camp-card__status {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-editorial__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .h2-point {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+/* ─── NEWSLETTER ─────────────────────────────────────────────── */
+[dir="rtl"] .newsletter__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .newsletter__form {
+  flex-direction: row-reverse;
+}
+
+/* ─── COMING SOON ────────────────────────────────────────────── */
+[dir="rtl"] .cs-form {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cs-countdown {
+  flex-direction: row-reverse;
+}
+
+/* ─── 404 PAGE ───────────────────────────────────────────────── */
+[dir="rtl"] .e404-links {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .e404-quick {
+  direction: rtl;
+}
