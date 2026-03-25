@@ -1,0 +1,34 @@
+# TabletopForge — robots.txt
+# https://tabletopforge.com
+
+User-agent: *
+Allow: /
+
+# Block dashboard and auth pages from indexing
+Disallow: /pages/dashboard-user.html
+Disallow: /pages/dashboard-admin.html
+Disallow: /pages/login.html
+Disallow: /pages/profile.html
+Disallow: /pages/sidebar-admin.html
+Disallow: /pages/sidebar-user.html
+
+# Allow all public pages
+Allow: /pages/index.html
+Allow: /pages/about.html
+Allow: /pages/games.html
+Allow: /pages/game-single.html
+Allow: /pages/blog.html
+Allow: /pages/blog-single.html
+Allow: /pages/contact.html
+Allow: /pages/forum.html
+Allow: /pages/faq.html
+Allow: /pages/coming-soon.html
+Allow: /pages/careers.html
+Allow: /pages/press-kit.html
+Allow: /pages/retailer-info.html
+Allow: /pages/privacy-policy.html
+Allow: /pages/terms-conditions.html
+Allow: /pages/404.html
+
+# Sitemap
+Sitemap: https://tabletopforge.com/sitemap.xml

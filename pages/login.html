@@ -12,23 +12,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/remaining-pages.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/visual-overhaul.css" />
 </head>
 <body>
 
+<!-- Minimal nav for auth page -->
 <header class="nav scrolled" role="banner">
   <div class="container">
     <nav class="nav__inner" aria-label="Main navigation">
-      <a href="../index.html" class="nav__logo" aria-label="TabletopForge Home">
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
         <div class="nav__logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+            <path d="M9 9h6"/>
+            <circle cx="12" cy="6" r="1"/>
+          </svg>
         </div>
         <span class="nav__logo-text">TabletopForge</span>
       </a>
       <ul class="nav__links" role="list">
-        <li class="nav__item"><a href="../index.html" class="nav__link">Home</a></li>
-        <li class="nav__item"><a href="../games.html" class="nav__link">Games</a></li>
-        <li class="nav__item"><a href="../dashboard-user.html" class="nav__link">Dashboard</a></li>
+        <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="games.html" class="nav__link">Games</a></li>
+        <li class="nav__item"><a href="dashboard-user.html" class="nav__link">Dashboard</a></li>
       </ul>
       <div class="nav__controls">
         <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
@@ -38,129 +45,167 @@
   </div>
 </header>
 
-<main id="main-content">
 
-<!-- Login hero -->
-<section style="min-height:100svh;display:flex;align-items:center;padding:var(--nav-h) var(--sp-6) var(--sp-9);background:var(--bg-primary);">
+<main id="main-content">
+<section style="min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + var(--sp-8)) var(--sp-6) var(--sp-9);background:
+  radial-gradient(ellipse 60% 70% at 80% 20%, rgba(212,245,60,0.025) 0%, transparent 60%),
+  var(--bg-primary);">
   <div class="container" style="max-width:420px;">
-    
-    <!-- Logo + heading -->
+
+    <!-- Logo heading -->
     <div style="text-align:center;margin-bottom:var(--sp-8);">
-      <div class="nav__logo" style="justify-content:center;margin-bottom:var(--sp-4);" aria-label="TabletopForge">
-        <div class="nav__logo-mark"></div>
+      <a href="index.html" class="nav__logo" style="justify-content:center;margin-bottom:var(--sp-4);display:flex;">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+            <path d="M9 9h6"/><circle cx="12" cy="6" r="1"/>
+          </svg>
+        </div>
         <span class="nav__logo-text">TabletopForge</span>
-      </div>
+      </a>
       <h1 style="font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;letter-spacing:-0.025em;margin-bottom:var(--sp-2);">Backer Login</h1>
-      <p style="color:var(--text-secondary);font-size:0.95rem;">Track orders • Download PnP files • Join forum</p>
+      <p style="color:var(--text-secondary);font-size:0.95rem;">Track orders · Download PnP files · Join forum</p>
     </div>
 
     <!-- Login form -->
-    <form class="login-form" novalidate aria-label="Backer login">
-      
-      <div class="form-group">
-        <label for="login-email" class="form-label">Email Address</label>
-        <input id="login-email" class="form-input" type="email" required autocomplete="email" placeholder="your@email.com" />
-        <div class="form-error" role="alert">Please enter a valid email address</div>
+    <form id="login-form" novalidate aria-label="Backer login" style="display:flex;flex-direction:column;gap:var(--sp-5);">
+
+      <div id="fg-email" class="login-field" style="display:flex;flex-direction:column;gap:var(--sp-2);">
+        <label for="login-email" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">Email Address</label>
+        <input id="login-email" type="email" required autocomplete="email" placeholder="your@email.com"
+          style="background:var(--bg-card);border:1px solid var(--border-hover);border-radius:var(--r-md);padding:12px var(--sp-4);font-size:0.9rem;color:var(--text-primary);outline:none;min-height:48px;transition:border-color var(--t-fast),box-shadow var(--t-fast);width:100%;font-family:var(--font-body);" />
+        <span id="email-error" style="font-size:0.75rem;color:#e05555;display:none;" role="alert">Please enter a valid email address.</span>
       </div>
 
-      <div class="form-group">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-          <label for="login-password" class="form-label">Password</label>
-          <a href="#" class="forgot-link" style="font-size:0.78rem;color:var(--text-muted);">Forgot?</a>
+      <div id="fg-pass" class="login-field" style="display:flex;flex-direction:column;gap:var(--sp-2);">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <label for="login-password" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">Password</label>
+          <a href="#" style="font-size:0.78rem;color:var(--text-muted);transition:color var(--t-fast);" onmouseenter="this.style.color='var(--text-secondary)'" onmouseleave="this.style.color='var(--text-muted)'">Forgot password?</a>
         </div>
         <div style="position:relative;">
-          <input id="login-password" class="form-input" type="password" required autocomplete="current-password" placeholder="••••••••" />
-          <button type="button" class="password-toggle" aria-label="Show password">
-            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+          <input id="login-password" type="password" required autocomplete="current-password" placeholder="••••••••"
+            style="background:var(--bg-card);border:1px solid var(--border-hover);border-radius:var(--r-md);padding:12px var(--sp-8) 12px var(--sp-4);font-size:0.9rem;color:var(--text-primary);outline:none;min-height:48px;transition:border-color var(--t-fast);width:100%;font-family:var(--font-body);" />
+          <button id="pass-toggle" type="button" aria-label="Show password"
+            style="position:absolute;right:var(--sp-4);top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:13px;padding:var(--sp-1);transition:color var(--t-fast);">
+            <i class="fa-solid fa-eye" id="pass-toggle-icon"></i>
           </button>
         </div>
-        <div class="form-error" role="alert">Password must be at least 8 characters</div>
+        <span id="pass-error" style="font-size:0.75rem;color:#e05555;display:none;" role="alert">Password must be at least 8 characters.</span>
       </div>
 
-      <button class="btn btn--primary" type="submit" style="width:100%;margin-top:var(--sp-2);">
+      <button id="login-submit" class="btn btn--primary" type="submit" style="width:100%;justify-content:center;">
         <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
         Log In
       </button>
 
-      <div style="text-align:center;margin-top:var(--sp-5);padding-top:var(--sp-5);border-top:1px solid var(--border);">
+      <!-- Alert for wrong credentials (demo) -->
+      <div id="login-alert" role="alert" aria-live="polite" style="display:none;background:rgba(232,84,84,0.1);border:1px solid rgba(232,84,84,0.3);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4);font-size:0.85rem;color:#e05555;text-align:center;"></div>
+
+      <div style="text-align:center;padding-top:var(--sp-5);border-top:1px solid var(--border);">
         <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">
-          New backer? <a href="../dashboard-user.html" style="color:var(--accent);">Create account</a>
+          New backer?
+          <a href="dashboard-user.html" style="color:var(--accent);text-decoration:underline;margin-left:4px;">Create account</a>
         </p>
       </div>
+
     </form>
 
-    <!-- Alternative login -->
+    <!-- OAuth alternatives -->
     <div style="margin-top:var(--sp-7);padding-top:var(--sp-6);border-top:1px solid var(--border);">
-      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-bottom:var(--sp-4);">
-        Or sign in with:
-      </p>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-bottom:var(--sp-4);">Or sign in with</p>
       <div style="display:flex;gap:var(--sp-2);">
-        <button class="btn btn--ghost" type="button" style="flex:1;">
-          <i class="fa-brands fa-kickstarter-k" aria-hidden="true"></i>
-          Kickstarter
+        <button class="btn btn--ghost" type="button" style="flex:1;" onclick="window.location.href='dashboard-user.html'">
+          <i class="fa-brands fa-kickstarter-k" aria-hidden="true"></i> Kickstarter
         </button>
-        <button class="btn btn--ghost" type="button" style="flex:1;">
-          <i class="fa-brands fa-google" aria-hidden="true"></i>
-          Google
+        <button class="btn btn--ghost" type="button" style="flex:1;" onclick="window.location.href='dashboard-user.html'">
+          <i class="fa-brands fa-google" aria-hidden="true"></i> Google
         </button>
       </div>
     </div>
 
   </div>
 </section>
-
 </main>
 
 <script src="../assets/js/main.js"></script>
 <script>
-// Form validation + UX
-const form = $('.login-form');
-const email = $('#login-email');
-const password = $('#login-password');
-const toggle = $('.password-toggle');
-const errors = _$$('.form-error');
+// ─── Login page form validation & UX ───────────────────────
+// Self-contained — does not rely on main.js helpers
+(function () {
+  'use strict';
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  
-  let valid = true;
-  
-  // Reset
-  _$$('.form-group').forEach(g => g.classList.remove('invalid'));
-  errors.forEach(e => e.textContent = '');
-  
-  // Email
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
-  if (!emailValid) {
-    email.parentElement.parentElement.classList.add('invalid');
-    errors[0].textContent = 'Please enter a valid email address';
-    valid = false;
-  }
-  
-  // Password
-  if (password.value.length < 8) {
-    password.parentElement.parentElement.classList.add('invalid');
-    errors[1].textContent = 'Password must be at least 8 characters';
-    valid = false;
-  }
-  
-  if (valid) {
-    // Simulate login → redirect to dashboard
+  const form        = document.getElementById('login-form');
+  const emailInput  = document.getElementById('login-email');
+  const passInput   = document.getElementById('login-password');
+  const emailErr    = document.getElementById('email-error');
+  const passErr     = document.getElementById('pass-error');
+  const passToggle  = document.getElementById('pass-toggle');
+  const passIcon    = document.getElementById('pass-toggle-icon');
+  const submitBtn   = document.getElementById('login-submit');
+  const loginAlert  = document.getElementById('login-alert');
+
+  // Inline validation on blur
+  emailInput.addEventListener('blur', () => {
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    emailInput.style.borderColor = valid || !emailInput.value ? '' : '#e05555';
+    emailErr.style.display = valid || !emailInput.value ? 'none' : 'block';
+  });
+
+  passInput.addEventListener('blur', () => {
+    const valid = passInput.value.length >= 8;
+    passInput.style.borderColor = valid || !passInput.value ? '' : '#e05555';
+    passErr.style.display = valid || !passInput.value ? 'none' : 'block';
+  });
+
+  // Password toggle
+  passToggle.addEventListener('click', () => {
+    const isPass = passInput.type === 'password';
+    passInput.type = isPass ? 'text' : 'password';
+    passIcon.className = isPass ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    passToggle.setAttribute('aria-label', isPass ? 'Hide password' : 'Show password');
+  });
+
+  // Form submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    loginAlert.style.display = 'none';
+
+    let valid = true;
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    if (!emailOk) {
+      emailInput.style.borderColor = '#e05555';
+      emailErr.style.display = 'block';
+      valid = false;
+    } else {
+      emailInput.style.borderColor = '';
+      emailErr.style.display = 'none';
+    }
+
+    const passOk = passInput.value.length >= 8;
+    if (!passOk) {
+      passInput.style.borderColor = '#e05555';
+      passErr.style.display = 'block';
+      valid = false;
+    } else {
+      passInput.style.borderColor = '';
+      passErr.style.display = 'none';
+    }
+
+    if (!valid) return;
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…';
+
+    // Simulate auth → redirect to dashboard
     setTimeout(() => {
-      window.location.href = '../dashboard-user.html';
-    }, 800);
-  }
-});
+      window.location.href = 'dashboard-user.html';
+    }, 900);
+  });
 
-// Password visibility toggle
-toggle.addEventListener('click', () => {
-  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-  password.setAttribute('type', type);
-  toggle.querySelector('i').classList.toggle('fa-eye');
-  toggle.querySelector('i').classList.toggle('fa-eye-slash');
-  toggle.setAttribute('aria-label', type === 'text' ? 'Hide password' : 'Show password');
-});
+})();
 </script>
 </body>
 </html>
-

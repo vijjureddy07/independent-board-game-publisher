@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping Status — TabletopForge</title>
+  <meta name="description" content="Check the shipping status of your TabletopForge order. Real-time fulfilment tracking for all active campaigns." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  <link rel="stylesheet" href="../assets/css/visual-overhaul.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="games.html" class="nav__link">Games</a></li>
+        <li class="nav__item"><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle aria-label="Switch RTL" type="button">RTL</button>
+        <a href="dashboard-user.html" class="btn btn--ghost nav__login">Dashboard</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html" class="nav__mobile-link">Home</a>
+  <a href="games.html" class="nav__mobile-link">Games</a>
+  <a href="faq.html" class="nav__mobile-link">FAQ</a>
+  <a href="contact.html" class="nav__mobile-link">Contact</a>
+  <a href="dashboard-user.html" class="nav__mobile-link">Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle type="button" style="flex:1;">RTL</button>
+  </div>
+</nav>
+
+
+<main id="main-content">
+
+<section style="padding-top:calc(var(--nav-h) + var(--sp-9));padding-bottom:var(--sp-9);background:var(--bg-primary);">
+  <div class="container" style="max-width:760px;">
+
+    <nav aria-label="Breadcrumb" style="display:flex;align-items:center;gap:var(--sp-2);font-size:0.8rem;color:var(--text-muted);margin-bottom:var(--sp-5);">
+      <a href="index.html" style="color:var(--text-muted);">Home</a>
+      <i class="fa-solid fa-chevron-right" style="font-size:9px;"></i>
+      <a href="dashboard-user.html" style="color:var(--text-muted);">Dashboard</a>
+      <i class="fa-solid fa-chevron-right" style="font-size:9px;"></i>
+      <span>Shipping Status</span>
+    </nav>
+
+    <div style="margin-bottom:var(--sp-4);"><span class="tag">Fulfilment</span></div>
+    <h1 style="font-family:var(--font-head);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-0.025em;margin-bottom:var(--sp-4);">Campaign Shipping Status</h1>
+    <p style="color:var(--text-secondary);font-size:1rem;line-height:1.75;max-width:520px;margin-bottom:var(--sp-7);">
+      Current shipping status for all active TabletopForge fulfilment campaigns. 
+      Log in to your <a href="dashboard-user.html" style="color:var(--accent);text-decoration:underline;">Backer Portal</a> for your personal tracking details.
+    </p>
+
+    <!-- Verdant Empires status -->
+    <div style="background:var(--bg-secondary);border:1px solid var(--border-hover);border-radius:var(--r-xl);padding:var(--sp-7);margin-bottom:var(--sp-5);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-4);flex-wrap:wrap;margin-bottom:var(--sp-6);">
+        <div style="display:flex;align-items:center;gap:var(--sp-4);">
+          <div style="width:52px;height:52px;border-radius:var(--r-md);background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--text-muted);">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <div>
+            <h2 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;margin-bottom:4px;">Verdant Empires</h2>
+            <p style="font-size:0.78rem;color:var(--text-muted);">Kickstarter · 2025 · 5,120 backers</p>
+          </div>
+        </div>
+        <span class="status-pill status-pill--shipping" style="display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:700;padding:5px 12px;border-radius:99px;background:rgba(255,190,60,0.1);color:#fbbe3c;border:1px solid rgba(255,190,60,0.25);">
+          <i class="fa-solid fa-truck"></i> Active Fulfilment
+        </span>
+      </div>
+
+      <!-- Overall progress -->
+      <div style="margin-bottom:var(--sp-6);">
+        <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-2);font-size:0.82rem;">
+          <span style="color:var(--text-secondary);">Overall shipped</span>
+          <span style="font-weight:700;color:var(--accent);">89%</span>
+        </div>
+        <div style="height:6px;background:var(--border);border-radius:99px;overflow:hidden;">
+          <div style="width:89%;height:100%;background:var(--accent);border-radius:99px;box-shadow:0 0 8px rgba(212,245,60,0.3);"></div>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-top:var(--sp-2);">4,557 of 5,120 orders dispatched · Last updated Mar 25, 2026</p>
+      </div>
+
+      <!-- Regional breakdown -->
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;">
+
+        <div style="background:var(--bg-primary);padding:var(--sp-4) var(--sp-5);display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-4);align-items:center;">
+          <div>
+            <p style="font-size:0.85rem;font-weight:600;">UK &amp; Ireland</p>
+            <p style="font-size:0.72rem;color:var(--text-muted);">Royal Mail · 842 orders</p>
+          </div>
+          <div style="height:4px;width:120px;background:var(--border);border-radius:99px;overflow:hidden;">
+            <div style="width:100%;height:100%;background:#5ee89a;border-radius:99px;"></div>
+          </div>
+          <span style="font-size:0.78rem;color:#5ee89a;font-weight:700;white-space:nowrap;">Delivered ✓</span>
+        </div>
+
+        <div style="background:var(--bg-primary);padding:var(--sp-4) var(--sp-5);display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-4);align-items:center;">
+          <div>
+            <p style="font-size:0.85rem;font-weight:600;">EU (West)</p>
+            <p style="font-size:0.72rem;color:var(--text-muted);">DHL Express · 1,240 orders</p>
+          </div>
+          <div style="height:4px;width:120px;background:var(--border);border-radius:99px;overflow:hidden;">
+            <div style="width:88%;height:100%;background:#fbbe3c;border-radius:99px;"></div>
+          </div>
+          <span style="font-size:0.78rem;color:#fbbe3c;font-weight:700;white-space:nowrap;">In transit</span>
+        </div>
+
+        <div style="background:var(--bg-primary);padding:var(--sp-4) var(--sp-5);display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-4);align-items:center;">
+          <div>
+            <p style="font-size:0.85rem;font-weight:600;">North America</p>
+            <p style="font-size:0.72rem;color:var(--text-muted);">UPS · 1,890 orders · Est. Apr 1–5</p>
+          </div>
+          <div style="height:4px;width:120px;background:var(--border);border-radius:99px;overflow:hidden;">
+            <div style="width:72%;height:100%;background:#fbbe3c;border-radius:99px;"></div>
+          </div>
+          <span style="font-size:0.78rem;color:#fbbe3c;font-weight:700;white-space:nowrap;">In transit</span>
+        </div>
+
+        <div style="background:var(--bg-primary);padding:var(--sp-4) var(--sp-5);display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-4);align-items:center;">
+          <div>
+            <p style="font-size:0.85rem;font-weight:600;">Asia-Pacific</p>
+            <p style="font-size:0.72rem;color:var(--text-muted);">FedEx Intl · 810 orders · Est. Apr 3–8</p>
+          </div>
+          <div style="height:4px;width:120px;background:var(--border);border-radius:99px;overflow:hidden;">
+            <div style="width:30%;height:100%;background:var(--border-hover);border-radius:99px;"></div>
+          </div>
+          <span style="font-size:0.78rem;color:var(--text-muted);font-weight:700;white-space:nowrap;">Preparing</span>
+        </div>
+
+        <div style="background:var(--bg-primary);padding:var(--sp-4) var(--sp-5);display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-4);align-items:center;">
+          <div>
+            <p style="font-size:0.85rem;font-weight:600;">Rest of World</p>
+            <p style="font-size:0.72rem;color:var(--text-muted);">Various carriers · 338 orders · Est. Apr 5–12</p>
+          </div>
+          <div style="height:4px;width:120px;background:var(--border);border-radius:99px;overflow:hidden;">
+            <div style="width:5%;height:100%;background:var(--border-hover);border-radius:99px;"></div>
+          </div>
+          <span style="font-size:0.78rem;color:var(--text-muted);font-weight:700;white-space:nowrap;">Pending</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Citadels status card -->
+    <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--sp-7);margin-bottom:var(--sp-5);">
+      <div style="display:flex;align-items:center;gap:var(--sp-4);margin-bottom:var(--sp-5);">
+        <div style="width:52px;height:52px;border-radius:var(--r-md);background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--text-muted);">
+          <i class="fa-solid fa-chess-rook"></i>
+        </div>
+        <div>
+          <h2 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;margin-bottom:4px;">Citadels of the Deep</h2>
+          <p style="font-size:0.78rem;color:var(--text-muted);">Kickstarter · Campaign closes Apr 8, 2026</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4);background:var(--bg-card);border-radius:var(--r-md);">
+        <i class="fa-solid fa-clock" style="color:var(--accent);font-size:14px;"></i>
+        <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.5;">Campaign currently live. Fulfilment begins Q4 2026 after production is complete. Backers will receive email updates at every stage.</p>
+      </div>
+    </div>
+
+    <!-- Personalised CTA -->
+    <div style="background:linear-gradient(135deg,rgba(212,245,60,0.06) 0%,transparent 60%),var(--bg-secondary);border:1px solid var(--accent-border);border-radius:var(--r-xl);padding:var(--sp-6);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-5);flex-wrap:wrap;">
+      <div>
+        <p style="font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:var(--sp-1);">Get your personal tracking link</p>
+        <p style="font-size:0.85rem;color:var(--text-secondary);">Log into your Backer Portal for order-specific status, carrier tracking, and PnP downloads.</p>
+      </div>
+      <a href="dashboard-user.html" class="btn btn--primary" style="flex-shrink:0;">
+        <i class="fa-solid fa-right-to-bracket"></i> Open Dashboard
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__bottom" style="padding:var(--sp-5) 0;border-top:1px solid var(--border);">
+      <p class="footer__copy">© 2026 TabletopForge Ltd. All rights reserved.</p>
+      <nav class="footer__bottom-links">
+        <a href="faq.html" class="footer__bottom-link">FAQ</a>
+        <a href="contact.html" class="footer__bottom-link">Support</a>
+        <a href="privacy-policy.html" class="footer__bottom-link">Privacy</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
