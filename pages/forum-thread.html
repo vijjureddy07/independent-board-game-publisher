@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
   <link rel="stylesheet" href="../assets/css/blog.css" />
   <link rel="stylesheet" href="../assets/css/remaining-pages.css" />
 
@@ -331,23 +333,91 @@
 
 </main>
 
-<!-- Footer condensed -->
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer" role="contentinfo">
   <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+          TabletopForge
+        </div>
+        <p class="footer__brand-desc">Independent board game publisher crafting bold tabletop experiences since 2018. Every game tells a story.</p>
+        <nav class="footer__social" aria-label="Social links">
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer__col-title">Company</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="about.html"   class="footer__col-link">About</a></li>
+          <li><a href="blog.html"    class="footer__col-link">Blog</a></li>
+          <li><a href="contact.html" class="footer__col-link">Contact</a></li>
+          <li><a href="press-kit.html"            class="footer__col-link">Press Kit</a></li>
+          <li><a href="careers.html"            class="footer__col-link">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Games</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="games.html"          class="footer__col-link">All Titles</a></li>
+          <li><a href="games.html"          class="footer__col-link">Active Campaigns</a></li>
+          <li><a href="coming-soon.html"    class="footer__col-link">Coming Soon</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Print &amp; Play</a></li>
+          <li><a href="retailer-info.html"                   class="footer__col-link">Retailer Info</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Client Area</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="login.html" class="footer__col-link">Login</a></li>
+          <li><a href="shipping-status.html" class="footer__col-link">Dashboard</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Shipping Status</a></li>
+          <li><a href="forum.html"          class="footer__col-link">Forum</a></li>
+          <li><a href="faq.html"                   class="footer__col-link">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Support &amp; Legal</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="privacy-policy.html"            class="footer__col-link">Privacy Policy</a></li>
+          <li><a href="terms-conditions.html"            class="footer__col-link">Terms &amp; Conditions</a></li>
+          <li><a href="contact.html" class="footer__col-link">Support</a></li>
+        </ul>
+        <div style="margin-top:1.5rem;">
+          <p class="footer__col-title" style="margin-bottom:0.75rem;">Newsletter</p>
+          <form data-newsletter-form style="display:flex;gap:8px;flex-direction:column;" aria-label="Footer newsletter">
+            <input class="newsletter__input" type="email" placeholder="Enter email" aria-label="Email" style="min-width:unset;font-size:0.82rem;padding:10px 14px;" />
+            <button class="btn btn--primary btn--sm" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
     <div class="footer__bottom">
       <p class="footer__copy">© 2026 TabletopForge Ltd. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6c2d7d4dad3c2d9c6d0d9c4d1d398d5d9db" class="footer__copy"><span class="__cf_email__" data-cfemail="167e737a7a79566277747a7362796670796471733875797b">[email&#160;protected]</span></a>
+        <span class="footer__copy">·</span>
+        <span class="footer__copy">+1 (000) 000-0000</span>
+      </div>
       <nav class="footer__bottom-links" aria-label="Legal">
-        <a href="index.html"   class="footer__bottom-link">Home</a>
-        <a href="forum.html"   class="footer__bottom-link">Forum</a>
-        <a href="contact.html" class="footer__bottom-link">Contact</a>
-        <a href="#"            class="footer__bottom-link">Privacy</a>
-        <a href="#"            class="footer__bottom-link">Terms</a>
+        <a href="#" class="footer__bottom-link">Privacy</a>
+        <a href="#" class="footer__bottom-link">Terms</a>
+        <a href="#" class="footer__bottom-link">Cookies</a>
       </nav>
     </div>
   </div>
 </footer>
 
 <script src="../assets/js/main.js"></script>
+<script src="../assets/js/forum.js"></script>
 <script src="../assets/js/blog.js"></script>
 </body>
 </html>

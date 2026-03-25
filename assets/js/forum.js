@@ -1,26 +1,31 @@
 /**
  * TabletopForge — forum.js
  * Handles:
- *   forum.html       → category toggle, thread filter pills, search, pagination
- *   forum-thread.html → reply composer character count, post actions (like/quote),
- *                       reply textarea auto-resize, reading progress bar
+ *   forum.html        → category toggle, thread filter pills, search, pagination
+ *   forum-thread.html → reply composer char count + auto-resize, post actions
+ *                       (like / quote), reading progress bar
  *
+ * Depends on: main.js  (window.TTF.readingProgress, window.TTF.paginationButtons)
  * Loaded after main.js on both forum pages.
  * All modules exit silently when their elements aren't present.
+ *
+ * DUPLICATE REMOVALS vs previous version:
+ *   - ThreadReadProgress  → replaced by window.TTF.readingProgress() from main.js
+ *   - ForumPagination     → replaced by window.TTF.paginationButtons() from main.js
+ *   - Local _$/_$$ helpers → delegate to window.$/$$ set by main.js
  */
 
 'use strict';
 
-/* ─── Local helpers ─────────────────────────────────────────── */
-const _$ = (sel, ctx = document) => ctx.querySelector(sel);
-const _$$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+/* ─── Helpers — delegate to main.js globals, fall back if standalone ───── */
+const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
+const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
 /* ─────────────────────────────────────────────────────────────
    1. FORUM LISTING — thread filter pills (All / Hot / Unanswered)
 ───────────────────────────────────────────────────────────── */
 const ForumFilter = (() => {
   function init() {
-    // The filter pills inside the thread listing area
     const pills   = _$$('.blog-section .filter-pill, .section-head .filter-pill');
     const threads = _$$('.thread-item');
 
@@ -34,17 +39,15 @@ const ForumFilter = (() => {
         const filter = pill.textContent.trim().toLowerCase();
 
         threads.forEach(thread => {
-          // "Hot" = threads with > 30 replies (check the stats text)
           const statText = thread.querySelector('.thread-item__stats')?.textContent || '';
           const replies  = parseInt(statText.match(/\d+/)?.[0] || '0', 10);
 
           let show = true;
           if (filter === 'hot')        show = replies >= 20;
           if (filter === 'unanswered') show = replies === 0;
-          // 'all' shows everything
 
-          thread.style.transition = 'opacity 0.2s ease';
-          thread.style.opacity    = show ? '1' : '0.3';
+          thread.style.transition    = 'opacity 0.2s ease';
+          thread.style.opacity       = show ? '1' : '0.3';
           thread.style.pointerEvents = show ? '' : 'none';
         });
       });
@@ -71,8 +74,8 @@ const ForumSearch = (() => {
         const title = thread.querySelector('.thread-item__title')?.textContent.toLowerCase() || '';
         const show  = !query || title.includes(query);
 
-        thread.style.transition = 'opacity 0.2s ease';
-        thread.style.opacity    = show ? '1' : '0.3';
+        thread.style.transition    = 'opacity 0.2s ease';
+        thread.style.opacity       = show ? '1' : '0.3';
         thread.style.pointerEvents = show ? '' : 'none';
       });
     });
@@ -82,7 +85,7 @@ const ForumSearch = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   3. FORUM LISTING — category cards expand on click (mobile UX)
+   3. FORUM LISTING — category card hover effect (mobile UX)
 ───────────────────────────────────────────────────────────── */
 const ForumCategories = (() => {
   function init() {
@@ -90,14 +93,10 @@ const ForumCategories = (() => {
     if (!cats.length) return;
 
     cats.forEach(cat => {
-      cat.addEventListener('mouseenter', () => {
-        cat.querySelector('.forum-cat__icon')?.style &&
-          (cat.querySelector('.forum-cat__icon').style.borderColor = 'var(--border-hover)');
-      });
-      cat.addEventListener('mouseleave', () => {
-        cat.querySelector('.forum-cat__icon')?.style &&
-          (cat.querySelector('.forum-cat__icon').style.borderColor = '');
-      });
+      const icon = cat.querySelector('.forum-cat__icon');
+      if (!icon) return;
+      cat.addEventListener('mouseenter', () => { icon.style.borderColor = 'var(--border-hover)'; });
+      cat.addEventListener('mouseleave', () => { icon.style.borderColor = ''; });
     });
   }
 
@@ -105,19 +104,18 @@ const ForumCategories = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   4. THREAD PAGE — reply textarea auto-resize
+   4. THREAD PAGE — reply textarea auto-resize + char counter + submit
 ───────────────────────────────────────────────────────────── */
 const ReplyComposer = (() => {
   function init() {
     const textarea = _$('.reply-textarea');
     if (!textarea) return;
 
-    // Auto-resize as user types
+    // Auto-resize
     function resize() {
       textarea.style.height = 'auto';
       textarea.style.height = Math.max(120, textarea.scrollHeight) + 'px';
     }
-
     textarea.addEventListener('input', resize);
 
     // Character counter
@@ -134,13 +132,12 @@ const ReplyComposer = (() => {
         ? (len > MAX_CHARS ? '#E85454' : '#F5C84A')
         : 'var(--text-muted)';
 
-      // Disable submit if over limit
       const submitBtn = _$('.reply-box .btn--primary');
       if (submitBtn) submitBtn.disabled = len > MAX_CHARS;
     });
 
     // Submit handler
-    const form = textarea.closest('.reply-box');
+    const form      = textarea.closest('.reply-box');
     const submitBtn = form?.querySelector('.btn--primary');
 
     submitBtn?.addEventListener('click', e => {
@@ -153,11 +150,10 @@ const ReplyComposer = (() => {
       }
       if (val.length > MAX_CHARS) return;
 
-      // Optimistic UI — show the new post inline
       addReplyToThread(val);
-      textarea.value          = '';
-      textarea.style.height   = '120px';
-      counter.textContent     = `0 / ${MAX_CHARS}`;
+      textarea.value             = '';
+      textarea.style.height      = '120px';
+      counter.textContent        = `0 / ${MAX_CHARS}`;
       textarea.style.borderColor = '';
     });
   }
@@ -197,10 +193,9 @@ const ReplyComposer = (() => {
       </div>
     `;
 
-    // Insert before the reply box
     container.insertBefore(entry, replyBox);
 
-    // Re-bind hover on the new post's action buttons
+    // Bind cursor hover on new post's action buttons
     _$$('.post-action-btn', entry).forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         document.querySelector('.custom-cursor')?.classList.add('hover');
@@ -210,7 +205,9 @@ const ReplyComposer = (() => {
       });
     });
 
-    // Scroll into view
+    // Re-run PostActions on the new entry so like/quote work
+    PostActions.bindEntry(entry);
+
     entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
@@ -221,97 +218,51 @@ const ReplyComposer = (() => {
    5. THREAD PAGE — post action buttons (like, quote)
 ───────────────────────────────────────────────────────────── */
 const PostActions = (() => {
-  function init() {
-    const posts = _$$('.post-entry');
-    if (!posts.length) return;
-
-    posts.forEach(post => {
-      // Like button toggle
-      const likeBtn = post.querySelector('[aria-label="Like post"]');
-      if (likeBtn) {
-        likeBtn.addEventListener('click', () => {
-          const icon = likeBtn.querySelector('i');
-          if (!icon) return;
-
-          const liked = icon.classList.contains('fa-solid');
-
-          icon.classList.toggle('fa-regular', liked);
-          icon.classList.toggle('fa-solid',   !liked);
-          likeBtn.style.color = liked ? '' : 'var(--accent)';
-        });
-      }
-
-      // Quote button — copies author + text into reply textarea
-      const quoteBtn = post.querySelector('[aria-label="Quote post"]');
-      if (quoteBtn) {
-        quoteBtn.addEventListener('click', () => {
-          const author  = post.querySelector('.post-entry__author')?.textContent.trim().split('\n')[0].trim() || 'User';
-          const bodyEls = _$$('.post-entry__body p', post);
-          const bodyText = bodyEls.map(p => p.textContent.trim()).join('\n');
-          const quoted   = `> ${author} wrote:\n> ${bodyText.split('\n').join('\n> ')}\n\n`;
-
-          const textarea = _$('.reply-textarea');
-          if (textarea) {
-            textarea.value += quoted;
-            textarea.focus();
-            textarea.dispatchEvent(new Event('input')); // trigger resize + counter
-            textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        });
-      }
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   6. THREAD PAGE — reading progress bar (reuses blog.js pattern)
-───────────────────────────────────────────────────────────── */
-const ThreadReadProgress = (() => {
-  function init() {
-    const fill    = _$('#read-progress');
-    const content = _$('#article-content');
-    if (!fill || !content) return;
-
-    function update() {
-      const rect     = content.getBoundingClientRect();
-      const total    = content.offsetHeight - window.innerHeight;
-      const scrolled = Math.max(0, -rect.top);
-      const pct      = Math.min(100, total > 0 ? (scrolled / total) * 100 : 0);
-      fill.style.width = pct.toFixed(1) + '%';
+  function bindEntry(post) {
+    // Like button toggle
+    const likeBtn = post.querySelector('[aria-label="Like post"]');
+    if (likeBtn) {
+      likeBtn.addEventListener('click', () => {
+        const icon  = likeBtn.querySelector('i');
+        if (!icon) return;
+        const liked = icon.classList.contains('fa-solid');
+        icon.classList.toggle('fa-regular', liked);
+        icon.classList.toggle('fa-solid',   !liked);
+        likeBtn.style.color = liked ? '' : 'var(--accent)';
+      });
     }
 
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
+    // Quote button — copies author + text into reply textarea
+    const quoteBtn = post.querySelector('[aria-label="Quote post"]');
+    if (quoteBtn) {
+      quoteBtn.addEventListener('click', () => {
+        const author   = post.querySelector('.post-entry__author')?.textContent.trim().split('\n')[0].trim() || 'User';
+        const bodyEls  = _$$('.post-entry__body p', post);
+        const bodyText = bodyEls.map(p => p.textContent.trim()).join('\n');
+        const quoted   = `> ${author} wrote:\n> ${bodyText.split('\n').join('\n> ')}\n\n`;
 
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   7. FORUM LISTING — pagination (visual only)
-───────────────────────────────────────────────────────────── */
-const ForumPagination = (() => {
-  function init() {
-    const btns = _$$('.blog-pagination .page-btn');
-    if (!btns.length) return;
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.querySelector('i')) return; // skip prev/next arrows
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        _$('.thread-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const textarea = _$('.reply-textarea');
+        if (textarea) {
+          textarea.value += quoted;
+          textarea.focus();
+          textarea.dispatchEvent(new Event('input'));
+          textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
-    });
+    }
   }
 
-  return { init };
+  function init() {
+    _$$('.post-entry').forEach(post => bindEntry(post));
+  }
+
+  return { init, bindEntry };
 })();
 
 /* ─────────────────────────────────────────────────────────────
    INIT
+   Reading progress and pagination are handled by shared utilities
+   in main.js (window.TTF) to avoid code duplication.
 ───────────────────────────────────────────────────────────── */
 function initForumModules() {
   ForumFilter.init();
@@ -319,8 +270,10 @@ function initForumModules() {
   ForumCategories.init();
   ReplyComposer.init();
   PostActions.init();
-  ThreadReadProgress.init();
-  ForumPagination.init();
+
+  // Shared utilities from main.js — no-op silently if elements absent
+  window.TTF?.readingProgress('#read-progress', '#article-content');
+  window.TTF?.paginationButtons('.blog-pagination .page-btn', '.thread-list');
 }
 
 if (document.readyState === 'loading') {

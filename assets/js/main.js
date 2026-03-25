@@ -2,8 +2,12 @@
  * TabletopForge — main.js
  * Handles: theme toggle, RTL, nav scroll, mobile menu,
  *          scroll reveal, testimonial carousel, progress animation,
- *          custom cursor, counter animation, marquee, form validation,
+ *          custom cursor, counter animation, marquee, newsletter form,
  *          timeline (about page)
+ *
+ * Also exports shared utilities used by page-specific scripts:
+ *   window.TTF.readingProgress(fillSel, contentSel)
+ *   window.TTF.paginationButtons(btnSel, scrollTargetSel)
  *
  * Pattern: each feature is an IIFE module returning { init }.
  * All modules are initialised in ONE DOMContentLoaded at the bottom.
@@ -13,10 +17,59 @@
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
-   HELPERS
+   GLOBAL HELPERS  (available to all page scripts via window.$/$$/TTF)
 ───────────────────────────────────────────────────────────── */
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+/* ─────────────────────────────────────────────────────────────
+   SHARED UTILITIES  (consumed by blog.js, forum.js, etc.)
+   Exposed on window.TTF so page scripts don't need to redefine them.
+───────────────────────────────────────────────────────────── */
+window.TTF = window.TTF || {};
+
+/**
+ * Reading progress bar — updates a fill element's width as the user
+ * scrolls through a content container.
+ * @param {string} fillSel    CSS selector for the fill bar element
+ * @param {string} contentSel CSS selector for the scrollable article/content
+ */
+window.TTF.readingProgress = function (fillSel = '#read-progress', contentSel = '#article-content') {
+  const fill    = $(fillSel);
+  const content = $(contentSel);
+  if (!fill || !content) return;
+
+  function update() {
+    const rect     = content.getBoundingClientRect();
+    const total    = content.offsetHeight - window.innerHeight;
+    const scrolled = Math.max(0, -rect.top);
+    const pct      = Math.min(100, total > 0 ? (scrolled / total) * 100 : 0);
+    fill.style.width = pct.toFixed(1) + '%';
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+};
+
+/**
+ * Generic pagination — highlights the clicked numbered button and
+ * scrolls a target element into view.
+ * @param {string} btnSel          CSS selector for all page-btn elements
+ * @param {string} scrollTargetSel CSS selector for the element to scroll to
+ */
+window.TTF.paginationButtons = function (btnSel = '.page-btn', scrollTargetSel = null) {
+  const btns = $$(btnSel);
+  if (!btns.length) return;
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.querySelector('i')) return; // skip prev/next icon-only buttons
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (scrollTargetSel) $(scrollTargetSel)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+};
 
 /* ─────────────────────────────────────────────────────────────
    1. THEME TOGGLE  (dark / light + system preference detection)
@@ -49,7 +102,6 @@ const ThemeManager = (() => {
     $$('[data-theme-toggle]').forEach(btn => btn.addEventListener('click', () => {
       apply(getCurrent() === 'dark' ? 'light' : 'dark');
     }));
-    // React to OS preference change only when user has no saved choice
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
       if (!localStorage.getItem(KEY)) apply(e.matches ? 'light' : 'dark');
     });
@@ -101,7 +153,6 @@ const NavManager = (() => {
 
     if (!nav) return;
 
-    // Scroll — add .scrolled class
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -127,14 +178,12 @@ const NavManager = (() => {
 
     hamburger?.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
 
-    // Close on outside click or Escape
     document.addEventListener('click', e => {
       if (menuOpen && !nav.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
     });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
     window.addEventListener('resize',   () => { if (window.innerWidth > 768) closeMenu(); });
 
-    // Highlight active page link
     const currentFile = window.location.pathname.split('/').pop() || 'index.html';
     $$('.nav__link[href]').forEach(link => {
       if (link.getAttribute('href').split('/').pop() === currentFile) {
@@ -203,7 +252,6 @@ const CarouselManager = (() => {
 
       let current = 0;
 
-      // Build dot buttons
       cards.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
@@ -214,7 +262,7 @@ const CarouselManager = (() => {
 
       function goTo(index) {
         current = Math.max(0, Math.min(index, cards.length - 1));
-        const gap   = 16; // matches --sp-4
+        const gap   = 16;
         const cardW = cards[0].offsetWidth + gap;
         track.style.transform = `translateX(-${current * cardW}px)`;
         $$('.testi-dot', carousel).forEach((d, i) => d.classList.toggle('active', i === current));
@@ -223,7 +271,7 @@ const CarouselManager = (() => {
       prevBtn?.addEventListener('click', () => goTo(current - 1));
       nextBtn?.addEventListener('click', () => goTo(current + 1));
 
-      // Auto-advance; pause on hover
+      // Auto-advance
       let timer = setInterval(() => goTo((current + 1) % cards.length), 5000);
       carousel.addEventListener('mouseenter', () => clearInterval(timer));
       carousel.addEventListener('mouseleave', () => {
@@ -231,15 +279,12 @@ const CarouselManager = (() => {
       });
 
       // Touch swipe
-      let touchStartX = 0;
-      carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-      carousel.addEventListener('touchend',   e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
+      let startX = 0;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => {
+        const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
       });
-
-      // Recalculate offset after window resize
-      window.addEventListener('resize', () => goTo(current));
     });
   }
 
@@ -247,14 +292,12 @@ const CarouselManager = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   7. FEATURE ACCORDION  (how it works section)
+   7. FEATURE ACCORDION  (homepage feature items)
 ───────────────────────────────────────────────────────────── */
 const FeatureAccordion = (() => {
   function init() {
     const items = $$('.feature-item');
     if (!items.length) return;
-
-    items[0].classList.add('active');
 
     items.forEach(item => {
       item.setAttribute('tabindex', '0');
@@ -299,7 +342,6 @@ const CursorManager = (() => {
       dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
     });
 
-    // Ring follows with eased lag
     (function animateRing() {
       ringX += (mouseX - ringX) * 0.12;
       ringY += (mouseY - ringY) * 0.12;
@@ -307,7 +349,6 @@ const CursorManager = (() => {
       requestAnimationFrame(animateRing);
     })();
 
-    // Hover / click states
     $$('a, button, [role="button"], .campaign-card, .feature-item').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
@@ -322,7 +363,11 @@ const CursorManager = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   9. COUNTER ANIMATION  (data-count elements)
+   9. COUNTER ANIMATION  (data-count elements on non-dashboard pages)
+   NOTE: dashboard.js has its own panel-scoped animateCounters()
+   that runs per-panel. This global version handles homepage/about
+   counters via IntersectionObserver — they don't conflict because
+   dashboard counters carry data-animated="1" after first run.
 ───────────────────────────────────────────────────────────── */
 const CounterManager = (() => {
   function animateCount(el) {
@@ -334,7 +379,7 @@ const CounterManager = (() => {
 
     (function step(now) {
       const progress = Math.min((now - start) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 5); // ease-out quint
+      const eased    = 1 - Math.pow(1 - progress, 5);
       const value    = target * eased;
       el.textContent = prefix + (Number.isInteger(target) ? Math.round(value) : value.toFixed(1)) + suffix;
       if (progress < 1) requestAnimationFrame(step);
@@ -351,7 +396,8 @@ const CounterManager = (() => {
       });
     }, { threshold: 0.5 });
 
-    $$('[data-count]').forEach(el => observer.observe(el));
+    // Skip elements already handled by dashboard.js (data-animated flag)
+    $$('[data-count]:not([data-animated])').forEach(el => observer.observe(el));
   }
 
   return { init };
@@ -439,7 +485,6 @@ function injectCursorStyles() {
 
 /* ─────────────────────────────────────────────────────────────
    13. TIMELINE  (about page — dot highlight on scroll)
-   Safe on all pages — exits early if no .timeline-item found
 ───────────────────────────────────────────────────────────── */
 const TimelineManager = (() => {
   function init() {
@@ -476,687 +521,3 @@ document.addEventListener('DOMContentLoaded', () => {
   NewsletterForm.init();
   TimelineManager.init();
 });
-
-/**
- * TabletopForge — games.js
- * Handles: games.html filter system, game-single.html tab switcher + thumbnail gallery
- * Loaded after main.js on both pages.
- */
-
-
-/* ─────────────────────────────────────────────────────────────
-   HELPERS (scoped — main.js already defines global $/$$ but
-   we redeclare locally so this file is self-contained if ever
-   loaded independently)
-───────────────────────────────────────────────────────────── */
-
-/* ─────────────────────────────────────────────────────────────
-   1. GAMES LISTING — filter pills
-───────────────────────────────────────────────────────────── */
-const GamesFilter = (() => {
-  function init() {
-    const pills      = _$$('.filter-pill');
-    const cards      = _$$('#games-grid .game-card');
-    const countEl    = _$('#results-count');
-    const emptyState = _$('#empty-state');
-    const grid       = _$('#games-grid');
-
-    if (!pills.length || !cards.length) return;
-
-    function applyFilter(filter) {
-      let visible = 0;
-
-      cards.forEach(card => {
-        const tags   = card.dataset.tags || '';
-        const show   = filter === 'all' || tags.includes(filter);
-
-        // Animate out/in
-        card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-
-        if (show) {
-          card.style.opacity   = '1';
-          card.style.transform = 'translateY(0)';
-          card.style.display   = '';
-          visible++;
-        } else {
-          card.style.opacity   = '0';
-          card.style.transform = 'translateY(12px)';
-          // hide after animation
-          setTimeout(() => {
-            if (card.style.opacity === '0') card.style.display = 'none';
-          }, 260);
-        }
-      });
-
-      // Update count label
-      if (countEl) {
-        countEl.textContent = visible === 1 ? '1 game' : `${visible} games`;
-      }
-
-      // Show/hide empty state
-      if (emptyState) {
-        emptyState.style.display = visible === 0 ? 'block' : 'none';
-      }
-    }
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        // Update active state
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
-        applyFilter(pill.dataset.filter || 'all');
-      });
-    });
-
-    // Expose reset for empty-state button
-    window.resetFilter = () => {
-      pills.forEach(p => p.classList.remove('active'));
-      const allPill = _$('[data-filter="all"]');
-      if (allPill) allPill.classList.add('active');
-      applyFilter('all');
-    };
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   2. GAME SINGLE — tab switcher
-───────────────────────────────────────────────────────────── */
-const GameTabs = (() => {
-  function init() {
-    const tabs   = _$$('.gs-tab');
-    const panels = _$$('.gs-panel');
-
-    if (!tabs.length) return;
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-
-        // Update tab states
-        tabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
-        // Swap panels with fade
-        panels.forEach(panel => {
-          if (panel.id === `panel-${target}`) {
-            panel.classList.add('active');
-            panel.style.animation = 'fade-up 0.35s cubic-bezier(0.16,1,0.3,1) both';
-          } else {
-            panel.classList.remove('active');
-          }
-        });
-      });
-
-      // Keyboard left/right navigation between tabs
-      tab.addEventListener('keydown', e => {
-        const idx    = tabs.indexOf(tab);
-        let   next   = -1;
-        if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length;
-        if (e.key === 'ArrowLeft')  next = (idx - 1 + tabs.length) % tabs.length;
-        if (next >= 0) { e.preventDefault(); tabs[next].focus(); tabs[next].click(); }
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   3. GAME SINGLE — thumbnail strip interaction
-───────────────────────────────────────────────────────────── */
-const GalleryThumbs = (() => {
-  function init() {
-    const thumbs = _$$('.gs-thumb');
-    if (!thumbs.length) return;
-
-    thumbs.forEach(thumb => {
-      const activate = () => {
-        thumbs.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        // In a real implementation this would swap the main cover image
-      };
-
-      thumb.addEventListener('click', activate);
-      thumb.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   4. GAME SINGLE — pledge tier selection
-───────────────────────────────────────────────────────────── */
-const PledgeTiers = (() => {
-  function init() {
-    const tiers = _$$('.gs-tier');
-    if (!tiers.length) return;
-
-    tiers.forEach(tier => {
-      tier.addEventListener('click', () => {
-        tiers.forEach(t => t.classList.remove('selected'));
-        tier.classList.add('selected');
-        tier.style.borderColor = 'var(--border-hover)';
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   INIT — runs after DOMContentLoaded (main.js fires first)
-   We listen for DOMContentLoaded too — if already fired (script
-   loaded async) we run immediately.
-───────────────────────────────────────────────────────────── */
-function initGamesModules() {
-  GamesFilter.init();
-  GameTabs.init();
-  GalleryThumbs.init();
-  PledgeTiers.init();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initGamesModules);
-} else {
-  initGamesModules();
-}
-
-/**
- * TabletopForge — blog.js
- * Handles: blog.html  → category filter, search, pagination
- *          blog-single → reading progress bar, TOC active highlight, share button
- * Loaded after main.js on both pages.
- * Each module exits silently when its elements aren't present.
- */
-
-/* ─────────────────────────────────────────────────────────────
-   1. BLOG LISTING — category filter pills
-───────────────────────────────────────────────────────────── */
-const BlogFilter = (() => {
-  function init() {
-    const pills      = _$$('[data-blog-filter]');
-    const cards      = _$$('#blog-grid .post-card');
-    const emptyState = _$('#blog-empty');
-
-    if (!pills.length || !cards.length) return;
-
-    function applyFilter(filter) {
-      let visible = 0;
-
-      cards.forEach(card => {
-        const tags = card.dataset.blogTags || '';
-        const show = filter === 'all' || tags.includes(filter);
-
-        card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-
-        if (show) {
-          card.style.opacity   = '1';
-          card.style.transform = 'translateY(0)';
-          card.removeAttribute('hidden');
-          visible++;
-        } else {
-          card.style.opacity   = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            if (card.style.opacity === '0') card.setAttribute('hidden', '');
-          }, 260);
-        }
-      });
-
-      if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        applyFilter(pill.dataset.blogFilter);
-      });
-    });
-
-    // Expose for the empty-state reset button
-    window.resetBlogFilter = () => {
-      pills.forEach(p => p.classList.remove('active'));
-      const allPill = _$('[data-blog-filter="all"]');
-      if (allPill) allPill.classList.add('active');
-      applyFilter('all');
-    };
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   2. BLOG LISTING — live search
-───────────────────────────────────────────────────────────── */
-const BlogSearch = (() => {
-  function init() {
-    const input      = _$('input[type="search"]');
-    const cards      = _$$('#blog-grid .post-card');
-    const emptyState = _$('#blog-empty');
-
-    if (!input || !cards.length) return;
-
-    input.addEventListener('input', () => {
-      const query   = input.value.trim().toLowerCase();
-      let   visible = 0;
-
-      cards.forEach(card => {
-        const title   = card.querySelector('.post-card__title')?.textContent.toLowerCase() || '';
-        const excerpt = card.querySelector('.post-card__excerpt')?.textContent.toLowerCase() || '';
-        const show    = !query || title.includes(query) || excerpt.includes(query);
-
-        card.style.transition = 'opacity 0.2s ease';
-        card.style.opacity    = show ? '1' : '0';
-        card.style.display    = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   3. BLOG LISTING — pagination buttons (visual only, no routing)
-───────────────────────────────────────────────────────────── */
-const BlogPagination = (() => {
-  function init() {
-    const btns = _$$('.page-btn');
-    if (!btns.length) return;
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Skip prev/next icon buttons from getting active state
-        if (btn.querySelector('i')) return;
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        // Scroll to top of post grid smoothly
-        _$('#blog-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   4. BLOG SINGLE — reading progress bar
-───────────────────────────────────────────────────────────── */
-const ReadingProgress = (() => {
-  function init() {
-    const fill    = _$('#read-progress');
-    const article = _$('#article-content');
-
-    if (!fill || !article) return;
-
-    function update() {
-      const rect     = article.getBoundingClientRect();
-      const total    = article.offsetHeight - window.innerHeight;
-      const scrolled = Math.max(0, -rect.top);
-      const pct      = Math.min(100, total > 0 ? (scrolled / total) * 100 : 0);
-      fill.style.width = pct.toFixed(1) + '%';
-    }
-
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   5. BLOG SINGLE — table of contents active highlight
-───────────────────────────────────────────────────────────── */
-const TocHighlight = (() => {
-  function init() {
-    const tocLinks = _$$('.bs-toc__item');
-    if (!tocLinks.length) return;
-
-    // Collect section headings from hrefs
-    const sections = tocLinks
-      .map(link => {
-        const href = link.getAttribute('href');
-        const el   = href ? _$(href) : null;
-        return el ? { link, el } : null;
-      })
-      .filter(Boolean);
-
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const match = sections.find(s => s.el === entry.target);
-        if (!match) return;
-        if (entry.isIntersecting) {
-          tocLinks.forEach(l => l.classList.remove('active'));
-          match.link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '0px 0px -60% 0px', threshold: 0 });
-
-    sections.forEach(({ el }) => observer.observe(el));
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   6. BLOG SINGLE — share buttons
-───────────────────────────────────────────────────────────── */
-const ShareButtons = (() => {
-  function init() {
-    const btns = _$$('.bs-share__btn');
-    if (!btns.length) return;
-
-    const url   = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.title);
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const icon = btn.querySelector('i');
-        if (!icon) return;
-
-        if (icon.classList.contains('fa-x-twitter')) {
-          window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'noopener');
-        } else if (icon.classList.contains('fa-linkedin-in')) {
-          window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'noopener');
-        } else if (icon.classList.contains('fa-link')) {
-          // Copy link to clipboard
-          navigator.clipboard?.writeText(window.location.href).then(() => {
-            const origClass = icon.className;
-            icon.className  = 'fa-solid fa-check';
-            btn.style.borderColor = 'var(--accent-border)';
-            setTimeout(() => {
-              icon.className    = origClass;
-              btn.style.borderColor = '';
-            }, 2000);
-          });
-        }
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   7. SIDEBAR TAG PILLS — click copies tag to filter (listing page)
-───────────────────────────────────────────────────────────── */
-const SidebarTags = (() => {
-  function init() {
-    const tags = _$$('.sidebar-tag');
-    if (!tags.length) return;
-
-    tags.forEach(tag => {
-      tag.addEventListener('click', () => {
-        // Map tag text to filter key
-        const map = {
-          'Designer Diary'   : 'designer-diary',
-          'Campaign Update'  : 'campaign',
-          'Playtesting'      : 'playtest',
-          'Studio Life'      : 'studio',
-          'Community'        : 'community',
-        };
-        const key  = map[tag.textContent.trim()];
-        const pill = key ? _$(`[data-blog-filter="${key}"]`) : null;
-        if (pill) {
-          pill.click();
-          pill.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   INIT
-───────────────────────────────────────────────────────────── */
-function initBlogModules() {
-  BlogFilter.init();
-  BlogSearch.init();
-  BlogPagination.init();
-  ReadingProgress.init();
-  TocHighlight.init();
-  ShareButtons.init();
-  SidebarTags.init();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBlogModules);
-} else {
-  initBlogModules();
-}
-/**
- * TabletopForge — contact.js
- * Handles: contact form validation + submission feedback,
- *          message character counter, FAQ accordion,
- *          copy-to-clipboard on contact details
- */
-
-'use strict';
-
-const _$ = (sel, ctx = document) => ctx.querySelector(sel);
-const _$$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
-
-/* ─────────────────────────────────────────────────────────────
-   1. CONTACT FORM — validation + submission state
-───────────────────────────────────────────────────────────── */
-const ContactForm = (() => {
-
-  const RULES = {
-    'contact-name'   : { min: 2,   msg: 'Please enter your name (at least 2 characters).' },
-    'contact-email'  : { email: true, msg: 'Please enter a valid email address.' },
-    'contact-subject': { required: true, msg: 'Please select a subject.' },
-    'contact-message': { min: 20,  msg: 'Message must be at least 20 characters.' },
-  };
-
-  function validate(field) {
-    const rule  = RULES[field.id];
-    const val   = field.value.trim();
-    const group = field.closest('.form-group');
-    const err   = group?.querySelector('.form-error-msg');
-
-    if (!rule) return true;
-
-    let valid = true;
-    let msg   = '';
-
-    if (rule.required && !val) {
-      valid = false; msg = rule.msg;
-    } else if (rule.min && val.length < rule.min) {
-      valid = false; msg = rule.msg;
-    } else if (rule.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      valid = false; msg = rule.msg;
-    }
-
-    field.classList.toggle('error',   !valid);
-    field.classList.toggle('success',  valid && val.length > 0);
-    if (err) { err.textContent = msg; err.style.display = valid ? 'none' : 'block'; }
-
-    return valid;
-  }
-
-  function init() {
-    const form = _$('#contact-form');
-    if (!form) return;
-
-    // Live validation on blur
-    Object.keys(RULES).forEach(id => {
-      const field = _$(`#${id}`);
-      if (!field) return;
-      field.addEventListener('blur',  () => validate(field));
-      field.addEventListener('input', () => {
-        if (field.classList.contains('error')) validate(field);
-      });
-    });
-
-    // Submit
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-
-      // Validate all fields
-      const allValid = Object.keys(RULES).every(id => {
-        const f = _$(`#${id}`);
-        return f ? validate(f) : true;
-      });
-
-      if (!allValid) return;
-
-      const btn     = form.querySelector('button[type="submit"]');
-      const success = _$('#form-success');
-      const origTxt = btn.innerHTML;
-
-      // Loading state
-      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending…';
-      btn.disabled  = true;
-
-      // Simulate async send (replace with real endpoint)
-      setTimeout(() => {
-        btn.innerHTML = origTxt;
-        btn.disabled  = false;
-        form.reset();
-        // Reset validation states
-        _$$('.form-input, .form-textarea, .form-select', form).forEach(f => {
-          f.classList.remove('success', 'error');
-        });
-        if (success) {
-          success.style.display = 'flex';
-          setTimeout(() => { success.style.display = 'none'; }, 5000);
-        }
-      }, 1400);
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   2. MESSAGE CHARACTER COUNTER
-───────────────────────────────────────────────────────────── */
-const CharCounter = (() => {
-  function init() {
-    const textarea = _$('#contact-message');
-    const counter  = _$('#char-counter');
-    const MAX      = 1000;
-
-    if (!textarea || !counter) return;
-
-    textarea.setAttribute('maxlength', MAX);
-
-    function update() {
-      const remaining = MAX - textarea.value.length;
-      counter.textContent = `${textarea.value.length} / ${MAX}`;
-      counter.style.color = remaining < 50
-        ? 'var(--accent)'
-        : 'var(--text-muted)';
-    }
-
-    textarea.addEventListener('input', update);
-    update();
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   3. FAQ ACCORDION
-───────────────────────────────────────────────────────────── */
-const FaqAccordion = (() => {
-  function init() {
-    const items = _$$('.faq-item');
-    if (!items.length) return;
-
-    items.forEach(item => {
-      const trigger = item.querySelector('.faq-question');
-      const body    = item.querySelector('.faq-answer');
-      if (!trigger || !body) return;
-
-      trigger.setAttribute('aria-expanded', 'false');
-
-      trigger.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-
-        // Close all
-        items.forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
-        });
-
-        // Open clicked (if it was closed)
-        if (!isOpen) {
-          item.classList.add('open');
-          trigger.setAttribute('aria-expanded', 'true');
-        }
-      });
-
-      // Keyboard
-      trigger.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger.click(); }
-      });
-    });
-
-    // Open first by default
-    items[0]?.querySelector('.faq-question')?.click();
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   4. COPY-TO-CLIPBOARD on contact detail items
-───────────────────────────────────────────────────────────── */
-const CopyDetails = (() => {
-  function init() {
-    _$$('[data-copy]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const text = btn.dataset.copy;
-        if (!text || !navigator.clipboard) return;
-
-        navigator.clipboard.writeText(text).then(() => {
-          const icon  = btn.querySelector('i');
-          const orig  = icon?.className || '';
-          if (icon) icon.className = 'fa-solid fa-check';
-          btn.style.color = 'var(--accent)';
-
-          setTimeout(() => {
-            if (icon) icon.className = orig;
-            btn.style.color = '';
-          }, 2000);
-        });
-      });
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   INIT
-───────────────────────────────────────────────────────────── */
-function initContactModules() {
-  ContactForm.init();
-  CharCounter.init();
-  FaqAccordion.init();
-  CopyDetails.init();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initContactModules);
-} else {
-  initContactModules();
-}

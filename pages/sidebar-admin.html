@@ -1,0 +1,106 @@
+<!-- ============================================================
+     TabletopForge — sidebar-admin.html
+     Standalone admin dashboard sidebar.
+     Usage: fetched via DashSidebar.loadSidebar() in dashboard.js
+            and injected into #dash-sidebar-admin on dashboard-admin.html
+     ============================================================ -->
+
+<aside class="dash-sidebar" id="dash-sidebar-admin" aria-label="Admin navigation">
+
+  <!-- Admin profile block -->
+  <div class="dash-profile">
+    <div class="dash-profile__avatar" style="background:var(--accent-muted);border-color:var(--accent-border);color:var(--accent);" aria-hidden="true">AD</div>
+    <div>
+      <p class="dash-profile__name">Admin</p>
+      <p class="dash-profile__role">
+        <i class="fa-solid fa-shield-halved" style="font-size:9px;margin-right:3px;" aria-hidden="true"></i>
+        Full access
+      </p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="dash-sidebar__nav" aria-label="Admin sections">
+
+    <p class="dash-nav__section-label">Dashboard</p>
+
+    <a href="#" class="dash-nav__item active" data-admin-panel="overview" aria-current="page">
+      <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+      Overview
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="analytics">
+      <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+      Analytics
+    </a>
+
+    <p class="dash-nav__section-label">Campaigns</p>
+
+    <a href="#" class="dash-nav__item" data-admin-panel="campaigns">
+      <i class="fa-solid fa-chess-rook" aria-hidden="true"></i>
+      Campaigns
+      <span class="dash-nav__badge">3</span>
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="orders">
+      <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+      Orders
+      <span class="dash-nav__badge">142</span>
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="fulfillment">
+      <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+      Fulfilment
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="pnp">
+      <i class="fa-solid fa-print" aria-hidden="true"></i>
+      Print &amp; Play Files
+    </a>
+
+    <p class="dash-nav__section-label">Users</p>
+
+    <a href="#" class="dash-nav__item" data-admin-panel="users">
+      <i class="fa-solid fa-users" aria-hidden="true"></i>
+      User Management
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="messages">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      Messages
+      <span class="dash-nav__badge">5</span>
+    </a>
+
+    <p class="dash-nav__section-label">Content</p>
+
+    <a href="#" class="dash-nav__item" data-admin-panel="blog">
+      <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+      Blog Posts
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="forum">
+      <i class="fa-solid fa-flag" aria-hidden="true"></i>
+      Forum Moderation
+      <span class="dash-nav__badge">2</span>
+    </a>
+
+    <p class="dash-nav__section-label">System</p>
+
+    <a href="#" class="dash-nav__item" data-admin-panel="reports">
+      <i class="fa-solid fa-file-chart-column" aria-hidden="true"></i>
+      Reports
+    </a>
+    <a href="#" class="dash-nav__item" data-admin-panel="settings">
+      <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+      Settings
+    </a>
+
+  </nav>
+
+  <!-- Sidebar footer -->
+  <div class="dash-sidebar__footer">
+    <a href="dashboard-user.html">
+      <i class="fa-solid fa-user" aria-hidden="true"></i>
+      Switch to User View
+    </a>
+    <a href="index.html">
+      <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+      Log out
+    </a>
+  </div>
+
+</aside>

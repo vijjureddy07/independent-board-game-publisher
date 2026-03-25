@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — TabletopForge</title>
+  <meta name="description" content="Born from a love of games and a refusal to compromise on craft. Learn the story behind TabletopForge — our mission, our team, and how we got here." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tabletopforge.com/about" />
+  <meta property="og:title"       content="About Us — TabletopForge" />
+  <meta property="og:description" content="The story behind TabletopForge — independent board game publisher since 2018." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<header class="nav" role="banner">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+            <path d="M9 9h6"/>
+            <circle cx="12" cy="6" r="1"/>
+          </svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+
+      <ul class="nav__links" role="list">
+
+        <li class="nav__item">
+          <a href="index.html" class="nav__link" aria-haspopup="true">
+            Home
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="index.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-house" aria-hidden="true"></i>
+              <div>Home Page 1 <span>Main landing experience</span></div>
+            </a>
+            <a href="home-page-2.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <div>Home Page 2 <span>Campaign-focused layout</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="about.html" class="nav__link active">About</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="games.html" class="nav__link" aria-haspopup="true">
+            Games
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="games.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-dice" aria-hidden="true"></i>
+              <div>All Titles <span>Browse our full catalogue</span></div>
+            </a>
+            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
+              <div>Coming Soon <span>Upcoming campaigns</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="blog.html" class="nav__link">Blog</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="contact.html" class="nav__link">Contact</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="dashboard-user.html" class="nav__link" aria-haspopup="true">
+            Dashboard
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="dashboard-user.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <div>User Dashboard <span>Orders, downloads, forum</span></div>
+            </a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
+              <div>Admin Dashboard <span>Manage campaigns &amp; users</span></div>
+            </a>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
+        <a href="dashboard-user.html" class="btn btn--ghost nav__login">Login</a>
+      </div>
+
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html"           class="nav__mobile-link">Home</a>
+  <a href="index-2.html"         class="nav__mobile-link nav__mobile-sub">Home Page 2</a>
+  <a href="about.html"           class="nav__mobile-link">About</a>
+  <a href="games.html"           class="nav__mobile-link">Games</a>
+  <a href="blog.html"            class="nav__mobile-link">Blog</a>
+  <a href="contact.html"         class="nav__mobile-link">Contact</a>
+  <a href="dashboard-user.html"  class="nav__mobile-link">User Dashboard</a>
+  <a href="dashboard-admin.html" class="nav__mobile-link nav__mobile-sub">Admin Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
+  </div>
+  <a href="login.html" class="btn btn--primary" style="margin-top:1rem;width:100%;justify-content:center;">Login</a>
+</nav>
+
+
+<main id="main-content">
+<section class="page-hero" aria-labelledby="privacy-heading">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:var(--sp-6);flex-wrap:wrap;">
+      <div>
+        <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right" style="font-size:11px;margin:0 var(--sp-2);" aria-hidden="true"></i>
+          <span>Privacy Policy</span>
+        </nav>
+        <h1 id="privacy-heading" class="display-lg" style="margin-bottom:var(--sp-3);">Privacy Policy</h1>
+        <p style="color:var(--text-secondary);font-size:1.05rem;max-width:540px;line-height:1.75;">
+          Last updated: March 25, 2026
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" style="background:var(--bg-secondary);">
+  <div class="container" style="max-width:860px;">
+
+    <div class="policy-section">
+      <h2 class="policy-heading">1. Introduction</h2>
+      <p class="policy-text">
+        TabletopForge Ltd ("we", "us", "our") respects your privacy and is committed to protecting your personal data. 
+        This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, 
+        back campaigns, or use our backer portal.
+      </p>
+      <p class="policy-text">
+        By using TabletopForge services, you agree to the collection and use of information in accordance with this policy.
+        <strong>Last updated: March 25, 2026</strong>
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">2. Information We Collect</h2>
+      
+      <h3 class="policy-subheading">2.1 Personal Information</h3>
+      <ul class="policy-list">
+        <li><strong>Email address, name</strong> — from crowdfunding platforms (Kickstarter, Gamefound)</li>
+        <li><strong>Shipping address</strong> — for physical game delivery</li>
+        <li><strong>Pledge details</strong> — amount, tier, campaign backed</li>
+        <li><strong>Forum activity</strong> — posts, likes, profile data (optional)</li>
+      </ul>
+
+      <h3 class="policy-subheading">2.2 Usage Data</h3>
+      <ul class="policy-list">
+        <li>IP address, browser type, pages visited</li>
+        <li>PnP file downloads (timestamp, file)</li>
+        <li>Forum interactions (views, replies)</li>
+      </ul>
+
+      <h3 class="policy-subheading">2.3 Cookies</h3>
+      <p class="policy-text">
+        We use essential cookies for theme preference, login state. No tracking cookies. 
+        Cookie preferences stored locally.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">3. How We Use Your Data</h2>
+      <ul class="policy-list">
+        <li><strong>Fulfillment:</strong> Ship games, send tracking</li>
+        <li><strong>Communication:</strong> Campaign updates, shipping alerts</li>
+        <li><strong>Portal:</strong> Track pledges, provide PnP downloads</li>
+        <li><strong>Forum:</strong> Display posts, enable discussions</li>
+        <li><strong>Analytics:</strong> Aggregate stats (never personal)</li>
+        <li><strong>Legal:</strong> Comply with tax/shipping regulations</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">4. Data Sharing</h2>
+      <p class="policy-text"><strong>We never sell your data.</strong></p>
+      <ul class="policy-list">
+        <li><strong>Shipping:</strong> Address to fulfillment partner (deleted after delivery)</li>
+        <li><strong>Crowdfunding:</strong> Pledge data from KS/GF APIs</li>
+        <li><strong>Payment:</strong> No card details stored (processed by KS/GF)</li>
+        <li><strong>Legal:</strong> Only if required by law</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">5. Your Rights (GDPR)</h2>
+      <ul class="policy-list">
+        <li><strong>Access:</strong> Download data from Dashboard → Settings</li>
+        <li><strong>Rectify:</strong> Edit profile/shipping in Dashboard</li>
+        <li><strong>Delete:</strong> Contact support (fulfillment records retained 7 years)</li>
+        <li><strong>Object:</strong> Unsubscribe from emails (footer link)</li>
+        <li><strong>Portability:</strong> Export available on request</li>
+      </ul>
+      <p class="policy-text">
+        EU users: Contact <a href="mailto:dpo@tabletopforge.com">dpo@tabletopforge.com</a>.
+        UK users: UK GDPR applies identically.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">6. Security</h2>
+      <ul class="policy-list">
+        <li>HTTPS everywhere</li>
+        <li>Password hashing (bcrypt)</li>
+        <li>2FA available (Dashboard → Security)</li>
+        <li>Regular security audits</li>
+        <li>SOC 2 Type II compliant fulfillment partners</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">7. Children's Privacy</h2>
+      <p class="policy-text">
+        Our services are not directed to children under 16. We do not knowingly collect 
+        data from children. Parents/guardians: <a href="contact.html">contact us</a>.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">8. Changes to Policy</h2>
+      <p class="policy-text">
+        Minor changes posted here. Major changes emailed to all backers.
+        Continued use = acceptance.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2 class="policy-heading">9. Contact</h2>
+      <p class="policy-text">
+        Questions? <a href="contact.html">Contact support</a> or email 
+        <a href="mailto:privacy@tabletopforge.com">privacy@tabletopforge.com</a>.
+      </p>
+      <p class="policy-text" style="font-size:0.82rem;color:var(--text-muted);">
+        TabletopForge Ltd · Registered England &amp; Wales · Company #12345678
+      </p>
+    </div>
+
+  </div>
+</section>
+</main>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+          TabletopForge
+        </div>
+        <p class="footer__brand-desc">Independent board game publisher crafting bold tabletop experiences since 2018. Every game tells a story.</p>
+        <nav class="footer__social" aria-label="Social links">
+          <a href="#" class="footer__social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer__col-title">Company</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="about.html"   class="footer__col-link">About</a></li>
+          <li><a href="blog.html"    class="footer__col-link">Blog</a></li>
+          <li><a href="contact.html" class="footer__col-link">Contact</a></li>
+          <li><a href="press-kit.html"            class="footer__col-link">Press Kit</a></li>
+          <li><a href="careers.html"            class="footer__col-link">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Games</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="games.html"          class="footer__col-link">All Titles</a></li>
+          <li><a href="games.html"          class="footer__col-link">Active Campaigns</a></li>
+          <li><a href="coming-soon.html"    class="footer__col-link">Coming Soon</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Print &amp; Play</a></li>
+          <li><a href="retailer-info.html"                   class="footer__col-link">Retailer Info</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Client Area</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="login.html" class="footer__col-link">Login</a></li>
+          <li><a href="shipping-status.html" class="footer__col-link">Dashboard</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Shipping Status</a></li>
+          <li><a href="forum.html"          class="footer__col-link">Forum</a></li>
+          <li><a href="faq.html"                   class="footer__col-link">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Support &amp; Legal</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="privacy-policy.html"            class="footer__col-link">Privacy Policy</a></li>
+          <li><a href="terms-conditions.html"            class="footer__col-link">Terms &amp; Conditions</a></li>
+          <li><a href="contact.html" class="footer__col-link">Support</a></li>
+        </ul>
+        <div style="margin-top:1.5rem;">
+          <p class="footer__col-title" style="margin-bottom:0.75rem;">Newsletter</p>
+          <form data-newsletter-form style="display:flex;gap:8px;flex-direction:column;" aria-label="Footer newsletter">
+            <input class="newsletter__input" type="email" placeholder="Enter email" aria-label="Email" style="min-width:unset;font-size:0.82rem;padding:10px 14px;" />
+            <button class="btn btn--primary btn--sm" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 TabletopForge Ltd. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6c2d7d4dad3c2d9c6d0d9c4d1d398d5d9db" class="footer__copy"><span class="__cf_email__" data-cfemail="167e737a7a79566277747a7362796670796471733875797b">[email&#160;protected]</span></a>
+        <span class="footer__copy">·</span>
+        <span class="footer__copy">+1 (000) 000-0000</span>
+      </div>
+      <nav class="footer__bottom-links" aria-label="Legal">
+        <a href="#" class="footer__bottom-link">Privacy</a>
+        <a href="#" class="footer__bottom-link">Terms</a>
+        <a href="#" class="footer__bottom-link">Cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
+

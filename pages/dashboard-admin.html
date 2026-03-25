@@ -19,61 +19,6 @@
 <body>
 
 <!-- ═══════════════════════════════════════════
-     NAV  (minimal — dashboard is full-screen app)
-═══════════════════════════════════════════ -->
-<header class="nav scrolled" role="banner">
-  <div class="container">
-    <nav class="nav__inner" aria-label="Main navigation">
-
-      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
-        <div class="nav__logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
-        </div>
-        <span class="nav__logo-text">TabletopForge</span>
-      </a>
-
-      <ul class="nav__links" role="list">
-        <li class="nav__item"><a href="index.html"   class="nav__link">Home</a></li>
-        <li class="nav__item"><a href="games.html"   class="nav__link">Games</a></li>
-        <li class="nav__item"><a href="blog.html"    class="nav__link">Blog</a></li>
-        <li class="nav__item">
-          <a href="dashboard-admin.html" class="nav__link active" aria-haspopup="true">
-            Dashboard <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
-          </a>
-          <div class="nav__dropdown" role="menu">
-            <a href="dashboard-user.html"  class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-user" aria-hidden="true"></i><div>User Dashboard <span>Orders, downloads, forum</span></div></a>
-            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-gear" aria-hidden="true"></i><div>Admin Dashboard <span>Manage campaigns &amp; users</span></div></a>
-          </div>
-        </li>
-      </ul>
-
-      <div class="nav__controls">
-        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
-        <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
-        <a href="index.html" class="btn btn--ghost nav__login">
-          <i class="fa-solid fa-right-from-bracket" style="font-size:12px;" aria-hidden="true"></i> Logout
-        </a>
-      </div>
-
-      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-admin" type="button">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </div>
-</header>
-
-<nav id="mobile-menu-admin" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
-  <a href="index.html"            class="nav__mobile-link">Back to Site</a>
-  <a href="dashboard-user.html"   class="nav__mobile-link">User Dashboard</a>
-  <a href="dashboard-admin.html"  class="nav__mobile-link">Admin Dashboard</a>
-  <div style="margin-top:2rem;display:flex;gap:12px;">
-    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
-    <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
-  </div>
-</nav>
-
-
-<!-- ═══════════════════════════════════════════
      DASHBOARD SHELL
 ═══════════════════════════════════════════ -->
 <div class="dash-shell">
@@ -847,16 +792,64 @@
       </div><!-- end settings panel -->
 
 
-      <!-- Other panels (fulfillment, pnp, orders, messages, forum, analytics, reports)
-           are placeholder pages — developer can add content following the same pattern -->
-      <div class="dash-page" id="admin-panel-fulfillment">
-        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Fulfilment</h2></div>
-        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
-          <i class="fa-solid fa-truck-fast" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
-          <p>Fulfilment management panel — connect your logistics API or fulfilment partner here.</p>
+      <!-- ════ ANALYTICS ════ -->
+      <div class="dash-page" id="admin-panel-analytics">
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Analytics</h2>
+          <div style="display:flex;gap:var(--sp-2);">
+            <button class="btn btn--ghost btn--sm" type="button">7d</button>
+            <button class="btn btn--ghost btn--sm" type="button" style="background:var(--border);">30d</button>
+            <button class="btn btn--ghost btn--sm" type="button">All time</button>
+          </div>
         </div>
-      </div>
+        <div class="dash-stats" style="margin-bottom:var(--sp-5);">
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></div><span class="dash-stat-card__value" data-count="1208" data-prefix="$" data-suffix="K">—</span><span class="dash-stat-card__label">All-time revenue</span><div class="dash-stat-card__change change--up"><i class="fa-solid fa-arrow-up"></i> +$284K active</div></div>
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-users" aria-hidden="true"></i></div><span class="dash-stat-card__value" data-count="48200">—</span><span class="dash-stat-card__label">Unique backers</span><div class="dash-stat-card__change change--up"><i class="fa-solid fa-arrow-up"></i> +2,847 this campaign</div></div>
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></div><span class="dash-stat-card__value" data-count="342" data-suffix="%">—</span><span class="dash-stat-card__label">Best funded (Citadels)</span><div class="dash-stat-card__change change--up"><i class="fa-solid fa-trophy"></i> Personal record</div></div>
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-download" aria-hidden="true"></i></div><span class="dash-stat-card__value" data-count="24565">—</span><span class="dash-stat-card__label">PnP downloads</span><div class="dash-stat-card__change change--up"><i class="fa-solid fa-arrow-up"></i> +1,204 this month</div></div>
+        </div>
+        <div class="dash-grid-2" style="margin-bottom:var(--sp-4);">
+          <div class="dash-card">
+            <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Revenue by Campaign</h3></div>
+            <div class="dash-card__body" style="padding:0;">
+              <table class="dash-table" aria-label="Revenue by campaign">
+                <thead><tr><th>Campaign</th><th>Backers</th><th>Raised</th><th>% Share</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="dash-table__name">Citadels of the Deep</span><br><span style="font-size:0.72rem;color:var(--text-muted);">Live · 2026</span></td><td>2,847</td><td>$284K</td><td><div style="display:flex;align-items:center;gap:var(--sp-2);"><div style="flex:1;height:4px;background:var(--border);border-radius:99px;overflow:hidden;"><div style="width:24%;height:100%;background:var(--accent);border-radius:99px;"></div></div><span style="font-size:0.75rem;color:var(--text-muted);">24%</span></div></td></tr>
+                  <tr><td><span class="dash-table__name">Verdant Empires</span><br><span style="font-size:0.72rem;color:var(--text-muted);">Fulfillment · 2025</span></td><td>5,120</td><td>$612K</td><td><div style="display:flex;align-items:center;gap:var(--sp-2);"><div style="flex:1;height:4px;background:var(--border);border-radius:99px;overflow:hidden;"><div style="width:51%;height:100%;background:var(--text-secondary);border-radius:99px;"></div></div><span style="font-size:0.75rem;color:var(--text-muted);">51%</span></div></td></tr>
+                  <tr><td><span class="dash-table__name">The Iron Pact</span><br><span style="font-size:0.72rem;color:var(--text-muted);">Delivered · 2020</span></td><td>4,200</td><td>$312K</td><td><div style="display:flex;align-items:center;gap:var(--sp-2);"><div style="flex:1;height:4px;background:var(--border);border-radius:99px;overflow:hidden;"><div style="width:26%;height:100%;background:var(--text-muted);border-radius:99px;"></div></div><span style="font-size:0.75rem;color:var(--text-muted);">26%</span></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-globe" aria-hidden="true"></i> Backers by Region</h3></div>
+            <div class="dash-card__body" style="padding:0;">
+              <table class="dash-table" aria-label="Backers by region">
+                <thead><tr><th>Region</th><th>Backers</th><th>Avg. pledge</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>North America</td><td>18,420</td><td>$62</td><td><span style="font-size:0.78rem;color:var(--text-muted);">38%</span></td></tr>
+                  <tr><td>Europe</td><td>16,870</td><td>$71</td><td><span style="font-size:0.78rem;color:var(--text-muted);">35%</span></td></tr>
+                  <tr><td>Asia-Pacific</td><td>8,240</td><td>$58</td><td><span style="font-size:0.78rem;color:var(--text-muted);">17%</span></td></tr>
+                  <tr><td>Rest of world</td><td>4,670</td><td>$54</td><td><span style="font-size:0.78rem;color:var(--text-muted);">10%</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-users" aria-hidden="true"></i> Backer Growth — Citadels (Last 14 days)</h3></div>
+          <div class="dash-card__body">
+            <div class="mini-chart" style="height:120px;" aria-label="Backer growth chart" role="img">
+              <div class="mini-bar" style="height:22%;" title="Mar 11 — +180"></div><div class="mini-bar" style="height:38%;" title="Mar 12 — +310"></div><div class="mini-bar" style="height:30%;" title="Mar 13 — +245"></div><div class="mini-bar" style="height:50%;" title="Mar 14 — +408"></div><div class="mini-bar" style="height:44%;" title="Mar 15 — +360"></div><div class="mini-bar" style="height:28%;" title="Mar 16 — +230"></div><div class="mini-bar" style="height:35%;" title="Mar 17 — +285"></div><div class="mini-bar highlight" style="height:68%;" title="Mar 18 — +556"></div><div class="mini-bar" style="height:45%;" title="Mar 19 — +368"></div><div class="mini-bar highlight" style="height:82%;" title="Mar 20 — +670"></div><div class="mini-bar" style="height:52%;" title="Mar 21 — +425"></div><div class="mini-bar" style="height:42%;" title="Mar 22 — +343"></div><div class="mini-bar" style="height:60%;" title="Mar 23 — +490"></div><div class="mini-bar highlight" style="height:100%;" title="Mar 24 — +817"></div>
+            </div>
+            <div class="mini-chart__labels"><span>Mar 11</span><span>Mar 14</span><span>Mar 17</span><span>Mar 20</span><span>Mar 24</span></div>
+          </div>
+        </div>
+      </div><!-- /analytics -->
 
+
+      <!-- ════ PNP FILES ════ -->
       <div class="dash-page" id="admin-panel-pnp">
         <div class="dash-section-head">
           <h2 class="dash-section-title"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Print &amp; Play Files</h2>
@@ -864,40 +857,239 @@
         </div>
         <div class="dash-table-wrap">
           <table class="dash-table" aria-label="PnP file management">
-            <thead><tr><th>File</th><th>Campaign</th><th>Version</th><th>Size</th><th>Downloads</th><th>Uploaded</th><th>Actions</th></tr></thead>
+            <thead><tr><th>File</th><th>Campaign</th><th>Version</th><th>Size</th><th>Downloads</th><th>Access</th><th>Uploaded</th><th>Actions</th></tr></thead>
             <tbody>
-              <tr><td><span class="dash-table__name">Citadels of the Deep v1.2</span></td><td>Citadels</td><td>v1.2</td><td>48 MB</td><td>2,341</td><td>Mar 10, 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="Delete file"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
-              <tr><td><span class="dash-table__name">Verdant Empires Deluxe</span></td><td>Verdant</td><td>v2.0</td><td>72 MB</td><td>4,890</td><td>Jan 5, 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="Delete file"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
-              <tr><td><span class="dash-table__name">Moonfall Chronicles Preview</span></td><td>Moonfall</td><td>v0.1</td><td>18 MB</td><td>1,204</td><td>Mar 15, 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="Delete file"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Citadels of the Deep v1.2</span></td><td>Citadels</td><td>v1.2</td><td>48 MB</td><td>2,341</td><td>All backers</td><td>Mar 10</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Verdant Empires Deluxe</span></td><td>Verdant</td><td>v2.0</td><td>72 MB</td><td>4,890</td><td>Deluxe backers</td><td>Jan 5</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Moonfall Chronicles Preview</span></td><td>Moonfall</td><td>v0.1</td><td>18 MB</td><td>1,204</td><td>All backers</td><td>Mar 15</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">The Iron Pact — Complete</span></td><td>Iron Pact</td><td>v3.1</td><td>55 MB</td><td>8,920</td><td>All backers</td><td>Feb 2024</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
             </tbody>
           </table>
         </div>
-      </div>
+      </div><!-- /pnp -->
 
+
+      <!-- ════ ORDERS ════ -->
       <div class="dash-page" id="admin-panel-orders">
-        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Orders</h2></div>
-        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
-          <i class="fa-solid fa-box-open" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
-          <p>Full orders table — connect your pledge manager (Kickstarter / BackerKit / Gamefound) API here.</p>
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Orders</h2>
+          <div style="display:flex;gap:var(--sp-3);">
+            <div class="dash-topbar__search" style="position:relative;"><i class="fa-solid fa-magnifying-glass dash-search-icon" aria-hidden="true"></i><input class="dash-search-input" type="search" placeholder="Search orders..." aria-label="Search orders" /></div>
+            <button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-file-export" aria-hidden="true"></i> Export</button>
+          </div>
         </div>
-      </div>
+        <div style="display:flex;gap:var(--sp-2);margin-bottom:var(--sp-5);flex-wrap:wrap;">
+          <button class="filter-pill active" type="button">All <span style="font-size:0.65rem;margin-left:4px;">2,847</span></button>
+          <button class="filter-pill" type="button" style="color:#E85454;"><i class="fa-solid fa-triangle-exclamation" style="font-size:0.65rem;" aria-hidden="true"></i> Flagged 12</button>
+          <button class="filter-pill" type="button">In Transit</button>
+          <button class="filter-pill" type="button">Delivered</button>
+          <button class="filter-pill" type="button">Pending</button>
+        </div>
+        <div class="dash-table-wrap">
+          <table class="dash-table" aria-label="Order management">
+            <thead><tr><th>Order #</th><th>Backer</th><th>Campaign</th><th>Tier</th><th>Amount</th><th>Status</th><th>ETA</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><span class="dash-table__name">#CD-2847</span></td><td>Marcus R.</td><td>Citadels</td><td>Warlord</td><td>$145</td><td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td><td>Q4 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">#VE-4821</span></td><td>marcus@example.com</td><td>Verdant</td><td>Deluxe All-In</td><td>$145</td><td><span class="status-pill status-pill--alert"><i class="fa-solid fa-triangle-exclamation"></i> Flagged</span></td><td>Apr 1–5</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Resolve"><i class="fa-solid fa-check" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">#VE-5120</span></td><td>Sophie L.</td><td>Verdant</td><td>Standard</td><td>$79</td><td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> In transit</span></td><td>Mar 30</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">#IP-4200</span></td><td>Tomáš K.</td><td>Iron Pact</td><td>Standard</td><td>$55</td><td><span class="status-pill status-pill--done"><i class="fa-solid fa-check"></i> Delivered</span></td><td>Feb 10</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:var(--sp-5);padding-top:var(--sp-4);border-top:1px solid var(--border);font-size:0.82rem;color:var(--text-muted);">
+          <span>Showing 1–4 of 2,847 orders</span>
+          <div style="display:flex;gap:var(--sp-2);"><button class="btn btn--ghost btn--sm" type="button" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button></div>
+        </div>
+      </div><!-- /orders -->
 
+
+      <!-- ════ FULFILLMENT ════ -->
+      <div class="dash-page" id="admin-panel-fulfillment">
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Fulfilment</h2>
+          <button class="btn btn--primary btn--sm" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> New batch</button>
+        </div>
+        <div class="dash-stats" style="margin-bottom:var(--sp-5);">
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div><span class="dash-stat-card__value">89%</span><span class="dash-stat-card__label">Verdant Empires shipped</span><div class="dash-stat-card__change change--up"><i class="fa-solid fa-arrow-up"></i> 127 dispatched today</div></div>
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i></div><span class="dash-stat-card__value">437</span><span class="dash-stat-card__label">Orders pending dispatch</span><div class="dash-stat-card__change change--down"><i class="fa-solid fa-triangle-exclamation"></i> 12 flagged issues</div></div>
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-warehouse" aria-hidden="true"></i></div><span class="dash-stat-card__value">Bristol</span><span class="dash-stat-card__label">Active fulfilment hub</span><div class="dash-stat-card__change"><i class="fa-solid fa-circle-dot"></i> Operational</div></div>
+          <div class="dash-stat-card"><div class="dash-stat-card__icon"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div><span class="dash-stat-card__value">Apr 5</span><span class="dash-stat-card__label">Est. completion date</span><div class="dash-stat-card__change change--up"><i class="fa-solid fa-arrow-up"></i> On schedule</div></div>
+        </div>
+        <div class="dash-card" style="margin-bottom:var(--sp-4);">
+          <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Shipment Batches — Verdant Empires</h3></div>
+          <div class="dash-table-wrap">
+            <table class="dash-table" aria-label="Shipment batches">
+              <thead><tr><th>Batch</th><th>Region</th><th>Orders</th><th>Carrier</th><th>Dispatched</th><th>Est. Delivery</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><span class="dash-table__name">VE-BATCH-01</span></td><td>UK &amp; Ireland</td><td>842</td><td>Royal Mail</td><td>Mar 15</td><td>Mar 20–25</td><td><span class="status-pill status-pill--done"><i class="fa-solid fa-check"></i> Delivered</span></td></tr>
+                <tr><td><span class="dash-table__name">VE-BATCH-02</span></td><td>EU (West)</td><td>1,240</td><td>DHL Express</td><td>Mar 18</td><td>Mar 25–30</td><td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> In transit</span></td></tr>
+                <tr><td><span class="dash-table__name">VE-BATCH-03</span></td><td>North America</td><td>1,890</td><td>UPS</td><td>Mar 20</td><td>Apr 1–5</td><td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> In transit</span></td></tr>
+                <tr><td><span class="dash-table__name">VE-BATCH-04</span></td><td>Asia-Pacific</td><td>810</td><td>FedEx Intl</td><td>Mar 22</td><td>Apr 3–8</td><td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Preparing</span></td></tr>
+                <tr><td><span class="dash-table__name">VE-BATCH-05</span></td><td>Rest of World</td><td>338</td><td>Various</td><td>—</td><td>Apr 5–12</td><td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Fulfilment Issues</h3><span style="font-size:0.78rem;color:#E85454;font-weight:600;">12 open</span></div>
+          <div class="dash-table-wrap">
+            <table class="dash-table" aria-label="Fulfilment issues">
+              <thead><tr><th>Order</th><th>Issue</th><th>Batch</th><th>Reported</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>#VE-4821</td><td>Missing promo card</td><td>BATCH-03</td><td>Mar 22</td><td><span class="status-pill status-pill--alert"><i class="fa-solid fa-circle"></i> Open</span></td><td><button class="btn btn--ghost btn--sm" type="button">Resolve</button></td></tr>
+                <tr><td>#VE-3309</td><td>Damaged box</td><td>BATCH-01</td><td>Mar 21</td><td><span class="status-pill status-pill--pending"><i class="fa-solid fa-circle"></i> In review</span></td><td><button class="btn btn--ghost btn--sm" type="button">Resolve</button></td></tr>
+                <tr><td>#IP-1102</td><td>Wrong address on label</td><td>BATCH-02</td><td>Mar 19</td><td><span class="status-pill status-pill--alert"><i class="fa-solid fa-circle"></i> Open</span></td><td><button class="btn btn--ghost btn--sm" type="button">Resolve</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /fulfillment -->
+
+
+      <!-- ════ MESSAGES ════ -->
       <div class="dash-page" id="admin-panel-messages">
-        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages</h2></div>
-        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
-          <i class="fa-solid fa-envelope" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
-          <p>Support message inbox — connect your helpdesk integration here.</p>
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Support Messages</h2>
+          <div style="display:flex;gap:var(--sp-2);">
+            <button class="filter-pill active" type="button">All 5</button>
+            <button class="filter-pill" type="button">Open</button>
+            <button class="filter-pill" type="button">Resolved</button>
+          </div>
         </div>
-      </div>
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;">
+          <div style="background:var(--bg-secondary);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4);border-left:3px solid #E85454;">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.72rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">MR</div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);"><span style="font-family:var(--font-head);font-size:0.88rem;font-weight:700;">Marcus R.</span><span class="status-pill status-pill--alert" style="font-size:0.62rem;"><i class="fa-solid fa-circle"></i> Open</span><span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">2h ago · #VE-4821</span></div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:var(--sp-3);">My Verdant Empires Deluxe arrived but the promo card "The Ashwarden" was missing from the box. I backed at the All-In tier so it should have been included. Could you help resolve this?</p>
+              <div style="display:flex;gap:var(--sp-2);"><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-reply" aria-hidden="true"></i> Reply</button><button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);"><i class="fa-solid fa-check" aria-hidden="true"></i> Mark resolved</button></div>
+            </div>
+          </div>
+          <div style="background:var(--bg-secondary);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4);border-left:3px solid #E85454;">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.72rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">SL</div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);"><span style="font-family:var(--font-head);font-size:0.88rem;font-weight:700;">Sophie L.</span><span class="status-pill status-pill--alert" style="font-size:0.62rem;"><i class="fa-solid fa-circle"></i> Open</span><span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">5h ago · #VE-3309</span></div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:var(--sp-3);">The game box arrived with a crushed corner and the insert tray was cracked. The components inside seem fine but the box and insert are damaged. Happy to send photos.</p>
+              <div style="display:flex;gap:var(--sp-2);"><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-reply" aria-hidden="true"></i> Reply</button><button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);"><i class="fa-solid fa-check" aria-hidden="true"></i> Mark resolved</button></div>
+            </div>
+          </div>
+          <div style="background:var(--bg-secondary);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4);border-left:3px solid #F5C84A;">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.72rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">TK</div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);"><span style="font-family:var(--font-head);font-size:0.88rem;font-weight:700;">Tomáš K.</span><span class="status-pill status-pill--pending" style="font-size:0.62rem;"><i class="fa-solid fa-clock"></i> In review</span><span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">1d ago · General</span></div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:var(--sp-3);">I'm trying to back Citadels of the Deep but the Castellan tier isn't showing on Kickstarter anymore. Is it still available? I want to upgrade from Sailor.</p>
+              <div style="display:flex;gap:var(--sp-2);"><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-reply" aria-hidden="true"></i> Reply</button><button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);"><i class="fa-solid fa-check" aria-hidden="true"></i> Mark resolved</button></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /messages -->
 
+
+      <!-- ════ FORUM MODERATION ════ -->
       <div class="dash-page" id="admin-panel-forum">
-        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-flag" aria-hidden="true"></i> Forum Moderation</h2></div>
-        <div style="padding:var(--sp-9) 0;text-align:center;color:var(--text-muted);">
-          <i class="fa-solid fa-comments" style="font-size:2.5rem;margin-bottom:var(--sp-4);display:block;" aria-hidden="true"></i>
-          <p>Full moderation queue — manage reported posts and banned users here.</p>
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-flag" aria-hidden="true"></i> Forum Moderation</h2>
+          <div style="display:flex;gap:var(--sp-2);">
+            <button class="filter-pill active" type="button">Flagged 3</button>
+            <button class="filter-pill" type="button">All posts</button>
+            <button class="filter-pill" type="button">Banned users</button>
+          </div>
         </div>
-      </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3);margin-bottom:var(--sp-5);">
+          <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-4);text-align:center;"><span style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;display:block;color:#E85454;">3</span><span style="font-size:0.72rem;color:var(--text-muted);">Flagged posts</span></div>
+          <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-4);text-align:center;"><span style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;display:block;">445</span><span style="font-size:0.72rem;color:var(--text-muted);">Total threads</span></div>
+          <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-4);text-align:center;"><span style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;display:block;">3,225</span><span style="font-size:0.72rem;color:var(--text-muted);">Total posts</span></div>
+          <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-4);text-align:center;"><span style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;display:block;">0</span><span style="font-size:0.72rem;color:var(--text-muted);">Banned users</span></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-flag" style="color:#E85454;" aria-hidden="true"></i> Posts Requiring Review</h3></div>
+          <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+            <div style="background:var(--bg-primary);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4);">
+              <div style="width:38px;height:38px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">??</div>
+              <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);"><span style="font-family:var(--font-head);font-size:0.85rem;font-weight:700;">Unknown user</span><span class="status-pill status-pill--alert" style="font-size:0.62rem;">Spam</span><span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">Citadels · 3 users flagged · 5 min ago</span></div>
+                <p style="font-size:0.88rem;color:var(--text-secondary);background:var(--bg-card);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);border:1px solid var(--border);margin-bottom:var(--sp-3);">"Buy cheap meeples at discountboardgames.ru — best prices guaranteed!"</p>
+                <div style="display:flex;gap:var(--sp-2);">
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);"><i class="fa-solid fa-check" aria-hidden="true"></i> Approve</button>
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);"><i class="fa-solid fa-trash" aria-hidden="true"></i> Delete</button>
+                  <button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-ban" aria-hidden="true"></i> Ban user</button>
+                  <a href="forum-thread.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View</a>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--bg-primary);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4);">
+              <div style="width:38px;height:38px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">TK</div>
+              <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);"><span style="font-family:var(--font-head);font-size:0.85rem;font-weight:700;">Tomáš K.</span><span class="status-pill status-pill--pending" style="font-size:0.62rem;">Off-topic</span><span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">General · 1 user flagged · 1h ago</span></div>
+                <p style="font-size:0.88rem;color:var(--text-secondary);background:var(--bg-card);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);border:1px solid var(--border);margin-bottom:var(--sp-3);">"Anyone want to trade their spare Kickstarter exclusives from other publishers? I have extra Iron Pact promo cards..."</p>
+                <div style="display:flex;gap:var(--sp-2);">
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);"><i class="fa-solid fa-check" aria-hidden="true"></i> Approve</button>
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);"><i class="fa-solid fa-trash" aria-hidden="true"></i> Delete</button>
+                  <button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-reply" aria-hidden="true"></i> Warn user</button>
+                  <a href="forum-thread.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View</a>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--bg-primary);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4);">
+              <div style="width:38px;height:38px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.65rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;">AN</div>
+              <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);"><span style="font-family:var(--font-head);font-size:0.85rem;font-weight:700;">Aiko N.</span><span class="status-pill" style="font-size:0.62rem;">Needs clarity</span><span style="font-size:0.72rem;color:var(--text-muted);margin-left:auto;">Citadels Strategy · 2h ago</span></div>
+                <p style="font-size:0.88rem;color:var(--text-secondary);background:var(--bg-card);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);border:1px solid var(--border);margin-bottom:var(--sp-3);">"The rulebook says Saltkin can't use Tide tokens in Act 1, but someone told me there's an FAQ that overrides this for Castellan version. Which is correct?"</p>
+                <div style="display:flex;gap:var(--sp-2);">
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);"><i class="fa-solid fa-check" aria-hidden="true"></i> Approve</button>
+                  <button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-reply" aria-hidden="true"></i> Add official reply</button>
+                  <a href="forum-thread.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /forum -->
 
-      <div class="dash-page" id="admin-panel-analytics">
-        <div class="dash-section-head"><h2 class="dash-section-title"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Analytics</h2></div>
-        <div st
+
+      <!-- ════ REPORTS ════ -->
+      <div class="dash-page" id="admin-panel-reports">
+        <div class="dash-section-head">
+          <h2 class="dash-section-title"><i class="fa-solid fa-file-chart-column" aria-hidden="true"></i> Reports</h2>
+          <button class="btn btn--primary btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export all</button>
+        </div>
+        <div class="dash-grid-2">
+          <div class="dash-card">
+            <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-file-export" aria-hidden="true"></i> Quick Exports</h3></div>
+            <div class="dash-card__body" style="display:flex;flex-direction:column;gap:var(--sp-3);">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">All backer emails</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 48,200 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Citadels backer list</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 2,847 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Verdant fulfilment report</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 5,120 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Revenue summary — all campaigns</p><p style="font-size:0.75rem;color:var(--text-muted);">XLSX · Revenue, backers, dates</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">PnP download stats</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · Downloads per file</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> All-Time Summary</h3></div>
+            <div class="dash-card__body" style="padding:0;">
+              <table class="dash-table" aria-label="All-time stats">
+                <tbody>
+                  <tr><td style="color:var(--text-muted);">Total campaigns</td><td><strong>4</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Total revenue</td><td><strong>$1,208K</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Unique backers</td><td><strong>48,200</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Avg. pledge value</td><td><strong>$62</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">On-time fulfilment</td><td><strong style="color:#5EE89A;">97%</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">PnP total downloads</td><td><strong>24,565</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Forum total posts</td><td><strong>3,225</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Support tickets resolved</td><td><strong>312</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div><!-- /reports -->
+
+
+    </div><!-- /dash-content -->
+  </main>
+</div><!-- /dash-shell -->
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

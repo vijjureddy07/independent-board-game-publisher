@@ -1,136 +1,149 @@
 /**
  * TabletopForge — dashboard.js
- * Handles: dashboard-user.html + dashboard-admin.html
+ * Handles both dashboard-user.html and dashboard-admin.html:
+ *   - Sidebar open/close + mobile overlay
+ *   - SPA panel switching (data-panel / data-admin-panel)
+ *   - Animated stat counters (panel-scoped, non-conflicting with main.js)
+ *   - Admin mini-chart bar animation
+ *   - Notifications mark-all-read
+ *   - Admin topbar search
  *
- * Modules:
- *   DashSidebar      — mobile open/close + overlay
- *   DashPanels       — sidebar link → panel switching (user + admin)
- *   DashBars         — mini bar chart animation on scroll entry
- *   DashModeration   — approve/delete in forum moderation queue
- *   DashToggles      — settings page toggle switch animation
- *   DashNotifications — mark-all-read on user dashboard
- *
- * Each module exits silently when its elements aren't present —
- * safe to load on both dashboard pages.
+ * Depends on: main.js  (window.$, window.$$)
+ * Loaded after main.js on dashboard pages.
  */
 
 'use strict';
 
-const _$ = (sel, ctx = document) => ctx.querySelector(sel);
-const _$$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+// Re-use helpers from main.js; fall back to local definitions only when
+// this file is somehow loaded in isolation (e.g. unit tests).
+const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
+const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
 /* ─────────────────────────────────────────────────────────────
-   1. SIDEBAR  — mobile open / close + overlay
+   1. SIDEBAR — mobile open / close with overlay
 ───────────────────────────────────────────────────────────── */
 const DashSidebar = (() => {
   function init() {
     const sidebar = _$('#dash-sidebar') || _$('#dash-sidebar-admin');
     const toggle  = _$('#sidebar-toggle') || _$('#admin-sidebar-toggle');
-
     if (!sidebar || !toggle) return;
 
-    // Backdrop overlay
     const overlay = document.createElement('div');
-    overlay.style.cssText = [
-      'display:none',
-      'position:fixed',
-      'inset:0',
-      'background:rgba(0,0,0,0.5)',
-      'z-index:499',
-      'backdrop-filter:blur(2px)',
-    ].join(';');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:149;display:none;opacity:0;transition:opacity 0.25s ease;';
+    overlay.setAttribute('aria-hidden', 'true');
     document.body.appendChild(overlay);
 
     function open() {
       sidebar.classList.add('open');
       overlay.style.display = 'block';
+      requestAnimationFrame(() => { overlay.style.opacity = '1'; });
       toggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
 
     function close() {
       sidebar.classList.remove('open');
-      overlay.style.display = 'none';
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; }, 260);
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
-    toggle.addEventListener('click', () => sidebar.classList.contains('open') ? close() : open());
+    toggle.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? close() : open();
+    });
+
     overlay.addEventListener('click', close);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 900) close(); });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) close();
+    });
   }
 
   return { init };
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   2. PANEL SWITCHING  (user + admin, unified handler)
+   2. PANELS — SPA tab switching
 ───────────────────────────────────────────────────────────── */
 const DashPanels = (() => {
 
-  function switchTo(panelId, navItems, panels, titleEl, labelText) {
-    // Deactivate all
-    navItems.forEach(i => i.classList.remove('active'));
-    panels.forEach(p => { p.classList.remove('active'); p.style.animation = ''; });
-
-    // Activate matching nav items
-    navItems.forEach(i => {
-      const key = i.dataset.panel || i.dataset.adminPanel;
-      if (key === panelId) i.classList.add('active');
+  function switchTo(panelId, navItems, panels, titleEl, dataAttr) {
+    navItems.forEach(item => {
+      const key = item.dataset[dataAttr];
+      item.classList.toggle('active', key === panelId);
+      item.setAttribute('aria-current', key === panelId ? 'page' : '');
     });
 
-    // Activate panel
-    const target = _$(`#dash-panel-${panelId}`) || _$(`#admin-panel-${panelId}`);
-    if (target) {
-      target.classList.add('active');
-      // Trigger reflow then animate
-      void target.offsetWidth;
-      target.style.animation = 'fade-up 0.3s cubic-bezier(0.16,1,0.3,1) both';
+    const idPrefix = dataAttr === 'panel' ? 'dash-panel-' : 'admin-panel-';
+    panels.forEach(panel => {
+      const isTarget = panel.id === `${idPrefix}${panelId}`;
+      panel.classList.toggle('active', isTarget);
+      if (isTarget) {
+        panel.style.animation = 'fade-up 0.35s cubic-bezier(0.16,1,0.3,1) both';
+        animateCounters(panel);
+        animateChartBars(panel);
+      }
+    });
+
+    if (titleEl) {
+      const link = _$(`[data-${dataAttr.replace(/([A-Z])/g, '-$1').toLowerCase()}="${panelId}"]`);
+      if (link) {
+        const text = link.textContent
+          .replace(/\d[\d,.KkMm%+\-]*/g, '')
+          .trim()
+          .split('\n')[0]
+          .trim();
+        titleEl.textContent = text;
+      }
     }
 
-    // Update topbar title
-    if (titleEl && labelText) titleEl.textContent = labelText;
+    history.replaceState(null, '', `#${panelId}`);
   }
 
   function init() {
-
-    // ── USER DASHBOARD ──────────────────────────────────────────
+    // ── USER DASHBOARD ──────────────────────────────────────
     const userItems  = _$$('[data-panel]');
     const userPanels = _$$('#dash-main .dash-page');
+    const userTitle  = _$('#dash-page-title');
 
-    if (userItems.length && userPanels.length) {
+    if (userItems.length) {
       userItems.forEach(item => {
         item.addEventListener('click', e => {
-          const id = item.dataset.panel;
-          if (!id) return;
+          const href = item.getAttribute('href');
+          if (href && !href.startsWith('#')) return;
           e.preventDefault();
-          switchTo(id, userItems, userPanels, null, null);
-          // Close mobile sidebar
-          _$('#dash-sidebar')?.classList.remove('open');
-          document.body.style.overflow = '';
+          const id = item.dataset.panel;
+          if (id) switchTo(id, userItems, userPanels, userTitle, 'panel');
         });
       });
+
+      const hash = location.hash.slice(1);
+      if (hash && _$(`[data-panel="${hash}"]`)) {
+        switchTo(hash, userItems, userPanels, userTitle, 'panel');
+      }
     }
 
-    // ── ADMIN DASHBOARD ─────────────────────────────────────────
+    // ── ADMIN DASHBOARD ─────────────────────────────────────
     const adminItems  = _$$('[data-admin-panel]');
     const adminPanels = _$$('#admin-main .dash-page');
-    const titleEl     = _$('#admin-page-title');
+    const adminTitle  = _$('#admin-page-title');
 
-    if (adminItems.length && adminPanels.length) {
+    if (adminItems.length) {
       adminItems.forEach(item => {
         item.addEventListener('click', e => {
-          const id = item.dataset.adminPanel;
-          if (!id) return;
+          const href = item.getAttribute('href');
+          if (href && !href.startsWith('#')) return;
           e.preventDefault();
-          // Build a readable label from inner text
-          const label = item.textContent.replace(/\d+/g, '').trim();
-          switchTo(id, adminItems, adminPanels, titleEl, label);
-          _$('#dash-sidebar-admin')?.classList.remove('open');
-          document.body.style.overflow = '';
+          const id = item.dataset.adminPanel;
+          if (id) switchTo(id, adminItems, adminPanels, adminTitle, 'adminPanel');
         });
       });
+
+      const hash = location.hash.slice(1);
+      if (hash && _$(`[data-admin-panel="${hash}"]`)) {
+        switchTo(hash, adminItems, adminPanels, adminTitle, 'adminPanel');
+      }
     }
   }
 
@@ -138,122 +151,97 @@ const DashPanels = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   3. MINI BAR CHART  — staggered entrance animation
+   3. COUNTERS — panel-scoped eased number animation
+   Uses data-animated flag to prevent double-firing with the global
+   CounterManager in main.js (which skips [data-animated] elements).
 ───────────────────────────────────────────────────────────── */
-const DashBars = (() => {
-  function init() {
-    const chart = _$('.mini-chart');
-    if (!chart) return;
+function animateCounters(scope = document) {
+  _$$('[data-count]:not([data-animated])', scope).forEach(el => {
+    el.dataset.animated = '1';
 
-    const bars = _$$('.mini-bar', chart);
-    if (!bars.length) return;
+    const target  = parseFloat(el.dataset.count);
+    const prefix  = el.dataset.prefix  || '';
+    const suffix  = el.dataset.suffix  || '';
+    const isFloat = String(el.dataset.count).includes('.');
+    const dur     = 1200;
+    const start   = performance.now();
 
-    // Store target heights and reset to 0
-    const targets = bars.map(b => b.style.height);
-    bars.forEach(b => { b.style.height = '0%'; });
+    function frame(now) {
+      const p    = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 4);
+      const val  = target * ease;
+      const disp = isFloat
+        ? val.toFixed(1)
+        : Math.round(val).toLocaleString();
+      el.textContent = prefix + disp + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+    }
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        bars.forEach((bar, i) => {
-          bar.style.transition = `height 0.55s cubic-bezier(0.16,1,0.3,1) ${i * 35}ms`;
-          // Double rAF ensures transition fires after height:0 is painted
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            bar.style.height = targets[i];
-          }));
-        });
-
-        observer.unobserve(chart);
-      });
-    }, { threshold: 0.2 });
-
-    observer.observe(chart);
-  }
-
-  return { init };
-})();
+    requestAnimationFrame(frame);
+  });
+}
 
 /* ─────────────────────────────────────────────────────────────
-   4. FORUM MODERATION  — approve / delete with slide-out
+   4. CHART BARS — animate heights on first panel show
 ───────────────────────────────────────────────────────────── */
-const DashModeration = (() => {
-  function animateOut(row, direction) {
-    row.style.transition = 'opacity 0.28s ease, transform 0.28s ease, max-height 0.3s ease 0.1s, padding 0.3s ease 0.1s';
-    row.style.opacity    = '0';
-    row.style.transform  = direction === 'right' ? 'translateX(14px)' : 'translateX(-14px)';
-    setTimeout(() => {
-      row.style.maxHeight = '0';
-      row.style.padding   = '0';
-      row.style.overflow  = 'hidden';
-      setTimeout(() => row.remove(), 320);
-    }, 200);
-  }
-
-  function init() {
-    _$$('.forum-row').forEach(row => {
-      row.querySelectorAll('[aria-label="Approve post"]').forEach(btn => {
-        btn.addEventListener('click', () => animateOut(row, 'left'));
-      });
-      row.querySelectorAll('[aria-label="Delete post"]').forEach(btn => {
-        btn.addEventListener('click', () => animateOut(row, 'right'));
-      });
-    });
-  }
-
-  return { init };
-})();
+function animateChartBars(scope = document) {
+  _$$('.mini-bar:not([data-animated])', scope).forEach((bar, i) => {
+    bar.dataset.animated = '1';
+    const targetH = bar.style.height;
+    bar.style.height = '0%';
+    bar.style.transition = `height 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 35}ms`;
+    requestAnimationFrame(() => { bar.style.height = targetH; });
+  });
+}
 
 /* ─────────────────────────────────────────────────────────────
-   5. SETTINGS TOGGLES  — checkbox ↔ visual switch sync
-───────────────────────────────────────────────────────────── */
-const DashToggles = (() => {
-  function init() {
-    _$$('input[type="checkbox"]').forEach(cb => {
-      const label = cb.closest('label');
-      if (!label) return;
-
-      const spans = label.querySelectorAll('span');
-      const track = spans[0];
-      const thumb = spans[1];
-      if (!track || !thumb) return;
-
-      track.style.transition = 'background 0.2s';
-      thumb.style.transition = 'transform 0.2s';
-
-      function sync() {
-        track.style.background = cb.checked ? 'var(--text-primary)' : 'var(--border-hover)';
-        thumb.style.transform  = cb.checked ? 'translateX(20px)'    : 'translateX(0)';
-      }
-
-      sync();
-      cb.addEventListener('change', sync);
-    });
-  }
-
-  return { init };
-})();
-
-/* ─────────────────────────────────────────────────────────────
-   6. NOTIFICATIONS  — mark-all-read on user dashboard
+   5. NOTIFICATIONS — mark all read
 ───────────────────────────────────────────────────────────── */
 const DashNotifications = (() => {
   function init() {
-    // Find the mark-all-read button by its text
-    const btn = Array.from(_$$('button')).find(
-      el => el.textContent.trim().startsWith('Mark all read')
-    );
-    if (!btn) return;
+    const markBtn = document.querySelector('.dash-card__header button[type="button"]');
+    if (!markBtn) return;
 
-    btn.addEventListener('click', () => {
+    markBtn.addEventListener('click', () => {
       _$$('.notif-item.unread').forEach(item => {
         item.classList.remove('unread');
         const dot = item.querySelector('.notif-item__dot');
-        if (dot) dot.style.background = 'var(--border-hover)';
+        if (dot) {
+          dot.style.background = 'var(--border-hover)';
+          dot.style.boxShadow  = 'none';
+        }
       });
-      btn.innerHTML = 'All read <i class="fa-solid fa-check" aria-hidden="true"></i>';
-      btn.style.color = '#5EE89A';
-      btn.disabled = true;
+
+      const badge = _$('[data-panel="messages"] .dash-nav__badge');
+      if (badge) badge.textContent = '0';
+    });
+  }
+
+  return { init };
+})();
+
+/* ─────────────────────────────────────────────────────────────
+   6. ADMIN TOPBAR SEARCH — dim unmatched nav items
+───────────────────────────────────────────────────────────── */
+const AdminSearch = (() => {
+  function init() {
+    const input = _$('.dash-search-input');
+    if (!input) return;
+
+    const items = _$$('[data-admin-panel]');
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      items.forEach(item => {
+        item.style.opacity = (!q || item.textContent.toLowerCase().includes(q)) ? '' : '0.3';
+      });
+    });
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        input.value = '';
+        items.forEach(i => { i.style.opacity = ''; });
+      }
     });
   }
 
@@ -266,10 +254,15 @@ const DashNotifications = (() => {
 function initDashModules() {
   DashSidebar.init();
   DashPanels.init();
-  DashBars.init();
-  DashModeration.init();
-  DashToggles.init();
   DashNotifications.init();
+  AdminSearch.init();
+
+  // Animate the initially-active panel on page load
+  const activePanel = _$('.dash-page.active');
+  if (activePanel) {
+    animateCounters(activePanel);
+    animateChartBars(activePanel);
+  }
 }
 
 if (document.readyState === 'loading') {
