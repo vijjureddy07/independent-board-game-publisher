@@ -8077,8 +8077,8 @@ body.dashboard-page .dash-main {
 .bs-hero,
 .forum-hero,
 .thread-hero {
-  padding-top: calc(var(--nav-h) + clamp(var(--sp-4), 5vw, var(--sp-6)));
-  padding-bottom: clamp(var(--sp-6), 6vw, var(--sp-8));
+  padding-top: calc(var(--nav-h) + var(--sp-2));
+  padding-bottom: var(--sp-5);
   min-height: auto;
 }
 
@@ -8086,7 +8086,7 @@ body.dashboard-page .dash-main {
 body.coming-soon-page .cs-page {
   align-items: flex-start;
   justify-content: flex-start;
-  padding: clamp(var(--sp-6), 8vh, var(--sp-8)) var(--sp-5) var(--sp-6);
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
   text-align: left;
 }
 
@@ -8108,7 +8108,7 @@ body.coming-soon-page .cs-page {
 }
 
 .inner-hero-strip {
-  margin-top: clamp(var(--sp-5), 3vw, var(--sp-6));
+  margin-top: var(--sp-4);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
@@ -8131,10 +8131,11 @@ body.coming-soon-page .cs-page {
 }
 
 .cs-icon-wrap {
-  margin: 0 0 var(--sp-6);
+  margin: 0 0 var(--sp-4);
 }
 
 .cs-sub {
+  margin-bottom: var(--sp-5);
   margin-left: 0;
   margin-right: 0;
 }
@@ -8142,6 +8143,14 @@ body.coming-soon-page .cs-page {
 .cs-countdown,
 .cs-form {
   justify-content: flex-start;
+}
+
+.cs-countdown {
+  margin-bottom: var(--sp-5);
+}
+
+.cs-form {
+  margin-bottom: var(--sp-5);
 }
 
 .inner-hero-strip__item {
@@ -8204,7 +8213,7 @@ body.coming-soon-page .cs-page {
 }
 
 .contact-hero > .container > p {
-  margin-top: var(--sp-4) !important;
+  margin-top: var(--sp-3) !important;
 }
 
 [data-theme="light"] .inner-hero-strip__item {
@@ -8311,13 +8320,13 @@ body.dashboard-page .activity-item {
   .bs-hero,
   .forum-hero,
   .thread-hero {
-    padding-top: calc(var(--nav-h) + var(--sp-4));
-    padding-bottom: var(--sp-5);
+    padding-top: calc(var(--nav-h) + var(--sp-2));
+    padding-bottom: var(--sp-4);
   }
 
   .cs-page,
   body.coming-soon-page .cs-page {
-    padding: var(--sp-5) var(--sp-4) var(--sp-5);
+    padding: var(--sp-4) var(--sp-4) var(--sp-4);
   }
 
   .page-hero > .container,
@@ -8333,6 +8342,7 @@ body.dashboard-page .activity-item {
 
   .inner-hero-strip {
     grid-template-columns: 1fr;
+    margin-top: var(--sp-4);
   }
 
   .cs-countdown,
