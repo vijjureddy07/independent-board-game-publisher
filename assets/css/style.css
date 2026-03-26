@@ -324,18 +324,45 @@ h1, h2, h3, h4, h5, h6 {
 .nav__logo-mark {
   width          : 38px;
   height         : 38px;
-  border-radius  : var(--r-sm);
-  background     : var(--bg-card);
-  border         : 1px solid var(--border-hover);
+  border-radius  : 12px;
+  background     :
+    linear-gradient(180deg,
+      rgba(212, 245, 60, 0.11) 0%,
+      rgba(212, 245, 60, 0.03) 100%),
+    rgba(13, 17, 19, 0.92);
+  border         : 1px solid rgba(212, 245, 60, 0.16);
+  box-shadow     :
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 24px rgba(0, 0, 0, 0.16);
   display        : flex;
   align-items    : center;
   justify-content: center;
   font-size      : 18px;
+  color          : var(--accent);
   transition     : border-color var(--t-fast);
 }
 
 .nav__logo:hover .nav__logo-mark {
   border-color: var(--accent-border);
+}
+
+.nav__logo-mark svg {
+  width  : 20px;
+  height : 20px;
+  display: block;
+}
+
+[data-theme="light"] .nav__logo-mark {
+  background     :
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.12) 0%,
+      rgba(74, 124, 0, 0.04) 100%),
+    rgba(255, 255, 255, 0.92);
+  border         : 1px solid rgba(74, 124, 0, 0.18);
+  box-shadow     :
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 10px 24px rgba(74, 124, 0, 0.08);
+  color          : #436d00;
 }
 
 .nav__logo-text {
@@ -1219,6 +1246,18 @@ h1, h2, h3, h4, h5, h6 {
   display      : flex;
   align-items  : center;
   gap          : var(--sp-2);
+}
+
+.footer__brand-name svg {
+  width      : 18px;
+  height     : 18px;
+  display    : block;
+  color      : var(--accent);
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .footer__brand-name svg {
+  color: #436d00;
 }
 
 .footer__brand-desc {
@@ -8033,35 +8072,52 @@ body.dashboard-page .dash-main {
 .page-hero,
 .games-hero,
 .blog-hero,
-.contact-hero {
-  padding-top: calc(var(--nav-h) + var(--sp-1));
-  padding-bottom: var(--sp-4);
-}
-
+.contact-hero,
 .gs-hero,
 .bs-hero,
-.forum-hero {
-  padding-top: calc(var(--nav-h) + var(--sp-1));
-  padding-bottom: var(--sp-4);
-}
-
+.forum-hero,
 .thread-hero {
-  padding-top: calc(var(--nav-h) + var(--sp-1));
-  padding-bottom: var(--sp-4);
+  padding-top: calc(var(--nav-h) + clamp(var(--sp-4), 5vw, var(--sp-6)));
+  padding-bottom: clamp(var(--sp-6), 6vw, var(--sp-8));
+  min-height: clamp(520px, 72vh, 720px);
+  display: flex;
+  align-items: stretch;
 }
 
 .cs-page,
 body.coming-soon-page .cs-page {
   justify-content: flex-start;
-  padding: var(--sp-2) var(--sp-5) var(--sp-4);
+  padding: clamp(var(--sp-6), 8vh, var(--sp-8)) var(--sp-5) var(--sp-6);
 }
 
 .cs-content {
-  width: min(100%, 700px);
+  width: min(100%, 720px);
+  margin-inline: auto;
+}
+
+.page-hero::after,
+.games-hero::after {
+  display: none !important;
+}
+
+.page-hero > .container,
+.games-hero > .container,
+.blog-hero > .container,
+.contact-hero > .container,
+.gs-hero > .container,
+.bs-hero > .container,
+.forum-hero > .container,
+.thread-hero > .container {
+  width: 100%;
+  min-height: clamp(360px, 54vh, 520px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(var(--sp-6), 3vw, var(--sp-8));
 }
 
 .inner-hero-strip {
-  margin-top: var(--sp-6);
+  margin-top: auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
@@ -8119,6 +8175,26 @@ body.coming-soon-page .cs-page {
   font-size: 0.82rem;
   color: var(--text-secondary);
   line-height: 1.55;
+}
+
+.page-hero__title,
+.games-hero__title,
+.blog-hero .display-xl,
+.contact-hero .display-xl,
+.bs-hero__title {
+  max-width: min(840px, 100%);
+}
+
+.page-hero__sub,
+.games-hero__sub,
+.blog-hero__sub,
+.bs-hero__excerpt,
+.contact-hero > .container > p {
+  max-width: 620px;
+}
+
+.contact-hero > .container > p {
+  margin-top: var(--sp-4) !important;
 }
 
 [data-theme="light"] .inner-hero-strip__item {
@@ -8220,26 +8296,33 @@ body.dashboard-page .activity-item {
   .page-hero,
   .games-hero,
   .blog-hero,
-  .contact-hero {
-    padding-top: calc(var(--nav-h) + var(--sp-1));
-    padding-bottom: var(--sp-4);
-  }
-
+  .contact-hero,
   .gs-hero,
   .bs-hero,
   .forum-hero,
   .thread-hero {
-    padding-top: calc(var(--nav-h) + var(--sp-1));
-    padding-bottom: var(--sp-4);
+    padding-top: calc(var(--nav-h) + var(--sp-4));
+    padding-bottom: var(--sp-5);
+    min-height: auto;
   }
 
   .cs-page,
   body.coming-soon-page .cs-page {
-    padding: var(--sp-2) var(--sp-4) var(--sp-4);
+    padding: var(--sp-5) var(--sp-4) var(--sp-5);
+  }
+
+  .page-hero > .container,
+  .games-hero > .container,
+  .blog-hero > .container,
+  .contact-hero > .container,
+  .gs-hero > .container,
+  .bs-hero > .container,
+  .forum-hero > .container,
+  .thread-hero > .container {
+    min-height: auto;
   }
 
   .inner-hero-strip {
     grid-template-columns: 1fr;
-    margin-top: var(--sp-5);
   }
 }

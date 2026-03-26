@@ -38,6 +38,27 @@
 window.$ = (sel, ctx = document) => ctx.querySelector(sel);
 window.$$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+function brandMarkSvg(size = 20) {
+  return `
+<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+  <path d="M12 2.65 19.4 6.95v10.1L12 21.35 4.6 17.05V6.95L12 2.65Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.55" stroke-linejoin="round"/>
+  <path d="M12 5.35 16.95 8.2v5.6L12 16.65 7.05 13.8V8.2L12 5.35Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+  <path d="M12 8.15l1 1.9 2.1.3-1.55 1.5.38 2.15L12 12.95 10.07 14l.38-2.15-1.55-1.5 2.1-.3L12 8.15Z" fill="currentColor"/>
+  <path d="M7.65 7.95 12 10.45l4.35-2.5M7.65 14.05 12 11.55l4.35 2.5" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+}
+
+function syncBrandMarks(ctx = document) {
+  $$('.nav__logo-mark', ctx).forEach(mark => {
+    mark.innerHTML = brandMarkSvg(20);
+  });
+
+  $$('.footer__brand-name', ctx).forEach(brand => {
+    const current = brand.querySelector('svg');
+    if (current) current.outerHTML = brandMarkSvg(16);
+  });
+}
+
 /* ─────────────────────────────────────────────────────────────
    SHARED UTILITIES (used by dashboard.js, forum.js, blog.js)
 ───────────────────────────────────────────────────────────── */
@@ -116,12 +137,7 @@ const NavManager = (() => {
     <nav class="nav__inner" aria-label="Main navigation">
       <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
         <div class="nav__logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
-            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
-            <path d="M9 9h6"/>
-            <circle cx="12" cy="6" r="1"/>
-          </svg>
+          ${brandMarkSvg(20)}
         </div>
         <span class="nav__logo-text">TabletopForge</span>
       </a>
@@ -258,6 +274,7 @@ const NavManager = (() => {
   function init() {
     const file = currentFile();
     normalizePublicNav(file);
+    syncBrandMarks();
 
     const nav       = $('.nav');
     const burger    = $('.nav__hamburger');
