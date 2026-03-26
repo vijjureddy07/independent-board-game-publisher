@@ -198,10 +198,10 @@ const ReplyComposer = (() => {
     // Bind cursor hover on new post's action buttons
     _$$('.post-action-btn', entry).forEach(btn => {
       btn.addEventListener('mouseenter', () => {
-        document.querySelector('.custom-cursor')?.classList.add('hover');
+        document.querySelector('.ttf-cursor, .custom-cursor')?.classList.add('hover');
       });
       btn.addEventListener('mouseleave', () => {
-        document.querySelector('.custom-cursor')?.classList.remove('hover');
+        document.querySelector('.ttf-cursor, .custom-cursor')?.classList.remove('hover');
       });
     });
 

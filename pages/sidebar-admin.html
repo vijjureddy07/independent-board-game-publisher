@@ -1,10 +1,7 @@
 <!-- ============================================================
      TabletopForge — sidebar-admin.html
-     Standalone admin dashboard sidebar.
-     Usage: fetched via DashSidebar.loadSidebar() in dashboard.js
-            and injected into #dash-sidebar-admin on dashboard-admin.html
+     Shared admin dashboard sidebar reference.
      ============================================================ -->
-
 <aside class="dash-sidebar" id="dash-sidebar-admin" aria-label="Admin navigation">
 
   <!-- Admin profile block -->
@@ -24,43 +21,44 @@
 
     <p class="dash-nav__section-label">Dashboard</p>
 
-    <a href="#" class="dash-nav__item active" data-admin-panel="overview" aria-current="page">
+    <a href="dashboard-admin.html" class="dash-nav__item active" data-admin-panel="overview" aria-current="page">
       <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
       Overview
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="analytics">
+    <a href="dashboard-admin-analytics.html" class="dash-nav__item" data-admin-panel="analytics">
       <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
       Analytics
     </a>
 
     <p class="dash-nav__section-label">Campaigns</p>
 
-    <a href="#" class="dash-nav__item" data-admin-panel="campaigns">
+    <a href="dashboard-admin-campaigns.html" class="dash-nav__item" data-admin-panel="campaigns">
       <i class="fa-solid fa-chess-rook" aria-hidden="true"></i>
-      Campaigns
-      <span class="dash-nav__badge">3</span>
+      All Campaigns
+      <span class="dash-nav__badge">4</span>
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="orders">
+    <a href="dashboard-admin-orders.html" class="dash-nav__item" data-admin-panel="orders">
       <i class="fa-solid fa-box-open" aria-hidden="true"></i>
       Orders
-      <span class="dash-nav__badge">142</span>
+      <span class="dash-nav__badge">12</span>
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="fulfillment">
+    <a href="dashboard-admin-fulfillment.html" class="dash-nav__item" data-admin-panel="fulfillment">
       <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
       Fulfilment
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="pnp">
-      <i class="fa-solid fa-print" aria-hidden="true"></i>
-      Print &amp; Play Files
+    <a href="dashboard-admin-pnp.html" class="dash-nav__item" data-admin-panel="pnp">
+      <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+      PnP Files
     </a>
 
     <p class="dash-nav__section-label">Users</p>
 
-    <a href="#" class="dash-nav__item" data-admin-panel="users">
+    <a href="dashboard-admin-users.html" class="dash-nav__item" data-admin-panel="users">
       <i class="fa-solid fa-users" aria-hidden="true"></i>
-      User Management
+      All Backers
+      <span class="dash-nav__badge">48.2K</span>
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="messages">
+    <a href="dashboard-admin-messages.html" class="dash-nav__item" data-admin-panel="messages">
       <i class="fa-solid fa-envelope" aria-hidden="true"></i>
       Messages
       <span class="dash-nav__badge">5</span>
@@ -68,23 +66,23 @@
 
     <p class="dash-nav__section-label">Content</p>
 
-    <a href="#" class="dash-nav__item" data-admin-panel="blog">
-      <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+    <a href="dashboard-admin-blog.html" class="dash-nav__item" data-admin-panel="blog">
+      <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
       Blog Posts
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="forum">
-      <i class="fa-solid fa-flag" aria-hidden="true"></i>
+    <a href="dashboard-admin-forum.html" class="dash-nav__item" data-admin-panel="forum">
+      <i class="fa-solid fa-comments" aria-hidden="true"></i>
       Forum Moderation
-      <span class="dash-nav__badge">2</span>
+      <span class="dash-nav__badge">3</span>
     </a>
 
     <p class="dash-nav__section-label">System</p>
 
-    <a href="#" class="dash-nav__item" data-admin-panel="reports">
+    <a href="dashboard-admin-reports.html" class="dash-nav__item" data-admin-panel="reports">
       <i class="fa-solid fa-file-chart-column" aria-hidden="true"></i>
       Reports
     </a>
-    <a href="#" class="dash-nav__item" data-admin-panel="settings">
+    <a href="dashboard-admin-settings.html" class="dash-nav__item" data-admin-panel="settings">
       <i class="fa-solid fa-sliders" aria-hidden="true"></i>
       Settings
     </a>
@@ -95,7 +93,11 @@
   <div class="dash-sidebar__footer">
     <a href="dashboard-user.html">
       <i class="fa-solid fa-user" aria-hidden="true"></i>
-      Switch to User View
+      Switch to Backer View
+    </a>
+    <a href="index.html">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+      Back to site
     </a>
     <a href="index.html">
       <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>

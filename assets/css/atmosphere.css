@@ -1,0 +1,1388 @@
+/* ============================================================
+   TabletopForge — atmosphere.css  v2
+   
+   CONCEPT: "The Game Table at Night"
+   Board games live on dark wood tables under warm lamp light.
+   This file layers atmospheric depth across every section.
+   
+   HOW TO USE:
+   Add as the LAST <link> on every page:
+   <link rel="stylesheet" href="../assets/css/atmosphere.css" />
+   
+   WHAT IT DOES:
+   — Section-specific gradient backgrounds (no layout changes)
+   — SVG pattern overlays (hex grid, crosshatch, traces, grain)
+   — CSS animations (aurora orbs, scan lines, shimmer, pulse)
+   — Light mode: uses DARK accent variant for visibility
+   — Full responsive/mobile support
+   — Respects prefers-reduced-motion
+   ============================================================ */
+
+/* ─── DESIGN TOKENS ─────────────────────────────────────────
+   New atmospheric tones layered over existing palette.
+   Never override --accent, --bg-*, --text-* directly.
+───────────────────────────────────────────────────────────── */
+:root {
+  /* Atmospheric colour additions */
+  --atm-felt   : rgba(26, 74, 74, 1);       /* deep teal felt cloth */
+  --atm-amber  : rgba(139, 94, 26, 1);      /* candlelight on wood */
+  --atm-void   : #050507;                   /* deepest shadow */
+
+  /* SVG patterns — inline, zero external requests */
+  --pat-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+
+  --pat-felt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.06'/%3E%3C/svg%3E");
+
+  --pat-cross: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40M0 40h40M0 0v40M40 0v40' stroke='rgba(212,245,60,0.028)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+
+  --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 0L56 16v48L28 80 0 64V16Z' fill='none' stroke='rgba(212,245,60,0.035)' stroke-width='0.8'/%3E%3Cpath d='M28 80L56 96v48L28 160 0 144V96Z' fill='none' stroke='rgba(212,245,60,0.035)' stroke-width='0.8'/%3E%3C/svg%3E");
+
+  --pat-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='1' fill='rgba(212,245,60,0.07)'/%3E%3C/svg%3E");
+
+  --pat-trace: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0'  cy='0'  r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='80' cy='0'  r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='0'  cy='80' r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='80' cy='80' r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='rgba(212,245,60,0.07)'/%3E%3Cline x1='0' y1='0' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3Cline x1='80' y1='0' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3Cline x1='0' y1='80' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3Cline x1='80' y1='80' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+
+/* ─── LIGHT MODE: DARK ACCENT ────────────────────────────────
+   #D4F53C on white is invisible. Use deep forest green instead.
+   This overrides --accent in light mode ONLY for atmosphere usage.
+   Core UI buttons/tags still use the original --accent variable
+   so we use a separate token here and apply it to decorative uses.
+───────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  /* Decorative accent for light mode — dark forest green */
+  --atm-accent-light: #2D5000;
+  --atm-accent-light-rgb: 45, 80, 0;
+
+  /* Override the CSS accent for light mode to stay visible */
+  --accent        : #4A7C00;
+  --accent-muted  : rgba(74, 124, 0, 0.12);
+  --accent-border : rgba(74, 124, 0, 0.3);
+
+  /* Patterns for light mode use green instead of lime */
+  --pat-cross: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40M0 40h40M0 0v40M40 0v40' stroke='rgba(45,80,0,0.06)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+  --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 0L56 16v48L28 80 0 64V16Z' fill='none' stroke='rgba(45,80,0,0.07)' stroke-width='0.8'/%3E%3Cpath d='M28 80L56 96v48L28 160 0 144V96Z' fill='none' stroke='rgba(45,80,0,0.07)' stroke-width='0.8'/%3E%3C/svg%3E");
+  --pat-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='1' fill='rgba(45,80,0,0.1)'/%3E%3C/svg%3E");
+  --pat-trace: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='80' cy='0' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='0' cy='80' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='80' cy='80' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='rgba(45,80,0,0.09)'/%3E%3Cline x1='0' y1='0' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='80' y1='0' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='0' y1='80' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='80' y1='80' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+
+/* Light mode accent on interactive elements */
+[data-theme="light"] .tag--accent {
+  color: #2D5000;
+  background: rgba(45, 80, 0, 0.1);
+  border-color: rgba(45, 80, 0, 0.3);
+}
+[data-theme="light"] .btn--accent,
+[data-theme="light"] .btn--primary:hover {
+  background: #4A7C00;
+  border-color: #4A7C00;
+  color: #fff;
+}
+[data-theme="light"] .progress__fill,
+[data-theme="light"] .gs-funding__fill,
+[data-theme="light"] .h2-meter-fill {
+  background-color: #4A7C00 !important;
+}
+[data-theme="light"] .live-dot,
+[data-theme="light"] .h2-live-dot {
+  background-color: #4A7C00 !important;
+}
+[data-theme="light"] .dash-nav-item.active,
+[data-theme="light"] .dash-nav__item.active {
+  background: rgba(74, 124, 0, 0.08);
+  border-left-color: #4A7C00;
+  color: #2D5000;
+}
+
+
+/* ─── KEYFRAMES ──────────────────────────────────────────────
+   All animation definitions in one place.
+───────────────────────────────────────────────────────────── */
+
+/* Aurora drift — large background orbs breathing slowly */
+@keyframes atm-aurora {
+  0%   { transform: translate(0, 0)       scale(1);    opacity: 0.55; }
+  25%  { transform: translate(3%, -4%)    scale(1.03); opacity: 0.75; }
+  50%  { transform: translate(-2%, 3%)    scale(1.06); opacity: 0.65; }
+  75%  { transform: translate(4%, 1%)     scale(0.98); opacity: 0.8; }
+  100% { transform: translate(0, 0)       scale(1);    opacity: 0.55; }
+}
+
+/* Sweep shimmer — single pass across marquee / newsletter */
+@keyframes atm-sweep {
+  from { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.8; }
+  to   { transform: translateX(350%)  skewX(-12deg); opacity: 0; }
+}
+
+/* Slow radial pulse — for glowing rings */
+@keyframes atm-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.015); }
+}
+
+/* Scan line — downward crawl on timeline / hero panels */
+@keyframes atm-scan {
+  0%   { top: 0%;   opacity: 0; }
+  4%   { opacity: 1; }
+  92%  { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Particle float — upward drift used on coming-soon dots */
+@keyframes atm-float-up {
+  0%   { transform: translateY(0)   opacity(0);   }
+  8%   { opacity: 0.8; }
+  92%  { opacity: 0.4; }
+  100% { transform: translateY(-140px); opacity: 0; }
+}
+
+/* Gentle float — for decorative elements */
+@keyframes atm-hover {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Conic spin helper — NOT on by default, used where supported */
+@property --conic-a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+
+/* ─── ISOLATION LAYER ────────────────────────────────────────
+   Every section needs position:relative + isolation:isolate
+   so pseudo-elements and z-index stack correctly.
+───────────────────────────────────────────────────────────── */
+.hero, .marquee-strip,
+.campaigns, .features, .testimonials, .newsletter,
+.page-hero, .about-intro, .values, .timeline, .team, .about-cta,
+.games-hero, .games-section, .games-featured, .gs-hero, .gs-body,
+.blog-hero, .blog-featured, .blog-section, .bs-hero, .bs-body, .bs-related,
+.contact-hero, .contact-section,
+.forum-hero, .thread-hero,
+.h2-hero, .h2-campaigns, .h2-portal, .h2-editorial,
+.cs-page, .e404-page, .footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* All content inside atmosphere sections must sit above pseudo-layers */
+.hero > *:not(.hero__grid):not(.hero__orb),
+.campaigns > *, .features > *, .testimonials > *,
+.newsletter > *, .about-intro > *, .values > *,
+.timeline > *, .team > *, .about-cta > *,
+.games-hero > *, .games-section > *, .games-featured > *,
+.gs-hero > *, .gs-body > *,
+.blog-hero > *, .blog-featured > *, .blog-section > *,
+.bs-hero > *, .bs-body > *, .bs-related > *,
+.contact-hero > *, .contact-section > *,
+.forum-hero > *, .thread-hero > *,
+.h2-hero > *:not(.h2-hero__bg), .h2-campaigns > *, .h2-portal > *,
+.h2-editorial > *, .page-hero > *, .cs-page > *, .e404-page > *,
+.footer > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero > .container,
+.hero > .hero__scroll { z-index: 3 !important; }
+.hero__grid, .hero__orb { z-index: 0 !important; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   ① HERO — Electric campaign night
+═══════════════════════════════════════════════════════════ */
+.hero {
+  background:
+    radial-gradient(ellipse 55% 65% at 84% 8%,
+      rgba(212, 245, 60, 0.07) 0%,
+      rgba(212, 245, 60, 0.025) 38%,
+      transparent 65%),
+    radial-gradient(ellipse 38% 50% at 4% 92%,
+      rgba(26, 74, 74, 0.05) 0%,
+      transparent 55%),
+    radial-gradient(ellipse 80% 35% at 50% 110%,
+      rgba(26, 74, 74, 0.07) 0%,
+      transparent 55%),
+    #050507 !important;
+}
+
+/* Hex map grid fades in at top-right where the glow lives */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-hex);
+  background-size: 56px 100px;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 75% 75% at 85% 15%, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 85% 15%, black 0%, transparent 65%);
+}
+
+/* Aurora orb upgrades — stronger, animated */
+.hero__orb--1 {
+  background: radial-gradient(ellipse,
+    rgba(212, 245, 60, 0.1)  0%,
+    rgba(212, 245, 60, 0.03) 45%,
+    transparent 70%) !important;
+  filter: blur(75px) !important;
+  animation: atm-aurora 14s ease-in-out infinite !important;
+}
+
+.hero__orb--2 {
+  background: radial-gradient(ellipse,
+    rgba(26, 74, 74, 0.14) 0%,
+    transparent 65%) !important;
+  filter: blur(100px) !important;
+  animation: atm-aurora 18s ease-in-out infinite reverse !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ② MARQUEE STRIP — Sheen sweep
+═══════════════════════════════════════════════════════════ */
+.marquee-strip {
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(212, 245, 60, 0.04) 25%,
+      rgba(212, 245, 60, 0.06) 50%,
+      rgba(212, 245, 60, 0.04) 75%,
+      transparent 100%),
+    #0d0d0f !important;
+}
+
+/* Sweeping shimmer every 6s */
+.marquee-strip::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 25%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(212, 245, 60, 0.08),
+    transparent);
+  animation: atm-sweep 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ③ CAMPAIGNS — Active board, crosshatch map
+═══════════════════════════════════════════════════════════ */
+.campaigns {
+  background:
+    radial-gradient(ellipse 68% 52% at 12% 50%,
+      rgba(212, 245, 60, 0.058) 0%,
+      rgba(212, 245, 60, 0.018) 45%,
+      transparent 70%),
+    radial-gradient(ellipse 48% 65% at 97% 80%,
+      rgba(26, 74, 74, 0.07) 0%,
+      transparent 55%),
+    radial-gradient(ellipse 100% 28% at 50% 0%,
+      rgba(212, 245, 60, 0.025) 0%,
+      transparent 45%),
+    #0a0a0a !important;
+}
+
+.campaigns::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-cross);
+  background-size: 40px 40px;
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: linear-gradient(to bottom,
+    transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ④ FEATURES — Rulebook spread, circuit traces
+═══════════════════════════════════════════════════════════ */
+.features {
+  background:
+    linear-gradient(148deg,
+      rgba(212, 245, 60, 0.045) 0%,
+      transparent 38%),
+    radial-gradient(ellipse 58% 58% at 100% 38%,
+      rgba(139, 94, 26, 0.05) 0%,
+      transparent 55%),
+    radial-gradient(ellipse 52% 52% at 0% 100%,
+      rgba(10, 20, 40, 0.07) 0%,
+      transparent 60%),
+    #111111 !important;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-trace);
+  background-size: 80px 80px;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 58% 78% at 92% 50%,
+    black 0%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse 58% 78% at 92% 50%,
+    black 0%, transparent 68%);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑤ TESTIMONIALS — Intimate review room, noise grain
+═══════════════════════════════════════════════════════════ */
+.testimonials {
+  background:
+    radial-gradient(ellipse 78% 58% at 50% 50%,
+      rgba(212, 245, 60, 0.042) 0%,
+      rgba(212, 245, 60, 0.012) 48%,
+      transparent 72%),
+    radial-gradient(ellipse 38% 38% at 8%  8%,
+      rgba(139, 94, 26, 0.035) 0%, transparent 58%),
+    radial-gradient(ellipse 38% 38% at 92% 92%,
+      rgba(139, 94, 26, 0.035) 0%, transparent 58%),
+    #0a0a0a !important;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-noise);
+  background-size: 300px 300px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑥ NEWSLETTER — Spotlight beam, conic + radial
+═══════════════════════════════════════════════════════════ */
+.newsletter {
+  background:
+    conic-gradient(
+      from 268deg at 50% 50%,
+      rgba(212, 245, 60, 0.0)   0deg,
+      rgba(212, 245, 60, 0.048) 38deg,
+      rgba(212, 245, 60, 0.0)   76deg,
+      rgba(212, 245, 60, 0.0)   360deg),
+    radial-gradient(ellipse 72% 82% at 50% 50%,
+      rgba(212, 245, 60, 0.042) 0%, transparent 65%),
+    #111111 !important;
+  border-top-color:    rgba(212, 245, 60, 0.1) !important;
+  border-bottom-color: rgba(212, 245, 60, 0.1) !important;
+}
+
+/* Breathing pulse behind newsletter */
+.newsletter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 245, 60, 0.032) 30%,
+    rgba(212, 245, 60, 0.065) 50%,
+    rgba(212, 245, 60, 0.032) 70%,
+    transparent 100%);
+  animation: atm-pulse 4.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑦ PAGE HERO (inner pages) — Campaign cover art, hex fade
+═══════════════════════════════════════════════════════════ */
+.page-hero {
+  background:
+    radial-gradient(ellipse 62% 88% at 92% -8%,
+      rgba(212, 245, 60, 0.075) 0%,
+      rgba(212, 245, 60, 0.025) 42%,
+      transparent 68%),
+    radial-gradient(ellipse 48% 58% at 2% 100%,
+      rgba(26, 74, 74, 0.065) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 28% at 50% 0%,
+      rgba(212, 245, 60, 0.022) 0%, transparent 42%),
+    #050507 !important;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-hex);
+  background-size: 56px 100px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+  mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0.9) 0%, transparent 75%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0.9) 0%, transparent 75%);
+}
+
+/* Kill old diagonal rule */
+.page-hero::after { display: none !important; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑧ ABOUT INTRO — Split candlelight, warm left / cool right
+═══════════════════════════════════════════════════════════ */
+.about-intro {
+  background:
+    radial-gradient(ellipse 44% 80% at 0% 50%,
+      rgba(139, 94, 26, 0.065) 0%, transparent 60%),
+    radial-gradient(ellipse 54% 58% at 100% 28%,
+      rgba(212, 245, 60, 0.045) 0%, transparent 55%),
+    linear-gradient(172deg,
+      rgba(212, 245, 60, 0.018) 0%, transparent 42%),
+    #111111 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑨ VALUES — Ceiling lamp radial sweep
+═══════════════════════════════════════════════════════════ */
+.values {
+  background:
+    radial-gradient(ellipse 92% 58% at 50% -4%,
+      rgba(212, 245, 60, 0.058) 0%,
+      rgba(212, 245, 60, 0.02)  42%,
+      transparent 65%),
+    radial-gradient(ellipse 58% 38% at 50% 112%,
+      rgba(26, 74, 74, 0.055) 0%, transparent 55%),
+    #0a0a0a !important;
+}
+
+.values::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-cross);
+  background-size: 40px 40px;
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑩ TIMELINE — Vertical light source, animated scan line
+═══════════════════════════════════════════════════════════ */
+.timeline {
+  background:
+    linear-gradient(to bottom,
+      rgba(212, 245, 60, 0.035) 0%,
+      rgba(212, 245, 60, 0.015) 32%,
+      transparent 62%),
+    radial-gradient(ellipse 28% 100% at 0% 50%,
+      rgba(212, 245, 60, 0.042) 0%, transparent 62%),
+    #111111 !important;
+}
+
+/* Scan line crawls down — timeline log feel */
+.timeline::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 245, 60, 0.2) 30%,
+    rgba(212, 245, 60, 0.4) 50%,
+    rgba(212, 245, 60, 0.2) 70%,
+    transparent 100%);
+  animation: atm-scan 9s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑪ TEAM — Studio session, felt surface + overhead glow
+═══════════════════════════════════════════════════════════ */
+.team {
+  background:
+    radial-gradient(ellipse 100% 48% at 50% 0%,
+      rgba(212, 245, 60, 0.038) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 38% at 50% 105%,
+      rgba(10, 15, 25, 0.1) 0%, transparent 52%),
+    #0a0a0a !important;
+}
+
+.team::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-felt);
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.65;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑫ ABOUT CTA — The funded moment. Maximum electric energy.
+═══════════════════════════════════════════════════════════ */
+.about-cta {
+  background:
+    radial-gradient(ellipse 68% 105% at 50% 50%,
+      rgba(212, 245, 60, 0.065) 0%,
+      rgba(212, 245, 60, 0.022) 50%,
+      transparent 75%),
+    radial-gradient(ellipse 105% 48% at 50% 50%,
+      rgba(212, 245, 60, 0.028) 0%, transparent 65%),
+    #111111 !important;
+  border-color: rgba(212, 245, 60, 0.08) !important;
+}
+
+.about-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 245, 60, 0.028) 50%,
+    transparent 100%);
+  animation: atm-pulse 5.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑬ GAMES PAGES
+═══════════════════════════════════════════════════════════ */
+.games-hero {
+  background:
+    radial-gradient(ellipse 58% 78% at 82% 0%,
+      rgba(212, 245, 60, 0.078) 0%,
+      rgba(212, 245, 60, 0.022) 42%,
+      transparent 70%),
+    radial-gradient(ellipse 38% 58% at 4% 82%,
+      rgba(26, 74, 74, 0.07) 0%, transparent 55%),
+    linear-gradient(162deg,
+      rgba(212, 245, 60, 0.018) 0%, transparent 32%),
+    #050507 !important;
+}
+
+.games-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-hex);
+  background-size: 56px 100px;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 58% 68% at 82% 0%,
+    black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 58% 68% at 82% 0%,
+    black 0%, transparent 65%);
+}
+
+.games-featured {
+  background:
+    linear-gradient(138deg,
+      rgba(212, 245, 60, 0.042) 0%,
+      rgba(212, 245, 60, 0.016) 32%,
+      transparent 56%),
+    radial-gradient(ellipse 48% 58% at 88% 52%,
+      rgba(139, 94, 26, 0.045) 0%, transparent 55%),
+    #0a0a0a !important;
+}
+
+.games-section {
+  background:
+    radial-gradient(ellipse 58% 48% at 92% 0%,
+      rgba(212, 245, 60, 0.042) 0%, transparent 55%),
+    radial-gradient(ellipse 38% 58% at 0% 100%,
+      rgba(26, 74, 74, 0.055) 0%, transparent 55%),
+    #111111 !important;
+}
+
+.gs-hero {
+  background:
+    radial-gradient(ellipse 54% 68% at 92% 0%,
+      rgba(212, 245, 60, 0.072) 0%,
+      rgba(212, 245, 60, 0.025) 42%,
+      transparent 65%),
+    radial-gradient(ellipse 44% 54% at 4% 100%,
+      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.gs-body {
+  background:
+    radial-gradient(ellipse 48% 38% at 0% 30%,
+      rgba(212, 245, 60, 0.025) 0%, transparent 52%),
+    #111111 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑭ BLOG PAGES
+═══════════════════════════════════════════════════════════ */
+.blog-hero {
+  background:
+    radial-gradient(ellipse 54% 74% at 87% -8%,
+      rgba(212, 245, 60, 0.068) 0%,
+      rgba(212, 245, 60, 0.022) 42%,
+      transparent 65%),
+    radial-gradient(ellipse 38% 48% at 2% 100%,
+      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.blog-featured {
+  background:
+    linear-gradient(122deg,
+      rgba(212, 245, 60, 0.032) 0%, transparent 42%),
+    radial-gradient(ellipse 48% 78% at 102% 50%,
+      rgba(212, 245, 60, 0.038) 0%, transparent 55%),
+    #111111 !important;
+}
+
+.blog-section {
+  background:
+    linear-gradient(180deg,
+      rgba(212, 245, 60, 0.026) 0%, transparent 26%),
+    radial-gradient(ellipse 38% 58% at 97% 52%,
+      rgba(26, 74, 74, 0.042) 0%, transparent 55%),
+    #0a0a0a !important;
+}
+
+.bs-hero {
+  background:
+    radial-gradient(ellipse 54% 68% at 87% 0%,
+      rgba(212, 245, 60, 0.058) 0%,
+      rgba(212, 245, 60, 0.02)  42%,
+      transparent 65%),
+    radial-gradient(ellipse 38% 48% at 8% 100%,
+      rgba(139, 94, 26, 0.038) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.bs-body {
+  background:
+    radial-gradient(ellipse 28% 58% at 0% 28%,
+      rgba(212, 245, 60, 0.022) 0%, transparent 52%),
+    #0a0a0a !important;
+}
+
+.bs-related {
+  background:
+    radial-gradient(ellipse 78% 48% at 50% 0%,
+      rgba(212, 245, 60, 0.032) 0%, transparent 55%),
+    #111111 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑮ CONTACT PAGE
+═══════════════════════════════════════════════════════════ */
+.contact-hero {
+  background:
+    radial-gradient(ellipse 54% 74% at 82% 0%,
+      rgba(212, 245, 60, 0.068) 0%,
+      rgba(212, 245, 60, 0.022) 42%,
+      transparent 65%),
+    radial-gradient(ellipse 44% 54% at 4% 92%,
+      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.contact-section {
+  background:
+    linear-gradient(152deg,
+      rgba(212, 245, 60, 0.032) 0%, transparent 42%),
+    radial-gradient(ellipse 54% 58% at 102% 62%,
+      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
+    #111111 !important;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-trace);
+  background-size: 80px 80px;
+  opacity: 0.48;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 48% 68% at 102% 62%,
+    black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 48% 68% at 102% 62%,
+    black 0%, transparent 65%);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑯ FORUM PAGES
+═══════════════════════════════════════════════════════════ */
+.forum-hero {
+  background:
+    radial-gradient(ellipse 62% 78% at 82% 0%,
+      rgba(212, 245, 60, 0.058) 0%,
+      rgba(212, 245, 60, 0.018) 45%,
+      transparent 70%),
+    radial-gradient(ellipse 44% 54% at 8% 82%,
+      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.thread-hero {
+  background:
+    radial-gradient(ellipse 54% 68% at 78% 0%,
+      rgba(212, 245, 60, 0.042) 0%, transparent 62%),
+    #0a0a0a !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑰ HOME PAGE 2
+═══════════════════════════════════════════════════════════ */
+.h2-hero {
+  background:
+    radial-gradient(ellipse 54% 68% at 92% 52%,
+      rgba(212, 245, 60, 0.068) 0%,
+      rgba(212, 245, 60, 0.022) 42%,
+      transparent 65%),
+    radial-gradient(ellipse 38% 58% at 4% 82%,
+      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.h2-hero__bg {
+  background:
+    radial-gradient(ellipse 58% 48% at 82% 52%,
+      rgba(212, 245, 60, 0.052) 0%, transparent 68%),
+    radial-gradient(ellipse 38% 58% at 8% 82%,
+      rgba(26, 74, 74, 0.065) 0%, transparent 62%) !important;
+  animation: atm-aurora 22s ease-in-out infinite;
+}
+
+.h2-campaigns {
+  background:
+    radial-gradient(ellipse 68% 48% at 14% 52%,
+      rgba(212, 245, 60, 0.042) 0%, transparent 62%),
+    radial-gradient(ellipse 48% 58% at 97% 82%,
+      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
+    #111111 !important;
+}
+
+.h2-portal {
+  background:
+    radial-gradient(ellipse 62% 58% at 82% 0%,
+      rgba(212, 245, 60, 0.042) 0%, transparent 56%),
+    radial-gradient(ellipse 44% 48% at 8% 100%,
+      rgba(26, 74, 74, 0.052) 0%, transparent 55%),
+    #0a0a0a !important;
+}
+
+.h2-editorial {
+  background:
+    linear-gradient(152deg,
+      rgba(212, 245, 60, 0.048) 0%, transparent 46%),
+    radial-gradient(ellipse 48% 68% at 102% 52%,
+      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
+    #111111 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑱ COMING SOON — Pre-launch void, hex map + concentric rings
+═══════════════════════════════════════════════════════════ */
+.cs-page {
+  background:
+    radial-gradient(ellipse 58% 58% at 50% 38%,
+      rgba(212, 245, 60, 0.07)  0%,
+      rgba(212, 245, 60, 0.026) 46%,
+      transparent 70%),
+    radial-gradient(ellipse 38% 38% at 14% 14%,
+      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
+    radial-gradient(ellipse 38% 38% at 86% 86%,
+      rgba(26, 74, 74, 0.052) 0%, transparent 55%),
+    #020204 !important;
+}
+
+/* Hex grid masked to centre bloom */
+.cs-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-hex);
+  background-size: 56px 100px;
+  opacity: 0.52;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 68% 68% at 50% 38%,
+    black 0%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse 68% 68% at 50% 38%,
+    black 0%, transparent 68%);
+}
+
+/* Pulsing concentric ring */
+.cs-page::after {
+  content: '';
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 245, 60, 0.05);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: atm-pulse 6.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑲ 404 PAGE — Lost at sea
+═══════════════════════════════════════════════════════════ */
+.e404-page {
+  background:
+    radial-gradient(ellipse 48% 48% at 50% 38%,
+      rgba(212, 245, 60, 0.032) 0%, transparent 65%),
+    radial-gradient(ellipse 28% 38% at 8% 92%,
+      rgba(26, 74, 74, 0.052) 0%, transparent 55%),
+    #050507 !important;
+}
+
+.e404-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pat-hex);
+  background-size: 56px 100px;
+  opacity: 0.42;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ⑳ DASHBOARD — Administration noir, subtle accent
+═══════════════════════════════════════════════════════════ */
+.dash-main {
+  background:
+    radial-gradient(ellipse 58% 38% at 102% 0%,
+      rgba(212, 245, 60, 0.022) 0%, transparent 52%),
+    #0a0a0a !important;
+  position: relative;
+  isolation: isolate;
+}
+
+.dash-sidebar {
+  background:
+    linear-gradient(180deg,
+      rgba(212, 245, 60, 0.016) 0%, transparent 32%),
+    #111111 !important;
+}
+
+.dash-main > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dash-main::before,
+.dash-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dash-main::before {
+  background:
+    radial-gradient(ellipse 44% 28% at 100% 0%,
+      rgba(212, 245, 60, 0.05) 0%, transparent 62%);
+  animation: atm-aurora 20s ease-in-out infinite;
+}
+
+.dash-main::after {
+  background:
+    radial-gradient(ellipse 28% 22% at 0% 100%,
+      rgba(26, 74, 74, 0.08) 0%, transparent 68%);
+  animation: atm-aurora 24s ease-in-out infinite reverse;
+}
+
+/* Stat card hover gets accent micro-glow */
+.dash-stat-card:hover {
+  background:
+    radial-gradient(ellipse 105% 48% at 50% 0%,
+      rgba(212, 245, 60, 0.045) 0%, transparent 62%),
+    var(--bg-secondary) !important;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.22),
+              0 0 0 1px rgba(212,245,60,0.09) !important;
+  transform: translateY(-2px) !important;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ㉑ FOOTER — End of session, deep and quiet
+═══════════════════════════════════════════════════════════ */
+.footer {
+  background:
+    radial-gradient(ellipse 58% 38% at 50% 0%,
+      rgba(212, 245, 60, 0.022) 0%, transparent 52%),
+    #020204 !important;
+  border-top-color: rgba(212, 245, 60, 0.055) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   CARD ATMOSPHERE UPGRADES
+═══════════════════════════════════════════════════════════ */
+
+/* Campaign cards — lit from top edge */
+.campaign-card {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.014) 0%, transparent 28%),
+    var(--bg-secondary) !important;
+}
+
+/* Game cards — accent bloom on hover */
+.game-card:hover {
+  background:
+    radial-gradient(ellipse 80% 38% at 50% 0%,
+      rgba(212,245,60,0.042) 0%, transparent 62%),
+    var(--bg-primary) !important;
+}
+
+/* Feature item active */
+.feature-item.active {
+  background:
+    radial-gradient(ellipse 85% 62% at 0% 50%,
+      rgba(212,245,60,0.042) 0%, transparent 62%),
+    var(--bg-card) !important;
+}
+
+/* Testimonial cards */
+.testi-card {
+  background:
+    linear-gradient(138deg,
+      rgba(255,255,255,0.012) 0%, transparent 52%),
+    var(--bg-secondary) !important;
+}
+
+/* Dash cards */
+.dash-card {
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.012) 0%, transparent 22%),
+    var(--bg-secondary) !important;
+}
+
+/* Blog + game sidebar cards */
+.gs-sidebar-card,
+.blog-sidebar__card,
+.forum-sidebar-card {
+  background:
+    linear-gradient(138deg,
+      rgba(212,245,60,0.022) 0%, transparent 42%),
+    var(--bg-secondary) !important;
+}
+
+/* Featured campaign card glow line */
+.h2-featured-card::before {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(212,245,60,0.4),
+    transparent) !important;
+  opacity: 0.6;
+}
+
+/* H2 camp card live top border glow */
+.h2-camp-card--live::before {
+  background: linear-gradient(90deg,
+    transparent,
+    var(--accent),
+    transparent) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ACCENT EXPANSION — more visible lime usage
+═══════════════════════════════════════════════════════════ */
+
+/* Section eyebrow line */
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 99px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Active nav link underline */
+.nav__link.active {
+  color: var(--text-primary) !important;
+  position: relative;
+}
+.nav__link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 12px; right: 12px;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 99px;
+}
+
+/* Timeline active dot */
+.timeline-item.active::before,
+.timeline-item:hover::before {
+  box-shadow: 0 0 0 5px rgba(212,245,60,0.16) !important;
+}
+
+/* Value card top accent */
+.value-card:hover::before { background: var(--accent) !important; }
+
+/* Team card hover */
+.team-card:hover { border-color: rgba(212,245,60,0.2) !important; }
+
+/* Footer brand dot */
+.footer__brand-name::before {
+  content: '';
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+/* Progress fill 100% glow */
+.progress__fill[data-width="100"],
+.campaign-card:first-child .progress__fill {
+  background: var(--accent) !important;
+  box-shadow: 0 0 8px rgba(212,245,60,0.35);
+}
+
+/* Arrow link accent */
+.arrow-link:hover { color: var(--accent) !important; }
+
+/* Chip hover */
+.chip:hover {
+  border-color: var(--accent-border);
+  color: var(--text-primary);
+}
+
+/* Dash active item icon */
+.dash-nav__item.active i,
+.dash-nav-item.active i { color: var(--accent); }
+
+/* Nav dropdown hover border */
+.nav__dropdown-link:hover {
+  background: var(--accent-muted) !important;
+  color: var(--text-primary) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — All sections re-themed for readability
+═══════════════════════════════════════════════════════════ */
+[data-theme="light"] .hero,
+[data-theme="light"] .page-hero,
+[data-theme="light"] .games-hero,
+[data-theme="light"] .blog-hero,
+[data-theme="light"] .contact-hero,
+[data-theme="light"] .forum-hero,
+[data-theme="light"] .gs-hero,
+[data-theme="light"] .bs-hero {
+  background:
+    radial-gradient(ellipse 58% 68% at 82% 0%,
+      rgba(74, 124, 0, 0.1) 0%,
+      rgba(74, 124, 0, 0.035) 42%,
+      transparent 65%),
+    radial-gradient(ellipse 38% 48% at 8% 92%,
+      rgba(26, 74, 74, 0.04) 0%, transparent 55%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .h2-hero {
+  background:
+    radial-gradient(ellipse 56% 64% at 88% 0%,
+      rgba(74, 124, 0, 0.11) 0%,
+      rgba(74, 124, 0, 0.045) 42%,
+      transparent 66%),
+    radial-gradient(ellipse 40% 54% at 8% 100%,
+      rgba(26, 74, 74, 0.04) 0%, transparent 58%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .h2-hero__bg {
+  background:
+    radial-gradient(ellipse 48% 42% at 84% 50%,
+      rgba(74, 124, 0, 0.08) 0%, transparent 66%),
+    radial-gradient(ellipse 36% 48% at 12% 82%,
+      rgba(26, 74, 74, 0.035) 0%, transparent 62%) !important;
+}
+
+[data-theme="light"] .campaigns,
+[data-theme="light"] .features,
+[data-theme="light"] .games-featured,
+[data-theme="light"] .about-intro,
+[data-theme="light"] .h2-editorial,
+[data-theme="light"] .contact-section,
+[data-theme="light"] .blog-featured {
+  background:
+    radial-gradient(ellipse 58% 48% at 20% 20%,
+      rgba(74, 124, 0, 0.08) 0%, transparent 62%),
+    var(--bg-secondary) !important;
+}
+
+[data-theme="light"] .testimonials,
+[data-theme="light"] .team,
+[data-theme="light"] .blog-section,
+[data-theme="light"] .bs-body,
+[data-theme="light"] .h2-portal,
+[data-theme="light"] .gs-body {
+  background:
+    radial-gradient(ellipse 58% 48% at 80% 20%,
+      rgba(74, 124, 0, 0.06) 0%, transparent 58%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .values,
+[data-theme="light"] .about-cta,
+[data-theme="light"] .h2-campaigns,
+[data-theme="light"] .games-section,
+[data-theme="light"] .bs-related {
+  background:
+    radial-gradient(ellipse 70% 58% at 50% 0%,
+      rgba(74, 124, 0, 0.07) 0%, transparent 58%),
+    var(--bg-secondary) !important;
+}
+
+[data-theme="light"] .newsletter {
+  background:
+    conic-gradient(from 268deg at 50% 50%,
+      rgba(74,124,0,0) 0deg, rgba(74,124,0,0.055) 38deg,
+      rgba(74,124,0,0) 76deg, rgba(74,124,0,0) 360deg),
+    radial-gradient(ellipse 70% 80% at 50% 50%,
+      rgba(74,124,0,0.05) 0%, transparent 65%),
+    var(--bg-secondary) !important;
+  border-top-color: rgba(74,124,0,0.15) !important;
+  border-bottom-color: rgba(74,124,0,0.15) !important;
+}
+
+[data-theme="light"] .cs-page {
+  background:
+    radial-gradient(ellipse 62% 56% at 50% 30%,
+      rgba(74, 124, 0, 0.08) 0%,
+      rgba(74, 124, 0, 0.03) 45%,
+      transparent 72%),
+    radial-gradient(ellipse 34% 34% at 10% 14%,
+      rgba(26, 74, 74, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 34% 34% at 90% 90%,
+      rgba(74, 124, 0, 0.035) 0%, transparent 60%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .dash-main {
+  background:
+    radial-gradient(ellipse 58% 34% at 100% 0%,
+      rgba(74, 124, 0, 0.08) 0%, transparent 56%),
+    radial-gradient(ellipse 28% 22% at 0% 100%,
+      rgba(26, 74, 74, 0.045) 0%, transparent 66%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .dash-sidebar {
+  background:
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.07) 0%, transparent 34%),
+    var(--bg-secondary) !important;
+}
+
+[data-theme="light"] .dash-card,
+[data-theme="light"] .dash-stat-card {
+  background:
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.032) 0%, transparent 26%),
+    var(--bg-secondary) !important;
+}
+
+[data-theme="light"] .dash-topbar,
+[data-theme="light"] .dash-feed-item,
+[data-theme="light"] .dash-note-box {
+  background:
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.028) 0%, transparent 34%),
+    var(--bg-secondary) !important;
+}
+
+[data-theme="light"] .dash-feed,
+[data-theme="light"] .h2-file-list,
+[data-theme="light"] .h2-forum-preview {
+  background: rgba(74, 124, 0, 0.08) !important;
+  border-color: rgba(74, 124, 0, 0.12) !important;
+}
+
+[data-theme="light"] .dash-stat-card:hover {
+  background:
+    radial-gradient(ellipse 105% 48% at 50% 0%,
+      rgba(74, 124, 0, 0.06) 0%, transparent 62%),
+    var(--bg-secondary) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06),
+              0 0 0 1px rgba(74,124,0,0.08) !important;
+}
+
+[data-theme="light"] .dash-icon-btn,
+[data-theme="light"] .dash-mobile-toggle,
+[data-theme="light"] .dash-sidebar-toggle {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+[data-theme="light"] .h2-featured-card,
+[data-theme="light"] .h2-camp-card,
+[data-theme="light"] .h2-portal-card {
+  background:
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.038) 0%, transparent 28%),
+    var(--bg-secondary) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .h2-stat,
+[data-theme="light"] .h2-mini-tracker,
+[data-theme="light"] .h2-file-item,
+[data-theme="light"] .h2-forum-item {
+  background:
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.026) 0%, transparent 34%),
+    rgba(255, 255, 255, 0.84) !important;
+}
+
+[data-theme="light"] .h2-featured-card__icon,
+[data-theme="light"] .h2-portal-card__icon,
+[data-theme="light"] .h2-forum-avatar {
+  background: rgba(74, 124, 0, 0.09) !important;
+  border-color: rgba(74, 124, 0, 0.18) !important;
+  color: #2D5000 !important;
+}
+
+[data-theme="light"] .footer {
+  background: var(--bg-primary) !important;
+  border-top-color: rgba(74,124,0,0.12) !important;
+}
+
+/* Light mode — tone down dark-only texture opacities */
+[data-theme="light"] .campaigns::before,
+[data-theme="light"] .values::before,
+[data-theme="light"] .features::before,
+[data-theme="light"] .contact-section::before,
+[data-theme="light"] .team::before,
+[data-theme="light"] .cs-page::before,
+[data-theme="light"] .e404-page::before,
+[data-theme="light"] .page-hero::before,
+[data-theme="light"] .games-hero::before { opacity: 0.18; }
+
+[data-theme="light"] .marquee-strip::before { display: none; }
+[data-theme="light"] .timeline::after      { opacity: 0.35; }
+[data-theme="light"] .newsletter::before   { opacity: 0.45; }
+[data-theme="light"] .about-cta::before    { opacity: 0.38; }
+[data-theme="light"] .cs-page::after       { border-color: rgba(74,124,0,0.08); }
+[data-theme="light"] .dash-main::before    { opacity: 0.9; }
+[data-theme="light"] .dash-main::after     { opacity: 0.65; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE & RESPONSIVE FIXES
+═══════════════════════════════════════════════════════════ */
+
+/* On mobile, reduce gradient complexity for performance */
+@media (max-width: 768px) {
+  /* Simplify multi-layer gradients to 2 layers max on mobile */
+  .hero {
+    background:
+      radial-gradient(ellipse 80% 55% at 90% 10%,
+        rgba(212,245,60,0.06) 0%, transparent 65%),
+      #050507 !important;
+  }
+  .page-hero {
+    background:
+      radial-gradient(ellipse 80% 55% at 85% 0%,
+        rgba(212,245,60,0.065) 0%, transparent 65%),
+      #050507 !important;
+  }
+  .campaigns, .values, .games-hero, .blog-hero,
+  .contact-hero, .forum-hero, .bs-hero {
+    background:
+      radial-gradient(ellipse 70% 45% at 90% 0%,
+        rgba(212,245,60,0.05) 0%, transparent 60%),
+      var(--bg-primary) !important;
+  }
+  .features, .about-intro, .games-featured,
+  .blog-featured, .contact-section, .h2-editorial {
+    background:
+      linear-gradient(135deg,
+        rgba(212,245,60,0.035) 0%, transparent 45%),
+      var(--bg-secondary) !important;
+  }
+  /* Kill heavy pattern overlays on mobile */
+  .campaigns::before,
+  .features::before,
+  .contact-section::before,
+  .team::before { display: none; }
+
+  /* Keep hex and dots but reduce opacity */
+  .page-hero::before,
+  .games-hero::before { opacity: 0.3; }
+
+  /* Reduce animation on mobile */
+  .timeline::after { animation-duration: 14s; }
+  .newsletter::before { animation-duration: 7s; }
+  .about-cta::before  { animation-duration: 8s; }
+  .dash-main::before,
+  .dash-main::after,
+  .h2-hero__bg { animation-duration: 18s; }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cs-page::after { width: 480px; height: 480px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION — respect user preference
+═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-strip::before,
+  .newsletter::before,
+  .about-cta::before,
+  .timeline::after,
+  .cs-page::after,
+  .dash-main::before,
+  .dash-main::after,
+  .h2-hero__bg {
+    animation: none !important;
+  }
+  .hero__orb--1,
+  .hero__orb--2 {
+    animation: none !important;
+  }
+}

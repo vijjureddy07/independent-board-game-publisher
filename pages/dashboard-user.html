@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Backer Dashboard — TabletopForge</title>
-  <meta name="description" content="Your TabletopForge backer portal. Track shipments, download print-and-play files, manage your orders, and access the community forum." />
+  <title>Overview - Backer Dashboard - TabletopForge</title>
+  <meta name="description" content="Your TabletopForge backer portal overview. Track orders, downloads, shipping, and community activity in one place." />
   <meta name="robots" content="noindex, nofollow" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -14,16 +13,11 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css" />
   <link rel="stylesheet" href="../assets/css/rtl.css" />
-  <link rel="stylesheet" href="../assets/css/dashboard.css" />
-</head>
-<body>
+  <link rel="stylesheet" href="../assets/css/atmosphere.css" />
+  </head>
+<body class="dashboard-page user-dashboard-page">
 
-<!-- ═══════════════════════════════════════════
-     DASHBOARD SHELL
-═══════════════════════════════════════════ -->
 <div class="dash-shell">
-
-  <!-- ─── SIDEBAR ─────────────────────────────────────────────── -->
   <aside class="dash-sidebar" id="dash-sidebar" aria-label="Dashboard navigation">
 
     <div class="dash-profile">
@@ -37,46 +31,46 @@
     <nav class="dash-nav" aria-label="Dashboard sections">
 
       <p class="dash-nav__section-label">Overview</p>
-      <a href="#overview"   class="dash-nav__item active" data-panel="overview">
+      <a href="dashboard-user.html" class="dash-nav__item active" data-panel="overview" aria-current="page">
         <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboard
       </a>
-      <a href="#campaigns"  class="dash-nav__item" data-panel="campaigns">
+      <a href="dashboard-user-campaigns.html" class="dash-nav__item" data-panel="campaigns">
         <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> My Campaigns
         <span class="dash-nav__badge">3</span>
       </a>
 
       <p class="dash-nav__section-label">Orders</p>
-      <a href="#shipping"   class="dash-nav__item" data-panel="shipping">
+      <a href="dashboard-user-shipping.html" class="dash-nav__item" data-panel="shipping">
         <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Shipping Tracker
       </a>
-      <a href="#orders"     class="dash-nav__item" data-panel="orders">
+      <a href="dashboard-user-orders.html" class="dash-nav__item" data-panel="orders">
         <i class="fa-solid fa-box-open" aria-hidden="true"></i> Order History
       </a>
 
       <p class="dash-nav__section-label">Content</p>
-      <a href="#pnp"        class="dash-nav__item" data-panel="pnp">
+      <a href="dashboard-user-pnp.html" class="dash-nav__item" data-panel="pnp">
         <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Print &amp; Play
         <span class="dash-nav__badge dash-nav__badge--accent">3</span>
       </a>
-      <a href="#exclusives" class="dash-nav__item" data-panel="exclusives">
+      <a href="dashboard-user-exclusives.html" class="dash-nav__item" data-panel="exclusives">
         <i class="fa-solid fa-star" aria-hidden="true"></i> Exclusives
       </a>
 
       <p class="dash-nav__section-label">Community</p>
-      <a href="#forum"      class="dash-nav__item" data-panel="forum">
+      <a href="dashboard-user-forum.html" class="dash-nav__item" data-panel="forum">
         <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum
         <span class="dash-nav__badge">12</span>
       </a>
-      <a href="#messages"   class="dash-nav__item" data-panel="messages">
+      <a href="dashboard-user-messages.html" class="dash-nav__item" data-panel="messages">
         <i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages
         <span class="dash-nav__badge">2</span>
       </a>
 
       <p class="dash-nav__section-label">Account</p>
-      <a href="#profile"    class="dash-nav__item" data-panel="profile">
+      <a href="dashboard-user-profile.html" class="dash-nav__item" data-panel="profile">
         <i class="fa-solid fa-user" aria-hidden="true"></i> Profile
       </a>
-      <a href="#settings"   class="dash-nav__item" data-panel="settings">
+      <a href="dashboard-user-settings.html" class="dash-nav__item" data-panel="settings">
         <i class="fa-solid fa-gear" aria-hidden="true"></i> Settings
       </a>
 
@@ -96,37 +90,28 @@
 
   </aside>
 
-  <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
   <main class="dash-main" id="dash-main">
-
-    <!-- Mobile sidebar toggle -->
     <div style="margin-bottom:var(--sp-5);">
       <button class="dash-sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open sidebar" aria-expanded="false" aria-controls="dash-sidebar">
         <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
       </button>
     </div>
 
-    <!-- Page header -->
-    <div class="dash-page-header">
-      <div>
-        <h1>Welcome back, James</h1>
-        <p>
-          <i class="fa-regular fa-clock" style="font-size:11px;margin-right:4px;" aria-hidden="true"></i>
-          Last login: today at 9:42 AM · 3 active campaigns
-        </p>
+    <div class="dash-page active" id="dash-panel-overview">
+      <div class="dash-page-header">
+        <div>
+          <h1>Welcome back, James</h1>
+          <p><i class="fa-regular fa-clock" style="font-size:11px;margin-right:4px;" aria-hidden="true"></i> Last sync: Mar 26, 2026 - 3 active campaigns</p>
+        </div>
+        <a href="games.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-plus" aria-hidden="true"></i> Back a new game</a>
       </div>
-      <a href="games.html" class="btn btn--ghost btn--sm">
-        <i class="fa-solid fa-plus" aria-hidden="true"></i> Back a new game
-      </a>
-    </div>
 
-    <!-- ─── STAT CARDS ───────────────────────────────────────────── -->
     <div class="dash-stats">
       <div class="dash-stat-card">
         <div class="dash-stat-card__label">
           <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Backed Campaigns
         </div>
-        <span class="dash-stat-card__value" data-count="8">—</span>
+        <span class="dash-stat-card__value" data-count="8">-</span>
         <div class="dash-stat-card__delta up">
           <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 currently in fulfilment
         </div>
@@ -135,7 +120,7 @@
         <div class="dash-stat-card__label">
           <i class="fa-solid fa-coins" aria-hidden="true"></i> Total Pledged
         </div>
-        <span class="dash-stat-card__value" data-count="642" data-prefix="$">—</span>
+        <span class="dash-stat-card__value" data-count="642" data-prefix="$">-</span>
         <div class="dash-stat-card__delta">
           <i class="fa-solid fa-circle-dot" aria-hidden="true"></i> Lifetime value
         </div>
@@ -144,33 +129,30 @@
         <div class="dash-stat-card__label">
           <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> PnP Files
         </div>
-        <span class="dash-stat-card__value" data-count="14">—</span>
+        <span class="dash-stat-card__value" data-count="14">-</span>
         <div class="dash-stat-card__delta up">
-          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 new since last login
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 new since last sync
         </div>
       </div>
       <div class="dash-stat-card">
         <div class="dash-stat-card__label">
           <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum Posts
         </div>
-        <span class="dash-stat-card__value" data-count="38">—</span>
+        <span class="dash-stat-card__value" data-count="38">-</span>
         <div class="dash-stat-card__delta up">
           <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 12 unread replies
         </div>
       </div>
     </div>
 
-    <!-- ─── ROW 1: Shipping + PnP ───────────────────────────────── -->
     <div class="dash-grid-2">
-
-      <!-- Shipping tracker -->
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
             <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
-            Shipping — Verdant Empires
+            Shipping - Verdant Empires
           </h2>
-          <a href="#orders" class="dash-card__action" data-panel="orders">
+          <a href="dashboard-user-orders.html" class="dash-card__action" data-panel="orders">
             All orders <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -185,7 +167,7 @@
               <span class="tracker-step__date">Feb 28, 2026</span>
             </div>
             <div class="tracker-step done">
-              <span class="tracker-step__label">Freight departed — Shenzhen</span>
+              <span class="tracker-step__label">Freight departed - Shenzhen</span>
               <span class="tracker-step__date">Mar 5, 2026</span>
             </div>
             <div class="tracker-step done">
@@ -193,25 +175,24 @@
               <span class="tracker-step__date">Mar 18, 2026</span>
             </div>
             <div class="tracker-step active">
-              <span class="tracker-step__label">Preparing for dispatch <span style="font-size:0.72rem;color:var(--text-muted);">← You are here</span></span>
-              <span class="tracker-step__date">Est. Mar 25–28, 2026</span>
+              <span class="tracker-step__label">Preparing for dispatch <span style="font-size:0.72rem;color:var(--text-muted);">&larr; You are here</span></span>
+              <span class="tracker-step__date">Est. Mar 25-28, 2026</span>
             </div>
             <div class="tracker-step">
               <span class="tracker-step__label">Delivered</span>
-              <span class="tracker-step__date">Est. Apr 1–5, 2026</span>
+              <span class="tracker-step__date">Est. Apr 1-5, 2026</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PnP Downloads -->
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
             <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
             Print &amp; Play Files
           </h2>
-          <a href="#pnp" class="dash-card__action" data-panel="pnp">
+          <a href="dashboard-user-pnp.html" class="dash-card__action" data-panel="pnp">
             View all <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -228,7 +209,7 @@
             </div>
             <div class="pnp-item">
               <div class="pnp-item__icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
-              <span class="pnp-item__name">Verdant Empires — Deluxe</span>
+              <span class="pnp-item__name">Verdant Empires - Deluxe</span>
               <span class="pnp-item__size">72 MB</span>
               <span class="pnp-item__new">New</span>
               <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Verdant Empires">
@@ -246,7 +227,7 @@
             </div>
             <div class="pnp-item">
               <div class="pnp-item__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
-              <span class="pnp-item__name">The Iron Pact — Complete</span>
+              <span class="pnp-item__name">The Iron Pact - Complete</span>
               <span class="pnp-item__size">55 MB</span>
               <button class="btn btn--ghost btn--sm" type="button" aria-label="Download The Iron Pact">
                 <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -255,20 +236,16 @@
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- ─── ROW 2: Active Orders + Forum ────────────────────────── -->
     <div class="dash-grid-2">
-
-      <!-- Active orders table -->
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
             <i class="fa-solid fa-box-open" aria-hidden="true"></i>
             Active Orders
           </h2>
-          <a href="#orders" class="dash-card__action" data-panel="orders">
+          <a href="dashboard-user-orders.html" class="dash-card__action" data-panel="orders">
             Full history <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -285,19 +262,19 @@
             <tbody>
               <tr>
                 <td><strong>Citadels of the Deep</strong></td>
-                <td>Sailor · $65</td>
+                <td>Sailor - $65</td>
                 <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle" style="font-size:6px;"></i> Live</span></td>
                 <td>Q4 2026</td>
               </tr>
               <tr>
                 <td><strong>Verdant Empires</strong></td>
-                <td>Deluxe All-In · $145</td>
+                <td>Deluxe All-In - $145</td>
                 <td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck" style="font-size:8px;"></i> Shipping</span></td>
-                <td>Apr 1–5</td>
+                <td>Apr 1-5</td>
               </tr>
               <tr>
                 <td><strong>The Iron Pact</strong></td>
-                <td>Standard · $55</td>
+                <td>Standard - $55</td>
                 <td><span class="status-pill status-pill--delivered"><i class="fa-solid fa-check" style="font-size:8px;"></i> Delivered</span></td>
                 <td>Feb 10</td>
               </tr>
@@ -306,14 +283,13 @@
         </div>
       </div>
 
-      <!-- Forum activity -->
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
             <i class="fa-solid fa-comments" aria-hidden="true"></i>
             Forum Activity
           </h2>
-          <a href="forum.html" class="dash-card__action">
+          <a href="dashboard-user-forum.html" class="dash-card__action">
             Open forum <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </a>
         </div>
@@ -322,38 +298,34 @@
             <div class="forum-thread-item">
               <div class="forum-thread-item__avatar" aria-hidden="true">MR</div>
               <span class="forum-thread-item__title">Best solo strategies for Verdant Empires?</span>
-              <span class="forum-thread-item__meta">42 · 2h ago</span>
+              <span class="forum-thread-item__meta">42 - 2h ago</span>
             </div>
             <div class="forum-thread-item">
               <div class="forum-thread-item__avatar" aria-hidden="true">SL</div>
-              <span class="forum-thread-item__title">[Update] Shipping delay — EU backers</span>
-              <span class="forum-thread-item__meta">28 · 5h ago</span>
+              <span class="forum-thread-item__title">[Update] Shipping delay - EU backers</span>
+              <span class="forum-thread-item__meta">28 - 5h ago</span>
             </div>
             <div class="forum-thread-item">
               <div class="forum-thread-item__avatar" aria-hidden="true">TK</div>
               <span class="forum-thread-item__title">House rule: asymmetric starting VP</span>
-              <span class="forum-thread-item__meta">15 · 1d ago</span>
+              <span class="forum-thread-item__meta">15 - 1d ago</span>
             </div>
             <div class="forum-thread-item">
               <div class="forum-thread-item__avatar" aria-hidden="true">AK</div>
-              <span class="forum-thread-item__title">Citadels preview unboxing — images inside</span>
-              <span class="forum-thread-item__meta">67 · 3d ago</span>
+              <span class="forum-thread-item__title">Citadels preview unboxing - images inside</span>
+              <span class="forum-thread-item__meta">67 - 3d ago</span>
             </div>
             <div class="forum-thread-item">
               <div class="forum-thread-item__avatar" aria-hidden="true">PK</div>
-              <span class="forum-thread-item__title">Faction tier list — community consensus</span>
-              <span class="forum-thread-item__meta">31 · 4d ago</span>
+              <span class="forum-thread-item__title">Faction tier list - community consensus</span>
+              <span class="forum-thread-item__meta">31 - 4d ago</span>
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- ─── ROW 3: Notifications + Quick Actions ─────────────────── -->
     <div class="dash-grid-2">
-
-      <!-- Notifications -->
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
@@ -368,7 +340,7 @@
           <div class="notif-list">
             <div class="notif-item unread">
               <div class="notif-item__dot" aria-label="Unread"></div>
-              <span class="notif-item__text"><strong>Verdant Empires</strong> — Your order is being prepared for dispatch.</span>
+              <span class="notif-item__text"><strong>Verdant Empires</strong> - Your order is being prepared for dispatch.</span>
               <span class="notif-item__time">2h ago</span>
             </div>
             <div class="notif-item unread">
@@ -378,7 +350,7 @@
             </div>
             <div class="notif-item">
               <div class="notif-item__dot"></div>
-              <span class="notif-item__text"><strong>Citadels of the Deep</strong> — Stretch goal #3 unlocked: Deluxe Faction Boards!</span>
+              <span class="notif-item__text"><strong>Citadels of the Deep</strong> - Stretch goal #3 unlocked: Deluxe Faction Boards!</span>
               <span class="notif-item__time">1d ago</span>
             </div>
             <div class="notif-item">
@@ -388,14 +360,13 @@
             </div>
             <div class="notif-item">
               <div class="notif-item__dot"></div>
-              <span class="notif-item__text"><strong>Campaign update #8</strong> from Citadels of the Deep — read it now.</span>
+              <span class="notif-item__text"><strong>Campaign update #8</strong> from Citadels of the Deep - read it now.</span>
               <span class="notif-item__time">3d ago</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Quick actions -->
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
@@ -409,7 +380,7 @@
               <i class="fa-solid fa-chess-rook" aria-hidden="true"></i>
               Browse campaigns
             </a>
-            <a href="#pnp" class="quick-action" data-panel="pnp">
+            <a href="dashboard-user-pnp.html" class="quick-action" data-panel="pnp">
               <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
               Download PnP files
             </a>
@@ -417,7 +388,7 @@
               <i class="fa-solid fa-comments" aria-hidden="true"></i>
               Visit the forum
             </a>
-            <a href="#profile" class="quick-action" data-panel="profile">
+            <a href="dashboard-user-profile.html" class="quick-action" data-panel="profile">
               <i class="fa-solid fa-user-pen" aria-hidden="true"></i>
               Edit profile
             </a>
@@ -425,16 +396,15 @@
               <i class="fa-solid fa-headset" aria-hidden="true"></i>
               Contact support
             </a>
-            <a href="#settings" class="quick-action" data-panel="settings">
+            <a href="dashboard-user-settings.html" class="quick-action" data-panel="settings">
               <i class="fa-solid fa-gear" aria-hidden="true"></i>
               Account settings
             </a>
           </div>
         </div>
       </div>
-
     </div>
-
+    </div>
   </main>
 </div>
 

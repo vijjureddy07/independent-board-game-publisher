@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping Tracker - Backer Dashboard - TabletopForge</title>
+  <meta name="description" content="Track shipment milestones, fulfilment progress, and delivery estimates for your backed games." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/atmosphere.css" />
+  </head>
+<body class="dashboard-page user-dashboard-page">
+
+<div class="dash-shell">
+  <aside class="dash-sidebar" id="dash-sidebar" aria-label="Dashboard navigation">
+
+    <div class="dash-profile">
+      <div class="dash-profile__avatar" aria-hidden="true">JD</div>
+      <div>
+        <p class="dash-profile__name">James Doe</p>
+        <p class="dash-profile__role">Backer since 2021 · 6 campaigns</p>
+      </div>
+    </div>
+
+    <nav class="dash-nav" aria-label="Dashboard sections">
+
+      <p class="dash-nav__section-label">Overview</p>
+      <a href="dashboard-user.html" class="dash-nav__item" data-panel="overview">
+        <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboard
+      </a>
+      <a href="dashboard-user-campaigns.html" class="dash-nav__item" data-panel="campaigns">
+        <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> My Campaigns
+        <span class="dash-nav__badge">3</span>
+      </a>
+
+      <p class="dash-nav__section-label">Orders</p>
+      <a href="dashboard-user-shipping.html" class="dash-nav__item active" data-panel="shipping" aria-current="page">
+        <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Shipping Tracker
+      </a>
+      <a href="dashboard-user-orders.html" class="dash-nav__item" data-panel="orders">
+        <i class="fa-solid fa-box-open" aria-hidden="true"></i> Order History
+      </a>
+
+      <p class="dash-nav__section-label">Content</p>
+      <a href="dashboard-user-pnp.html" class="dash-nav__item" data-panel="pnp">
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Print &amp; Play
+        <span class="dash-nav__badge dash-nav__badge--accent">3</span>
+      </a>
+      <a href="dashboard-user-exclusives.html" class="dash-nav__item" data-panel="exclusives">
+        <i class="fa-solid fa-star" aria-hidden="true"></i> Exclusives
+      </a>
+
+      <p class="dash-nav__section-label">Community</p>
+      <a href="dashboard-user-forum.html" class="dash-nav__item" data-panel="forum">
+        <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum
+        <span class="dash-nav__badge">12</span>
+      </a>
+      <a href="dashboard-user-messages.html" class="dash-nav__item" data-panel="messages">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages
+        <span class="dash-nav__badge">2</span>
+      </a>
+
+      <p class="dash-nav__section-label">Account</p>
+      <a href="dashboard-user-profile.html" class="dash-nav__item" data-panel="profile">
+        <i class="fa-solid fa-user" aria-hidden="true"></i> Profile
+      </a>
+      <a href="dashboard-user-settings.html" class="dash-nav__item" data-panel="settings">
+        <i class="fa-solid fa-gear" aria-hidden="true"></i> Settings
+      </a>
+
+    </nav>
+
+    <div class="dash-sidebar__footer">
+      <a href="dashboard-admin.html">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Switch to Admin
+      </a>
+      <a href="index.html">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
+      </a>
+      <a href="index.html">
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
+      </a>
+    </div>
+
+  </aside>
+
+  <main class="dash-main" id="dash-main">
+    <div style="margin-bottom:var(--sp-5);">
+      <button class="dash-sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open sidebar" aria-expanded="false" aria-controls="dash-sidebar">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
+      </button>
+    </div>
+
+    <div class="dash-page active" id="dash-panel-shipping">
+      <div class="dash-page-header">
+        <div>
+          <h1>Shipping Tracker</h1>
+          <p>Factory, freight, and final-mile updates for your active deliveries.</p>
+        </div>
+        <a href="dashboard-user-orders.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-box-open" aria-hidden="true"></i> View orders</a>
+      </div>
+
+    <div class="dash-mini-stats">
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">1</span><span class="dash-mini-stat__label">Shipment in motion</span></div>
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">89%</span><span class="dash-mini-stat__label">Verdant order complete</span></div>
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">Apr 1-5</span><span class="dash-mini-stat__label">Estimated arrival</span></div>
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">Bristol</span><span class="dash-mini-stat__label">Current fulfilment hub</span></div>
+    </div>
+
+    <div class="dash-grid-2">
+      <div class="dash-card">
+        <div class="dash-card__head"><h2 class="dash-card__title"><i class="fa-solid fa-route" aria-hidden="true"></i> Verdant Empires Timeline</h2></div>
+        <div class="dash-card__body">
+          <div class="dash-tracker" aria-label="Shipping tracker">
+            <div class="tracker-step done"><span class="tracker-step__label">Pledge locked</span><span class="tracker-step__date">Jan 12, 2026</span></div>
+            <div class="tracker-step done"><span class="tracker-step__label">Address confirmed</span><span class="tracker-step__date">Jan 29, 2026</span></div>
+            <div class="tracker-step done"><span class="tracker-step__label">Production completed</span><span class="tracker-step__date">Feb 28, 2026</span></div>
+            <div class="tracker-step done"><span class="tracker-step__label">Freight arrived at fulfilment hub</span><span class="tracker-step__date">Mar 18, 2026</span></div>
+            <div class="tracker-step active"><span class="tracker-step__label">Picking and label generation</span><span class="tracker-step__date">In progress - Mar 26, 2026</span></div>
+            <div class="tracker-step"><span class="tracker-step__label">Carrier handoff</span><span class="tracker-step__date">Expected Mar 28, 2026</span></div>
+            <div class="tracker-step"><span class="tracker-step__label">Delivered</span><span class="tracker-step__date">Expected Apr 1-5, 2026</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card__head"><h2 class="dash-card__title"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Shipment Details</h2></div>
+        <div class="dash-card__body">
+          <div class="dash-feed-item dash-feed-item--secondary" style="padding:0;background:transparent;">
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head"><strong class="dash-table__name">Order #VE-4821</strong><span class="dash-feed-item__meta">Royal Mail Tracked 48</span></div>
+              <p class="dash-feed-item__content">Shipping address: 24 Mason Street, Bristol BS1 4AF, United Kingdom.</p>
+            </div>
+          </div>
+          <div class="dash-note-box" style="margin-top:var(--sp-4);margin-bottom:var(--sp-4);">
+            A tracking number will appear here automatically as soon as the label is scanned by the carrier.
+          </div>
+          <div class="quick-actions">
+            <a href="dashboard-user-orders.html" class="quick-action"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Open order history</a>
+            <a href="contact.html" class="quick-action"><i class="fa-solid fa-headset" aria-hidden="true"></i> Report an issue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-card__head"><h2 class="dash-card__title"><i class="fa-solid fa-bell" aria-hidden="true"></i> Shipping Alerts</h2></div>
+      <div class="dash-feed">
+        <div class="dash-feed-item"><div class="dash-feed-item__avatar">VE</div><div class="dash-feed-item__body"><div class="dash-feed-item__head"><strong class="dash-table__name">Dispatch batch confirmed</strong><span class="dash-feed-item__meta">Mar 26, 2026</span></div><p class="dash-feed-item__content">Your order has been assigned to North America Batch 03 and is scheduled for carrier handoff this week.</p></div></div>
+        <div class="dash-feed-item"><div class="dash-feed-item__avatar">HQ</div><div class="dash-feed-item__body"><div class="dash-feed-item__head"><strong class="dash-table__name">Address lock completed</strong><span class="dash-feed-item__meta">Mar 18, 2026</span></div><p class="dash-feed-item__content">The delivery address on file is now locked for this shipment. Contact support only if you need urgent intervention.</p></div></div>
+      </div>
+    </div>
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

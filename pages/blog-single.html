@@ -7,7 +7,7 @@
   <meta name="description" content="David Osei walks through 47 discarded prototypes and the breakthrough moment that made the Tide Mechanic in Citadels of the Deep finally work." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://tabletopforge.com/blog/tide-mechanic" />
-  <meta property="og:title"       content="Why the Tide Mechanic took three years to get right" />
+    <meta property="og:title"       content="Why the Tide Mechanic took three years to get right" />
   <meta property="og:description" content="47 discarded prototypes and the single playthrough that made everything click." />
   <meta property="og:type"        content="article" />
   <meta property="article:author" content="David Osei" />
@@ -20,8 +20,7 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css" />
   <link rel="stylesheet" href="../assets/css/rtl.css" />
-  <link rel="stylesheet" href="../assets/css/games.css" />
-  <link rel="stylesheet" href="../assets/css/blog.css" />
+  <link rel="stylesheet" href="../assets/css/atmosphere.css" />
 </head>
 <body>
 
@@ -30,81 +29,139 @@
   <div class="bs-progress-fill" id="read-progress"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     NAV
-═══════════════════════════════════════════ -->
 <header class="nav" role="banner">
   <div class="container">
     <nav class="nav__inner" aria-label="Main navigation">
 
       <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
         <div class="nav__logo-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+            <path d="M9 9h6"/>
+            <circle cx="12" cy="6" r="1"/>
+          </svg>
         </div>
         <span class="nav__logo-text">TabletopForge</span>
       </a>
 
       <ul class="nav__links" role="list">
+
         <li class="nav__item">
           <a href="index.html" class="nav__link" aria-haspopup="true">
-            Home <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+            Home
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
           </a>
           <div class="nav__dropdown" role="menu">
-            <a href="index.html"   class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-house" aria-hidden="true"></i><div>Home Page 1 <span>Main landing experience</span></div></a>
-            <a href="home-page-2.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><div>Home Page 2 <span>Campaign-focused layout</span></div></a>
+            <a href="index.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-house" aria-hidden="true"></i>
+              <div>Home Page 1 <span>Main landing experience</span></div>
+            </a>
+            <a href="home-page-2.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <div>Home Page 2 <span>Campaign-focused layout</span></div>
+            </a>
           </div>
         </li>
-        <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+
+        <li class="nav__item">
+          <a href="about.html" class="nav__link">About</a>
+        </li>
+
         <li class="nav__item">
           <a href="games.html" class="nav__link" aria-haspopup="true">
-            Games <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+            Games
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
           </a>
           <div class="nav__dropdown" role="menu">
-            <a href="games.html"       class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-dice" aria-hidden="true"></i><div>All Titles <span>Browse our full catalogue</span></div></a>
-            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-moon" aria-hidden="true"></i><div>Coming Soon <span>Upcoming campaigns</span></div></a>
+            <a href="games.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-dice" aria-hidden="true"></i>
+              <div>All Titles <span>Browse our full catalogue</span></div>
+            </a>
+            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
+              <div>Coming Soon <span>Upcoming campaigns</span></div>
+            </a>
           </div>
         </li>
-        <li class="nav__item"><a href="blog.html" class="nav__link active">Blog</a></li>
-        <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+
+        <li class="nav__item">
+          <a href="blog.html" class="nav__link">Blog</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="contact.html" class="nav__link">Contact</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="forum.html" class="nav__link" aria-haspopup="true">
+            Community
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="forum.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-comments" aria-hidden="true"></i>
+              <div>Forum <span>Strategy, news &amp; community</span></div>
+            </a>
+            <a href="faq.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+              <div>FAQ <span>Common questions answered</span></div>
+            </a>
+          </div>
+        </li>
+
         <li class="nav__item">
           <a href="dashboard-user.html" class="nav__link" aria-haspopup="true">
-            Dashboard <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+            Dashboard
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
           </a>
           <div class="nav__dropdown" role="menu">
-            <a href="dashboard-user.html"  class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-user" aria-hidden="true"></i><div>User Dashboard <span>Orders, downloads, forum</span></div></a>
-            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem"><i class="fa-solid fa-gear" aria-hidden="true"></i><div>Admin Dashboard <span>Manage campaigns &amp; users</span></div></a>
+            <a href="dashboard-user.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <div>Backer Portal <span>Orders, downloads, forum</span></div>
+            </a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
+              <div>Admin Dashboard <span>Manage campaigns &amp; users</span></div>
+            </a>
           </div>
         </li>
+
       </ul>
 
       <div class="nav__controls">
         <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
         <button class="nav__icon-btn" data-rtl-toggle  aria-label="Switch RTL"   type="button">RTL</button>
-        <a href="dashboard-user.html" class="btn btn--ghost nav__login">Login</a>
+        <a href="login.html" class="btn btn--ghost nav__login">Login</a>
       </div>
+
       <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
         <span></span><span></span><span></span>
       </button>
+
     </nav>
   </div>
 </header>
 
+<!-- ═══ MOBILE DRAWER ═══════════════════════════════════════ -->
 <nav id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
-  <a href="index.html"           class="nav__mobile-link">Home</a>
-  <a href="about.html"           class="nav__mobile-link">About</a>
-  <a href="games.html"           class="nav__mobile-link">Games</a>
-  <a href="blog.html"            class="nav__mobile-link">Blog</a>
-  <a href="contact.html"         class="nav__mobile-link">Contact</a>
-  <a href="dashboard-user.html"  class="nav__mobile-link">User Dashboard</a>
-  <a href="dashboard-admin.html" class="nav__mobile-link nav__mobile-sub">Admin Dashboard</a>
+  <a href="index.html"          class="nav__mobile-link">Home</a>
+  <a href="home-page-2.html"    class="nav__mobile-link nav__mobile-sub">Home Page 2</a>
+  <a href="about.html"          class="nav__mobile-link">About</a>
+  <a href="games.html"          class="nav__mobile-link">Games</a>
+  <a href="coming-soon.html"    class="nav__mobile-link nav__mobile-sub">Coming Soon</a>
+  <a href="blog.html"           class="nav__mobile-link">Blog</a>
+  <a href="contact.html"        class="nav__mobile-link">Contact</a>
+  <a href="forum.html"          class="nav__mobile-link">Forum</a>
+  <a href="faq.html"            class="nav__mobile-link nav__mobile-sub">FAQ</a>
+  <a href="dashboard-user.html" class="nav__mobile-link">Dashboard</a>
+  <a href="dashboard-admin.html" class="nav__mobile-link nav__mobile-sub">Admin</a>
   <div style="margin-top:2rem;display:flex;gap:12px;">
     <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
     <button class="btn btn--ghost" data-rtl-toggle   type="button" style="flex:1;">RTL</button>
   </div>
-  <a href="dashboard-user.html" class="btn btn--primary" style="margin-top:1rem;width:100%;justify-content:center;">Login</a>
+  <a href="login.html" class="btn btn--primary" style="margin-top:1rem;width:100%;justify-content:center;">Login</a>
 </nav>
-
-
 <main id="main-content">
 
 <!-- ═══════════════════════════════════════════
@@ -527,7 +584,7 @@
           <li><a href="games.html"          class="footer__col-link">All Titles</a></li>
           <li><a href="games.html"          class="footer__col-link">Active Campaigns</a></li>
           <li><a href="coming-soon.html"    class="footer__col-link">Coming Soon</a></li>
-          <li><a href="dashboard-user.html" class="footer__col-link">Print &amp; Play</a></li>
+          <li><a href="dashboard-user-pnp.html" class="footer__col-link">Print &amp; Play</a></li>
           <li><a href="retailer-info.html"                   class="footer__col-link">Retailer Info</a></li>
         </ul>
       </div>
@@ -535,8 +592,8 @@
         <p class="footer__col-title">Client Area</p>
         <ul class="footer__col-links" role="list">
           <li><a href="login.html" class="footer__col-link">Login</a></li>
-          <li><a href="shipping-status.html" class="footer__col-link">Dashboard</a></li>
-          <li><a href="dashboard-user.html" class="footer__col-link">Shipping Status</a></li>
+          <li><a href="dashboard-user.html" class="footer__col-link">Dashboard</a></li>
+          <li><a href="shipping-status.html" class="footer__col-link">Shipping Status</a></li>
           <li><a href="forum.html"          class="footer__col-link">Forum</a></li>
           <li><a href="faq.html"                   class="footer__col-link">FAQ</a></li>
         </ul>
@@ -560,20 +617,19 @@
     <div class="footer__bottom">
       <p class="footer__copy">© 2026 TabletopForge Ltd. All rights reserved.</p>
       <div style="display:flex;align-items:center;gap:8px;">
-        <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6c2d7d4dad3c2d9c6d0d9c4d1d398d5d9db" class="footer__copy"><span class="__cf_email__" data-cfemail="167e737a7a79566277747a7362796670796471733875797b">[email&#160;protected]</span></a>
+        <a href="mailto:hello@tabletopforge.com" class="footer__copy">hello@tabletopforge.com</a>
         <span class="footer__copy">·</span>
         <span class="footer__copy">+1 (000) 000-0000</span>
       </div>
       <nav class="footer__bottom-links" aria-label="Legal">
-        <a href="#" class="footer__bottom-link">Privacy</a>
-        <a href="#" class="footer__bottom-link">Terms</a>
-        <a href="#" class="footer__bottom-link">Cookies</a>
+        <a href="privacy-policy.html" class="footer__bottom-link">Privacy</a>
+        <a href="terms-conditions.html" class="footer__bottom-link">Terms</a>
+        <a href="privacy-policy.html#cookies-policy" class="footer__bottom-link">Cookies</a>
       </nav>
     </div>
   </div>
 </footer>
 
 <script src="../assets/js/main.js"></script>
-<script src="../assets/js/blog.js"></script>
 </body>
 </html>

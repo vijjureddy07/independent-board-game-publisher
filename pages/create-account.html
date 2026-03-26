@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account - TabletopForge</title>
+  <meta name="description" content="Create your TabletopForge backer account to manage orders, downloads, and community access." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/atmosphere.css" />
+  </head>
+<body class="standalone-page">
+<main id="main-content">
+<section style="min-height:100svh;display:flex;align-items:center;padding:var(--sp-8) var(--sp-6) var(--sp-9);background:radial-gradient(ellipse 60% 70% at 80% 20%, rgba(212,245,60,0.025) 0%, transparent 60%), var(--bg-primary);">
+  <div class="container" style="max-width:520px;">
+    <div style="text-align:center;margin-bottom:var(--sp-8);">
+      <a href="index.html" class="nav__logo" style="justify-content:center;margin-bottom:var(--sp-4);display:flex;">
+        <div class="nav__logo-mark" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8 16V9a4 4 0 0 1 8 0v7"/><path d="M9 9h6"/><circle cx="12" cy="6" r="1"/></svg></div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+      <h1 style="font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;letter-spacing:-0.025em;margin-bottom:var(--sp-2);">Create Account</h1>
+      <p style="color:var(--text-secondary);font-size:0.95rem;">Join the backer portal for orders, downloads, and community access.</p>
+    </div>
+    <form id="signup-form" novalidate class="auth-form-grid">
+      <label class="cf-field"><span class="cf-label">First name</span><input class="cf-input" id="signup-first" type="text" autocomplete="given-name" required /></label>
+      <label class="cf-field"><span class="cf-label">Last name</span><input class="cf-input" id="signup-last" type="text" autocomplete="family-name" required /></label>
+      <label class="cf-field auth-form-grid__full"><span class="cf-label">Email address</span><input class="cf-input" id="signup-email" type="email" autocomplete="email" required /></label>
+      <label class="cf-field auth-form-grid__full"><span class="cf-label">Password</span><input class="cf-input" id="signup-password" type="password" autocomplete="new-password" required /></label>
+      <label class="cf-field auth-form-grid__full"><span class="cf-label">Confirm password</span><input class="cf-input" id="signup-confirm" type="password" autocomplete="new-password" required /></label>
+      <div id="signup-error" class="auth-form-grid__full" role="alert" style="display:none;background:rgba(232,84,84,0.1);border:1px solid rgba(232,84,84,0.3);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4);font-size:0.85rem;color:#e05555;"></div>
+      <button id="signup-submit" class="btn btn--primary auth-form-grid__full" type="submit" style="justify-content:center;">Create account</button>
+    </form>
+    <p style="text-align:center;margin-top:var(--sp-6);font-size:0.85rem;color:var(--text-muted);">Already have an account? <a href="login.html" style="color:var(--accent);text-decoration:underline;">Log in</a></p>
+  </div>
+</section>
+</main>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  const form = document.getElementById('signup-form');
+  const first = document.getElementById('signup-first');
+  const last = document.getElementById('signup-last');
+  const email = document.getElementById('signup-email');
+  const password = document.getElementById('signup-password');
+  const confirm = document.getElementById('signup-confirm');
+  const error = document.getElementById('signup-error');
+  const submit = document.getElementById('signup-submit');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    if (!first.value.trim() || !last.value.trim() || !emailOk || password.value.length < 8 || password.value !== confirm.value) {
+      error.style.display = 'block';
+      error.textContent = 'Enter all fields, use a valid email, and make sure passwords match with at least 8 characters.';
+      return;
+    }
+    error.style.display = 'none';
+    submit.disabled = true;
+    submit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating account...';
+    setTimeout(function () { window.location.href = 'dashboard-user.html'; }, 900);
+  });
+})();
+</script>
+</body>
+</html>

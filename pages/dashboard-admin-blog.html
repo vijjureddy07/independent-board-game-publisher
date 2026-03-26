@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Posts — Admin Dashboard · TabletopForge</title>
+  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <meta name="robots" content="noindex, nofollow" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/atmosphere.css" />
+</head>
+<body class="dashboard-page">
+
+<!-- ═══════════════════════════════════════════
+     DASHBOARD SHELL
+═══════════════════════════════════════════ -->
+<div class="dash-shell">
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="dash-sidebar" id="dash-sidebar-admin" aria-label="Admin navigation">
+
+    <!-- Admin profile badge -->
+    <div class="dash-sidebar__top">
+      <div class="dash-profile">
+        <div class="dash-profile__avatar" aria-hidden="true">AD</div>
+        <div>
+          <p class="dash-profile__name">Admin</p>
+          <p class="dash-profile__role">
+            <i class="fa-solid fa-shield-halved" style="font-size:9px;margin-right:3px;" aria-hidden="true"></i>
+            Full access
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav sections -->
+    <nav class="dash-sidebar__nav" aria-label="Admin sections">
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="dashboard-admin.html" class="dash-nav-item" data-admin-panel="overview">
+          <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Overview
+        </a>
+        <a href="dashboard-admin-analytics.html" class="dash-nav-item" data-admin-panel="analytics">
+          <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Analytics
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Campaigns</span>
+        <a href="dashboard-admin-campaigns.html" class="dash-nav-item" data-admin-panel="campaigns">
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <span class="dash-nav-badge">4</span>
+        </a>
+        <a href="dashboard-admin-orders.html" class="dash-nav-item" data-admin-panel="orders">
+          <i class="fa-solid fa-box-open" aria-hidden="true"></i> Orders
+          <span class="dash-nav-badge dash-nav-badge--alert">12</span>
+        </a>
+        <a href="dashboard-admin-fulfillment.html" class="dash-nav-item" data-admin-panel="fulfillment">
+          <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Fulfilment
+        </a>
+        <a href="dashboard-admin-pnp.html" class="dash-nav-item" data-admin-panel="pnp">
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> PnP Files
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Users</span>
+        <a href="dashboard-admin-users.html" class="dash-nav-item" data-admin-panel="users">
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <span class="dash-nav-badge">48.2K</span>
+        </a>
+        <a href="dashboard-admin-messages.html" class="dash-nav-item" data-admin-panel="messages">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages
+          <span class="dash-nav-badge dash-nav-badge--alert">5</span>
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Content</span>
+        <a href="dashboard-admin-blog.html" class="dash-nav-item active" data-admin-panel="blog">
+          <i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Blog Posts
+        </a>
+        <a href="dashboard-admin-forum.html" class="dash-nav-item" data-admin-panel="forum">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum Moderation
+          <span class="dash-nav-badge dash-nav-badge--alert">3</span>
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">System</span>
+        <a href="dashboard-admin-reports.html" class="dash-nav-item" data-admin-panel="reports">
+          <i class="fa-solid fa-file-chart-column" aria-hidden="true"></i> Reports
+        </a>
+        <a href="dashboard-admin-settings.html" class="dash-nav-item" data-admin-panel="settings">
+          <i class="fa-solid fa-sliders" aria-hidden="true"></i> Settings
+        </a>
+      </div>
+
+    </nav>
+
+    <!-- Sidebar footer -->
+    <div class="dash-sidebar__bottom">
+      <a href="dashboard-user.html" class="dash-nav-item">
+        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
+      </a>
+      <a href="index.html" class="dash-nav-item">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
+      </a>
+      <a href="index.html" class="dash-nav-item">
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
+      </a>
+    </div>
+
+  </aside>
+
+
+  <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
+  <main class="dash-main" id="admin-main">
+
+    <!-- Sticky topbar -->
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:var(--sp-4);">
+        <button class="dash-mobile-toggle" id="admin-sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="dash-sidebar-admin">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <span class="dash-topbar__title" id="admin-page-title">Blog Posts</span>
+      </div>
+      <div class="dash-topbar__actions">
+        <div class="dash-topbar__search">
+          <i class="fa-solid fa-magnifying-glass dash-search-icon" aria-hidden="true"></i>
+          <input class="dash-search-input" type="search" placeholder="Search..." aria-label="Admin search" />
+        </div>
+        <button class="dash-icon-btn" type="button" aria-label="Notifications">
+          <i class="fa-solid fa-bell" aria-hidden="true"></i>
+          <span class="dash-notif-dot" aria-hidden="true"></span>
+        </button>
+        <button class="dash-icon-btn" type="button" aria-label="Settings">
+          <i class="fa-solid fa-gear" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── CONTENT AREA ─────────────────────────────────────────── -->
+    <div class="dash-content">
+      <div class="dash-page active" id="admin-panel-blog">
+
+        <div class="dash-section-head">
+          <h2 class="dash-section-title">
+            <i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Blog Posts
+          </h2>
+          <a href="blog.html" class="btn btn--primary btn--sm">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> New post
+          </a>
+        </div>
+
+        <div class="dash-table-wrap">
+          <table class="dash-table" aria-label="Blog post management">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Published</th>
+                <th>Views</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="dash-table__name">Why the Tide Mechanic took three years to get right</span></td>
+                <td>David Osei</td>
+                <td>Designer Diary</td>
+                <td>Mar 18, 2026</td>
+                <td>4,280</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit post"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View post"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">Citadels hits 300% — what that means for backers</span></td>
+                <td>Elena Voss</td>
+                <td>Campaign Update</td>
+                <td>Mar 20, 2026</td>
+                <td>3,140</td>
+                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit post"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View post"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="dash-table__name">Moonfall Chronicles — first look (DRAFT)</span></td>
+                <td>David Osei</td>
+                <td>Designer Diary</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Draft</span></td>
+                <td style="white-space:nowrap;">
+                  <button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit post"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                  <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Publish post"><i class="fa-solid fa-rocket" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!-- end blog panel -->
+
+
+      <!-- ════════════════════════════════
+           PAGE: SETTINGS
+      ════════════════════════════════ --></div><!-- /dash-content -->
+  </main>
+</div><!-- /dash-shell -->
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

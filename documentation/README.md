@@ -23,22 +23,15 @@ python3 -m http.server 8000
 Independent Board Game Publisher/
 ├── assets/
 │   ├── css/
-│   │   ├── style.css            Main styles + design tokens
+│   │   ├── style.css            Main stylesheet + bundled page sections
 │   │   ├── dark-mode.css        Dark-mode component refinements
 │   │   ├── rtl.css              Right-to-left layout overrides
-│   │   ├── visual-overhaul.css  ← Section gradients, accent expansion, page-specific styles
-│   │   ├── games.css            Games listing + game single page
-│   │   ├── blog.css             Blog listing + blog single page
-│   │   ├── dashboard.css        Dashboard shell (user + admin)
-│   │   ├── contact.css          Contact page form styles
-│   │   ├── remaining-pages.css  Coming soon, 404, forum, profile, dashboard
-│   │   └── index-2.css          Home page 2 specific styles
+│   │   └── atmosphere.css       Atmosphere layers + theme-specific accents
 │   └── js/
-│       ├── main.js              Core: theme, nav, carousel, counters, reveals
+│       ├── main.js              Core UI, filters, forms, FAQ search, reading progress
 │       ├── dashboard.js         Dashboard panels, sidebar, charts
 │       ├── forum.js             Forum filter, thread reply composer
-│       ├── games.js             Game filter pills
-│       └── blog.js              Blog filter, reading progress
+│       └── plugins/             Third-party JS plugins
 ├── pages/
 │   ├── index.html               Home Page 1 (editorial hero)
 │   ├── home-page-2.html         Home Page 2 (campaign-focused)
@@ -53,7 +46,8 @@ Independent Board Game Publisher/
 │   ├── faq.html                 FAQ accordion
 │   ├── coming-soon.html         Pre-launch countdown page
 │   ├── dashboard-user.html      Backer portal
-│   ├── dashboard-admin.html     Admin panel
+│   ├── dashboard-admin.html     Admin overview
+│   ├── dashboard-admin-*.html   Dedicated admin section pages
 │   ├── profile.html             User profile + settings
 │   ├── login.html               Auth page
 │   ├── careers.html             Jobs page
@@ -86,7 +80,7 @@ Independent Board Game Publisher/
 --bg-secondary  : #111111   /* Raised surfaces */
 --bg-card       : #161616   /* Cards */
 --text-primary  : #F4F4F4
---text-secondary: #777777
+--text-secondary: #A3A3A3
 --accent        : #D4F53C   /* Lime green — use sparingly */
 
 /* Spacing (8px base) */
@@ -101,15 +95,11 @@ Independent Board Game Publisher/
 --t-slow: 0.55s cubic-bezier(0.16, 1, 0.3, 1)
 ```
 
-### Adding `visual-overhaul.css` to new pages
+### Page-Specific Styles
 
-Every page that needs section backgrounds and accent expansion should load this file:
-
-```html
-<link rel="stylesheet" href="../assets/css/visual-overhaul.css" />
-```
-
-Add it **after** all other CSS files.
+Page-specific sections are bundled directly into `assets/css/style.css`.
+There are no separate `games.css`, `blog.css`, `dashboard.css`, or
+`visual-overhaul.css` files in the current repo layout.
 
 ---
 
@@ -157,6 +147,8 @@ Toggle with any `data-rtl-toggle` element. Full RTL overrides in `rtl.css`.
 | `MarqueeManager` | Infinite scroll ticker |
 | `NewsletterForm` | Email validation + submit |
 | `TimelineManager` | About page timeline dot highlights |
+| `FAQManager` | FAQ search filter |
+| `ContactForm` | Contact page validation + success state |
 
 ---
 
@@ -189,6 +181,6 @@ Large  : > 1280px
 1. Copy the closest existing page as a template
 2. Update `<title>`, `<meta name="description">`, `<link rel="canonical">`
 3. Mark the active nav link: `class="nav__link active"`
-4. Add `visual-overhaul.css` to the CSS imports
+4. Add `atmosphere.css` after the shared CSS imports if the page uses atmosphere layers
 5. Add the page to `sitemap.xml`
 6. Add a footer link if it's a public-facing page

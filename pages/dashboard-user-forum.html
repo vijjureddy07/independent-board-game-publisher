@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forum - Backer Dashboard - TabletopForge</title>
+  <meta name="description" content="Keep track of watched threads, forum replies, and community discussions tied to your campaigns." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <link rel="stylesheet" href="../assets/css/atmosphere.css" />
+  </head>
+<body class="dashboard-page user-dashboard-page">
+
+<div class="dash-shell">
+  <aside class="dash-sidebar" id="dash-sidebar" aria-label="Dashboard navigation">
+
+    <div class="dash-profile">
+      <div class="dash-profile__avatar" aria-hidden="true">JD</div>
+      <div>
+        <p class="dash-profile__name">James Doe</p>
+        <p class="dash-profile__role">Backer since 2021 · 6 campaigns</p>
+      </div>
+    </div>
+
+    <nav class="dash-nav" aria-label="Dashboard sections">
+
+      <p class="dash-nav__section-label">Overview</p>
+      <a href="dashboard-user.html" class="dash-nav__item" data-panel="overview">
+        <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboard
+      </a>
+      <a href="dashboard-user-campaigns.html" class="dash-nav__item" data-panel="campaigns">
+        <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> My Campaigns
+        <span class="dash-nav__badge">3</span>
+      </a>
+
+      <p class="dash-nav__section-label">Orders</p>
+      <a href="dashboard-user-shipping.html" class="dash-nav__item" data-panel="shipping">
+        <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Shipping Tracker
+      </a>
+      <a href="dashboard-user-orders.html" class="dash-nav__item" data-panel="orders">
+        <i class="fa-solid fa-box-open" aria-hidden="true"></i> Order History
+      </a>
+
+      <p class="dash-nav__section-label">Content</p>
+      <a href="dashboard-user-pnp.html" class="dash-nav__item" data-panel="pnp">
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Print &amp; Play
+        <span class="dash-nav__badge dash-nav__badge--accent">3</span>
+      </a>
+      <a href="dashboard-user-exclusives.html" class="dash-nav__item" data-panel="exclusives">
+        <i class="fa-solid fa-star" aria-hidden="true"></i> Exclusives
+      </a>
+
+      <p class="dash-nav__section-label">Community</p>
+      <a href="dashboard-user-forum.html" class="dash-nav__item active" data-panel="forum" aria-current="page">
+        <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum
+        <span class="dash-nav__badge">12</span>
+      </a>
+      <a href="dashboard-user-messages.html" class="dash-nav__item" data-panel="messages">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages
+        <span class="dash-nav__badge">2</span>
+      </a>
+
+      <p class="dash-nav__section-label">Account</p>
+      <a href="dashboard-user-profile.html" class="dash-nav__item" data-panel="profile">
+        <i class="fa-solid fa-user" aria-hidden="true"></i> Profile
+      </a>
+      <a href="dashboard-user-settings.html" class="dash-nav__item" data-panel="settings">
+        <i class="fa-solid fa-gear" aria-hidden="true"></i> Settings
+      </a>
+
+    </nav>
+
+    <div class="dash-sidebar__footer">
+      <a href="dashboard-admin.html">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Switch to Admin
+      </a>
+      <a href="index.html">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
+      </a>
+      <a href="index.html">
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
+      </a>
+    </div>
+
+  </aside>
+
+  <main class="dash-main" id="dash-main">
+    <div style="margin-bottom:var(--sp-5);">
+      <button class="dash-sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open sidebar" aria-expanded="false" aria-controls="dash-sidebar">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i> Menu
+      </button>
+    </div>
+
+    <div class="dash-page active" id="dash-panel-forum">
+      <div class="dash-page-header">
+        <div>
+          <h1>Forum Activity</h1>
+          <p>Subscribed discussions, tracked topics, and recent replies from the community.</p>
+        </div>
+        <a href="forum.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Open public forum</a>
+      </div>
+
+    <div class="dash-mini-stats">
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">12</span><span class="dash-mini-stat__label">Unread replies</span></div>
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">5</span><span class="dash-mini-stat__label">Subscribed threads</span></div>
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">38</span><span class="dash-mini-stat__label">Your total posts</span></div>
+      <div class="dash-mini-stat"><span class="dash-mini-stat__value">3</span><span class="dash-mini-stat__label">Followed categories</span></div>
+    </div>
+
+    <div class="dash-card" style="margin-bottom:var(--sp-5);">
+      <div class="dash-card__head"><h2 class="dash-card__title"><i class="fa-solid fa-comments" aria-hidden="true"></i> Subscribed Discussions</h2></div>
+      <div class="dash-feed">
+        <div class="dash-feed-item"><div class="dash-feed-item__avatar">MR</div><div class="dash-feed-item__body"><div class="dash-feed-item__head"><strong class="dash-table__name">Best solo strategies for Verdant Empires?</strong><span class="dash-feed-item__meta">42 replies - 2h ago</span></div><p class="dash-feed-item__content">Marcus tagged you in a rules discussion about solo setup pacing and the revised bot priorities.</p><div class="dash-actions-row"><a href="forum-thread.html" class="btn btn--ghost btn--sm">Open thread</a></div></div></div>
+        <div class="dash-feed-item"><div class="dash-feed-item__avatar">SL</div><div class="dash-feed-item__body"><div class="dash-feed-item__head"><strong class="dash-table__name">[Update] Shipping delay - EU backers</strong><span class="dash-feed-item__meta">28 replies - 5h ago</span></div><p class="dash-feed-item__content">The fulfilment team posted a new carrier explanation and expected customs handoff dates for west EU orders.</p><div class="dash-actions-row"><a href="forum-thread.html" class="btn btn--ghost btn--sm">Open thread</a></div></div></div>
+      </div>
+    </div>
+
+    <div class="dash-grid-2">
+      <div class="dash-card">
+        <div class="dash-card__head"><h2 class="dash-card__title"><i class="fa-solid fa-flag" aria-hidden="true"></i> Followed Topics</h2></div>
+        <div class="dash-card__body">
+          <div class="quick-actions">
+            <a href="forum.html" class="quick-action"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Citadels strategy</a>
+            <a href="forum.html" class="quick-action"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Shipping updates</a>
+            <a href="forum.html" class="quick-action"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> PnP feedback</a>
+            <a href="forum.html" class="quick-action"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> House rules</a>
+          </div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card__head"><h2 class="dash-card__title"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Open the Forum</h2></div>
+        <div class="dash-card__body">
+          <p class="dash-feed-item__content" style="margin-bottom:var(--sp-4);">Use the public forum for new threads, campaign chatter, and publisher updates. This page is focused on your watched discussions.</p>
+          <a href="forum.html" class="btn btn--primary btn--sm">Go to forum</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

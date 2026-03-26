@@ -1,8 +1,9 @@
 /**
  * TabletopForge — dashboard.js
- * Handles both dashboard-user.html and dashboard-admin.html:
+ * Handles dashboard interactions:
  *   - Sidebar open/close + mobile overlay
- *   - SPA panel switching (data-panel / data-admin-panel)
+ *   - In-page panel switching for dashboard-user.html
+ *   - Hash-based panel switching when dashboard links stay in-page
  *   - Animated stat counters (panel-scoped, non-conflicting with main.js)
  *   - Admin mini-chart bar animation
  *   - Notifications mark-all-read
