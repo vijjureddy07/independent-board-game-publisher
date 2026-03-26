@@ -2,9 +2,9 @@
  * TabletopForge — main.js  v3
  *
  * Modules (all self-contained IIFEs, one DOMContentLoaded):
- *  1. ThemeManager    — dark/light + system detection + localStorage
- *  2. RTLManager      — RTL/LTR toggle + localStorage
- *  3. NavManager      — scroll state, hamburger, mobile drawer, active link
+ *  1. NavManager      — shared public nav normalization + hamburger state
+ *  2. ThemeManager    — dark/light + system detection + localStorage
+ *  3. RTLManager      — RTL/LTR toggle + localStorage
  *  4. RevealManager   — IntersectionObserver scroll reveals
  *  5. ProgressManager — campaign progress bar animation
  *  6. CarouselManager — testimonials auto-advance, swipe, dots
@@ -14,7 +14,7 @@
  * 10. MarqueeManager  — clones track for seamless loop
  * 11. NewsletterForm  — email validation across all forms
  * 12. TimelineManager — about page dot highlight on scroll
- * 13. ParticleManager — atmospheric floating particles (motion effect)
+ * 13. ParticleManager — canvas-based floating particles (motion effect)
  * 14. GsTabManager    — game single page tab switching
  * 15. FilterManager   — filter pills (games, blog)
  * 16. ContactForm     — contact page form validation + submit
@@ -76,7 +76,239 @@ window.TTF.paginationButtons = function(btnSel = '.page-btn', scrollTargetSel = 
 
 
 /* ─────────────────────────────────────────────────────────────
-   1. THEME MANAGER
+   1. NAV MANAGER
+───────────────────────────────────────────────────────────── */
+const NavManager = (() => {
+  let menuOpen = false;
+  const SHARED_MOBILE_ID = 'mobile-menu';
+
+  function currentFile() {
+    return window.location.pathname.split('/').pop() || 'index.html';
+  }
+
+  function currentGroup(file) {
+    if (['index.html', 'home-page-2.html'].includes(file)) return 'home';
+    if (file === 'about.html') return 'about';
+    if (['games.html', 'game-single.html', 'press-kit.html', 'retailer-info.html', 'coming-soon.html'].includes(file)) return 'games';
+    if (['blog.html', 'blog-single.html'].includes(file)) return 'blog';
+    if (file === 'contact.html') return 'contact';
+    if (['forum.html', 'forum-thread.html', 'faq.html'].includes(file)) return 'community';
+    if (file === 'profile.html' || file === 'shipping-status.html' || file.startsWith('dashboard-')) return 'dashboard';
+    return '';
+  }
+
+  function linkClass(group, activeGroup) {
+    return group === activeGroup ? 'nav__link active' : 'nav__link';
+  }
+
+  function mobileLinkClass(file, current, extra = '') {
+    const classes = ['nav__mobile-link'];
+    if (extra) classes.push(extra);
+    if (file === current) classes.push('active');
+    return classes.join(' ');
+  }
+
+  function buildHeaderMarkup(file) {
+    const activeGroup = currentGroup(file);
+    return `
+<header class="nav" role="banner" data-nav-normalized="1">
+  <div class="container">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TabletopForge Home">
+        <div class="nav__logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+            <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+            <path d="M9 9h6"/>
+            <circle cx="12" cy="6" r="1"/>
+          </svg>
+        </div>
+        <span class="nav__logo-text">TabletopForge</span>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li class="nav__item">
+          <a href="index.html" class="${linkClass('home', activeGroup)}" aria-haspopup="true" data-nav-group="home">
+            Home
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="index.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-house" aria-hidden="true"></i>
+              <div>Home Page 1 <span>Main landing experience</span></div>
+            </a>
+            <a href="home-page-2.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <div>Home Page 2 <span>Campaign-focused layout</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="about.html" class="${linkClass('about', activeGroup)}" data-nav-group="about">About</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="games.html" class="${linkClass('games', activeGroup)}" aria-haspopup="true" data-nav-group="games">
+            Games
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="games.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-dice" aria-hidden="true"></i>
+              <div>All Titles <span>Browse our full catalogue</span></div>
+            </a>
+            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
+              <div>Coming Soon <span>Upcoming campaigns</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="blog.html" class="${linkClass('blog', activeGroup)}" data-nav-group="blog">Blog</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="contact.html" class="${linkClass('contact', activeGroup)}" data-nav-group="contact">Contact</a>
+        </li>
+
+        <li class="nav__item">
+          <a href="forum.html" class="${linkClass('community', activeGroup)}" aria-haspopup="true" data-nav-group="community">
+            Community
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="forum.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-comments" aria-hidden="true"></i>
+              <div>Forum <span>Strategy, news &amp; community</span></div>
+            </a>
+            <a href="faq.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+              <div>FAQ <span>Common questions answered</span></div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav__item">
+          <a href="dashboard-user.html" class="${linkClass('dashboard', activeGroup)}" aria-haspopup="true" data-nav-group="dashboard">
+            Dashboard
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+          </a>
+          <div class="nav__dropdown" role="menu">
+            <a href="dashboard-user.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <div>User Dashboard <span>Orders, downloads, forum</span></div>
+            </a>
+            <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
+              <div>Admin Dashboard <span>Manage campaigns &amp; users</span></div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__controls">
+        <button class="nav__icon-btn" data-theme-toggle aria-label="Toggle theme" type="button"></button>
+        <button class="nav__icon-btn" data-rtl-toggle aria-label="Switch RTL" type="button">RTL</button>
+        <a href="login.html" class="btn btn--ghost nav__login">Login</a>
+      </div>
+
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="${SHARED_MOBILE_ID}" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>`;
+  }
+
+  function buildMobileMarkup(file) {
+    return `
+<nav id="${SHARED_MOBILE_ID}" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="index.html" class="${mobileLinkClass('index.html', file)}">Home</a>
+  <a href="home-page-2.html" class="${mobileLinkClass('home-page-2.html', file, 'nav__mobile-sub')}">Home Page 2</a>
+  <a href="about.html" class="${mobileLinkClass('about.html', file)}">About</a>
+  <a href="games.html" class="${mobileLinkClass('games.html', file)}">Games</a>
+  <a href="coming-soon.html" class="${mobileLinkClass('coming-soon.html', file, 'nav__mobile-sub')}">Coming Soon</a>
+  <a href="blog.html" class="${mobileLinkClass('blog.html', file)}">Blog</a>
+  <a href="contact.html" class="${mobileLinkClass('contact.html', file)}">Contact</a>
+  <a href="forum.html" class="${mobileLinkClass('forum.html', file)}">Forum</a>
+  <a href="faq.html" class="${mobileLinkClass('faq.html', file, 'nav__mobile-sub')}">FAQ</a>
+  <a href="dashboard-user.html" class="${mobileLinkClass('dashboard-user.html', file)}">User Dashboard</a>
+  <a href="dashboard-admin.html" class="${mobileLinkClass('dashboard-admin.html', file, 'nav__mobile-sub')}">Admin Dashboard</a>
+  <div style="margin-top:2rem;display:flex;gap:12px;">
+    <button class="btn btn--ghost" data-theme-toggle type="button" style="flex:1;">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle type="button" style="flex:1;">RTL</button>
+  </div>
+  <a href="login.html" class="btn btn--primary" style="margin-top:1rem;width:100%;justify-content:center;">Login</a>
+</nav>`;
+  }
+
+  function normalizePublicNav(file) {
+    const header = $('.nav');
+    if (!header || header.dataset.navNormalized === '1') return;
+    if (document.body.classList.contains('coming-soon-page') || document.body.classList.contains('dashboard-page')) return;
+
+    const existingMobileNav = $('.nav__mobile');
+    header.outerHTML = buildHeaderMarkup(file);
+    existingMobileNav?.remove();
+    $('.nav')?.insertAdjacentHTML('afterend', buildMobileMarkup(file));
+  }
+
+  function init() {
+    const file = currentFile();
+    normalizePublicNav(file);
+
+    const nav       = $('.nav');
+    const burger    = $('.nav__hamburger');
+    const mobileNav = $('.nav__mobile');
+    if (!nav) return;
+
+    // Scroll state
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    function openMenu() {
+      menuOpen = true;
+      burger?.classList.add('open');
+      mobileNav?.classList.add('open');
+      mobileNav?.setAttribute('aria-hidden', 'false');
+      burger?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      if (!menuOpen) return;
+      menuOpen = false;
+      burger?.classList.remove('open');
+      mobileNav?.classList.remove('open');
+      mobileNav?.setAttribute('aria-hidden', 'true');
+      burger?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    burger?.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+    document.addEventListener('click', e => {
+      if (menuOpen && !nav.contains(e.target) && !mobileNav?.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeMenu(); });
+
+    // Active link highlight (by filename match)
+    $$('.nav__link[href]').forEach(link => {
+      if (link.getAttribute('href').split('/').pop() === file) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  return { init };
+})();
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. THEME MANAGER
 ───────────────────────────────────────────────────────────── */
 const ThemeManager = (() => {
   const root = document.documentElement;
@@ -117,7 +349,7 @@ const ThemeManager = (() => {
 
 
 /* ─────────────────────────────────────────────────────────────
-   2. RTL MANAGER
+   3. RTL MANAGER
 ───────────────────────────────────────────────────────────── */
 const RTLManager = (() => {
   const root = document.documentElement;
@@ -142,62 +374,6 @@ const RTLManager = (() => {
         localStorage.setItem(KEY, next);
         updateBtns(next);
       });
-    });
-  }
-
-  return { init };
-})();
-
-
-/* ─────────────────────────────────────────────────────────────
-   3. NAV MANAGER
-───────────────────────────────────────────────────────────── */
-const NavManager = (() => {
-  let menuOpen = false;
-
-  function init() {
-    const nav       = $('.nav');
-    const burger    = $('.nav__hamburger');
-    const mobileNav = $('.nav__mobile');
-    if (!nav) return;
-
-    // Scroll state
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    function openMenu() {
-      menuOpen = true;
-      burger?.classList.add('open');
-      mobileNav?.classList.add('open');
-      mobileNav?.setAttribute('aria-hidden', 'false');
-      burger?.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-      if (!menuOpen) return;
-      menuOpen = false;
-      burger?.classList.remove('open');
-      mobileNav?.classList.remove('open');
-      mobileNav?.setAttribute('aria-hidden', 'true');
-      burger?.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    burger?.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
-    document.addEventListener('click', e => {
-      if (menuOpen && !nav.contains(e.target) && !mobileNav?.contains(e.target)) closeMenu();
-    });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeMenu(); });
-
-    // Active link highlight (by filename match)
-    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-    $$('.nav__link[href]').forEach(link => {
-      if (link.getAttribute('href').split('/').pop() === currentFile) {
-        link.classList.add('active');
-      }
     });
   }
 
@@ -541,77 +717,142 @@ const TimelineManager = (() => {
 
 
 /* ─────────────────────────────────────────────────────────────
-   13. PARTICLE MANAGER — atmospheric floating particles
-   Adds 12–18 tiny glowing dots that slowly float upward
-   on specific sections (hero, coming-soon). CSS-only fallback
-   does nothing — particles are purely decorative enhancement.
+   13. PARTICLE MANAGER — dense floating dots for hero sections
 ───────────────────────────────────────────────────────────── */
 const ParticleManager = (() => {
-  const TARGETS = ['.hero', '.cs-page', '.page-hero'];
+  const TARGETS = [
+    '.hero', '.page-hero', '.cs-page',
+    '.gs-hero', '.blog-hero', '.h2-hero',
+    '.contact-hero', '.games-hero', '.forum-hero',
+    '.bs-hero', '.thread-hero',
+  ];
 
-  // Inject keyframe if not already present
-  function ensureKeyframe() {
-    if (document.getElementById('ttf-particle-kf')) return;
-    const s = document.createElement('style');
-    s.id = 'ttf-particle-kf';
-    s.textContent = `
-      @keyframes ttf-particle-rise {
-        0%   { transform: translateY(0)     scale(1)   ; opacity: 0; }
-        8%   { opacity: 0.8; }
-        85%  { opacity: 0.4; }
-        100% { transform: translateY(-130px) scale(0.6); opacity: 0; }
+  const isDark = () => document.documentElement.getAttribute('data-theme') !== 'light';
+
+  class Dot {
+    constructor(W, H, initial) {
+      this.W = W;
+      this.H = H;
+      this.reset(initial);
+    }
+
+    reset(initial = false) {
+      this.x = this.W * (0.02 + Math.random() * 0.96);
+      this.y = initial ? this.H * Math.random() : this.H + Math.random() * 20;
+      this.r = Math.random() < 0.75 ? 0.8 + Math.random() * 1.4 : 2.0 + Math.random() * 1.5;
+      this.vy = -(0.15 + Math.random() * 0.55);
+      this.vx = (Math.random() - 0.5) * 0.12;
+      this.maxL = 160 + Math.random() * 200;
+      this.life = initial ? Math.random() * this.maxL : 0;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life += 1;
+      if (this.life >= this.maxL || this.y < -8) this.reset();
+    }
+
+    draw(ctx) {
+      const t = this.life / this.maxL;
+      const alpha = t < 0.12 ? t / 0.12 : t > 0.82 ? (1 - t) / 0.18 : 1;
+
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = isDark()
+        ? `rgba(212,245,60,${(alpha * 0.72).toFixed(3)})`
+        : `rgba(45,80,0,${(alpha * 0.55).toFixed(3)})`;
+      ctx.fill();
+
+      if (isDark() && this.r > 1.8) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r * 2.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212,245,60,${(alpha * 0.10).toFixed(3)})`;
+        ctx.fill();
       }
-    `;
-    document.head.appendChild(s);
-  }
-
-  function spawnIn(section) {
-    if (section.dataset.particlesAdded) return;
-    section.dataset.particlesAdded = '1';
-
-    const count = window.innerWidth < 768 ? 6 : 14;
-
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement('div');
-      p.setAttribute('aria-hidden', 'true');
-
-      const size  = 2 + Math.random() * 3;        // 2–5px
-      const left  = 5 + Math.random() * 90;       // 5%–95%
-      const delay = Math.random() * 12;            // 0–12s stagger
-      const dur   = 8 + Math.random() * 10;       // 8–18s duration
-      const bot   = 5 + Math.random() * 30;       // spawn 5%–35% from bottom
-      const glow  = `rgba(212, 245, 60, ${0.25 + Math.random() * 0.35})`;
-
-      Object.assign(p.style, {
-        position       : 'absolute',
-        width          : `${size}px`,
-        height         : `${size}px`,
-        borderRadius   : '50%',
-        background     : glow,
-        boxShadow      : `0 0 ${size * 2}px ${glow}`,
-        left           : `${left}%`,
-        bottom         : `${bot}%`,
-        pointerEvents  : 'none',
-        zIndex         : '1',
-        animation      : `ttf-particle-rise ${dur}s ${delay}s ease-in-out infinite`,
-        willChange     : 'transform, opacity',
-      });
-
-      section.appendChild(p);
     }
   }
 
+  function attach(section) {
+    if (section.dataset.ttfParticles) return;
+    section.dataset.ttfParticles = '1';
+
+    if (getComputedStyle(section).position === 'static') {
+      section.style.position = 'relative';
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.className = 'ttf-particles-canvas';
+    Object.assign(canvas.style, {
+      position: 'absolute',
+      inset: '0',
+      width: '100%',
+      height: '100%',
+      pointerEvents: 'none',
+      zIndex: '1',
+    });
+    section.insertBefore(canvas, section.firstChild);
+
+    const ctx = canvas.getContext('2d');
+    let W;
+    let H;
+    let dots = [];
+    let raf = null;
+
+    function dotCount() {
+      return W < 600 ? 28 : W < 1024 ? 42 : 55;
+    }
+
+    function resize() {
+      W = section.offsetWidth;
+      H = section.offsetHeight;
+      canvas.width = W;
+      canvas.height = H;
+      dots = Array.from({ length: dotCount() }, () => new Dot(W, H, true));
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, W, H);
+      dots.forEach(dot => {
+        dot.update();
+        dot.draw(ctx);
+      });
+      raf = requestAnimationFrame(tick);
+    }
+
+    resize();
+    tick();
+
+    let resizeT;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(() => {
+        cancelAnimationFrame(raf);
+        raf = null;
+        resize();
+        tick();
+      }, 150);
+    });
+    ro.observe(section);
+
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!raf) tick();
+      } else {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    }, { threshold: 0 });
+    io.observe(section);
+  }
+
   function init() {
-    // Don't add particles if reduced-motion is requested
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    // Don't add on mobile for perf
     if (window.innerWidth < 480) return;
 
-    ensureKeyframe();
-
     TARGETS.forEach(sel => {
-      const section = $(sel);
-      if (section) spawnIn(section);
+      document.querySelectorAll(sel).forEach(attach);
     });
   }
 
@@ -851,9 +1092,9 @@ const PaginationManager = (() => {
    INIT ALL — single DOMContentLoaded
 ───────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  NavManager.init();
   ThemeManager.init();
   RTLManager.init();
-  NavManager.init();
   RevealManager.init();
   ProgressManager.init();
   CarouselManager.init();

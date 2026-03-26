@@ -4,7 +4,7 @@
   "description": "Independent board game publisher and backer portal.",
   "icons": [
     {
-      "src": "./favicon.svg",
+      "src": "./brand-favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
