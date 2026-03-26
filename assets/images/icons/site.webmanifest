@@ -1,0 +1,16 @@
+{
+  "name": "TabletopForge",
+  "short_name": "TabletopForge",
+  "description": "Independent board game publisher and backer portal.",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#0B0D0F",
+  "background_color": "#0B0D0F",
+  "display": "standalone"
+}
