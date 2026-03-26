@@ -8079,20 +8079,15 @@ body.dashboard-page .dash-main {
 .thread-hero {
   padding-top: calc(var(--nav-h) + clamp(var(--sp-4), 5vw, var(--sp-6)));
   padding-bottom: clamp(var(--sp-6), 6vw, var(--sp-8));
-  min-height: clamp(520px, 72vh, 720px);
-  display: flex;
-  align-items: stretch;
+  min-height: auto;
 }
 
 .cs-page,
 body.coming-soon-page .cs-page {
+  align-items: flex-start;
   justify-content: flex-start;
   padding: clamp(var(--sp-6), 8vh, var(--sp-8)) var(--sp-5) var(--sp-6);
-}
-
-.cs-content {
-  width: min(100%, 720px);
-  margin-inline: auto;
+  text-align: left;
 }
 
 .page-hero::after,
@@ -8109,15 +8104,11 @@ body.coming-soon-page .cs-page {
 .forum-hero > .container,
 .thread-hero > .container {
   width: 100%;
-  min-height: clamp(360px, 54vh, 520px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: clamp(var(--sp-6), 3vw, var(--sp-8));
+  display: block;
 }
 
 .inner-hero-strip {
-  margin-top: auto;
+  margin-top: clamp(var(--sp-5), 3vw, var(--sp-6));
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
@@ -8132,6 +8123,25 @@ body.coming-soon-page .cs-page {
 
 .inner-hero-strip--full {
   max-width: 100%;
+}
+
+.cs-content {
+  width: min(100%, 720px);
+  margin-inline: 0;
+}
+
+.cs-icon-wrap {
+  margin: 0 0 var(--sp-6);
+}
+
+.cs-sub {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.cs-countdown,
+.cs-form {
+  justify-content: flex-start;
 }
 
 .inner-hero-strip__item {
@@ -8303,7 +8313,6 @@ body.dashboard-page .activity-item {
   .thread-hero {
     padding-top: calc(var(--nav-h) + var(--sp-4));
     padding-bottom: var(--sp-5);
-    min-height: auto;
   }
 
   .cs-page,
@@ -8319,10 +8328,15 @@ body.dashboard-page .activity-item {
   .bs-hero > .container,
   .forum-hero > .container,
   .thread-hero > .container {
-    min-height: auto;
+    display: block;
   }
 
   .inner-hero-strip {
     grid-template-columns: 1fr;
+  }
+
+  .cs-countdown,
+  .cs-form {
+    justify-content: flex-start;
   }
 }
