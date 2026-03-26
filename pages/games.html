@@ -106,11 +106,12 @@
 <!-- ═══════════════════════════════════════════
      PAGE HERO
 ═══════════════════════════════════════════ -->
-<section class="games-hero" aria-labelledby="games-heading" style="padding-top:calc(var(--nav-h) + var(--sp-2));padding-bottom:var(--sp-4);min-height:auto;display:block;">
+<section class="games-hero compact-hero" data-compact-hero aria-labelledby="games-heading">
   <div class="games-hero__orb" aria-hidden="true"></div>
-  <div class="container" style="display:block;min-height:auto;">
-    <div class="games-hero__layout">
-      <div>
+  <div class="container">
+    <div class="compact-hero__stack">
+      <div class="compact-hero__row">
+        <div class="compact-hero__copy">
         <div style="margin-bottom:var(--sp-4);">
           <span class="tag">Our Catalogue</span>
         </div>
@@ -122,13 +123,13 @@
           From live Kickstarter campaigns to titles in fulfilment and delivered retail editions —
           browse the full TabletopForge catalogue.
         </p>
-      </div>
-      <div class="games-hero__live">
+        </div>
+        <div class="compact-hero__aside games-hero__live">
         <span class="live-dot" aria-hidden="true"></span>
         1 campaign live
+        </div>
       </div>
-    </div>
-    <div class="inner-hero-strip inner-hero-strip--full" aria-label="Catalogue highlights" style="margin-top:var(--sp-4);">
+      <div class="inner-hero-strip inner-hero-strip--full compact-hero__strip" aria-label="Catalogue highlights">
       <div class="inner-hero-strip__item">
         <span class="inner-hero-strip__label">Live Right Now</span>
         <span class="inner-hero-strip__value"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Citadels of the Deep</span>
@@ -143,6 +144,7 @@
         <span class="inner-hero-strip__label">Fulfilment Standard</span>
         <span class="inner-hero-strip__value"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> 97% on-time delivery</span>
         <span class="inner-hero-strip__meta">Transparent tracking across every active campaign.</span>
+      </div>
       </div>
     </div>
   </div>

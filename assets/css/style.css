@@ -8350,3 +8350,124 @@ body.dashboard-page .activity-item {
     justify-content: flex-start;
   }
 }
+
+/* ─── COMPACT HERO REWRITE ────────────────────────────────── */
+
+.compact-hero {
+  padding-top: calc(var(--nav-h) + var(--sp-2)) !important;
+  padding-bottom: var(--sp-4) !important;
+  min-height: auto !important;
+  display: block !important;
+}
+
+.compact-hero > .container {
+  display: block !important;
+  min-height: auto !important;
+}
+
+.compact-hero__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  width: 100%;
+}
+
+.compact-hero__row {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+}
+
+.compact-hero__copy {
+  max-width: min(760px, 100%);
+}
+
+.compact-hero__aside {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.compact-hero__copy .page-hero__eyebrow,
+.compact-hero__copy .bs-hero__eyebrow,
+.compact-hero__copy .bs-hero__breadcrumb,
+.compact-hero__copy .tag {
+  margin-bottom: var(--sp-3);
+}
+
+.compact-hero__copy .display-xl,
+.compact-hero__copy .page-hero__title,
+.compact-hero__copy .bs-hero__title {
+  margin-bottom: var(--sp-3);
+}
+
+.compact-hero__copy .page-hero__sub,
+.compact-hero__copy .games-hero__sub,
+.compact-hero__copy .blog-hero__sub,
+.compact-hero__copy .bs-hero__excerpt,
+.compact-hero__copy > p {
+  max-width: 620px;
+  margin-top: 0 !important;
+}
+
+.compact-hero__copy .bs-hero__meta {
+  padding-top: var(--sp-4);
+}
+
+.compact-hero__strip {
+  width: 100%;
+  margin-top: 0 !important;
+}
+
+.compact-hero--standalone {
+  min-height: auto !important;
+  padding: var(--sp-4) var(--sp-5) var(--sp-5) !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.compact-hero--standalone .cs-content {
+  max-width: 720px;
+  margin-inline: 0 !important;
+}
+
+.compact-hero--standalone .cs-icon-wrap {
+  margin: 0 0 var(--sp-4) !important;
+}
+
+.compact-hero--standalone .cs-sub {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: var(--sp-5) !important;
+}
+
+.compact-hero--standalone .cs-countdown,
+.compact-hero--standalone .cs-form,
+.compact-hero--standalone .compact-hero__cta {
+  justify-content: flex-start !important;
+}
+
+.compact-hero--standalone .cs-countdown,
+.compact-hero--standalone .cs-form {
+  margin-bottom: var(--sp-5);
+}
+
+@media (max-width: 768px) {
+  .compact-hero {
+    padding-top: calc(var(--nav-h) + var(--sp-2)) !important;
+    padding-bottom: var(--sp-4) !important;
+  }
+
+  .compact-hero__row {
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .compact-hero--standalone {
+    padding: var(--sp-4) var(--sp-4) var(--sp-4) !important;
+  }
+}
