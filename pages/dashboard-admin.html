@@ -348,57 +348,59 @@
                 Full queue <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
               </a>
             </div>
-            <div class="dash-card__body" style="padding:0;">
-              <div class="forum-list">
-
-                <div class="forum-row">
-                  <div class="forum-row__avatar" aria-hidden="true">??</div>
-                  <div style="flex:1;">
-                    <div class="forum-row__title">Spam post — "Buy cheap meeples at..."</div>
-                    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Citadels · flagged by 3 users · 5 min ago</div>
+            <div class="dash-feed">
+              <div class="dash-feed-item dash-feed-item--alert">
+                <div class="dash-feed-item__avatar" aria-hidden="true">??</div>
+                <div class="dash-feed-item__body">
+                  <div class="dash-feed-item__head">
+                    <strong class="dash-table__name">Spam post — "Buy cheap meeples at..."</strong>
+                    <span class="status-pill status-pill--alert" style="font-size:0.62rem;">Spam</span>
+                    <span class="dash-feed-item__meta">Citadels · flagged by 3 users · 5 min ago</span>
                   </div>
-                  <div style="display:flex;gap:var(--sp-2);">
+                  <p class="dash-feed-item__content">Three backers flagged a suspicious sales link in the strategy forum and it is queued for review.</p>
+                  <div class="dash-actions-row">
                     <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
-                      <i class="fa-solid fa-check" aria-hidden="true"></i>
+                      <i class="fa-solid fa-check" aria-hidden="true"></i> Approve
                     </button>
                     <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
-                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete
                     </button>
                   </div>
                 </div>
+              </div>
 
-                <div class="forum-row">
-                  <div class="forum-row__avatar" aria-hidden="true">TK</div>
-                  <div style="flex:1;">
-                    <div class="forum-row__title">Off-topic: "Anyone want to trade Kickstarters?"</div>
-                    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">General · flagged by 1 user · 1h ago</div>
+              <div class="dash-feed-item dash-feed-item--warning">
+                <div class="dash-feed-item__avatar" aria-hidden="true">TK</div>
+                <div class="dash-feed-item__body">
+                  <div class="dash-feed-item__head">
+                    <strong class="dash-table__name">Off-topic: "Anyone want to trade Kickstarters?"</strong>
+                    <span class="dash-feed-item__meta">General · flagged by 1 user · 1h ago</span>
                   </div>
-                  <div style="display:flex;gap:var(--sp-2);">
+                  <p class="dash-feed-item__content">The thread is drifting away from the community guidelines and may need a moderator note instead of removal.</p>
+                  <div class="dash-actions-row">
                     <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
-                      <i class="fa-solid fa-check" aria-hidden="true"></i>
+                      <i class="fa-solid fa-check" aria-hidden="true"></i> Keep live
                     </button>
                     <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
-                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                      <i class="fa-solid fa-trash" aria-hidden="true"></i> Remove
                     </button>
                   </div>
                 </div>
+              </div>
 
-                <div class="forum-row">
-                  <div class="forum-row__avatar" aria-hidden="true">AN</div>
-                  <div style="flex:1;">
-                    <div class="forum-row__title">Disputed rules interpretation — needs mod clarity</div>
-                    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Citadels Strategy · 2h ago</div>
+              <div class="dash-feed-item dash-feed-item--secondary">
+                <div class="dash-feed-item__avatar" aria-hidden="true">AN</div>
+                <div class="dash-feed-item__body">
+                  <div class="dash-feed-item__head">
+                    <strong class="dash-table__name">Disputed rules interpretation — needs mod clarity</strong>
+                    <span class="dash-feed-item__meta">Citadels Strategy · 2h ago</span>
                   </div>
-                  <div style="display:flex;gap:var(--sp-2);">
-                    <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
-                      <i class="fa-solid fa-check" aria-hidden="true"></i>
-                    </button>
-                    <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
-                      <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                    </button>
+                  <p class="dash-feed-item__content">Players are split on an ability timing edge case, so this thread needs an official clarification rather than moderation action.</p>
+                  <div class="dash-actions-row">
+                    <button class="btn btn--ghost btn--sm" type="button" aria-label="Reply with guidance">Reply with guidance</button>
+                    <button class="btn btn--ghost btn--sm" type="button" aria-label="Pin answer">Pin answer</button>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

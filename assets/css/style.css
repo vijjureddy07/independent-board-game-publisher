@@ -4303,26 +4303,6 @@ body.coming-soon-page .cs-page {
   padding: var(--sp-8) var(--sp-6) var(--sp-8);
 }
 
-.cs-topbar {
-  position: absolute;
-  top: var(--sp-5);
-  left: var(--sp-5);
-  right: var(--sp-5);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-3);
-  flex-wrap: wrap;
-}
-
-.cs-topbar__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  flex-wrap: wrap;
-}
-
 .cs-specs-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -6586,7 +6566,6 @@ body.dashboard-page .dash-main {
   .dash-subgrid { grid-template-columns: 1fr; }
   .dash-topbar__actions { justify-content: stretch; }
   .dash-topbar__search { flex-basis: 100%; }
-  .cs-topbar { top: var(--sp-4); left: var(--sp-4); right: var(--sp-4); }
 }
 
 @media (max-width: 480px) {
@@ -8046,4 +8025,114 @@ body.dashboard-page .dash-main {
 @media (max-width: 768px) {
   .section-eyebrow::before { display: none; }
   .policy-heading::before  { display: none; }
+}
+
+/* ─── LAYOUT TUNE-UPS ─────────────────────────────────────── */
+
+/* Inner-page heroes had accumulated too much offset above content. */
+.page-hero,
+.games-hero,
+.blog-hero,
+.contact-hero {
+  padding-top: calc(var(--nav-h) + var(--sp-7));
+}
+
+.gs-hero,
+.bs-hero,
+.forum-hero {
+  padding-top: calc(var(--nav-h) + var(--sp-6));
+  padding-bottom: var(--sp-7);
+}
+
+.thread-hero {
+  padding-top: calc(var(--nav-h) + var(--sp-6));
+  padding-bottom: var(--sp-6);
+}
+
+.cs-page,
+body.coming-soon-page .cs-page {
+  padding: clamp(var(--sp-5), 6vw, var(--sp-7)) var(--sp-5) var(--sp-6);
+}
+
+.cs-content {
+  width: min(100%, 700px);
+}
+
+/* Old dashboard rules still force .dash-page into a two-column grid.
+   Override them so the newer shell/grid components control layout. */
+body.dashboard-page .dash-page {
+  display: block;
+  grid-template-columns: none;
+  min-height: auto;
+  padding-top: 0;
+  min-width: 0;
+}
+
+body.dashboard-page .dash-main,
+body.dashboard-page .dash-content,
+body.dashboard-page .dash-grid-2,
+body.dashboard-page .dash-grid-3,
+body.dashboard-page .dash-grid-main-side {
+  min-width: 0;
+}
+
+body.dashboard-page .dash-grid-2,
+body.dashboard-page .dash-grid-3,
+body.dashboard-page .dash-grid-main-side {
+  align-items: stretch;
+}
+
+body.dashboard-page .dash-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+body.dashboard-page .dash-card__body,
+body.dashboard-page .dash-table-wrap,
+body.dashboard-page .dash-feed,
+body.dashboard-page .activity-feed,
+body.dashboard-page .forum-list {
+  min-width: 0;
+}
+
+body.dashboard-page .forum-row,
+body.dashboard-page .activity-item,
+body.dashboard-page .pnp-item,
+body.dashboard-page .forum-thread-item {
+  min-width: 0;
+}
+
+.dash-sidebar-toggle-row {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .dash-sidebar-toggle-row {
+    display: block;
+    margin-bottom: var(--sp-5);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-hero,
+  .games-hero,
+  .blog-hero,
+  .contact-hero {
+    padding-top: calc(var(--nav-h) + var(--sp-6));
+    padding-bottom: var(--sp-7);
+  }
+
+  .gs-hero,
+  .bs-hero,
+  .forum-hero,
+  .thread-hero {
+    padding-top: calc(var(--nav-h) + var(--sp-5));
+    padding-bottom: var(--sp-6);
+  }
+
+  .cs-page,
+  body.coming-soon-page .cs-page {
+    padding: var(--sp-5) var(--sp-4) var(--sp-6);
+  }
 }

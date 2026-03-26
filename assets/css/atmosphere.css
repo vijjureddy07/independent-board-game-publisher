@@ -802,6 +802,33 @@
     #111111 !important;
 }
 
+/* Shared moving colour fields for sections that felt too static. */
+.about-intro::before,
+.timeline::before,
+.games-featured::before,
+.games-section::before,
+.gs-body::before,
+.blog-featured::before,
+.blog-section::before,
+.bs-body::before,
+.bs-related::before,
+.h2-campaigns::before,
+.h2-portal::before,
+.h2-editorial::before {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  background:
+    radial-gradient(ellipse 42% 34% at 18% 18%,
+      rgba(212, 245, 60, 0.08) 0%, transparent 64%),
+    radial-gradient(ellipse 36% 40% at 84% 82%,
+      rgba(26, 74, 74, 0.08) 0%, transparent 66%);
+  opacity: 0.52;
+  pointer-events: none;
+  z-index: 1;
+  animation: atm-aurora 24s ease-in-out infinite;
+}
+
 
 /* ═══════════════════════════════════════════════════════════
    ⑱ COMING SOON — Pre-launch void, hex map + concentric rings
@@ -1176,6 +1203,17 @@
     var(--bg-secondary) !important;
 }
 
+[data-theme="light"] .timeline {
+  background:
+    radial-gradient(ellipse 64% 54% at 12% 16%,
+      rgba(74, 124, 0, 0.085) 0%, transparent 62%),
+    radial-gradient(ellipse 42% 50% at 88% 100%,
+      rgba(26, 74, 74, 0.04) 0%, transparent 62%),
+    linear-gradient(180deg,
+      rgba(74, 124, 0, 0.04) 0%, transparent 34%),
+    var(--bg-secondary) !important;
+}
+
 [data-theme="light"] .newsletter {
   background:
     conic-gradient(from 268deg at 50% 50%,
@@ -1284,6 +1322,26 @@
   color: #2D5000 !important;
 }
 
+[data-theme="light"] .about-intro::before,
+[data-theme="light"] .timeline::before,
+[data-theme="light"] .games-featured::before,
+[data-theme="light"] .games-section::before,
+[data-theme="light"] .gs-body::before,
+[data-theme="light"] .blog-featured::before,
+[data-theme="light"] .blog-section::before,
+[data-theme="light"] .bs-body::before,
+[data-theme="light"] .bs-related::before,
+[data-theme="light"] .h2-campaigns::before,
+[data-theme="light"] .h2-portal::before,
+[data-theme="light"] .h2-editorial::before {
+  background:
+    radial-gradient(ellipse 46% 36% at 18% 16%,
+      rgba(74, 124, 0, 0.14) 0%, transparent 62%),
+    radial-gradient(ellipse 38% 42% at 84% 84%,
+      rgba(26, 74, 74, 0.06) 0%, transparent 66%);
+  opacity: 0.72;
+}
+
 [data-theme="light"] .footer {
   background: var(--bg-primary) !important;
   border-top-color: rgba(74,124,0,0.12) !important;
@@ -1352,6 +1410,22 @@
   .page-hero::before,
   .games-hero::before { opacity: 0.3; }
 
+  .about-intro::before,
+  .timeline::before,
+  .games-featured::before,
+  .games-section::before,
+  .gs-body::before,
+  .blog-featured::before,
+  .blog-section::before,
+  .bs-body::before,
+  .bs-related::before,
+  .h2-campaigns::before,
+  .h2-portal::before,
+  .h2-editorial::before {
+    inset: -6%;
+    opacity: 0.35;
+  }
+
   /* Reduce animation on mobile */
   .timeline::after { animation-duration: 14s; }
   .newsletter::before { animation-duration: 7s; }
@@ -1375,6 +1449,18 @@
   .newsletter::before,
   .about-cta::before,
   .timeline::after,
+  .about-intro::before,
+  .timeline::before,
+  .games-featured::before,
+  .games-section::before,
+  .gs-body::before,
+  .blog-featured::before,
+  .blog-section::before,
+  .bs-body::before,
+  .bs-related::before,
+  .h2-campaigns::before,
+  .h2-portal::before,
+  .h2-editorial::before,
   .cs-page::after,
   .dash-main::before,
   .dash-main::after,
