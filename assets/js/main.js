@@ -20,8 +20,7 @@
  * 16. ContactForm     — contact page form validation + submit
  * 17. ReadingProgress — blog single reading progress bar
  * 18. FAQManager      — faq search filter
- * 19. InnerHeroManager — compact inner-page hero normalization
- * 20. PaginationManager — shared pagination buttons
+ * 19. PaginationManager — shared pagination buttons
  *
  * Exports on window.TTF:
  *   window.TTF.readingProgress(fillSel, contentSel)
@@ -1097,51 +1096,7 @@ const FAQManager = (() => {
 
 
 /* ─────────────────────────────────────────────────────────────
-   19. INNER HERO MANAGER — force compact inner-page hero layout
-───────────────────────────────────────────────────────────── */
-const InnerHeroManager = (() => {
-  function initHero(section) {
-    if (!section) return;
-
-    section.style.minHeight = 'auto';
-    section.style.display = 'block';
-
-    if (!section.classList.contains('compact-hero--standalone')) {
-      section.style.paddingTop = 'calc(var(--nav-h) + var(--sp-2))';
-      section.style.paddingBottom = 'var(--sp-4)';
-    } else {
-      section.style.padding = 'var(--sp-4) var(--sp-5) var(--sp-5)';
-      section.style.alignItems = 'flex-start';
-      section.style.justifyContent = 'flex-start';
-      section.style.textAlign = 'left';
-    }
-
-    const container = section.querySelector('.container');
-    if (container) {
-      container.style.display = 'block';
-      container.style.minHeight = 'auto';
-    }
-
-    const strip = section.querySelector('.compact-hero__strip');
-    if (strip) strip.style.marginTop = '0';
-
-    const content = section.querySelector('.cs-content');
-    if (content) {
-      content.style.maxWidth = '720px';
-      content.style.marginInline = '0';
-    }
-  }
-
-  function init() {
-    $$('[data-compact-hero], [data-compact-standalone]').forEach(initHero);
-  }
-
-  return { init };
-})();
-
-
-/* ─────────────────────────────────────────────────────────────
-   20. PAGINATION MANAGER — shared pagination buttons
+   19. PAGINATION MANAGER — shared pagination buttons
 ───────────────────────────────────────────────────────────── */
 const PaginationManager = (() => {
   function init() {
@@ -1173,6 +1128,5 @@ document.addEventListener('DOMContentLoaded', () => {
   ContactForm.init();
   ReadingProgress.init();
   FAQManager.init();
-  InnerHeroManager.init();
   PaginationManager.init();
 });

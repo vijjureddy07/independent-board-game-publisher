@@ -8066,9 +8066,8 @@ body.dashboard-page .dash-main {
   .policy-heading::before  { display: none; }
 }
 
-/* ─── LAYOUT TUNE-UPS ─────────────────────────────────────── */
+/* ─── INNER PAGE HERO SYSTEM ─────────────────────────────── */
 
-/* Inner-page heroes had accumulated too much offset above content. */
 .page-hero,
 .games-hero,
 .blog-hero,
@@ -8077,22 +8076,14 @@ body.dashboard-page .dash-main {
 .bs-hero,
 .forum-hero,
 .thread-hero {
-  padding-top: calc(var(--nav-h) + var(--sp-2));
-  padding-bottom: var(--sp-5);
+  padding-top: calc(var(--nav-h) + 40px);
+  padding-bottom: 40px;
   min-height: auto;
-}
-
-.cs-page,
-body.coming-soon-page .cs-page {
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: var(--sp-4) var(--sp-5) var(--sp-5);
-  text-align: left;
 }
 
 .page-hero::after,
 .games-hero::after {
-  display: none !important;
+  display: none;
 }
 
 .page-hero > .container,
@@ -8105,6 +8096,16 @@ body.coming-soon-page .cs-page {
 .thread-hero > .container {
   width: 100%;
   display: block;
+  min-height: auto;
+}
+
+.cs-page,
+body.coming-soon-page .cs-page {
+  min-height: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 40px 24px 32px;
 }
 
 .inner-hero-strip {
@@ -8311,6 +8312,25 @@ body.dashboard-page .activity-item {
   }
 }
 
+@media (max-width: 1024px) {
+  .page-hero,
+  .games-hero,
+  .blog-hero,
+  .contact-hero,
+  .gs-hero,
+  .bs-hero,
+  .forum-hero,
+  .thread-hero {
+    padding-top: calc(var(--nav-h) + 24px);
+    padding-bottom: 32px;
+  }
+
+  .cs-page,
+  body.coming-soon-page .cs-page {
+    padding: 32px 24px 28px;
+  }
+}
+
 @media (max-width: 768px) {
   .page-hero,
   .games-hero,
@@ -8320,24 +8340,13 @@ body.dashboard-page .activity-item {
   .bs-hero,
   .forum-hero,
   .thread-hero {
-    padding-top: calc(var(--nav-h) + var(--sp-2));
-    padding-bottom: var(--sp-4);
+    padding-top: calc(var(--nav-h) + 22px);
+    padding-bottom: 24px;
   }
 
   .cs-page,
   body.coming-soon-page .cs-page {
-    padding: var(--sp-4) var(--sp-4) var(--sp-4);
-  }
-
-  .page-hero > .container,
-  .games-hero > .container,
-  .blog-hero > .container,
-  .contact-hero > .container,
-  .gs-hero > .container,
-  .bs-hero > .container,
-  .forum-hero > .container,
-  .thread-hero > .container {
-    display: block;
+    padding: 24px 16px 24px;
   }
 
   .inner-hero-strip {
@@ -8351,19 +8360,7 @@ body.dashboard-page .activity-item {
   }
 }
 
-/* ─── COMPACT HERO REWRITE ────────────────────────────────── */
-
-.compact-hero {
-  padding-top: calc(var(--nav-h) + var(--sp-2)) !important;
-  padding-bottom: var(--sp-4) !important;
-  min-height: auto !important;
-  display: block !important;
-}
-
-.compact-hero > .container {
-  display: block !important;
-  min-height: auto !important;
-}
+/* ─── COMPACT HERO CONTENT ────────────────────────────────── */
 
 .compact-hero__stack {
   display: flex;
@@ -8419,55 +8416,38 @@ body.dashboard-page .activity-item {
 
 .compact-hero__strip {
   width: 100%;
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
-.compact-hero--standalone {
-  min-height: auto !important;
-  padding: var(--sp-4) var(--sp-5) var(--sp-5) !important;
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
-  text-align: left !important;
-}
-
-.compact-hero--standalone .cs-content {
+.cs-page .cs-content {
   max-width: 720px;
-  margin-inline: 0 !important;
+  margin-inline: 0;
 }
 
-.compact-hero--standalone .cs-icon-wrap {
-  margin: 0 0 var(--sp-4) !important;
+.cs-page .cs-icon-wrap {
+  margin: 0 0 var(--sp-4);
 }
 
-.compact-hero--standalone .cs-sub {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  margin-bottom: var(--sp-5) !important;
+.cs-page .cs-sub {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: var(--sp-5);
 }
 
-.compact-hero--standalone .cs-countdown,
-.compact-hero--standalone .cs-form,
-.compact-hero--standalone .compact-hero__cta {
-  justify-content: flex-start !important;
+.cs-page .cs-countdown,
+.cs-page .cs-form,
+.cs-page .compact-hero__cta {
+  justify-content: flex-start;
 }
 
-.compact-hero--standalone .cs-countdown,
-.compact-hero--standalone .cs-form {
+.cs-page .cs-countdown,
+.cs-page .cs-form {
   margin-bottom: var(--sp-5);
 }
 
 @media (max-width: 768px) {
-  .compact-hero {
-    padding-top: calc(var(--nav-h) + var(--sp-2)) !important;
-    padding-bottom: var(--sp-4) !important;
-  }
-
   .compact-hero__row {
     flex-direction: column;
     gap: var(--sp-4);
-  }
-
-  .compact-hero--standalone {
-    padding: var(--sp-4) var(--sp-4) var(--sp-4) !important;
   }
 }
