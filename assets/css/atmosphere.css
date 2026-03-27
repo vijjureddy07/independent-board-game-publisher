@@ -1,34 +1,8 @@
-/* ============================================================
-   TabletopForge — atmosphere.css  v2
-   
-   CONCEPT: "The Game Table at Night"
-   Board games live on dark wood tables under warm lamp light.
-   This file layers atmospheric depth across every section.
-   
-   HOW TO USE:
-   Add as the LAST <link> on every page:
-   <link rel="stylesheet" href="../assets/css/atmosphere.css" />
-   
-   WHAT IT DOES:
-   — Section-specific gradient backgrounds (no layout changes)
-   — SVG pattern overlays (hex grid, crosshatch, traces, grain)
-   — CSS animations (aurora orbs, scan lines, shimmer, pulse)
-   — Light mode: uses DARK accent variant for visibility
-   — Full responsive/mobile support
-   — Respects prefers-reduced-motion
-   ============================================================ */
-
-/* ─── DESIGN TOKENS ─────────────────────────────────────────
-   New atmospheric tones layered over existing palette.
-   Never override --accent, --bg-*, --text-* directly.
-───────────────────────────────────────────────────────────── */
 :root {
-  /* Atmospheric colour additions */
-  --atm-felt   : rgba(26, 74, 74, 1);       /* deep teal felt cloth */
-  --atm-amber  : rgba(139, 94, 26, 1);      /* candlelight on wood */
-  --atm-void   : #050507;                   /* deepest shadow */
+  --atm-felt   : rgba(26, 74, 74, 1);
+  --atm-amber  : rgba(139, 94, 26, 1);
+  --atm-void   : #050507;
 
-  /* SVG patterns — inline, zero external requests */
   --pat-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 
   --pat-felt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.06'/%3E%3C/svg%3E");
@@ -42,30 +16,20 @@
   --pat-trace: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0'  cy='0'  r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='80' cy='0'  r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='0'  cy='80' r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='80' cy='80' r='1.8' fill='rgba(212,245,60,0.05)'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='rgba(212,245,60,0.07)'/%3E%3Cline x1='0' y1='0' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3Cline x1='80' y1='0' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3Cline x1='0' y1='80' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3Cline x1='80' y1='80' x2='40' y2='40' stroke='rgba(212,245,60,0.022)' stroke-width='0.5'/%3E%3C/svg%3E");
 }
 
-/* ─── LIGHT MODE: DARK ACCENT ────────────────────────────────
-   #D4F53C on white is invisible. Use deep forest green instead.
-   This overrides --accent in light mode ONLY for atmosphere usage.
-   Core UI buttons/tags still use the original --accent variable
-   so we use a separate token here and apply it to decorative uses.
-───────────────────────────────────────────────────────────── */
 [data-theme="light"] {
-  /* Decorative accent for light mode — dark forest green */
   --atm-accent-light: #2D5000;
   --atm-accent-light-rgb: 45, 80, 0;
 
-  /* Override the CSS accent for light mode to stay visible */
   --accent        : #4A7C00;
   --accent-muted  : rgba(74, 124, 0, 0.12);
   --accent-border : rgba(74, 124, 0, 0.3);
 
-  /* Patterns for light mode use green instead of lime */
   --pat-cross: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40M0 40h40M0 0v40M40 0v40' stroke='rgba(45,80,0,0.06)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
   --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 0L56 16v48L28 80 0 64V16Z' fill='none' stroke='rgba(45,80,0,0.07)' stroke-width='0.8'/%3E%3Cpath d='M28 80L56 96v48L28 160 0 144V96Z' fill='none' stroke='rgba(45,80,0,0.07)' stroke-width='0.8'/%3E%3C/svg%3E");
   --pat-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='1' fill='rgba(45,80,0,0.1)'/%3E%3C/svg%3E");
   --pat-trace: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='80' cy='0' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='0' cy='80' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='80' cy='80' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='rgba(45,80,0,0.09)'/%3E%3Cline x1='0' y1='0' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='80' y1='0' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='0' y1='80' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='80' y1='80' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3C/svg%3E");
 }
 
-/* Light mode accent on interactive elements */
 [data-theme="light"] .tag--accent {
   color: #2D5000;
   background: rgba(45, 80, 0, 0.1);
@@ -94,11 +58,6 @@
 }
 
 
-/* ─── KEYFRAMES ──────────────────────────────────────────────
-   All animation definitions in one place.
-───────────────────────────────────────────────────────────── */
-
-/* Aurora drift — large background orbs breathing slowly */
 @keyframes atm-aurora {
   0%   { transform: translate(0, 0)       scale(1);    opacity: 0.55; }
   25%  { transform: translate(3%, -4%)    scale(1.03); opacity: 0.75; }
@@ -107,7 +66,6 @@
   100% { transform: translate(0, 0)       scale(1);    opacity: 0.55; }
 }
 
-/* Sweep shimmer — single pass across marquee / newsletter */
 @keyframes atm-sweep {
   from { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
   10%  { opacity: 1; }
@@ -115,13 +73,11 @@
   to   { transform: translateX(350%)  skewX(-12deg); opacity: 0; }
 }
 
-/* Slow radial pulse — for glowing rings */
 @keyframes atm-pulse {
   0%, 100% { opacity: 0.35; transform: scale(1); }
   50%       { opacity: 0.85; transform: scale(1.015); }
 }
 
-/* Scan line — downward crawl on timeline / hero panels */
 @keyframes atm-scan {
   0%   { top: 0%;   opacity: 0; }
   4%   { opacity: 1; }
@@ -129,7 +85,6 @@
   100% { top: 100%; opacity: 0; }
 }
 
-/* Particle float — upward drift used on coming-soon dots */
 @keyframes atm-float-up {
   0%   { transform: translateY(0)   opacity(0);   }
   8%   { opacity: 0.8; }
@@ -137,7 +92,6 @@
   100% { transform: translateY(-140px); opacity: 0; }
 }
 
-/* Gentle float — for decorative elements */
 @keyframes atm-hover {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-12px); }
@@ -158,7 +112,6 @@
   75%      { transform: translate3d(5%, -9%, 0) scale(1.12) rotate(5deg); }
 }
 
-/* Conic spin helper — NOT on by default, used where supported */
 @property --conic-a {
   syntax: '<angle>';
   inherits: false;
@@ -166,10 +119,6 @@
 }
 
 
-/* ─── ISOLATION LAYER ────────────────────────────────────────
-   Every section needs position:relative + isolation:isolate
-   so pseudo-elements and z-index stack correctly.
-───────────────────────────────────────────────────────────── */
 .hero, .marquee-strip,
 .campaigns, .features, .testimonials, .newsletter,
 .page-hero, .about-intro, .values, .timeline, .team, .about-cta,
@@ -184,7 +133,6 @@
   overflow: hidden;
 }
 
-/* All content inside atmosphere sections must sit above pseudo-layers */
 .hero > *:not(.hero__grid):not(.hero__orb),
 .campaigns > *, .features > *, .testimonials > *,
 .newsletter > *, .about-intro > *, .values > *,
@@ -207,9 +155,6 @@
 .hero__grid, .hero__orb { z-index: 0 !important; }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ① HERO — Electric campaign night
-═══════════════════════════════════════════════════════════ */
 .hero {
   background:
     radial-gradient(ellipse 55% 65% at 84% 8%,
@@ -219,7 +164,6 @@
     #0A0A0A !important;
 }
 
-/* Hex map grid fades in at top-right where the glow lives */
 .hero::after {
   content: '';
   position: absolute;
@@ -233,7 +177,6 @@
   -webkit-mask-image: radial-gradient(ellipse 75% 75% at 85% 15%, black 0%, transparent 65%);
 }
 
-/* Aurora orb upgrades — stronger, animated */
 .hero__orb--1 {
   background: radial-gradient(ellipse,
     rgba(212, 245, 60, 0.1)  0%,
@@ -252,9 +195,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ② MARQUEE STRIP — Sheen sweep
-═══════════════════════════════════════════════════════════ */
 .marquee-strip {
   background:
     linear-gradient(90deg,
@@ -266,7 +206,6 @@
     #0d0d0f !important;
 }
 
-/* Sweeping shimmer every 6s */
 .marquee-strip::before {
   content: '';
   position: absolute;
@@ -282,9 +221,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ③ CAMPAIGNS — Active board, crosshatch map
-═══════════════════════════════════════════════════════════ */
 .campaigns {
   background:
     radial-gradient(ellipse 68% 52% at 12% 50%,
@@ -316,9 +252,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ④ FEATURES — Rulebook spread, circuit traces
-═══════════════════════════════════════════════════════════ */
 .features {
   background:
     linear-gradient(148deg,
@@ -349,9 +282,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑤ TESTIMONIALS — Intimate review room, noise grain
-═══════════════════════════════════════════════════════════ */
 .testimonials {
   background:
     radial-gradient(ellipse 78% 58% at 50% 50%,
@@ -376,9 +306,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑥ NEWSLETTER — Spotlight beam, conic + radial
-═══════════════════════════════════════════════════════════ */
 .newsletter {
   background:
     conic-gradient(
@@ -394,7 +321,6 @@
   border-bottom-color: rgba(212, 245, 60, 0.1) !important;
 }
 
-/* Breathing pulse behind newsletter */
 .newsletter::before {
   content: '';
   position: absolute;
@@ -411,9 +337,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑦ PAGE HERO (inner pages) — Campaign cover art, hex fade
-═══════════════════════════════════════════════════════════ */
 .page-hero {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -438,13 +361,9 @@
     rgba(0,0,0,0.9) 0%, transparent 75%);
 }
 
-/* Kill old diagonal rule */
 .page-hero::after { display: none !important; }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑧ ABOUT INTRO — Split candlelight, warm left / cool right
-═══════════════════════════════════════════════════════════ */
 .about-intro {
   background:
     radial-gradient(ellipse 44% 80% at 0% 50%,
@@ -457,9 +376,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑨ VALUES — Ceiling lamp radial sweep
-═══════════════════════════════════════════════════════════ */
 .values {
   background:
     radial-gradient(ellipse 92% 58% at 50% -4%,
@@ -481,9 +397,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑩ TIMELINE — Vertical light source, animated scan line
-═══════════════════════════════════════════════════════════ */
 .timeline {
   background:
     linear-gradient(to bottom,
@@ -495,7 +408,6 @@
     #111111 !important;
 }
 
-/* Scan line crawls down — timeline log feel */
 .timeline::after {
   content: '';
   position: absolute;
@@ -513,9 +425,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑪ TEAM — Studio session, felt surface + overhead glow
-═══════════════════════════════════════════════════════════ */
 .team {
   background:
     radial-gradient(ellipse 100% 48% at 50% 0%,
@@ -537,9 +446,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑫ ABOUT CTA — The funded moment. Maximum electric energy.
-═══════════════════════════════════════════════════════════ */
 .about-cta {
   background:
     radial-gradient(ellipse 68% 105% at 50% 50%,
@@ -566,9 +472,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑬ GAMES PAGES
-═══════════════════════════════════════════════════════════ */
 .games-hero {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -626,9 +529,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑭ BLOG PAGES
-═══════════════════════════════════════════════════════════ */
 .blog-hero {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -678,9 +578,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑮ CONTACT PAGE
-═══════════════════════════════════════════════════════════ */
 .contact-hero {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -713,9 +610,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑯ FORUM PAGES
-═══════════════════════════════════════════════════════════ */
 .forum-hero {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -735,9 +629,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑰ HOME PAGE 2
-═══════════════════════════════════════════════════════════ */
 .h2-hero {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -775,7 +666,6 @@
     #111111 !important;
 }
 
-/* ── PADDING FIX — loaded last so these !important win ──────── */
 .page-hero,
 .games-hero,
 .blog-hero,
@@ -817,7 +707,6 @@
   }
 }
 
-/* ── Lime-only subtle ambient glow on hero ::before ─────────── */
 .page-hero::before,
 .games-hero::before,
 .blog-hero::before,
@@ -843,7 +732,6 @@
   -webkit-mask: none;
 }
 
-/* Shared lime-only ambient for content sections */
 .about-intro::before,
 .timeline::before,
 .games-featured::before,
@@ -872,9 +760,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑱ COMING SOON — uniform dark, lime bloom
-═══════════════════════════════════════════════════════════ */
 .cs-page {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -884,7 +769,6 @@
     #0A0A0A !important;
 }
 
-/* Soft centre bloom */
 .cs-page::after {
   content: '';
   position: absolute;
@@ -906,9 +790,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑲ 404 PAGE — Lost at sea
-═══════════════════════════════════════════════════════════ */
 .e404-page {
   background:
     radial-gradient(ellipse 55% 70% at 88% 0%,
@@ -928,9 +809,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ⑳ DASHBOARD — Administration noir, subtle accent
-═══════════════════════════════════════════════════════════ */
 .dash-main {
   background:
     radial-gradient(ellipse 58% 38% at 102% 0%,
@@ -975,7 +853,6 @@
   animation: atm-aurora 24s ease-in-out infinite reverse;
 }
 
-/* Stat card hover gets accent micro-glow */
 .dash-stat-card:hover {
   background:
     radial-gradient(ellipse 105% 48% at 50% 0%,
@@ -988,9 +865,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ㉑ FOOTER — End of session, deep and quiet
-═══════════════════════════════════════════════════════════ */
 .footer {
   background:
     radial-gradient(ellipse 58% 38% at 50% 0%,
@@ -1000,11 +874,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   CARD ATMOSPHERE UPGRADES
-═══════════════════════════════════════════════════════════ */
-
-/* Campaign cards — lit from top edge */
 .campaign-card {
   background:
     linear-gradient(180deg,
@@ -1012,7 +881,6 @@
     var(--bg-secondary) !important;
 }
 
-/* Game cards — accent bloom on hover */
 .game-card:hover {
   background:
     radial-gradient(ellipse 80% 38% at 50% 0%,
@@ -1020,7 +888,6 @@
     var(--bg-primary) !important;
 }
 
-/* Feature item active */
 .feature-item.active {
   background:
     radial-gradient(ellipse 85% 62% at 0% 50%,
@@ -1028,7 +895,6 @@
     var(--bg-card) !important;
 }
 
-/* Testimonial cards */
 .testi-card {
   background:
     linear-gradient(138deg,
@@ -1036,7 +902,6 @@
     var(--bg-secondary) !important;
 }
 
-/* Dash cards */
 .dash-card {
   background:
     linear-gradient(180deg,
@@ -1044,7 +909,6 @@
     var(--bg-secondary) !important;
 }
 
-/* Blog + game sidebar cards */
 .gs-sidebar-card,
 .blog-sidebar__card,
 .forum-sidebar-card {
@@ -1054,7 +918,6 @@
     var(--bg-secondary) !important;
 }
 
-/* Featured campaign card glow line */
 .h2-featured-card::before {
   background: linear-gradient(90deg,
     transparent,
@@ -1063,7 +926,6 @@
   opacity: 0.6;
 }
 
-/* H2 camp card live top border glow */
 .h2-camp-card--live::before {
   background: linear-gradient(90deg,
     transparent,
@@ -1072,11 +934,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   ACCENT EXPANSION — more visible lime usage
-═══════════════════════════════════════════════════════════ */
-
-/* Section eyebrow line */
 .section-eyebrow::before {
   content: '';
   display: inline-block;
@@ -1088,7 +945,6 @@
   vertical-align: middle;
 }
 
-/* Active nav link underline */
 .nav__link.active {
   color: var(--text-primary) !important;
   position: relative;
@@ -1103,54 +959,42 @@
   border-radius: 99px;
 }
 
-/* Timeline active dot */
 .timeline-item.active::before,
 .timeline-item:hover::before {
   box-shadow: 0 0 0 5px rgba(212,245,60,0.16) !important;
 }
 
-/* Value card top accent */
 .value-card:hover::before { background: var(--accent) !important; }
 
-/* Team card hover */
 .team-card:hover { border-color: rgba(212,245,60,0.2) !important; }
 
-/* Footer brand dot */
 .footer__brand-name::before {
   content: none !important;
   display: none !important;
 }
 
-/* Progress fill 100% glow */
 .progress__fill[data-width="100"],
 .campaign-card:first-child .progress__fill {
   background: var(--accent) !important;
   box-shadow: 0 0 8px rgba(212,245,60,0.35);
 }
 
-/* Arrow link accent */
 .arrow-link:hover { color: var(--accent) !important; }
 
-/* Chip hover */
 .chip:hover {
   border-color: var(--accent-border);
   color: var(--text-primary);
 }
 
-/* Dash active item icon */
 .dash-nav__item.active i,
 .dash-nav-item.active i { color: var(--accent); }
 
-/* Nav dropdown hover border */
 .nav__dropdown-link:hover {
   background: var(--accent-muted) !important;
   color: var(--text-primary) !important;
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   LIGHT MODE — All sections re-themed for readability
-═══════════════════════════════════════════════════════════ */
 [data-theme="light"] .hero,
 [data-theme="light"] .page-hero,
 [data-theme="light"] .games-hero,
@@ -1371,7 +1215,6 @@
   border-top-color: rgba(74,124,0,0.12) !important;
 }
 
-/* Light mode — tone down dark-only texture opacities */
 [data-theme="light"] .campaigns::before,
 [data-theme="light"] .values::before,
 [data-theme="light"] .features::before,
@@ -1397,11 +1240,6 @@
 [data-theme="light"] .dash-main::after     { opacity: 0.65; }
 
 
-/* ═══════════════════════════════════════════════════════════
-   MOBILE & RESPONSIVE FIXES
-═══════════════════════════════════════════════════════════ */
-
-/* On mobile, reduce gradient complexity for performance */
 @media (max-width: 768px) {
   .hero {
     background:
@@ -1430,13 +1268,11 @@
         rgba(212,245,60,0.035) 0%, transparent 45%),
       var(--bg-secondary) !important;
   }
-  /* Kill heavy pattern overlays on mobile */
   .campaigns::before,
   .features::before,
   .contact-section::before,
   .team::before { display: none; }
 
-  /* Keep hex and dots but reduce opacity */
   .page-hero::before,
   .games-hero::before,
   .blog-hero::before,
@@ -1463,7 +1299,6 @@
     opacity: 0.35;
   }
 
-  /* Reduce animation on mobile */
   .timeline::after { animation-duration: 14s; }
   .newsletter::before { animation-duration: 7s; }
   .about-cta::before  { animation-duration: 8s; }
@@ -1472,19 +1307,11 @@
   .h2-hero__bg { animation-duration: 18s; }
 }
 
-/* Tablet adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
   .cs-page::after { width: 480px; height: 480px; }
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   CONTINUOUS SECTION FLOW — uniform dark with lime only
-   All sections share one consistent dark base. No teal.
-   No amber. Subtle lime glow only.
-═══════════════════════════════════════════════════════════ */
-
-/* ── ::before — shared ambient lime glow ────────────────────── */
 .page-hero::before,
 .about-intro::before,
 .values::before,
@@ -1530,7 +1357,6 @@
   -webkit-mask: none;
 }
 
-/* ── ::after — secondary lime accent ────────────────────────── */
 .page-hero::after,
 .games-hero::after,
 .blog-hero::after,
@@ -1555,7 +1381,6 @@
   animation: atm-fluid-alt 34s linear infinite;
 }
 
-/* ── Light mode overrides ────────────────────────────────────── */
 [data-theme="light"] .page-hero,
 [data-theme="light"] .about-intro,
 [data-theme="light"] .values,
@@ -1682,9 +1507,6 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════
-   REDUCED MOTION — respect user preference
-═══════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   .marquee-strip::before,
   .newsletter::before,

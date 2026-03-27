@@ -1,38 +1,30 @@
 /* ============================================================
    TabletopForge — style.css
-   Fonts  : Syne (headings) + DM Sans (body)
-   Palette: #0A0A0A · #F4F4F4 · #D4F53C (accent, used sparingly)
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 /* ─── 1. CSS VARIABLES ──────────────────────────────────────── */
 :root {
-  /* Backgrounds */
   --bg-primary    : #0A0A0A;
   --bg-secondary  : #111111;
   --bg-card       : #161616;
   --bg-card-hover : #1C1C1C;
 
-  /* Text */
   --text-primary  : #F4F4F4;
   --text-secondary: #B3B3B3;
   --text-muted    : #8A8A8A;
 
-  /* Accent — use sparingly */
   --accent        : #D4F53C;
   --accent-muted  : rgba(212, 245, 60, 0.10);
   --accent-border : rgba(212, 245, 60, 0.25);
 
-  /* Borders */
   --border        : rgba(255, 255, 255, 0.07);
   --border-hover  : rgba(255, 255, 255, 0.14);
 
-  /* Typography */
   --font-head     : 'Syne', sans-serif;
   --font-body     : 'DM Sans', sans-serif;
 
-  /* Spacing scale (8px base) */
   --sp-1 :  4px;
   --sp-2 :  8px;
   --sp-3 : 12px;
@@ -43,22 +35,18 @@
   --sp-8 : 64px;
   --sp-9 : 96px;
 
-  /* Radius */
   --r-sm : 6px;
   --r-md : 10px;
   --r-lg : 16px;
   --r-xl : 24px;
 
-  /* Transitions */
   --t-fast  : 0.18s ease;
   --t-mid   : 0.32s ease;
   --t-slow  : 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Nav */
   --nav-h : 68px;
 }
 
-/* Light mode overrides */
 [data-theme="light"] {
   --bg-primary    : #F4F4F4;
   --bg-secondary  : #FFFFFF;
@@ -222,12 +210,11 @@ h1, h2, h3, h4, h5, h6 {
   cursor         : pointer;
   transition     : transform var(--t-fast), background var(--t-fast), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
   white-space    : nowrap;
-  min-height     : 48px; /* touch-friendly */
+  min-height     : 48px;
   position       : relative;
   overflow       : hidden;
 }
 
-/* ripple pseudo-element */
 .btn::after {
   content        : '';
   position       : absolute;
@@ -238,7 +225,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn:active { transform: scale(0.97); }
 
-/* Primary */
 .btn--primary {
   background : var(--text-primary);
   color      : var(--bg-primary);
@@ -251,7 +237,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow : 0 0 28px rgba(212, 245, 60, 0.2);
 }
 
-/* Ghost */
 .btn--ghost {
   background  : transparent;
   color       : var(--text-primary);
@@ -262,7 +247,6 @@ h1, h2, h3, h4, h5, h6 {
   background  : transparent;
 }
 
-/* Accent (used very rarely) */
 .btn--accent {
   background : var(--accent);
   color      : #0A0A0A;
@@ -294,7 +278,6 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid transparent;
 }
 
-/* scrolled state added via JS */
 .nav.scrolled {
   background     : rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(18px);
@@ -315,7 +298,6 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--sp-5);
 }
 
-/* Logo */
 .nav__logo {
   display    : flex;
   align-items: center;
@@ -374,7 +356,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* Center nav links */
 .nav__links {
   display    : flex;
   align-items: center;
@@ -406,7 +387,6 @@ h1, h2, h3, h4, h5, h6 {
 .nav__link svg { transition: transform var(--t-fast); }
 .nav__item:hover .nav__link svg { transform: rotate(180deg); }
 
-/* Dropdown */
 .nav__dropdown {
   position  : absolute;
   top       : calc(100% + 10px);
@@ -452,7 +432,6 @@ h1, h2, h3, h4, h5, h6 {
   display  : block;
 }
 
-/* Right controls */
 .nav__controls {
   display    : flex;
   align-items: center;
@@ -460,7 +439,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-/* Theme toggle */
 .nav__icon-btn {
   width        : 40px;
   height       : 40px;
@@ -491,7 +469,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--r-sm);
 }
 
-/* Hamburger */
 .nav__hamburger {
   display : none;
   flex-direction: column;
@@ -521,7 +498,6 @@ h1, h2, h3, h4, h5, h6 {
 .nav__hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
 .nav__hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* Mobile nav drawer */
 .nav__mobile {
   display    : none;
   position   : fixed;
@@ -589,7 +565,6 @@ h1, h2, h3, h4, h5, h6 {
   overflow  : hidden;
 }
 
-/* Grain texture overlay */
 .hero::before {
   content : '';
   position: absolute;
@@ -601,7 +576,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity : 0.6;
 }
 
-/* Floating grid lines */
 .hero__grid {
   position: absolute;
   inset   : 0;
@@ -632,7 +606,6 @@ h1, h2, h3, h4, h5, h6 {
   50%       { opacity: 0.8; }
 }
 
-/* Glowing orb */
 .hero__orb {
   position     : absolute;
   border-radius: 50%;
@@ -671,7 +644,6 @@ h1, h2, h3, h4, h5, h6 {
   padding  : 36px 0 32px;
 }
 
-/* Eyebrow label */
 .hero__label {
   display    : inline-flex;
   align-items: center;
@@ -686,7 +658,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--accent);
 }
 
-/* Main headline */
 .hero__title {
   margin-bottom: 24px;
   animation    : fade-up 0.9s 0.1s var(--t-slow) both;
@@ -711,7 +682,6 @@ h1, h2, h3, h4, h5, h6 {
   to   { transform: translateY(0); }
 }
 
-/* Subtitle */
 .hero__sub {
   max-width    : 520px;
   color        : var(--text-secondary);
@@ -721,7 +691,6 @@ h1, h2, h3, h4, h5, h6 {
   animation    : fade-up 1s 0.35s var(--t-slow) both;
 }
 
-/* CTA row */
 .hero__ctas {
   display    : flex;
   align-items: center;
@@ -731,7 +700,6 @@ h1, h2, h3, h4, h5, h6 {
   animation  : fade-up 1s 0.45s var(--t-slow) both;
 }
 
-/* Stats bar */
 .hero__stats {
   display      : flex;
   gap          : var(--sp-8);
@@ -757,7 +725,6 @@ h1, h2, h3, h4, h5, h6 {
   display  : block;
 }
 
-/* Scroll indicator */
 .hero__scroll {
   position : absolute;
   bottom   : var(--sp-6);
@@ -862,7 +829,6 @@ h1, h2, h3, h4, h5, h6 {
   overflow    : hidden;
 }
 
-/* hover fill animation */
 .campaign-card::before {
   content   : '';
   position  : absolute;
@@ -888,7 +854,6 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
 }
 
-/* FA icon replaces old emoji in campaign cards */
 .campaign-card__icon {
   font-size    : 2.2rem;
   margin-bottom: var(--sp-4);
@@ -903,7 +868,6 @@ h1, h2, h3, h4, h5, h6 {
   color    : var(--text-secondary);
 }
 
-/* FA icons inside nav dropdowns */
 .nav__dropdown-link i {
   font-size  : 13px;
   width      : 16px;
@@ -912,7 +876,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-/* FA icons inside feature accordion */
 .feature-item__icon i {
   font-size : 17px;
   color     : var(--text-secondary);
@@ -924,10 +887,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-/* FA icons in footer social links */
 .footer__social-link i { font-size: 13px; }
 
-/* FA icons in about page value + team cards */
 .value-card__icon i  { font-size: 1.8rem; color: var(--text-secondary); transition: color var(--t-mid); }
 .value-card:hover .value-card__icon i { color: var(--text-primary); }
 .team-card__photo i  { font-size: 1.8rem; color: var(--text-secondary); }
@@ -947,7 +908,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--sp-6);
 }
 
-/* Progress bar */
 .progress {
   margin-bottom: var(--sp-4);
 }
@@ -965,7 +925,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--text-muted);
   border-radius   : 99px;
   transition      : width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  width           : 0; /* animates in via JS */
+  width           : 0;
 }
 
 .campaign-card:first-child .progress__fill { background-color: var(--accent); }
@@ -989,7 +949,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top : var(--sp-5);
 }
 
-/* Arrow link */
 .arrow-link {
   display    : inline-flex;
   align-items: center;
@@ -1160,7 +1119,6 @@ h1, h2, h3, h4, h5, h6 {
   color    : var(--text-muted);
 }
 
-/* Carousel controls */
 .testi-controls {
   display    : flex;
   align-items: center;
@@ -1343,7 +1301,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer__col-link:hover { color: var(--text-primary); }
 
-/* Footer bottom bar */
 .footer__bottom {
   padding   : var(--sp-5) 0;
   display   : flex;
@@ -1382,7 +1339,6 @@ h1, h2, h3, h4, h5, h6 {
   to   { opacity: 1; }
 }
 
-/* Scroll-triggered reveal */
 .reveal {
   opacity  : 0;
   transform: translateY(32px);
@@ -1526,7 +1482,6 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom : 1px solid var(--border);
 }
 
-/* Diagonal rule behind text */
 .page-hero::after {
   content   : '';
   position  : absolute;
@@ -1597,7 +1552,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items          : center;
 }
 
-/* Decorative image block */
 .about-intro__visual {
   position     : relative;
   aspect-ratio : 4 / 5;
@@ -1617,7 +1571,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size    : 5rem;
 }
 
-/* Animated scan line on the image frame */
 .about-intro__img-frame::before {
   content   : '';
   position  : absolute;
@@ -1636,7 +1589,6 @@ h1, h2, h3, h4, h5, h6 {
   100% { top: 100%; opacity: 0; }
 }
 
-/* Floating card overlaid on the image */
 .about-intro__card {
   position     : absolute;
   bottom       : var(--sp-4);
@@ -1670,7 +1622,6 @@ h1, h2, h3, h4, h5, h6 {
   color    : var(--text-secondary);
 }
 
-/* Text side */
 .about-intro__text h2 {
   margin-bottom: var(--sp-5);
 }
@@ -1757,7 +1708,6 @@ h1, h2, h3, h4, h5, h6 {
   position : relative;
 }
 
-/* Vertical rule */
 .timeline__inner::before {
   content   : '';
   position  : absolute;
@@ -1774,7 +1724,6 @@ h1, h2, h3, h4, h5, h6 {
   position     : relative;
 }
 
-/* Dot on the line */
 .timeline-item::before {
   content       : '';
   position      : absolute;
@@ -1925,7 +1874,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ============================================================
    TabletopForge — index-2.css
-   Styles exclusive to Home Page 2 (campaign-focused layout)
    ============================================================ */
 
 /* ─── SPLIT HERO ─────────────────────────────────────────────── */
@@ -1938,7 +1886,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items   : center;
 }
 
-/* Subtle radial background glow */
 .h2-hero__bg {
   position  : absolute;
   inset     : 0;
@@ -1948,7 +1895,6 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
-/* Grain overlay reused from hero pattern */
 .h2-hero::before {
   content  : '';
   position : absolute;
@@ -1973,7 +1919,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── LEFT COL ───────────────────────────────────────────────── */
 .h2-hero__left { display: flex; flex-direction: column; gap: 0; }
 
-/* Live pill */
 .h2-hero__live-pill {
   display     : inline-flex;
   align-items : center;
@@ -2021,7 +1966,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--sp-6);
 }
 
-/* Trust bar */
 .h2-trust {
   display    : flex;
   align-items: center;
@@ -2063,7 +2007,6 @@ h1, h2, h3, h4, h5, h6 {
   animation    : float-card 6s ease-in-out infinite;
 }
 
-/* Top accent line on featured card */
 .h2-featured-card::before {
   content   : '';
   position  : absolute;
@@ -2108,7 +2051,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--sp-5);
 }
 
-/* Funding meter */
 .h2-featured-card__meter { margin-bottom: var(--sp-5); }
 
 .h2-meter-bar {
@@ -2134,7 +2076,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .h2-meter-labels strong { color: var(--text-primary); }
 
-/* Stats inside featured card */
 .h2-featured-card__stats {
   display              : grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2203,7 +2144,6 @@ h1, h2, h3, h4, h5, h6 {
   transform   : translateY(-4px);
 }
 
-/* Live card gets accent top border */
 .h2-camp-card--live::before {
   content   : '';
   position  : absolute;
@@ -2304,7 +2244,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--sp-4);
 }
 
-/* Mini tracker inside portal card */
 .h2-mini-tracker {
   display       : flex;
   flex-direction: column;
@@ -2340,7 +2279,6 @@ h1, h2, h3, h4, h5, h6 {
 .h2-track-step--active .h2-track-dot { background: var(--accent); border-color: var(--accent); }
 .h2-track-step--active span          { color: var(--text-primary); font-weight: 500; }
 
-/* Mini file list */
 .h2-file-list {
   display       : flex;
   flex-direction: column;
@@ -2367,7 +2305,6 @@ h1, h2, h3, h4, h5, h6 {
 .h2-file-item i { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
 .h2-file-size  { margin-left: auto; font-size: 0.72rem; color: var(--text-muted); }
 
-/* Mini forum preview */
 .h2-forum-preview {
   display       : flex;
   flex-direction: column;
@@ -2487,7 +2424,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ============================================================
    TabletopForge — games.css
-   Covers: games.html (listing) + game-single.html (detail)
    ============================================================ */
 
 /* ─── PAGE HERO  (reused from about, extended here) ─────────── */
@@ -2512,7 +2448,6 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
-/* floating orb — same as hero */
 .games-hero__orb {
   position      : absolute;
   width         : 500px;
@@ -2543,7 +2478,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
-/* Live count badge */
 .games-hero__live {
   display        : flex;
   align-items    : center;
@@ -2570,7 +2504,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink     : 0;
 }
 
-/* live-pulse defined in index-2.css — reused here */
 
 /* ─── FILTER BAR ─────────────────────────────────────────────── */
 .filter-bar {
@@ -2638,7 +2571,6 @@ h1, h2, h3, h4, h5, h6 {
   gap                  : var(--sp-4);
 }
 
-/* Game card */
 .game-card {
   background   : var(--bg-primary);
   border       : 1px solid var(--border);
@@ -2656,7 +2588,6 @@ h1, h2, h3, h4, h5, h6 {
   transform   : translateY(-5px);
 }
 
-/* Accent top line on live cards */
 .game-card--live::before {
   content   : '';
   position  : absolute;
@@ -2665,7 +2596,6 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--accent);
 }
 
-/* Thumbnail area */
 .game-card__thumb {
   aspect-ratio  : 4 / 3;
   background    : var(--bg-card);
@@ -2680,7 +2610,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink   : 0;
 }
 
-/* hover zoom on thumb icon */
 .game-card__thumb i {
   transition: transform var(--t-slow), color var(--t-mid);
   position  : relative;
@@ -2692,7 +2621,6 @@ h1, h2, h3, h4, h5, h6 {
   color    : var(--text-secondary);
 }
 
-/* subtle grid overlay on thumb */
 .game-card__thumb::before {
   content   : '';
   position  : absolute;
@@ -2703,7 +2631,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity   : 0.5;
 }
 
-/* Status badge on thumb */
 .game-card__badge {
   position     : absolute;
   top          : var(--sp-3);
@@ -2711,7 +2638,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index      : 2;
 }
 
-/* Card body */
 .game-card__body {
   padding      : var(--sp-5);
   display      : flex;
@@ -2751,7 +2677,6 @@ h1, h2, h3, h4, h5, h6 {
   flex         : 1;
 }
 
-/* Player / time / age chips */
 .game-card__chips {
   display  : flex;
   gap      : var(--sp-2);
@@ -2774,10 +2699,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .chip i { font-size: 9px; }
 
-/* Progress bar inside card */
 .game-card__progress { margin-bottom: var(--sp-4); }
 
-/* Card footer */
 .game-card__footer {
   display    : flex;
   align-items: center;
@@ -2894,7 +2817,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── GAME SINGLE PAGE ───────────────────────────────────────── */
 
-/* Hero — split layout */
 .gs-hero {
   padding-top   : calc(var(--nav-h) + 40px);
   padding-bottom: var(--sp-7);
@@ -2909,7 +2831,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items          : start;
 }
 
-/* Cover art */
 .gs-cover {
   position     : sticky;
   top          : calc(var(--nav-h) + var(--sp-6));
@@ -2945,7 +2866,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: float-card 6s ease-in-out infinite;
 }
 
-/* Thumbnail strip */
 .gs-cover__thumbs {
   display : flex;
   gap     : var(--sp-2);
@@ -2969,7 +2889,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .gs-thumb:hover, .gs-thumb.active { border-color: var(--border-hover); }
 
-/* Detail column */
 .gs-detail__breadcrumb {
   display    : flex;
   align-items: center;
@@ -3002,7 +2921,6 @@ h1, h2, h3, h4, h5, h6 {
   max-width    : 480px;
 }
 
-/* Quick specs table */
 .gs-specs {
   display              : grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3043,7 +2961,6 @@ h1, h2, h3, h4, h5, h6 {
   display    : block;
 }
 
-/* Funding meter (game single) */
 .gs-funding {
   background   : var(--bg-card);
   border       : 1px solid var(--border);
@@ -3134,7 +3051,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items          : start;
 }
 
-/* Tab nav */
 .gs-tabs {
   display      : flex;
   gap          : 0;
@@ -3163,11 +3079,9 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: var(--text-primary);
 }
 
-/* Tab panels */
 .gs-panel { display: none; }
 .gs-panel.active { display: block; }
 
-/* About tab */
 .gs-about p {
   font-size    : 0.95rem;
   color        : var(--text-secondary);
@@ -3182,7 +3096,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top   : var(--sp-6);
 }
 
-/* What's in the box */
 .gs-components {
   display              : grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3212,7 +3125,6 @@ h1, h2, h3, h4, h5, h6 {
 .gs-component__name { font-weight: 600; }
 .gs-component__qty  { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
 
-/* Designers tab */
 .gs-designers { display: flex; flex-direction: column; gap: var(--sp-4); }
 
 .gs-designer {
@@ -3289,7 +3201,6 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid var(--border);
 }
 
-/* Pledge tiers */
 .gs-tiers { display: flex; flex-direction: column; gap: var(--sp-2); }
 
 .gs-tier {
@@ -3357,7 +3268,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink   : 0;
 }
 
-/* Related games sidebar card */
 .gs-related { display: flex; flex-direction: column; gap: var(--sp-3); }
 
 .gs-related-item {
@@ -3419,7 +3329,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ============================================================
    TabletopForge — blog.css
-   Covers: blog.html (listing) + blog-single.html (article)
    ============================================================ */
 
 /* ─── BLOG HERO ──────────────────────────────────────────────── */
@@ -3483,7 +3392,6 @@ h1, h2, h3, h4, h5, h6 {
   min-height           : 460px;
 }
 
-/* Left — cover art panel */
 .blog-featured__cover {
   background     : var(--bg-card);
   display        : flex;
@@ -3506,7 +3414,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.12) rotate(-5deg);
 }
 
-/* Grid overlay on cover */
 .blog-featured__cover::before {
   content  : '';
   position : absolute;
@@ -3517,7 +3424,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity  : 0.5;
 }
 
-/* Scan line animation */
 .blog-featured__cover::after {
   content   : '';
   position  : absolute;
@@ -3529,7 +3435,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index   : 2;
 }
 
-/* Right — text panel */
 .blog-featured__body {
   padding         : var(--sp-8) var(--sp-7);
   display         : flex;
@@ -3645,7 +3550,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink   : 0;
 }
 
-/* reuses .filter-pill from games.css */
 
 /* ─── BLOG GRID ──────────────────────────────────────────────── */
 .blog-section { background: var(--bg-primary); }
@@ -3663,7 +3567,6 @@ h1, h2, h3, h4, h5, h6 {
   gap           : var(--sp-4);
 }
 
-/* Post card — horizontal layout */
 .post-card {
   display      : grid;
   grid-template-columns: 200px 1fr;
@@ -3681,7 +3584,6 @@ h1, h2, h3, h4, h5, h6 {
   transform   : translateY(-3px);
 }
 
-/* Thumbnail */
 .post-card__thumb {
   background     : var(--bg-card);
   display        : flex;
@@ -3715,7 +3617,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity  : 0.4;
 }
 
-/* Body */
 .post-card__body {
   padding        : var(--sp-5);
   display        : flex;
@@ -3791,7 +3692,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-sidebar__title i { font-size: 12px; }
 
-/* Recent posts list */
 .sidebar-posts { display: flex; flex-direction: column; gap: var(--sp-3); }
 
 .sidebar-post {
@@ -3831,7 +3731,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-post__date { font-size: 0.72rem; color: var(--text-muted); }
 
-/* Tags cloud */
 .sidebar-tags {
   display  : flex;
   gap      : var(--sp-2);
@@ -3856,7 +3755,6 @@ h1, h2, h3, h4, h5, h6 {
   color       : var(--text-secondary);
 }
 
-/* Newsletter sidebar */
 .sidebar-nl-input {
   width        : 100%;
   background   : var(--bg-card);
@@ -3875,7 +3773,6 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-nl-input::placeholder { color: var(--text-muted); }
 .sidebar-nl-input:focus        { border-color: var(--border-hover); }
 
-/* Pagination */
 .blog-pagination {
   display    : flex;
   align-items: center;
@@ -3911,7 +3808,6 @@ h1, h2, h3, h4, h5, h6 {
    BLOG SINGLE PAGE
 ═══════════════════════════════════════════ */
 
-/* Article hero */
 .bs-hero {
   padding-top   : calc(var(--nav-h) + 40px);
   padding-bottom: var(--sp-7);
@@ -3984,7 +3880,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap  : wrap;
 }
 
-/* Cover image area */
 .bs-cover {
   background    : var(--bg-secondary);
   border-bottom : 1px solid var(--border);
@@ -4043,7 +3938,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items          : start;
 }
 
-/* Article prose */
 .bs-article {
   max-width : 680px;
   font-size : 1rem;
@@ -4083,7 +3977,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .bs-article a:hover { color: var(--text-secondary); }
 
-/* Pull quote */
 .bs-article blockquote {
   margin         : var(--sp-7) 0;
   padding        : var(--sp-5) var(--sp-6);
@@ -4096,7 +3989,6 @@ h1, h2, h3, h4, h5, h6 {
   font-style     : italic;
 }
 
-/* Callout box */
 .bs-callout {
   background   : var(--bg-secondary);
   border       : 1px solid var(--border-hover);
@@ -4121,7 +4013,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height  : 1.7;
 }
 
-/* Inline image placeholder */
 .bs-inline-img {
   background   : var(--bg-secondary);
   border       : 1px solid var(--border);
@@ -4148,7 +4039,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity  : 0.4;
 }
 
-/* Tags + share row */
 .bs-article__footer {
   padding-top  : var(--sp-7);
   margin-top   : var(--sp-7);
@@ -4263,7 +4153,6 @@ h1, h2, h3, h4, h5, h6 {
   gap      : var(--sp-4);
 }
 
-/* Progress indicator */
 .bs-progress-bar {
   position  : fixed;
   top       : var(--nav-h);
@@ -4282,7 +4171,6 @@ h1, h2, h3, h4, h5, h6 {
   transition     : width 0.1s linear;
 }
 
-/* Table of contents */
 .bs-toc { display: flex; flex-direction: column; gap: var(--sp-1); }
 
 .bs-toc__item {
@@ -4404,7 +4292,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ============================================================
    TabletopForge — remaining-pages.css
-   Covers: coming-soon, 404, profile, forum, forum-thread
    ============================================================ */
 
 /* ═══════════════════════════════════════════
@@ -4457,7 +4344,6 @@ body.coming-soon-page .cs-page {
   font-weight: 700;
 }
 
-/* Background grid */
 .cs-page::before {
   content  : '';
   position : absolute;
@@ -4543,7 +4429,6 @@ body.coming-soon-page .cs-page {
   margin-right : auto;
 }
 
-/* Countdown */
 .cs-countdown {
   display        : flex;
   align-items    : center;
@@ -4590,7 +4475,6 @@ body.coming-soon-page .cs-page {
   margin-bottom: var(--sp-3);
 }
 
-/* Notify form */
 .cs-form {
   display        : flex;
   gap            : var(--sp-2);
@@ -4764,7 +4648,6 @@ body.coming-soon-page .cs-page {
   scrollbar-color: var(--border-hover) transparent;
 }
 
-/* User card at top */
 .dash-user-card {
   padding      : var(--sp-5);
   border-bottom: 1px solid var(--border);
@@ -4801,7 +4684,6 @@ body.coming-soon-page .cs-page {
   color    : var(--text-muted);
 }
 
-/* Nav sections */
 .dash-nav {
   flex    : 1;
   padding : var(--sp-4) 0;
@@ -4870,7 +4752,6 @@ body.coming-soon-page .cs-page {
   color: var(--accent);
 }
 
-/* Sidebar footer */
 .dash-sidebar-footer {
   padding      : var(--sp-4) var(--sp-5);
   border-top   : 1px solid var(--border);
@@ -4933,7 +4814,6 @@ body.coming-soon-page .cs-page {
 
 .dash-inner { padding: var(--sp-6) var(--sp-7); }
 
-/* Stat cards row */
 .dash-stats {
   display              : grid;
   grid-template-columns: repeat(4, 1fr);
@@ -4997,7 +4877,6 @@ body.coming-soon-page .cs-page {
   color    : var(--text-muted);
 }
 
-/* Card panels */
 .dash-grid {
   display              : grid;
   grid-template-columns: 1fr 1fr;
@@ -5048,7 +4927,6 @@ body.coming-soon-page .cs-page {
 
 .dash-card__body { padding: var(--sp-4) var(--sp-5); }
 
-/* Table component */
 .dash-table {
   width          : 100%;
   border-collapse: collapse;
@@ -5080,7 +4958,6 @@ body.coming-soon-page .cs-page {
 
 .dash-table td strong { color: var(--text-primary); font-weight: 600; }
 
-/* Status badges */
 .status-badge {
   display        : inline-flex;
   align-items    : center;
@@ -5102,7 +4979,6 @@ body.coming-soon-page .cs-page {
 .status-pending    { color: #F5C84A; border-color: rgba(245,200,74,0.3); background: rgba(245,200,74,0.08); }
 .status-transit    { color: #C78BF0; border-color: rgba(199,139,240,0.3); background: rgba(199,139,240,0.08); }
 
-/* Timeline tracker */
 .track-line {
   position  : relative;
   padding   : 0 0 0 var(--sp-5);
@@ -5156,7 +5032,6 @@ body.coming-soon-page .cs-page {
   color    : var(--text-muted);
 }
 
-/* File download list */
 .file-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r-md); overflow: hidden; }
 
 .file-item {
@@ -5176,7 +5051,6 @@ body.coming-soon-page .cs-page {
 .file-item__size { font-size: 0.72rem; color: var(--text-muted); }
 .file-item__new  { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-border); padding: 1px 6px; border-radius: 99px; background: var(--accent-muted); }
 
-/* Forum preview in dashboard */
 .forum-row {
   display    : flex;
   align-items: flex-start;
@@ -5303,9 +5177,7 @@ body.coming-soon-page .cs-page {
   align-self : flex-end;
 }
 
-/* reuses .gs-tab */
 
-/* Settings form */
 .settings-section {
   background   : var(--bg-secondary);
   border       : 1px solid var(--border);
@@ -5346,7 +5218,6 @@ body.coming-soon-page .cs-page {
 .settings-row__info h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; }
 .settings-row__info p  { font-size: 0.78rem; color: var(--text-muted); }
 
-/* Toggle switch */
 .toggle {
   position       : relative;
   width          : 42px;
@@ -5488,7 +5359,6 @@ body.coming-soon-page .cs-page {
   align-items          : start;
 }
 
-/* Category cards */
 .forum-categories { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin-bottom: var(--sp-6); }
 
 .forum-cat {
@@ -5531,7 +5401,6 @@ body.coming-soon-page .cs-page {
 
 .forum-cat__stats { margin-left: auto; text-align: right; font-size: 0.75rem; color: var(--text-muted); flex-shrink: 0; }
 
-/* Thread list */
 .thread-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
 
 .thread-item {
@@ -5600,7 +5469,6 @@ body.coming-soon-page .cs-page {
 
 .thread-item__stats { margin-left: auto; text-align: right; font-size: 0.72rem; color: var(--text-muted); flex-shrink: 0; }
 
-/* Forum sidebar */
 .forum-sidebar { position: sticky; top: calc(var(--nav-h) + var(--sp-4)); display: flex; flex-direction: column; gap: var(--sp-4); }
 
 .forum-sidebar-card {
@@ -5644,7 +5512,6 @@ body.coming-soon-page .cs-page {
   align-items          : start;
 }
 
-/* Post card */
 .post-entry {
   background   : var(--bg-secondary);
   border       : 1px solid var(--border);
@@ -5706,7 +5573,6 @@ body.coming-soon-page .cs-page {
 .post-entry__body p:last-child { margin-bottom: 0; }
 .post-entry__body strong { color: var(--text-primary); font-weight: 600; }
 
-/* Reply composer */
 .reply-box {
   background   : var(--bg-secondary);
   border       : 1px solid var(--border);
@@ -5805,7 +5671,6 @@ body.coming-soon-page .cs-page {
 
 /* ============================================================
    TabletopForge — dashboard.css
-   Covers: dashboard-user.html + dashboard-admin.html
    ============================================================ */
 
 /* ─── DASHBOARD SHELL ────────────────────────────────────────── */
@@ -5844,7 +5709,6 @@ body.dashboard-page .dash-sidebar {
 .dash-sidebar::-webkit-scrollbar-track { background: transparent; }
 .dash-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
-/* Profile block at top of sidebar */
 .dash-profile {
   padding      : var(--sp-6);
   border-bottom: 1px solid var(--border);
@@ -5881,7 +5745,6 @@ body.dashboard-page .dash-sidebar {
   color    : var(--text-muted);
 }
 
-/* Nav sections */
 .dash-nav { padding: var(--sp-4) 0; flex: 1; }
 
 .dash-nav__section-label {
@@ -5946,7 +5809,6 @@ body.dashboard-page .dash-sidebar {
   color       : var(--accent);
 }
 
-/* Sidebar footer */
 .dash-sidebar__footer {
   padding   : var(--sp-4) var(--sp-5);
   border-top: 1px solid var(--border);
@@ -5979,7 +5841,6 @@ body.dashboard-page .dash-main {
   min-height: 100svh;
 }
 
-/* Page header */
 .dash-page-header {
   display      : flex;
   align-items  : center;
@@ -6539,7 +6400,6 @@ body.dashboard-page .dash-main {
 
 .dash-table td strong { color: var(--text-primary); font-weight: 600; }
 
-/* Status pills in table */
 .status-pill {
   display       : inline-flex;
   align-items   : center;
@@ -6572,7 +6432,6 @@ body.dashboard-page .dash-main {
   overflow       : hidden;
 }
 
-/* Animated bars */
 .chart-bar {
   flex          : 1;
   background    : var(--border);
@@ -6790,7 +6649,6 @@ body.dashboard-page .dash-main {
 
 /* ============================================================
    TabletopForge — contact.css
-   Covers: contact.html
    ============================================================ */
 
 /* ─── CONTACT HERO ───────────────────────────────────────────── */
@@ -6826,7 +6684,6 @@ body.dashboard-page .dash-main {
   align-items          : start;
 }
 
-/* Left — info column */
 .contact-info__intro {
   font-size    : 0.95rem;
   color        : var(--text-secondary);
@@ -6898,7 +6755,6 @@ body.dashboard-page .dash-main {
   display   : block;
 }
 
-/* Social links row */
 .contact-socials {
   display  : flex;
   gap      : var(--sp-2);
@@ -6926,7 +6782,6 @@ body.dashboard-page .dash-main {
 
 .contact-social-link i { font-size: 12px; }
 
-/* Right — form */
 .contact-form-card {
   background   : var(--bg-primary);
   border       : 1px solid var(--border);
@@ -6970,7 +6825,6 @@ body.dashboard-page .dash-main {
 
 .form-group.full-width { grid-column: 1 / -1; }
 
-/* Inputs — extended from style.css base */
 .form-input,
 .form-select,
 .form-textarea {
@@ -7045,7 +6899,6 @@ body.dashboard-page .dash-main {
 
 .form-submit-note i { font-size: 11px; }
 
-/* Success state */
 .form-success {
   display       : none;
   flex-direction: column;
@@ -7135,20 +6988,10 @@ body.dashboard-page .dash-main {
 
 /* ============================================================
    TabletopForge — visual-overhaul.css
-   Creative section backgrounds, expanded accent usage,
-   fluid gradients and atmospheric depth improvements.
-
-   Load this AFTER style.css on every page.
-   It never overrides layout — only adds visual richness.
    ============================================================ */
 
-/* ─── SECTION BACKGROUND SYSTEM ─────────────────────────────
-   Each section variant uses a layered approach:
-   base colour + subtle noise + optional radial accent glow.
-   All colours draw from the existing CSS variable palette.
-   ─────────────────────────────────────────────────────────── */
+/* ─── SECTION BACKGROUNDS ─────────────────────────────────── */
 
-/* Variant A — deep charcoal with accent warmth (primary sections) */
 .section-bg--a {
   background:
     radial-gradient(ellipse 80% 60% at 10% 0%,   rgba(212, 245, 60, 0.028) 0%, transparent 65%),
@@ -7157,7 +7000,6 @@ body.dashboard-page .dash-main {
   position: relative;
 }
 
-/* Variant B — raised secondary with side glow */
 .section-bg--b {
   background:
     radial-gradient(ellipse 50% 70% at 100% 50%, rgba(212, 245, 60, 0.022) 0%, transparent 60%),
@@ -7166,7 +7008,6 @@ body.dashboard-page .dash-main {
   position: relative;
 }
 
-/* Variant C — diagonal sweep (used for feature/editorial sections) */
 .section-bg--c {
   background:
     linear-gradient(135deg, rgba(212, 245, 60, 0.025) 0%, transparent 50%),
@@ -7174,14 +7015,12 @@ body.dashboard-page .dash-main {
     var(--bg-secondary);
 }
 
-/* Variant D — deep with centre bloom */
 .section-bg--d {
   background:
     radial-gradient(ellipse 90% 70% at 50% 50%, rgba(212, 245, 60, 0.02) 0%, transparent 70%),
     var(--bg-primary);
 }
 
-/* Light mode section overrides */
 [data-theme="light"] .section-bg--a,
 [data-theme="light"] .section-bg--b,
 [data-theme="light"] .section-bg--c,
@@ -7191,12 +7030,8 @@ body.dashboard-page .dash-main {
     var(--bg-secondary);
 }
 
-/* ─── APPLY VARIANTS TO EXISTING SECTIONS ───────────────────
-   We add the classes here so HTML doesn't need touching.
-   These selectors match the existing section class names.
-   ─────────────────────────────────────────────────────────── */
+/* ─── SECTION VARIANTS ─────────────────────────────────────── */
 
-/* Homepage */
 .campaigns    { background: unset; }
 .campaigns    { background:
     radial-gradient(ellipse 60% 50% at 0%   0%,   rgba(212, 245, 60, 0.028) 0%, transparent 60%),
@@ -7219,7 +7054,6 @@ body.dashboard-page .dash-main {
     linear-gradient(90deg, rgba(212, 245, 60, 0.035) 0%, transparent 40%, transparent 60%, rgba(212, 245, 60, 0.035) 100%),
     var(--bg-secondary); }
 
-/* Games page */
 .games-section { background: unset; }
 .games-section {
   background:
@@ -7232,7 +7066,6 @@ body.dashboard-page .dash-main {
     linear-gradient(135deg, rgba(212, 245, 60, 0.02) 0%, transparent 50%),
     var(--bg-primary); }
 
-/* About page */
 .values   { background: unset; }
 .values   {
   background:
@@ -7263,21 +7096,18 @@ body.dashboard-page .dash-main {
     radial-gradient(ellipse 60% 70% at 50% 50%, rgba(212, 245, 60, 0.028) 0%, transparent 65%),
     var(--bg-secondary); }
 
-/* Blog */
 .blog-section { background: unset; }
 .blog-section {
   background:
     linear-gradient(180deg, rgba(212, 245, 60, 0.018) 0%, transparent 30%),
     var(--bg-primary); }
 
-/* Forum */
 .forum-hero { background: unset; }
 .forum-hero {
   background:
     radial-gradient(ellipse 60% 80% at 80% 0%, rgba(212, 245, 60, 0.025) 0%, transparent 60%),
     var(--bg-primary); }
 
-/* Contact */
 .contact-section { background: unset; }
 .contact-section {
   background:
@@ -7285,7 +7115,6 @@ body.dashboard-page .dash-main {
     radial-gradient(ellipse 40% 60% at 100% 100%, rgba(212, 245, 60, 0.015) 0%, transparent 55%),
     var(--bg-secondary); }
 
-/* Home page 2 sections */
 .h2-campaigns { background: unset; }
 .h2-campaigns {
   background:
@@ -7306,11 +7135,8 @@ body.dashboard-page .dash-main {
     var(--bg-secondary); }
 
 
-/* ─── ACCENT COLOUR EXPANSION ────────────────────────────────
-   More visible uses of #D4F53C across UI without over-saturation
-   ─────────────────────────────────────────────────────────── */
+/* ─── ACCENT COLORS ────────────────────────────────────────── */
 
-/* Section eyebrow divider line */
 .section-eyebrow::before {
   content: '';
   display: inline-block;
@@ -7322,7 +7148,6 @@ body.dashboard-page .dash-main {
   border-radius: 99px;
 }
 
-/* Active nav link underline accent */
 .nav__link.active {
   color: var(--text-primary) !important;
   position: relative;
@@ -7339,26 +7164,21 @@ body.dashboard-page .dash-main {
   border-radius: 99px;
 }
 
-/* Timeline active dot glow */
 .timeline-item.active::before,
 .timeline-item:hover::before {
   box-shadow: 0 0 0 4px rgba(212, 245, 60, 0.15);
 }
 
-/* Value card top line accent on hover */
 .value-card:hover::before { background: var(--accent); }
 
-/* Campaign card first child progress — accent glow */
 [data-theme="dark"] .campaign-card:first-child .progress__fill {
   box-shadow: 0 0 10px rgba(212, 245, 60, 0.35);
 }
 
-/* Team card hover border accent */
 .team-card:hover {
   border-color: var(--accent-border);
 }
 
-/* Footer brand accent dot */
 .footer__brand-name::before {
   content: '';
   display: inline-block;
@@ -7370,50 +7190,41 @@ body.dashboard-page .dash-main {
   flex-shrink: 0;
 }
 
-/* Dashboard active nav item icon colour */
 .dash-nav-item.active i,
 .dash-nav__item.active i {
   color: var(--accent);
 }
 
-/* Feature item active icon border */
 .feature-item.active .feature-item__icon {
   background: var(--accent-muted);
 }
 
-/* Tag accent variant stronger border */
 .tag--accent {
   box-shadow: 0 0 0 1px var(--accent-border) inset;
 }
 
-/* Progress fill for funded campaigns */
 .progress__fill[data-width="100"] {
   background: var(--accent) !important;
 }
 
-/* Arrow link accent on hover */
 .arrow-link:hover {
   color: var(--accent);
 }
 
-/* Chip hover */
 .chip:hover {
   border-color: var(--accent-border);
   color: var(--text-primary);
 }
 
-/* Sidebar active item vertical bar */
 .dash-nav__item.active,
 .dash-nav-item.active {
   border-left-color: var(--accent);
 }
 
-/* Notification unread dot pulse */
 .notif-item.unread .notif-item__dot {
   animation: live-pulse 2.5s ease-in-out infinite;
 }
 
-/* Mini chart highlight bars */
 .mini-bar.highlight {
   background: rgba(212, 245, 60, 0.22) !important;
 }
@@ -7434,7 +7245,6 @@ body.dashboard-page .dash-main {
     var(--bg-primary);
 }
 
-/* Blog hero */
 .blog-hero {
   background: unset;
   background:
@@ -7442,7 +7252,6 @@ body.dashboard-page .dash-main {
     var(--bg-primary);
 }
 
-/* Games hero */
 .games-hero {
   background: unset;
   background:
@@ -7450,7 +7259,6 @@ body.dashboard-page .dash-main {
     var(--bg-primary);
 }
 
-/* Contact hero */
 .contact-hero {
   background: unset;
   background:
@@ -7458,7 +7266,6 @@ body.dashboard-page .dash-main {
     var(--bg-primary);
 }
 
-/* Forum hero */
 .forum-hero {
   background: unset;
   background:
@@ -7466,14 +7273,12 @@ body.dashboard-page .dash-main {
     var(--bg-primary);
 }
 
-/* Thread hero */
 .thread-hero {
   background:
     radial-gradient(ellipse 50% 60% at 70% 0%, rgba(212, 245, 60, 0.022) 0%, transparent 55%),
     var(--bg-primary);
 }
 
-/* BS Hero (blog single) */
 .bs-hero {
   background: unset;
   background:
@@ -7481,7 +7286,6 @@ body.dashboard-page .dash-main {
     var(--bg-primary);
 }
 
-/* BS Related */
 .bs-related {
   background: unset;
   background:
@@ -7513,7 +7317,6 @@ body.dashboard-page .dash-main {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Dash stat cards */
 .dash-stat-card:hover {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
@@ -7531,7 +7334,6 @@ body.dashboard-page .dash-main {
   margin: 0;
 }
 
-/* Auto-insert a faint accent line at the bottom of hero sections */
 .page-hero::before {
   content: '';
   position: absolute;
@@ -7543,28 +7345,22 @@ body.dashboard-page .dash-main {
   pointer-events: none;
 }
 
-/* ─── TYPOGRAPHY ACCENT HIGHLIGHTS ──────────────────────────
-   Subtle accent tint on display headings for depth
-   ─────────────────────────────────────────────────────────── */
+/* ─── TYPOGRAPHY ───────────────────────────────────────────── */
 
-/* Hero title partial accent — the last span in a multiline title */
 .hero__title-line:last-child span {
   color: var(--text-primary);
-  /* No full colour swap — keeps legibility */
 }
 
-/* Section subheadings get a faint accent left border */
 .display-md {
   position: relative;
 }
 
-/* Pulse animation reuse for various indicators */
 @keyframes live-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(212, 245, 60, 0.4); }
   50%       { box-shadow: 0 0 0 6px rgba(212, 245, 60, 0); }
 }
 
-/* ─── POLICY PAGES (privacy / terms) ─────────────────────── */
+/* ─── POLICY PAGES ────────────────────────────────────────── */
 
 .policy-section {
   margin-bottom: var(--sp-8);
@@ -7648,7 +7444,7 @@ body.dashboard-page .dash-main {
   background: var(--accent);
 }
 
-/* ─── FAQ PAGE STYLES ─────────────────────────────────────── */
+/* ─── FAQ PAGE ────────────────────────────────────────────── */
 
 .faq-group {
   background: var(--bg-primary);
@@ -7767,7 +7563,7 @@ body.dashboard-page .dash-main {
   text-underline-offset: 2px;
 }
 
-/* ─── LOGIN PAGE STYLES ──────────────────────────────────── */
+/* ─── LOGIN PAGE ──────────────────────────────────────────── */
 
 .auth-social-grid {
   display: grid;
@@ -7842,7 +7638,6 @@ body.dashboard-page .dash-main {
 .password-toggle:hover { color: var(--text-secondary); }
 
 /* ─── CONTACT FORM FIELDS ────────────────────────────────── */
-/* Matching contact.css field classes used in profile.html */
 .cf-field {
   display: flex;
   flex-direction: column;
@@ -7903,7 +7698,7 @@ body.dashboard-page .dash-main {
   cursor: pointer;
 }
 
-/* ─── ACTIVITY FEED (Admin Dashboard) ───────────────────── */
+/* ─── ACTIVITY FEED ───────────────────────────────────────── */
 
 .activity-feed {
   display: flex;
@@ -7956,7 +7751,7 @@ body.dashboard-page .dash-main {
   flex-shrink: 0;
 }
 
-/* ─── MINI CHART (Admin Dashboard) ──────────────────────── */
+/* ─── MINI CHART ──────────────────────────────────────────── */
 
 .mini-chart {
   display: flex;
@@ -8160,7 +7955,7 @@ body.dashboard-page .dash-main {
 
 .status-pill i { font-size: 8px; }
 
-/* ─── FORUM ROW (dashboard variant) ─────────────────────── */
+/* ─── FORUM ROW ───────────────────────────────────────────── */
 
 .forum-row__title {
   font-size: 0.85rem;
@@ -8177,11 +7972,10 @@ body.dashboard-page .dash-main {
 }
 
 /* ─── DASH SIDEBAR STRUCTURAL ALIASES ───────────────────── */
-/* dashboard-admin.html uses slightly different class names */
 
-.dash-sidebar__top { /* same as dash-profile wrapper */ }
+.dash-sidebar__top { }
 
-.dash-sidebar__nav { /* same as dash-nav */ }
+.dash-sidebar__nav { }
 
 .dash-sidebar__bottom {
   padding: var(--sp-4) var(--sp-5);
@@ -8221,7 +8015,7 @@ body.dashboard-page .dash-main {
   color: #e05555;
 }
 
-/* ─── CHANGE INDICATOR (Admin stat cards) ────────────────── */
+/* ─── CHANGE INDICATOR ────────────────────────────────────── */
 
 .change--up   { color: #5ee89a; font-size: 0.75rem; display: flex; align-items: center; gap: 4px; margin-top: var(--sp-2); }
 .change--down { color: #e05555; font-size: 0.75rem; display: flex; align-items: center; gap: 4px; margin-top: var(--sp-2); }
@@ -8235,7 +8029,6 @@ body.dashboard-page .dash-main {
   color: var(--bg-primary);
 }
 
-/* Light mode adjustments */
 [data-theme="light"] .filter-pill.active {
   background: var(--text-primary);
   color: var(--bg-secondary);
@@ -8416,9 +8209,6 @@ body.coming-soon-page .cs-page {
     linear-gradient(180deg, rgba(152,194,23,0.12) 0%, transparent 62%),
     rgba(255,255,255,0.86);
 }
-
-/* Old dashboard rules still force .dash-page into a two-column grid.
-   Override them so the newer shell/grid components control layout. */
 body.dashboard-page .dash-page {
   display: block;
   grid-template-columns: none;
@@ -8768,7 +8558,6 @@ body.dashboard-page .activity-item {
 }
 
 /* ─── BACKGROUND RESET ───────────────────────────────────── */
-/* Removes the later gradient layer and restores flat section surfaces. */
 .section-bg--a,
 .section-bg--d,
 .campaigns,

@@ -1,27 +1,12 @@
-/**
- * TabletopForge — dashboard.js
- * Handles dashboard interactions:
- *   - Sidebar open/close + mobile overlay
- *   - In-page panel switching for dashboard-user.html
- *   - Hash-based panel switching when dashboard links stay in-page
- *   - Animated stat counters (panel-scoped, non-conflicting with main.js)
- *   - Admin mini-chart bar animation
- *   - Notifications mark-all-read
- *   - Admin topbar search
- *
- * Depends on: main.js  (window.$, window.$$)
- * Loaded after main.js on dashboard pages.
- */
+/* DASHBOARD */
 
 'use strict';
 
-// Re-use helpers from main.js; fall back to local definitions only when
-// this file is somehow loaded in isolation (e.g. unit tests).
 const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
 const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
 /* ─────────────────────────────────────────────────────────────
-   1. SIDEBAR — mobile open / close with overlay
+   SIDEBAR
 ───────────────────────────────────────────────────────────── */
 const DashSidebar = (() => {
   function init() {
@@ -65,7 +50,7 @@ const DashSidebar = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   2. PANELS — SPA tab switching
+   PANELS
 ───────────────────────────────────────────────────────────── */
 const DashPanels = (() => {
 
@@ -103,7 +88,6 @@ const DashPanels = (() => {
   }
 
   function init() {
-    // ── USER DASHBOARD ──────────────────────────────────────
     const userItems  = _$$('[data-panel]');
     const userPanels = _$$('#dash-main .dash-page');
     const userTitle  = _$('#dash-page-title');
@@ -125,7 +109,6 @@ const DashPanels = (() => {
       }
     }
 
-    // ── ADMIN DASHBOARD ─────────────────────────────────────
     const adminItems  = _$$('[data-admin-panel]');
     const adminPanels = _$$('#admin-main .dash-page');
     const adminTitle  = _$('#admin-page-title');
@@ -152,9 +135,7 @@ const DashPanels = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   3. COUNTERS — panel-scoped eased number animation
-   Uses data-animated flag to prevent double-firing with the global
-   CounterManager in main.js (which skips [data-animated] elements).
+   COUNTERS
 ───────────────────────────────────────────────────────────── */
 function animateCounters(scope = document) {
   _$$('[data-count]:not([data-animated])', scope).forEach(el => {
@@ -183,7 +164,7 @@ function animateCounters(scope = document) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   4. CHART BARS — animate heights on first panel show
+   CHART BARS
 ───────────────────────────────────────────────────────────── */
 function animateChartBars(scope = document) {
   _$$('.mini-bar:not([data-animated])', scope).forEach((bar, i) => {
@@ -196,7 +177,7 @@ function animateChartBars(scope = document) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. NOTIFICATIONS — mark all read
+   NOTIFICATIONS
 ───────────────────────────────────────────────────────────── */
 const DashNotifications = (() => {
   function init() {
@@ -222,7 +203,7 @@ const DashNotifications = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   6. ADMIN TOPBAR SEARCH — dim unmatched nav items
+   ADMIN SEARCH
 ───────────────────────────────────────────────────────────── */
 const AdminSearch = (() => {
   function init() {
@@ -258,7 +239,6 @@ function initDashModules() {
   DashNotifications.init();
   AdminSearch.init();
 
-  // Animate the initially-active panel on page load
   const activePanel = _$('.dash-page.active');
   if (activePanel) {
     animateCounters(activePanel);

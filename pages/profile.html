@@ -19,7 +19,6 @@
   </head>
 <body>
 
-<!-- NAV -->
 <header class="nav scrolled" role="banner">
   <div class="container">
     <nav class="nav__inner" aria-label="Main navigation">
@@ -62,7 +61,6 @@
 
 <main id="main-content">
 
-<!-- Profile header with avatar + tabs -->
 <div class="profile-header">
 
   <div class="profile-avatar-wrap">
@@ -82,7 +80,6 @@
     </div>
   </div>
 
-  <!-- Tab nav sitting at bottom-right of the header -->
   <nav class="profile-tabs" aria-label="Profile sections">
     <button class="gs-tab active" data-ptab="overview" type="button">Overview</button>
     <button class="gs-tab" data-ptab="settings"  type="button">Settings</button>
@@ -92,15 +89,12 @@
 
 </div>
 
-<!-- Profile body -->
 <div style="background:var(--bg-primary);padding:var(--sp-7);">
   <div style="max-width:900px;margin:0 auto;">
 
-    <!-- OVERVIEW PANEL -->
     <div id="ptab-overview" class="gs-panel active" role="tabpanel">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);">
 
-        <!-- Backer stats -->
         <div class="dash-card">
           <div class="dash-card__head">
             <span class="dash-card__title"><i class="fa-solid fa-chart-bar"></i> Backer Stats</span>
@@ -127,7 +121,6 @@
           </div>
         </div>
 
-        <!-- Backed titles -->
         <div class="dash-card">
           <div class="dash-card__head">
             <span class="dash-card__title"><i class="fa-solid fa-dice"></i> Backed Titles</span>
@@ -152,7 +145,6 @@
           </div>
         </div>
 
-        <!-- Recent forum activity -->
         <div class="dash-card" style="grid-column:span 2;">
           <div class="dash-card__head">
             <span class="dash-card__title"><i class="fa-solid fa-comments"></i> Recent Forum Activity</span>
@@ -183,7 +175,6 @@
       </div>
     </div>
 
-    <!-- SETTINGS PANEL -->
     <div id="ptab-settings" class="gs-panel" role="tabpanel">
 
       <div class="settings-section">
@@ -254,7 +245,6 @@
 
     </div>
 
-    <!-- SECURITY PANEL -->
     <div id="ptab-security" class="gs-panel" role="tabpanel">
 
       <div class="settings-section">
@@ -314,7 +304,6 @@
 
     </div>
 
-    <!-- NOTIFICATIONS PANEL -->
     <div id="ptab-notifs" class="gs-panel" role="tabpanel">
 
       <div class="settings-section">
@@ -360,7 +349,6 @@
 <script src="../assets/js/main.js?v=20260327h5"></script>
 <script src="../assets/js/dashboard.js?v=20260327h5"></script>
 <script>
-  // Profile tab switcher
   document.querySelectorAll('[data-ptab]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-ptab]').forEach(b => b.classList.remove('active'));

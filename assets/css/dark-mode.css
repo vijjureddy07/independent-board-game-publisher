@@ -1,20 +1,8 @@
 /* ============================================================
    TabletopForge — dark-mode.css
-   All dark-mode specific overrides.
-   This file is loaded on every page alongside style.css.
-   The default theme is DARK — these rules apply when
-   data-theme="dark" is set on <html> (the default state).
-   Light mode overrides live in style.css under [data-theme="light"].
-
-   How it works:
-   - style.css defines :root variables for DARK by default
-   - style.css [data-theme="light"] block overrides them for light
-   - This file contains component-level dark-mode refinements
-     that go beyond simple variable swaps (e.g. glow effects,
-     invert filters, backdrop blurs that only look right on dark)
    ============================================================ */
 
-/* ─── NAV — dark scrolled state ─────────────────────────────── */
+/* ─── NAV ───────────────────────────────────────────────────── */
 [data-theme="dark"] .nav.scrolled {
   background     : rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(18px);
@@ -22,12 +10,12 @@
   border-bottom-color: rgba(255, 255, 255, 0.07);
 }
 
-/* ─── NAV DROPDOWN — dark shadow ────────────────────────────── */
+/* ─── NAV DROPDOWN ──────────────────────────────────────────── */
 [data-theme="dark"] .nav__dropdown {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* ─── HERO — orb glows are more vibrant in dark ─────────────── */
+/* ─── HERO ──────────────────────────────────────────────────── */
 [data-theme="dark"] .hero__orb--1 {
   background: rgba(212, 245, 60, 0.035);
 }
@@ -36,17 +24,17 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
-/* ─── MARQUEE — border lines more visible ───────────────────── */
+/* ─── MARQUEE ───────────────────────────────────────────────── */
 [data-theme="dark"] .marquee-strip {
   background: #111111;
 }
 
-/* ─── CAMPAIGN CARDS — hover shadow ─────────────────────────── */
+/* ─── CAMPAIGN CARDS ────────────────────────────────────────── */
 [data-theme="dark"] .campaign-card:hover {
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* ─── FEATURE ACCORDION — active state glow ─────────────────── */
+/* ─── FEATURE ACCORDION ─────────────────────────────────────── */
 [data-theme="dark"] .feature-item.active {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
@@ -61,17 +49,17 @@
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
 }
 
-/* ─── BLOG FEATURED COVER — scan-line more visible on dark ─────*/
+/* ─── BLOG FEATURED COVER ───────────────────────────────────── */
 [data-theme="dark"] .blog-featured__cover::after {
   background: linear-gradient(90deg, transparent, rgba(212, 245, 60, 0.18), transparent);
 }
 
-/* ─── DASHBOARD SIDEBAR — subtle inner shadow ───────────────── */
+/* ─── DASHBOARD SIDEBAR ─────────────────────────────────────── */
 [data-theme="dark"] .dash-sidebar {
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.04);
 }
 
-/* ─── BUTTONS — primary hover glows only on dark ────────────── */
+/* ─── BUTTONS ───────────────────────────────────────────────── */
 [data-theme="dark"] .btn--primary:hover {
   box-shadow: 0 0 28px rgba(212, 245, 60, 0.2);
 }
@@ -80,14 +68,14 @@
   box-shadow: 0 0 36px rgba(212, 245, 60, 0.3);
 }
 
-/* ─── PROGRESS FILL — accent bar glow on dark ───────────────── */
+/* ─── PROGRESS FILL ─────────────────────────────────────────── */
 [data-theme="dark"] .campaign-card:first-child .progress__fill,
 [data-theme="dark"] .gs-funding__fill,
 [data-theme="dark"] .h2-meter-fill {
   box-shadow: 0 0 8px rgba(212, 245, 60, 0.25);
 }
 
-/* ─── LIVE DOT — stronger pulse on dark ─────────────────────── */
+/* ─── LIVE DOT ──────────────────────────────────────────────── */
 [data-theme="dark"] .live-dot,
 [data-theme="dark"] .h2-live-dot {
   box-shadow: 0 0 0 3px rgba(212, 245, 60, 0.15);
@@ -98,13 +86,13 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* ─── 404 NUMBER — outline text looks better on dark ────────── */
+/* ─── 404 NUMBER ────────────────────────────────────────────── */
 [data-theme="dark"] .e404-number {
   color               : transparent;
   -webkit-text-stroke : 1px rgba(255, 255, 255, 0.08);
 }
 
-/* ─── FORMS — inputs on dark get subtle inner glow on focus ─── */
+/* ─── FORMS ─────────────────────────────────────────────────── */
 [data-theme="dark"] .cf-input:focus,
 [data-theme="dark"] .cf-select:focus,
 [data-theme="dark"] .cf-textarea:focus,
@@ -115,12 +103,12 @@
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-/* ─── MOBILE NAV — dark overlay behind drawer ───────────────── */
+/* ─── MOBILE NAV ────────────────────────────────────────────── */
 [data-theme="dark"] .nav__mobile.open {
   background: rgba(10, 10, 10, 0.98);
 }
 
-/* ─── SCROLLBARS — styled on dark only ──────────────────────── */
+/* ─── SCROLLBARS ────────────────────────────────────────────── */
 [data-theme="dark"] {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
@@ -144,7 +132,7 @@
   background: rgba(255, 255, 255, 0.18);
 }
 
-/* ─── SKELETON LOADER — dark variant ────────────────────────── */
+/* ─── SKELETON LOADER ───────────────────────────────────────── */
 [data-theme="dark"] .skeleton {
   background: linear-gradient(
     90deg,
@@ -155,7 +143,7 @@
   background-size: 1200px 100%;
 }
 
-/* ─── CODE BLOCKS — if any are used in blog ─────────────────── */
+/* ─── CODE BLOCKS ───────────────────────────────────────────── */
 [data-theme="dark"] code,
 [data-theme="dark"] pre {
   background  : #161616;

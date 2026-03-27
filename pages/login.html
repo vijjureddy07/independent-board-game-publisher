@@ -21,15 +21,12 @@
 </head>
 <body class="standalone-page">
 
-<!-- AUTH PAGE -->
 <main id="main-content">
-<!-- LOGIN PANEL -->
 <section style="min-height:100svh;display:flex;align-items:center;padding:var(--sp-8) var(--sp-6) var(--sp-9);background:
   radial-gradient(ellipse 60% 70% at 80% 20%, rgba(212,245,60,0.025) 0%, transparent 60%),
   var(--bg-primary);">
   <div class="container" style="max-width:420px;">
 
-    <!-- Logo heading -->
     <div style="text-align:center;margin-bottom:var(--sp-8);">
       <a href="index.html" class="nav__logo" style="justify-content:center;margin-bottom:var(--sp-4);display:flex;">
         <div class="nav__logo-mark" aria-hidden="true">
@@ -45,7 +42,6 @@
       <p style="color:var(--text-secondary);font-size:0.95rem;">Track orders · Download PnP files · Join forum</p>
     </div>
 
-    <!-- Login form -->
     <form id="login-form" novalidate aria-label="Backer login" style="display:flex;flex-direction:column;gap:var(--sp-5);">
 
       <div id="fg-email" class="login-field" style="display:flex;flex-direction:column;gap:var(--sp-2);">
@@ -80,7 +76,6 @@
         Log In
       </button>
 
-      <!-- Alert for wrong credentials (demo) -->
       <div id="login-alert" role="alert" aria-live="polite" style="display:none;background:rgba(232,84,84,0.1);border:1px solid rgba(232,84,84,0.3);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-4);font-size:0.85rem;color:#e05555;text-align:center;"></div>
 
       <div style="text-align:center;padding-top:var(--sp-5);border-top:1px solid var(--border);">
@@ -92,7 +87,6 @@
 
     </form>
 
-    <!-- OAuth alternatives -->
     <div style="margin-top:var(--sp-7);padding-top:var(--sp-6);border-top:1px solid var(--border);">
       <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-bottom:var(--sp-4);">Or continue with</p>
       <div class="auth-social-grid">
@@ -112,11 +106,8 @@
 </section>
 </main>
 
-<!-- PAGE SCRIPT -->
 <script src="../assets/js/main.js?v=20260327h5"></script>
 <script>
-// ─── Login page form validation & UX ───────────────────────
-// Self-contained — does not rely on main.js helpers
 (function () {
   'use strict';
 
@@ -130,7 +121,6 @@
   const submitBtn   = document.getElementById('login-submit');
   const loginAlert  = document.getElementById('login-alert');
 
-  // Inline validation on blur
   emailInput.addEventListener('blur', () => {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
     emailInput.style.borderColor = valid || !emailInput.value ? '' : '#e05555';
@@ -143,7 +133,6 @@
     passErr.style.display = valid || !passInput.value ? 'none' : 'block';
   });
 
-  // Password toggle
   passToggle.addEventListener('click', () => {
     const isPass = passInput.type === 'password';
     passInput.type = isPass ? 'text' : 'password';
@@ -151,7 +140,6 @@
     passToggle.setAttribute('aria-label', isPass ? 'Hide password' : 'Show password');
   });
 
-  // Form submit
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     loginAlert.style.display = 'none';
@@ -180,11 +168,9 @@
 
     if (!valid) return;
 
-    // Loading state
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…';
 
-    // Simulate auth → redirect to dashboard
     setTimeout(() => {
       window.location.href = 'dashboard-user.html';
     }, 900);

@@ -1,35 +1,4 @@
-/**
- * TabletopForge — main.js  v3
- *
- * Modules (all self-contained IIFEs, one DOMContentLoaded):
- *  1. NavManager      — shared public nav normalization + hamburger state
- *  2. ThemeManager    — dark/light + system detection + localStorage
- *  3. RTLManager      — RTL/LTR toggle + localStorage
- *  4. RevealManager   — IntersectionObserver scroll reveals
- *  5. ProgressManager — campaign progress bar animation
- *  6. CarouselManager — testimonials auto-advance, swipe, dots
- *  7. FeatureAccordion — homepage feature items keyboard+click
- *  8. CursorManager   — custom cursor (desktop only)
- *  9. CounterManager  — data-count animated numbers
- * 10. MarqueeManager  — clones track for seamless loop
- * 11. NewsletterForm  — email validation across all forms
- * 12. TimelineManager — about page dot highlight on scroll
- * 13. ParticleManager — canvas-based floating particles (motion effect)
- * 14. GsTabManager    — game single page tab switching
- * 15. FilterManager   — filter pills (games, blog)
- * 16. ContactForm     — contact page form validation + submit
- * 17. ReadingProgress — blog single reading progress bar
- * 18. FAQManager      — faq search filter
- * 19. PaginationManager — shared pagination buttons
- *
- * Exports on window.TTF:
- *   window.TTF.readingProgress(fillSel, contentSel)
- *   window.TTF.paginationButtons(btnSel, scrollTargetSel)
- *
- * Global helpers on window:
- *   window.$   = (sel, ctx) => ctx.querySelector(sel)
- *   window.$$  = (sel, ctx) => [...ctx.querySelectorAll(sel)]
- */
+/* MAIN */
 
 'use strict';
 
@@ -61,7 +30,7 @@ function syncBrandMarks(ctx = document) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SHARED UTILITIES (used by dashboard.js, forum.js, blog.js)
+   SHARED UTILITIES
 ───────────────────────────────────────────────────────────── */
 window.TTF = window.TTF || {};
 
@@ -282,7 +251,6 @@ const NavManager = (() => {
     const mobileNav = $('.nav__mobile');
     if (!nav) return;
 
-    // Scroll state
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -313,7 +281,6 @@ const NavManager = (() => {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
     window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeMenu(); });
 
-    // Active link highlight (by filename match)
     $$('.nav__link[href]').forEach(link => {
       if (link.getAttribute('href').split('/').pop() === file) {
         link.classList.add('active');
@@ -437,7 +404,6 @@ const ProgressManager = (() => {
 
     $$('.progress').forEach(el => io.observe(el));
 
-    // Also animate gs-funding and h2-meter fills
     $$('.gs-funding__fill, .h2-meter-fill').forEach(fill => {
       const io2 = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -471,7 +437,6 @@ const CarouselManager = (() => {
       let current = 0;
       let timer;
 
-      // Build dots
       cards.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
@@ -498,7 +463,6 @@ const CarouselManager = (() => {
       carousel.addEventListener('mouseenter', stopAuto);
       carousel.addEventListener('mouseleave', startAuto);
 
-      // Touch swipe
       let startX = 0;
       track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
       track.addEventListener('touchend', e => {
@@ -538,7 +502,6 @@ const FeatureAccordion = (() => {
       });
     });
 
-    // Activate first by default
     if (items[0] && !$$('.feature-item.active').length) items[0].classList.add('active');
   }
 
@@ -914,7 +877,6 @@ const GsTabManager = (() => {
 ───────────────────────────────────────────────────────────── */
 const FilterManager = (() => {
   function init() {
-    // Games filter
     const gamePills = $$('[data-filter]');
     const gameCards = $$('.game-card');
     if (gamePills.length && gameCards.length) {
@@ -944,7 +906,6 @@ const FilterManager = (() => {
       });
     }
 
-    // Blog filter
     const blogPills = $$('[data-blog-filter]');
     const blogCards = $$('[data-blog-tags]');
     if (blogPills.length && blogCards.length) {
@@ -972,7 +933,6 @@ const FilterManager = (() => {
     }
   }
 
-  // Global reset helpers (called by onclick in HTML)
   window.resetFilter = function() {
     const all = $('[data-filter="all"]');
     if (all) all.click();
@@ -1029,7 +989,6 @@ const ContactForm = (() => {
 
       if (!ok) return;
 
-      // Simulate submit
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
 

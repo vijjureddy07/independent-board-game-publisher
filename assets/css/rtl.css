@@ -1,11 +1,5 @@
 /* ============================================================
    TabletopForge — rtl.css
-   Full right-to-left layout overrides.
-   Applied when dir="rtl" is set on <html>.
-   Toggled by RTLManager in main.js.
-
-   Principle: flip directional properties using logical
-   equivalents where possible, and explicit mirroring where not.
    ============================================================ */
 
 /* ─── GLOBAL DIRECTION ───────────────────────────────────────── */
@@ -14,14 +8,14 @@
   text-align: right;
 }
 
-/* ─── TYPOGRAPHY — letter-spacing works opposite in RTL ─────── */
+/* ─── TYPOGRAPHY ────────────────────────────────────────────── */
 [dir="rtl"] .label,
 [dir="rtl"] .filter-bar__label,
 [dir="rtl"] .blog-filter__label,
 [dir="rtl"] .dash-nav__section-label,
 [dir="rtl"] .footer__col-title,
 [dir="rtl"] .cs-label {
-  letter-spacing: 0; /* Arabic/Hebrew don't use Latin letter-spacing */
+  letter-spacing: 0;
 }
 
 /* ─── NAV ────────────────────────────────────────────────────── */
@@ -41,7 +35,6 @@
   flex-direction: row-reverse;
 }
 
-/* Dropdown opens to the left in RTL */
 [dir="rtl"] .nav__dropdown {
   left     : auto;
   right    : 50%;
@@ -58,7 +51,6 @@
   text-align    : right;
 }
 
-/* Mobile drawer slides from left in RTL */
 [dir="rtl"] .nav__mobile {
   transform: translateX(-100%);
 }
@@ -93,7 +85,7 @@
   right: auto;
 }
 
-/* ─── MARQUEE — reverse direction in RTL ────────────────────── */
+/* ─── MARQUEE ───────────────────────────────────────────────── */
 [dir="rtl"] .marquee-track {
   animation-direction: reverse;
 }
@@ -125,7 +117,6 @@
   flex-direction: row-reverse;
 }
 
-/* Active border flips side */
 [dir="rtl"] .features__list {
   border-right: none;
 }
@@ -139,7 +130,7 @@
   flex-direction: row-reverse;
 }
 
-/* ─── ARROW LINKS — flip the SVG ────────────────────────────── */
+/* ─── ARROW LINKS ───────────────────────────────────────────── */
 [dir="rtl"] .arrow-link {
   flex-direction: row-reverse;
 }
@@ -190,7 +181,6 @@
 
 [dir="rtl"] .story-content { text-align: right; }
 
-/* Timeline flips to right side */
 [dir="rtl"] .timeline__inner::before {
   left : auto;
   right: 0;
@@ -217,7 +207,6 @@
   flex-direction: row-reverse;
 }
 
-/* Values grid numbers */
 [dir="rtl"] .value-card { text-align: right; }
 [dir="rtl"] .team-card  { text-align: right; }
 
@@ -250,7 +239,6 @@
   flex-direction: row-reverse;
 }
 
-/* Game single */
 [dir="rtl"] .gs-hero__layout {
   direction: rtl;
 }
@@ -284,12 +272,10 @@
   direction: rtl;
 }
 
-/* Tabs flip */
 [dir="rtl"] .gs-tabs {
   flex-direction: row-reverse;
 }
 
-/* Sidebar */
 [dir="rtl"] .gs-body__layout {
   direction: rtl;
 }
@@ -344,7 +330,6 @@
   flex-direction: row-reverse;
 }
 
-/* Blog single */
 [dir="rtl"] .bs-hero__breadcrumb {
   flex-direction: row-reverse;
 }
@@ -361,7 +346,6 @@
   direction: rtl;
 }
 
-/* Article text — RTL prose */
 [dir="rtl"] .bs-article {
   text-align: right;
 }
@@ -433,7 +417,6 @@
   direction: rtl;
 }
 
-/* Sidebar moves to right */
 [dir="rtl"] .dash-sidebar {
   border-right: none;
   border-left : 1px solid var(--border);
@@ -488,7 +471,6 @@
   text-align: right;
 }
 
-/* Track line — right side in RTL */
 [dir="rtl"] .track-line {
   padding: 0 var(--sp-5) 0 0;
 }
@@ -503,7 +485,6 @@
   right: calc(-1 * var(--sp-5) + 2px);
 }
 
-/* File list */
 [dir="rtl"] .file-item {
   flex-direction: row-reverse;
 }
@@ -514,7 +495,6 @@
   margin-right: auto;
 }
 
-/* Forum rows */
 [dir="rtl"] .forum-row,
 [dir="rtl"] .forum-row__stats { text-align: right; }
 

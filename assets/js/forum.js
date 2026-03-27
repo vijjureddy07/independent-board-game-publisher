@@ -1,28 +1,13 @@
-/**
- * TabletopForge — forum.js
- * Handles:
- *   forum.html        → category toggle, thread filter pills, search, pagination
- *   forum-thread.html → reply composer char count + auto-resize, post actions
- *                       (like / quote), reading progress bar
- *
- * Depends on: main.js  (window.TTF.readingProgress, window.TTF.paginationButtons)
- * Loaded after main.js on both forum pages.
- * All modules exit silently when their elements aren't present.
- *
- * DUPLICATE REMOVALS vs previous version:
- *   - ThreadReadProgress  → replaced by window.TTF.readingProgress() from main.js
- *   - ForumPagination     → replaced by window.TTF.paginationButtons() from main.js
- *   - Local _$/_$$ helpers → delegate to window.$/$$ set by main.js
- */
+/* FORUM */
 
 'use strict';
 
-/* ─── Helpers — delegate to main.js globals, fall back if standalone ───── */
+/* HELPERS */
 const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
 const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
 /* ─────────────────────────────────────────────────────────────
-   1. FORUM LISTING — thread filter pills (All / Hot / Unanswered)
+   FORUM FILTER
 ───────────────────────────────────────────────────────────── */
 const ForumFilter = (() => {
   function init() {
@@ -58,7 +43,7 @@ const ForumFilter = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   2. FORUM LISTING — live search through thread titles
+   FORUM SEARCH
 ───────────────────────────────────────────────────────────── */
 const ForumSearch = (() => {
   function init() {
@@ -85,7 +70,7 @@ const ForumSearch = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   3. FORUM LISTING — category card hover effect (mobile UX)
+   FORUM CATEGORIES
 ───────────────────────────────────────────────────────────── */
 const ForumCategories = (() => {
   function init() {
@@ -104,21 +89,19 @@ const ForumCategories = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   4. THREAD PAGE — reply textarea auto-resize + char counter + submit
+   REPLY COMPOSER
 ───────────────────────────────────────────────────────────── */
 const ReplyComposer = (() => {
   function init() {
     const textarea = _$('.reply-textarea');
     if (!textarea) return;
 
-    // Auto-resize
     function resize() {
       textarea.style.height = 'auto';
       textarea.style.height = Math.max(120, textarea.scrollHeight) + 'px';
     }
     textarea.addEventListener('input', resize);
 
-    // Character counter
     const MAX_CHARS = 2000;
     const counter   = document.createElement('p');
     counter.style.cssText = 'font-size:0.72rem;color:var(--text-muted);text-align:right;margin-bottom:var(--sp-2);';
@@ -136,7 +119,6 @@ const ReplyComposer = (() => {
       if (submitBtn) submitBtn.disabled = len > MAX_CHARS;
     });
 
-    // Submit handler
     const form      = textarea.closest('.reply-box');
     const submitBtn = form?.querySelector('.btn--primary');
 
@@ -195,7 +177,6 @@ const ReplyComposer = (() => {
 
     container.insertBefore(entry, replyBox);
 
-    // Bind cursor hover on new post's action buttons
     _$$('.post-action-btn', entry).forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         document.querySelector('.ttf-cursor, .custom-cursor')?.classList.add('hover');
@@ -205,7 +186,6 @@ const ReplyComposer = (() => {
       });
     });
 
-    // Re-run PostActions on the new entry so like/quote work
     PostActions.bindEntry(entry);
 
     entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -215,11 +195,10 @@ const ReplyComposer = (() => {
 })();
 
 /* ─────────────────────────────────────────────────────────────
-   5. THREAD PAGE — post action buttons (like, quote)
+   POST ACTIONS
 ───────────────────────────────────────────────────────────── */
 const PostActions = (() => {
   function bindEntry(post) {
-    // Like button toggle
     const likeBtn = post.querySelector('[aria-label="Like post"]');
     if (likeBtn) {
       likeBtn.addEventListener('click', () => {
@@ -232,7 +211,6 @@ const PostActions = (() => {
       });
     }
 
-    // Quote button — copies author + text into reply textarea
     const quoteBtn = post.querySelector('[aria-label="Quote post"]');
     if (quoteBtn) {
       quoteBtn.addEventListener('click', () => {
@@ -261,8 +239,6 @@ const PostActions = (() => {
 
 /* ─────────────────────────────────────────────────────────────
    INIT
-   Reading progress and pagination are handled by shared utilities
-   in main.js (window.TTF) to avoid code duplication.
 ───────────────────────────────────────────────────────────── */
 function initForumModules() {
   ForumFilter.init();
@@ -271,7 +247,6 @@ function initForumModules() {
   ReplyComposer.init();
   PostActions.init();
 
-  // Shared utilities from main.js — no-op silently if elements absent
   window.TTF?.readingProgress('#read-progress', '#article-content');
   window.TTF?.paginationButtons('.blog-pagination .page-btn', '.thread-list');
 }
