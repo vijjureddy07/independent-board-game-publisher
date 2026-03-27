@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/tab-favicon.svg?v=20260326" sizes="any" />
-  <link rel="shortcut icon" href="../assets/images/icons/tab-favicon.svg?v=20260326" type="image/svg+xml" />
-  <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260326" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" sizes="any" />
+  <link rel="shortcut icon" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" type="image/svg+xml" />
+  <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>Backer Forum — TabletopForge</title>
   <meta name="description" content="Discuss strategy, share house rules, and talk directly with our designers. The TabletopForge backer community forum." />
@@ -15,10 +15,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260327h5" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260327h7" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css?v=20260327h5" />
   <link rel="stylesheet" href="../assets/css/rtl.css?v=20260327h5" />
-  <link rel="stylesheet" href="../assets/css/atmosphere.css?v=20260327h5" />
   </head>
 <body>
 
@@ -70,26 +69,81 @@
 <!-- Hero -->
 <section class="forum-hero" aria-labelledby="forum-heading">
   <div class="container">
-    <div class="forum-hero__inner">
-      <div>
-        <div style="margin-bottom:var(--sp-4);"><span class="tag">Community</span></div>
-        <h1 id="forum-heading" class="display-xl">
-          <span class="hero__title-line"><span>Backer Forum.</span></span>
-        </h1>
-        <p style="color:var(--text-secondary);font-size:1rem;max-width:420px;line-height:1.7;margin-top:var(--sp-4);">
-          Strategy, house rules, designer responses, and honest game discussion.
-          Open to all TabletopForge backers.
-        </p>
-      </div>
-      <div style="display:flex;gap:var(--sp-3);flex-shrink:0;align-self:flex-end;">
-        <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp-3) var(--sp-5);display:flex;align-items:center;gap:var(--sp-2);font-size:0.82rem;color:var(--text-secondary);">
-          <i class="fa-solid fa-users" aria-hidden="true" style="font-size:12px;"></i>
-          1,240 members
+    <div class="compact-hero__stack">
+      <div class="compact-hero__row">
+        <div class="compact-hero__copy">
+          <div class="page-hero__eyebrow"><span class="tag">Community</span></div>
+          <h1 id="forum-heading" class="display-xl page-hero__title">
+            <span class="hero__title-line"><span>Backer Forum.</span></span>
+          </h1>
+          <p class="page-hero__sub">
+            Strategy threads, house rules, designer responses, and candid campaign discussion.
+            Built for backers who want useful answers, not empty chatter.
+          </p>
         </div>
-        <a href="forum-thread.html" class="btn btn--primary btn--sm">
-          <i class="fa-solid fa-plus" aria-hidden="true"></i>
-          New Thread
-        </a>
+
+        <aside class="compact-hero__aside forum-hero-preview" aria-label="Live thread preview">
+          <div class="forum-hero-preview__head">
+            <div>
+              <p class="forum-hero-preview__title">Trending now</p>
+              <p class="forum-hero-preview__sub">The conversations pulling the most replies this week.</p>
+            </div>
+            <span class="tag tag--accent">Live</span>
+          </div>
+
+          <div class="forum-hero-preview__list">
+            <a href="forum-thread.html" class="forum-hero-preview__item">
+              <p class="forum-hero-preview__item-title">Best solo strategies for Verdant Empires?</p>
+              <div class="forum-hero-preview__item-meta">
+                <span>42 replies</span>
+                <span>2h ago</span>
+              </div>
+            </a>
+            <a href="forum-thread.html" class="forum-hero-preview__item">
+              <p class="forum-hero-preview__item-title">[Official] EU shipping delay update and revised ETA</p>
+              <div class="forum-hero-preview__item-meta">
+                <span>28 replies</span>
+                <span>5h ago</span>
+              </div>
+            </a>
+            <a href="forum-thread.html" class="forum-hero-preview__item">
+              <p class="forum-hero-preview__item-title">House rule: asymmetric starting VP after 12 test sessions</p>
+              <div class="forum-hero-preview__item-meta">
+                <span>15 replies</span>
+                <span>1d ago</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="forum-hero-preview__footer">
+            <span class="forum-hero-preview__metric">
+              <i class="fa-solid fa-users" aria-hidden="true"></i>
+              1,240 members
+            </span>
+            <a href="forum-thread.html" class="btn btn--primary btn--sm">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              New Thread
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="inner-hero-strip inner-hero-strip--full compact-hero__strip" aria-label="Forum highlights">
+        <div class="inner-hero-strip__item">
+          <span class="inner-hero-strip__label">Active Topics</span>
+          <span class="inner-hero-strip__value"><i class="fa-solid fa-comments" aria-hidden="true"></i> Rules, shipping, variants</span>
+          <span class="inner-hero-strip__meta">The busiest threads focus on gameplay clarity, fulfilment updates, and player-made tweaks.</span>
+        </div>
+        <div class="inner-hero-strip__item">
+          <span class="inner-hero-strip__label">Studio Presence</span>
+          <span class="inner-hero-strip__value"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> Designer replies every week</span>
+          <span class="inner-hero-strip__meta">Official answers, campaign context, and dev-side explanations show up in the same threads players use.</span>
+        </div>
+        <div class="inner-hero-strip__item">
+          <span class="inner-hero-strip__label">Signal Over Noise</span>
+          <span class="inner-hero-strip__value"><i class="fa-solid fa-filter" aria-hidden="true"></i> Structured by game and topic</span>
+          <span class="inner-hero-strip__meta">Threads stay easy to scan, easier to search, and useful long after launch week fades.</span>
+        </div>
       </div>
     </div>
   </div>

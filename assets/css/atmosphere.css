@@ -216,13 +216,7 @@
       rgba(212, 245, 60, 0.07) 0%,
       rgba(212, 245, 60, 0.025) 38%,
       transparent 65%),
-    radial-gradient(ellipse 38% 50% at 4% 92%,
-      rgba(26, 74, 74, 0.05) 0%,
-      transparent 55%),
-    radial-gradient(ellipse 80% 35% at 50% 110%,
-      rgba(26, 74, 74, 0.07) 0%,
-      transparent 55%),
-    #050507 !important;
+    #0A0A0A !important;
 }
 
 /* Hex map grid fades in at top-right where the glow lives */
@@ -251,7 +245,7 @@
 
 .hero__orb--2 {
   background: radial-gradient(ellipse,
-    rgba(26, 74, 74, 0.14) 0%,
+    rgba(212, 245, 60, 0.03) 0%,
     transparent 65%) !important;
   filter: blur(100px) !important;
   animation: atm-aurora 18s ease-in-out infinite reverse !important;
@@ -422,15 +416,11 @@
 ═══════════════════════════════════════════════════════════ */
 .page-hero {
   background:
-    radial-gradient(ellipse 62% 88% at 92% -8%,
-      rgba(212, 245, 60, 0.075) 0%,
-      rgba(212, 245, 60, 0.025) 42%,
-      transparent 68%),
-    radial-gradient(ellipse 48% 58% at 2% 100%,
-      rgba(26, 74, 74, 0.065) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 28% at 50% 0%,
-      rgba(212, 245, 60, 0.022) 0%, transparent 42%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 .page-hero::before {
@@ -473,11 +463,9 @@
 .values {
   background:
     radial-gradient(ellipse 92% 58% at 50% -4%,
-      rgba(212, 245, 60, 0.058) 0%,
-      rgba(212, 245, 60, 0.02)  42%,
+      rgba(212, 245, 60, 0.055) 0%,
+      rgba(212, 245, 60, 0.018)  42%,
       transparent 65%),
-    radial-gradient(ellipse 58% 38% at 50% 112%,
-      rgba(26, 74, 74, 0.055) 0%, transparent 55%),
     #0a0a0a !important;
 }
 
@@ -583,15 +571,11 @@
 ═══════════════════════════════════════════════════════════ */
 .games-hero {
   background:
-    radial-gradient(ellipse 58% 78% at 82% 0%,
-      rgba(212, 245, 60, 0.078) 0%,
-      rgba(212, 245, 60, 0.022) 42%,
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
       transparent 70%),
-    radial-gradient(ellipse 38% 58% at 4% 82%,
-      rgba(26, 74, 74, 0.07) 0%, transparent 55%),
-    linear-gradient(162deg,
-      rgba(212, 245, 60, 0.018) 0%, transparent 32%),
-    #050507 !important;
+    #0A0A0A !important;
 }
 
 .games-hero::before {
@@ -615,8 +599,6 @@
       rgba(212, 245, 60, 0.042) 0%,
       rgba(212, 245, 60, 0.016) 32%,
       transparent 56%),
-    radial-gradient(ellipse 48% 58% at 88% 52%,
-      rgba(139, 94, 26, 0.045) 0%, transparent 55%),
     #0a0a0a !important;
 }
 
@@ -624,20 +606,16 @@
   background:
     radial-gradient(ellipse 58% 48% at 92% 0%,
       rgba(212, 245, 60, 0.042) 0%, transparent 55%),
-    radial-gradient(ellipse 38% 58% at 0% 100%,
-      rgba(26, 74, 74, 0.055) 0%, transparent 55%),
     #111111 !important;
 }
 
 .gs-hero {
   background:
-    radial-gradient(ellipse 54% 68% at 92% 0%,
-      rgba(212, 245, 60, 0.072) 0%,
-      rgba(212, 245, 60, 0.025) 42%,
-      transparent 65%),
-    radial-gradient(ellipse 44% 54% at 4% 100%,
-      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 .gs-body {
@@ -653,13 +631,11 @@
 ═══════════════════════════════════════════════════════════ */
 .blog-hero {
   background:
-    radial-gradient(ellipse 54% 74% at 87% -8%,
-      rgba(212, 245, 60, 0.068) 0%,
-      rgba(212, 245, 60, 0.022) 42%,
-      transparent 65%),
-    radial-gradient(ellipse 38% 48% at 2% 100%,
-      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 .blog-featured {
@@ -675,20 +651,16 @@
   background:
     linear-gradient(180deg,
       rgba(212, 245, 60, 0.026) 0%, transparent 26%),
-    radial-gradient(ellipse 38% 58% at 97% 52%,
-      rgba(26, 74, 74, 0.042) 0%, transparent 55%),
     #0a0a0a !important;
 }
 
 .bs-hero {
   background:
-    radial-gradient(ellipse 54% 68% at 87% 0%,
-      rgba(212, 245, 60, 0.058) 0%,
-      rgba(212, 245, 60, 0.02)  42%,
-      transparent 65%),
-    radial-gradient(ellipse 38% 48% at 8% 100%,
-      rgba(139, 94, 26, 0.038) 0%, transparent 55%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 .bs-body {
@@ -711,21 +683,17 @@
 ═══════════════════════════════════════════════════════════ */
 .contact-hero {
   background:
-    radial-gradient(ellipse 54% 74% at 82% 0%,
-      rgba(212, 245, 60, 0.068) 0%,
-      rgba(212, 245, 60, 0.022) 42%,
-      transparent 65%),
-    radial-gradient(ellipse 44% 54% at 4% 92%,
-      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 .contact-section {
   background:
     linear-gradient(152deg,
       rgba(212, 245, 60, 0.032) 0%, transparent 42%),
-    radial-gradient(ellipse 54% 58% at 102% 62%,
-      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
     #111111 !important;
 }
 
@@ -750,20 +718,20 @@
 ═══════════════════════════════════════════════════════════ */
 .forum-hero {
   background:
-    radial-gradient(ellipse 62% 78% at 82% 0%,
-      rgba(212, 245, 60, 0.058) 0%,
-      rgba(212, 245, 60, 0.018) 45%,
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
       transparent 70%),
-    radial-gradient(ellipse 44% 54% at 8% 82%,
-      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
-    #050507 !important;
+    #0A0A0A !important;
 }
 
 .thread-hero {
   background:
-    radial-gradient(ellipse 54% 68% at 78% 0%,
-      rgba(212, 245, 60, 0.042) 0%, transparent 62%),
-    #0a0a0a !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 
@@ -772,21 +740,17 @@
 ═══════════════════════════════════════════════════════════ */
 .h2-hero {
   background:
-    radial-gradient(ellipse 54% 68% at 92% 52%,
-      rgba(212, 245, 60, 0.068) 0%,
-      rgba(212, 245, 60, 0.022) 42%,
-      transparent 65%),
-    radial-gradient(ellipse 38% 58% at 4% 82%,
-      rgba(26, 74, 74, 0.062) 0%, transparent 55%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
 .h2-hero__bg {
   background:
     radial-gradient(ellipse 58% 48% at 82% 52%,
-      rgba(212, 245, 60, 0.052) 0%, transparent 68%),
-    radial-gradient(ellipse 38% 58% at 8% 82%,
-      rgba(26, 74, 74, 0.065) 0%, transparent 62%) !important;
+      rgba(212, 245, 60, 0.04) 0%, transparent 68%) !important;
   animation: atm-aurora 22s ease-in-out infinite;
 }
 
@@ -794,8 +758,6 @@
   background:
     radial-gradient(ellipse 68% 48% at 14% 52%,
       rgba(212, 245, 60, 0.042) 0%, transparent 62%),
-    radial-gradient(ellipse 48% 58% at 97% 82%,
-      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
     #111111 !important;
 }
 
@@ -803,8 +765,6 @@
   background:
     radial-gradient(ellipse 62% 58% at 82% 0%,
       rgba(212, 245, 60, 0.042) 0%, transparent 56%),
-    radial-gradient(ellipse 44% 48% at 8% 100%,
-      rgba(26, 74, 74, 0.052) 0%, transparent 55%),
     #0a0a0a !important;
 }
 
@@ -812,25 +772,52 @@
   background:
     linear-gradient(152deg,
       rgba(212, 245, 60, 0.048) 0%, transparent 46%),
-    radial-gradient(ellipse 48% 68% at 102% 52%,
-      rgba(139, 94, 26, 0.042) 0%, transparent 55%),
     #111111 !important;
 }
 
-/* Shift inner-page and standalone surfaces toward moving fluid blobs. */
+/* ── PADDING FIX — loaded last so these !important win ──────── */
 .page-hero,
 .games-hero,
 .blog-hero,
-.bs-hero,
 .contact-hero,
-.cs-page {
-  background:
-    linear-gradient(135deg,
-      rgba(8, 12, 16, 0.98) 0%,
-      rgba(11, 16, 20, 0.96) 52%,
-      rgba(7, 8, 10, 0.98) 100%) !important;
+.gs-hero,
+.bs-hero,
+.forum-hero,
+.thread-hero {
+  padding-top    : calc(var(--nav-h) + 40px) !important;
+  padding-bottom : 48px !important;
+  min-height     : auto !important;
 }
 
+@media (max-width: 1024px) {
+  .page-hero,
+  .games-hero,
+  .blog-hero,
+  .contact-hero,
+  .gs-hero,
+  .bs-hero,
+  .forum-hero,
+  .thread-hero {
+    padding-top    : calc(var(--nav-h) + 24px) !important;
+    padding-bottom : 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-hero,
+  .games-hero,
+  .blog-hero,
+  .contact-hero,
+  .gs-hero,
+  .bs-hero,
+  .forum-hero,
+  .thread-hero {
+    padding-top    : calc(var(--nav-h) + 16px) !important;
+    padding-bottom : 24px !important;
+  }
+}
+
+/* ── Lime-only subtle ambient glow on hero ::before ─────────── */
 .page-hero::before,
 .games-hero::before,
 .blog-hero::before,
@@ -841,17 +828,14 @@
   position: absolute;
   inset: -18%;
   background:
-    radial-gradient(circle at 16% 22%,
-      rgba(212, 245, 60, 0.16) 0%,
-      transparent 28%),
-    radial-gradient(circle at 80% 18%,
-      rgba(34, 140, 133, 0.15) 0%,
-      transparent 32%),
-    radial-gradient(circle at 58% 82%,
-      rgba(139, 94, 26, 0.12) 0%,
-      transparent 34%);
+    radial-gradient(circle at 20% 20%,
+      rgba(212, 245, 60, 0.07) 0%,
+      transparent 40%),
+    radial-gradient(circle at 80% 15%,
+      rgba(212, 245, 60, 0.04) 0%,
+      transparent 35%);
   filter: blur(34px);
-  opacity: 0.9;
+  opacity: 0.8;
   pointer-events: none;
   z-index: 1;
   animation: atm-fluid 18s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
@@ -859,7 +843,7 @@
   -webkit-mask: none;
 }
 
-/* Shared moving colour fields for sections that felt too static. */
+/* Shared lime-only ambient for content sections */
 .about-intro::before,
 .timeline::before,
 .games-featured::before,
@@ -877,13 +861,11 @@
   inset: -12%;
   background:
     radial-gradient(circle at 15% 18%,
-      rgba(212, 245, 60, 0.12) 0%, transparent 30%),
+      rgba(212, 245, 60, 0.06) 0%, transparent 30%),
     radial-gradient(circle at 82% 20%,
-      rgba(34, 140, 133, 0.1) 0%, transparent 28%),
-    radial-gradient(circle at 64% 82%,
-      rgba(139, 94, 26, 0.08) 0%, transparent 30%);
+      rgba(212, 245, 60, 0.03) 0%, transparent 28%);
   filter: blur(26px);
-  opacity: 0.62;
+  opacity: 0.6;
   pointer-events: none;
   z-index: 1;
   animation: atm-fluid 22s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
@@ -891,38 +873,18 @@
 
 
 /* ═══════════════════════════════════════════════════════════
-   ⑱ COMING SOON — Fluid launch backdrop
+   ⑱ COMING SOON — uniform dark, lime bloom
 ═══════════════════════════════════════════════════════════ */
 .cs-page {
   background:
-    linear-gradient(135deg,
-      rgba(7, 10, 13, 0.99) 0%,
-      rgba(10, 15, 18, 0.97) 48%,
-      rgba(6, 7, 9, 0.99) 100%) !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.06) 0%,
+      rgba(212, 245, 60, 0.018) 48%,
+      transparent 70%),
+    #0A0A0A !important;
 }
 
-/* Replace static grid textures with moving fluid colour fields. */
-.cs-page::before {
-  content: '';
-  position: absolute;
-  inset: -18%;
-  background:
-    radial-gradient(circle at 18% 22%,
-      rgba(212, 245, 60, 0.18) 0%, transparent 28%),
-    radial-gradient(circle at 82% 18%,
-      rgba(34, 140, 133, 0.16) 0%, transparent 30%),
-    radial-gradient(circle at 56% 80%,
-      rgba(139, 94, 26, 0.12) 0%, transparent 34%);
-  filter: blur(36px);
-  opacity: 0.92;
-  pointer-events: none;
-  z-index: 1;
-  animation: atm-fluid 18s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
-  mask: none;
-  -webkit-mask: none;
-}
-
-/* Keep a soft centre bloom instead of rigid rings. */
+/* Soft centre bloom */
 .cs-page::after {
   content: '';
   position: absolute;
@@ -932,13 +894,12 @@
   border: none;
   background:
     radial-gradient(circle,
-      rgba(212, 245, 60, 0.08) 0%,
-      rgba(34, 140, 133, 0.05) 34%,
-      transparent 72%);
+      rgba(212, 245, 60, 0.06) 0%,
+      transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   filter: blur(16px);
-  opacity: 0.8;
+  opacity: 0.7;
   animation: atm-fluid 21s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate-reverse;
   pointer-events: none;
   z-index: 1;
@@ -950,11 +911,9 @@
 ═══════════════════════════════════════════════════════════ */
 .e404-page {
   background:
-    radial-gradient(ellipse 48% 48% at 50% 38%,
-      rgba(212, 245, 60, 0.032) 0%, transparent 65%),
-    radial-gradient(ellipse 28% 38% at 8% 92%,
-      rgba(26, 74, 74, 0.052) 0%, transparent 55%),
-    #050507 !important;
+    radial-gradient(ellipse 55% 70% at 88% 0%,
+      rgba(212, 245, 60, 0.04) 0%, transparent 65%),
+    #0A0A0A !important;
 }
 
 .e404-page::before {
@@ -1012,7 +971,7 @@
 .dash-main::after {
   background:
     radial-gradient(ellipse 28% 22% at 0% 100%,
-      rgba(26, 74, 74, 0.08) 0%, transparent 68%);
+      rgba(212, 245, 60, 0.025) 0%, transparent 68%);
   animation: atm-aurora 24s ease-in-out infinite reverse;
 }
 
@@ -1205,8 +1164,6 @@
       rgba(74, 124, 0, 0.1) 0%,
       rgba(74, 124, 0, 0.035) 42%,
       transparent 65%),
-    radial-gradient(ellipse 38% 48% at 8% 92%,
-      rgba(26, 74, 74, 0.04) 0%, transparent 55%),
     var(--bg-primary) !important;
 }
 
@@ -1216,17 +1173,13 @@
       rgba(74, 124, 0, 0.11) 0%,
       rgba(74, 124, 0, 0.045) 42%,
       transparent 66%),
-    radial-gradient(ellipse 40% 54% at 8% 100%,
-      rgba(26, 74, 74, 0.04) 0%, transparent 58%),
     var(--bg-primary) !important;
 }
 
 [data-theme="light"] .h2-hero__bg {
   background:
     radial-gradient(ellipse 48% 42% at 84% 50%,
-      rgba(74, 124, 0, 0.08) 0%, transparent 66%),
-    radial-gradient(ellipse 36% 48% at 12% 82%,
-      rgba(26, 74, 74, 0.035) 0%, transparent 62%) !important;
+      rgba(74, 124, 0, 0.08) 0%, transparent 66%) !important;
 }
 
 [data-theme="light"] .campaigns,
@@ -1310,8 +1263,6 @@
   background:
     radial-gradient(ellipse 58% 34% at 100% 0%,
       rgba(74, 124, 0, 0.08) 0%, transparent 56%),
-    radial-gradient(ellipse 28% 22% at 0% 100%,
-      rgba(26, 74, 74, 0.045) 0%, transparent 66%),
     var(--bg-primary) !important;
 }
 
@@ -1411,9 +1362,7 @@
     radial-gradient(circle at 16% 18%,
       rgba(74, 124, 0, 0.18) 0%, transparent 30%),
     radial-gradient(circle at 80% 18%,
-      rgba(26, 74, 74, 0.1) 0%, transparent 30%),
-    radial-gradient(circle at 62% 82%,
-      rgba(139, 94, 26, 0.08) 0%, transparent 30%);
+      rgba(74, 124, 0, 0.08) 0%, transparent 30%);
   opacity: 0.84;
 }
 
@@ -1441,7 +1390,6 @@
   background:
     radial-gradient(circle,
       rgba(74,124,0,0.12) 0%,
-      rgba(26,74,74,0.05) 36%,
       transparent 72%);
   opacity: 0.72;
 }
@@ -1455,27 +1403,27 @@
 
 /* On mobile, reduce gradient complexity for performance */
 @media (max-width: 768px) {
-  /* Simplify multi-layer gradients to 2 layers max on mobile */
   .hero {
     background:
       radial-gradient(ellipse 80% 55% at 90% 10%,
         rgba(212,245,60,0.06) 0%, transparent 65%),
-      #050507 !important;
+      #0A0A0A !important;
   }
-  .page-hero {
+  .page-hero,
+  .games-hero,
+  .blog-hero,
+  .contact-hero,
+  .forum-hero,
+  .bs-hero,
+  .gs-hero,
+  .thread-hero,
+  .cs-page {
     background:
-      radial-gradient(ellipse 80% 55% at 85% 0%,
-        rgba(212,245,60,0.065) 0%, transparent 65%),
-      #050507 !important;
+      radial-gradient(ellipse 70% 55% at 88% 0%,
+        rgba(212,245,60,0.05) 0%, transparent 65%),
+      #0A0A0A !important;
   }
-  .campaigns, .values, .games-hero, .blog-hero,
-  .contact-hero, .forum-hero, .bs-hero, .cs-page {
-    background:
-      radial-gradient(ellipse 70% 45% at 90% 0%,
-        rgba(212,245,60,0.05) 0%, transparent 60%),
-      var(--bg-primary) !important;
-  }
-  .features, .about-intro, .games-featured,
+  .campaigns, .values, .features, .about-intro, .games-featured,
   .blog-featured, .contact-section, .h2-editorial {
     background:
       linear-gradient(135deg,
@@ -1531,39 +1479,12 @@
 
 
 /* ═══════════════════════════════════════════════════════════
-   CONTINUOUS SECTION FLOW — late override for unified motion
+   CONTINUOUS SECTION FLOW — uniform dark with lime only
+   All sections share one consistent dark base. No teal.
+   No amber. Subtle lime glow only.
 ═══════════════════════════════════════════════════════════ */
-.page-hero,
-.about-intro,
-.values,
-.timeline,
-.team,
-.about-cta,
-.games-hero,
-.games-featured,
-.games-section,
-.gs-hero,
-.gs-body,
-.blog-hero,
-.blog-featured,
-.blog-section,
-.bs-hero,
-.bs-body,
-.bs-related,
-.contact-hero,
-.contact-section,
-.forum-hero,
-.thread-hero,
-.cs-page,
-.e404-page,
-.footer {
-  background:
-    linear-gradient(180deg,
-      rgba(7, 10, 12, 0.99) 0%,
-      rgba(10, 14, 17, 0.99) 42%,
-      rgba(12, 17, 20, 0.99) 100%) !important;
-}
 
+/* ── ::before — shared ambient lime glow ────────────────────── */
 .page-hero::before,
 .about-intro::before,
 .values::before,
@@ -1593,22 +1514,14 @@
   inset: -16%;
   background:
     radial-gradient(circle at 12% 18%,
-      rgba(212, 245, 60, 0.14) 0%,
-      rgba(212, 245, 60, 0.06) 18%,
+      rgba(212, 245, 60, 0.07) 0%,
+      rgba(212, 245, 60, 0.025) 18%,
       transparent 38%),
-    radial-gradient(circle at 78% 14%,
-      rgba(34, 140, 133, 0.14) 0%,
-      rgba(34, 140, 133, 0.05) 22%,
-      transparent 42%),
-    radial-gradient(circle at 52% 86%,
-      rgba(139, 94, 26, 0.09) 0%,
-      rgba(139, 94, 26, 0.03) 18%,
-      transparent 40%),
-    radial-gradient(circle at 92% 72%,
-      rgba(212, 245, 60, 0.08) 0%,
+    radial-gradient(circle at 80% 14%,
+      rgba(212, 245, 60, 0.04) 0%,
       transparent 34%);
   filter: blur(40px);
-  opacity: 0.8;
+  opacity: 0.75;
   pointer-events: none;
   z-index: 1;
   animation: atm-fluid 28s linear infinite;
@@ -1617,6 +1530,7 @@
   -webkit-mask: none;
 }
 
+/* ── ::after — secondary lime accent ────────────────────────── */
 .page-hero::after,
 .games-hero::after,
 .blog-hero::after,
@@ -1632,18 +1546,16 @@
   inset: -14%;
   background:
     radial-gradient(circle at 86% 24%,
-      rgba(212, 245, 60, 0.07) 0%,
-      transparent 28%),
-    radial-gradient(circle at 18% 72%,
-      rgba(34, 140, 133, 0.08) 0%,
-      transparent 32%);
+      rgba(212, 245, 60, 0.04) 0%,
+      transparent 28%);
   filter: blur(34px);
-  opacity: 0.72;
+  opacity: 0.6;
   pointer-events: none;
   z-index: 1;
   animation: atm-fluid-alt 34s linear infinite;
 }
 
+/* ── Light mode overrides ────────────────────────────────────── */
 [data-theme="light"] .page-hero,
 [data-theme="light"] .about-intro,
 [data-theme="light"] .values,
@@ -1669,10 +1581,9 @@
 [data-theme="light"] .e404-page,
 [data-theme="light"] .footer {
   background:
-    linear-gradient(180deg,
-      rgba(249, 251, 244, 0.98) 0%,
-      rgba(241, 246, 235, 0.99) 42%,
-      rgba(236, 243, 228, 0.99) 100%) !important;
+    radial-gradient(ellipse 55% 50% at 85% 0%,
+      rgba(74, 124, 0, 0.08) 0%, transparent 65%),
+    var(--bg-primary) !important;
 }
 
 [data-theme="light"] .page-hero::before,
@@ -1701,21 +1612,12 @@
 [data-theme="light"] .footer::before {
   background:
     radial-gradient(circle at 12% 18%,
-      rgba(74, 124, 0, 0.14) 0%,
-      rgba(74, 124, 0, 0.06) 18%,
+      rgba(74, 124, 0, 0.08) 0%,
       transparent 38%),
-    radial-gradient(circle at 78% 14%,
-      rgba(38, 117, 110, 0.12) 0%,
-      rgba(38, 117, 110, 0.045) 22%,
-      transparent 42%),
-    radial-gradient(circle at 52% 86%,
-      rgba(152, 108, 38, 0.08) 0%,
-      rgba(152, 108, 38, 0.025) 18%,
-      transparent 40%),
-    radial-gradient(circle at 92% 72%,
-      rgba(74, 124, 0, 0.06) 0%,
+    radial-gradient(circle at 80% 14%,
+      rgba(74, 124, 0, 0.04) 0%,
       transparent 34%);
-  opacity: 0.72;
+  opacity: 0.65;
 }
 
 [data-theme="light"] .page-hero::after,
@@ -1730,12 +1632,9 @@
 [data-theme="light"] .footer::after {
   background:
     radial-gradient(circle at 86% 24%,
-      rgba(74, 124, 0, 0.07) 0%,
-      transparent 28%),
-    radial-gradient(circle at 18% 72%,
-      rgba(38, 117, 110, 0.07) 0%,
-      transparent 32%);
-  opacity: 0.62;
+      rgba(74, 124, 0, 0.04) 0%,
+      transparent 28%);
+  opacity: 0.5;
 }
 
 @media (max-width: 768px) {

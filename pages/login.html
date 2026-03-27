@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/tab-favicon.svg?v=20260326" sizes="any" />
-  <link rel="shortcut icon" href="../assets/images/icons/tab-favicon.svg?v=20260326" type="image/svg+xml" />
-  <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260326" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" sizes="any" />
+  <link rel="shortcut icon" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" type="image/svg+xml" />
+  <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>Login — TabletopForge</title>
   <meta name="description" content="Log in to your TabletopForge backer dashboard to track shipments, download PnP files, and access the community forum." />
@@ -15,16 +15,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260327h5" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260327h7" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css?v=20260327h5" />
   <link rel="stylesheet" href="../assets/css/rtl.css?v=20260327h5" />
-  <link rel="stylesheet" href="../assets/css/atmosphere.css?v=20260327h5" />
 </head>
 <body class="standalone-page">
 
-
-
+<!-- AUTH PAGE -->
 <main id="main-content">
+<!-- LOGIN PANEL -->
 <section style="min-height:100svh;display:flex;align-items:center;padding:var(--sp-8) var(--sp-6) var(--sp-9);background:
   radial-gradient(ellipse 60% 70% at 80% 20%, rgba(212,245,60,0.025) 0%, transparent 60%),
   var(--bg-primary);">
@@ -57,10 +56,7 @@
       </div>
 
       <div id="fg-pass" class="login-field" style="display:flex;flex-direction:column;gap:var(--sp-2);">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <label for="login-password" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">Password</label>
-          <a href="forgot-password.html" style="font-size:0.78rem;color:var(--text-muted);transition:color var(--t-fast);">Forgot password?</a>
-        </div>
+        <label for="login-password" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">Password</label>
         <div style="position:relative;">
           <input id="login-password" type="password" required autocomplete="current-password" placeholder="••••••••"
             style="background:var(--bg-card);border:1px solid var(--border-hover);border-radius:var(--r-md);padding:12px var(--sp-8) 12px var(--sp-4);font-size:0.9rem;color:var(--text-primary);outline:none;min-height:48px;transition:border-color var(--t-fast);width:100%;font-family:var(--font-body);" />
@@ -70,6 +66,13 @@
           </button>
         </div>
         <span id="pass-error" style="font-size:0.75rem;color:#e05555;display:none;" role="alert">Password must be at least 8 characters.</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);flex-wrap:wrap;">
+          <label for="remember-me" style="display:inline-flex;align-items:center;gap:var(--sp-2);font-size:0.82rem;color:var(--text-secondary);cursor:pointer;">
+            <input id="remember-me" type="checkbox" style="accent-color:var(--accent);width:16px;height:16px;" />
+            Remember me
+          </label>
+          <a href="forgot-password.html" style="font-size:0.82rem;color:var(--text-muted);transition:color var(--t-fast);">Forgot password?</a>
+        </div>
       </div>
 
       <button id="login-submit" class="btn btn--primary" type="submit" style="width:100%;justify-content:center;">
@@ -91,13 +94,16 @@
 
     <!-- OAuth alternatives -->
     <div style="margin-top:var(--sp-7);padding-top:var(--sp-6);border-top:1px solid var(--border);">
-      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-bottom:var(--sp-4);">Or sign in with</p>
-      <div style="display:flex;gap:var(--sp-2);">
-        <button class="btn btn--ghost" type="button" style="flex:1;" onclick="window.location.href='dashboard-user.html'">
-          <i class="fa-brands fa-kickstarter-k" aria-hidden="true"></i> Kickstarter
-        </button>
-        <button class="btn btn--ghost" type="button" style="flex:1;" onclick="window.location.href='dashboard-user.html'">
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-bottom:var(--sp-4);">Or continue with</p>
+      <div class="auth-social-grid">
+        <button class="btn btn--ghost" type="button" style="width:100%;justify-content:center;padding-inline:var(--sp-3);" onclick="window.location.href='dashboard-user.html'">
           <i class="fa-brands fa-google" aria-hidden="true"></i> Google
+        </button>
+        <button class="btn btn--ghost" type="button" style="width:100%;justify-content:center;padding-inline:var(--sp-3);" onclick="window.location.href='dashboard-user.html'">
+          <i class="fa-brands fa-apple" aria-hidden="true"></i> Apple
+        </button>
+        <button class="btn btn--ghost" type="button" style="width:100%;justify-content:center;padding-inline:var(--sp-3);" onclick="window.location.href='dashboard-user.html'">
+          <i class="fa-brands fa-kickstarter-k" aria-hidden="true"></i> Kickstarter
         </button>
       </div>
     </div>
@@ -106,6 +112,7 @@
 </section>
 </main>
 
+<!-- PAGE SCRIPT -->
 <script src="../assets/js/main.js?v=20260327h5"></script>
 <script>
 // ─── Login page form validation & UX ───────────────────────

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/tab-favicon.svg?v=20260326" sizes="any" />
-  <link rel="shortcut icon" href="../assets/images/icons/tab-favicon.svg?v=20260326" type="image/svg+xml" />
-  <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260326" />
+  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" sizes="any" />
+  <link rel="shortcut icon" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" type="image/svg+xml" />
+  <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>FAQ — TabletopForge</title>
   <meta name="description" content="Frequently asked questions about campaigns, shipping, print & play files, refunds, and TabletopForge backer portal." />
@@ -16,10 +16,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260327h5" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260327h7" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css?v=20260327h5" />
   <link rel="stylesheet" href="../assets/css/rtl.css?v=20260327h5" />
-  <link rel="stylesheet" href="../assets/css/atmosphere.css?v=20260327h5" />
   </head>
 <body>
 
@@ -126,7 +125,7 @@
           <span>FAQ</span>
         </nav>
         <h1 id="faq-heading" class="display-lg">Frequently Asked<br>Questions</h1>
-        <p style="color:var(--text-secondary);font-size:1.05rem;max-width:540px;line-height:1.75;margin-top:var(--sp-4);">
+        <p class="page-hero__sub">
           Most common questions about backing, shipping, PnP files,
           refunds, and using the TabletopForge backer portal.
         </p>
@@ -138,6 +137,23 @@
         <a href="dashboard-user.html" class="btn btn--primary">
           Backer Portal
         </a>
+      </div>
+    </div>
+    <div class="inner-hero-strip inner-hero-strip--full page-hero__strip" aria-label="FAQ highlights">
+      <div class="inner-hero-strip__item">
+        <span class="inner-hero-strip__label">Most Asked</span>
+        <span class="inner-hero-strip__value"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Shipping, PnP, refunds</span>
+        <span class="inner-hero-strip__meta">The highest-volume answers are surfaced first so backers can self-serve quickly.</span>
+      </div>
+      <div class="inner-hero-strip__item">
+        <span class="inner-hero-strip__label">Support Window</span>
+        <span class="inner-hero-strip__value"><i class="fa-regular fa-clock" aria-hidden="true"></i> Usually within 1 business day</span>
+        <span class="inner-hero-strip__meta">If the FAQ does not cover it, contact routes go directly to the owning team.</span>
+      </div>
+      <div class="inner-hero-strip__item">
+        <span class="inner-hero-strip__label">Self-Service</span>
+        <span class="inner-hero-strip__value"><i class="fa-solid fa-user" aria-hidden="true"></i> Portal, tracking, downloads</span>
+        <span class="inner-hero-strip__meta">The backer dashboard covers orders, shipping, forum access, and file delivery.</span>
       </div>
     </div>
   </div>
@@ -154,7 +170,7 @@
     </div>
 
     <!-- FAQ Grid -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:var(--sp-6);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:var(--sp-6);">
       
       <!-- Shipping -->
       <div class="faq-group">
@@ -237,6 +253,16 @@
               <p>Full instructions + templates included in every file.</p>
             </div>
           </details>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>Do PnP files get updated after feedback?</span>
+              <i class="fa-solid fa-chevron-down faq-summary-icon" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. Rules fixes, balance updates, and print optimizations are pushed to the same file library whenever a revision ships.</p>
+              <p>Your dashboard always shows the latest version number, and older files are archived for reference.</p>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -272,6 +298,16 @@
               </ul>
             </div>
           </details>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>Can I update my address after the campaign?</span>
+              <i class="fa-solid fa-chevron-down faq-summary-icon" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes, up until address lock. Use the backer portal to update delivery details before production closes.</p>
+              <p>After address lock, contact support immediately and we will confirm whether your parcel can still be rerouted.</p>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -301,6 +337,16 @@
               <p>Pledge email auto-imports. If not showing, contact support with your KS email address.</p>
             </div>
           </details>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>Can I manage more than one pledge in one account?</span>
+              <i class="fa-solid fa-chevron-down faq-summary-icon" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. Multiple pledges tied to the same email appear inside one dashboard profile.</p>
+              <p>If you backed with different emails, support can help merge access once ownership is confirmed.</p>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -319,6 +365,26 @@
             <div class="faq-answer">
               <p>Verified TabletopForge backers only. Forum access in your backer portal.</p>
               <p>Community guidelines: <a href="forum.html">read before posting</a>.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>Can I share strategy guides or house rules?</span>
+              <i class="fa-solid fa-chevron-down faq-summary-icon" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. Strategy threads, session reports, solo variants, and house-rule discussions are all encouraged.</p>
+              <p>We only ask that fan files stay clearly labeled and avoid re-uploading full official assets.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>How are spoilers and moderation handled?</span>
+              <i class="fa-solid fa-chevron-down faq-summary-icon" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Spoiler topics are tagged and moderated. Rules disputes, harassment, or leaked campaign material are reviewed by staff moderators.</p>
+              <p>Repeat violations can lose forum posting access.</p>
             </div>
           </details>
         </div>
