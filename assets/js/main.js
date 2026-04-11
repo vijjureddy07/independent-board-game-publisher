@@ -494,33 +494,44 @@ const FeatureAccordion = (() => {
    8. CURSOR MANAGER — custom cursor, desktop only
 ───────────────────────────────────────────────────────────── */
 const CursorManager = (() => {
+  const interactiveSelector = 'a,button,[role="button"],input,select,textarea,label,.campaign-card,.feature-item,.game-card,.testi-card,.post-card';
+
   function injectStyles() {
     const s = document.createElement('style');
     s.textContent = `
       * { cursor: none !important; }
-      .ttf-cursor { position:fixed; top:0; left:0; pointer-events:none; z-index:99999; }
+      .ttf-cursor {
+        position:fixed; top:0; left:0; pointer-events:none; z-index:99999;
+        transform:translate3d(-100px,-100px,0); transition:opacity .18s ease;
+      }
       .ttf-cursor__dot {
         position:absolute; width:5px; height:5px; border-radius:50%;
-        background:var(--text-primary); top:-2.5px; left:-2.5px;
+        background:var(--text-primary); top:50%; left:50%;
+        transform:translate(-50%,-50%);
         transition:width .2s,height .2s,background .2s;
       }
       .ttf-cursor__ring {
         position:absolute; width:32px; height:32px; border-radius:50%;
-        border:1px solid rgba(244,244,244,.22); top:-16px; left:-16px;
+        border:1px solid rgba(244,244,244,.22); top:50%; left:50%;
+        transform:translate(-50%,-50%);
         transition:width .35s cubic-bezier(.16,1,.3,1),
                    height .35s cubic-bezier(.16,1,.3,1),
                    border-color .2s;
       }
-      .ttf-cursor.hover .ttf-cursor__dot  { width:10px;height:10px;top:-5px;left:-5px;background:var(--accent); }
-      .ttf-cursor.hover .ttf-cursor__ring { width:52px;height:52px;top:-26px;left:-26px;border-color:rgba(212,245,60,.3); }
-      .ttf-cursor.click .ttf-cursor__ring { width:20px;height:20px;top:-10px;left:-10px; }
+      .ttf-cursor.hover .ttf-cursor__dot  { width:10px;height:10px;background:var(--accent); }
+      .ttf-cursor.hover .ttf-cursor__ring { width:52px;height:52px;border-color:rgba(212,245,60,.3); }
+      .ttf-cursor.click .ttf-cursor__ring { width:20px;height:20px; }
       .ttf-cursor.hidden { opacity:0; }
     `;
     document.head.appendChild(s);
   }
 
   function init() {
-    if ('ontouchstart' in window || window.matchMedia('(pointer:coarse)').matches) return;
+    if (
+      'ontouchstart' in window
+      || window.matchMedia('(pointer:coarse)').matches
+      || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) return;
 
     injectStyles();
 
@@ -529,32 +540,23 @@ const CursorManager = (() => {
     cursor.innerHTML = '<div class="ttf-cursor__dot"></div><div class="ttf-cursor__ring"></div>';
     document.body.appendChild(cursor);
 
-    const dot  = cursor.querySelector('.ttf-cursor__dot');
-    const ring = cursor.querySelector('.ttf-cursor__ring');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    let mouseX = -100;
+    let mouseY = -100;
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      dot.style.transform = `translate(${mouseX}px,${mouseY}px)`;
+    document.addEventListener('pointermove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.transform = `translate3d(${mouseX}px,${mouseY}px,0)`;
+      cursor.classList.toggle('hover', Boolean(e.target.closest(interactiveSelector)));
     });
 
-    (function animRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.transform = `translate(${ringX}px,${ringY}px)`;
-      requestAnimationFrame(animRing);
-    })();
-
-    const hoverEls = 'a,button,[role="button"],.campaign-card,.feature-item,.game-card,.testi-card,.post-card';
-    $$(hoverEls).forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    document.addEventListener('pointerdown', () => cursor.classList.add('click'));
+    document.addEventListener('pointerup',   () => cursor.classList.remove('click'));
+    document.addEventListener('pointerleave', () => cursor.classList.add('hidden'));
+    document.addEventListener('pointerenter', () => {
+      cursor.classList.remove('hidden');
+      cursor.style.transform = `translate3d(${mouseX}px,${mouseY}px,0)`;
     });
-
-    document.addEventListener('mousedown',  () => cursor.classList.add('click'));
-    document.addEventListener('mouseup',    () => cursor.classList.remove('click'));
-    document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-    document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
   }
 
   return { init };

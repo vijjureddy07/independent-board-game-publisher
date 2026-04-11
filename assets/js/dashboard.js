@@ -15,6 +15,72 @@
 const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
 const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
+const DASH_BRAND_NAME = 'TabletopForge';
+const DASH_BRAND_MARKUP = `
+  <div class="dash-logo__mark" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"></path>
+      <path d="M8 16V9a4 4 0 0 1 8 0v7"></path>
+      <path d="M9 9h6"></path>
+      <circle cx="12" cy="6" r="1"></circle>
+    </svg>
+  </div>
+  <span class="dash-logo__text">${DASH_BRAND_NAME}</span>
+`;
+
+function createDashBrand(className) {
+  const link = document.createElement('a');
+  link.href = 'index.html';
+  link.className = className;
+  link.setAttribute('aria-label', `${DASH_BRAND_NAME} — Back to site`);
+  link.innerHTML = DASH_BRAND_MARKUP;
+  return link;
+}
+
+function ensureSidebarBrand() {
+  _$$('#dash-sidebar, #dash-sidebar-admin').forEach(sidebar => {
+    if (_$('.dash-logo', sidebar)) return;
+    sidebar.insertBefore(createDashBrand('dash-logo'), sidebar.firstChild);
+  });
+}
+
+function normalizeAdminTopbar() {
+  const topbar = _$('#admin-main .dash-topbar');
+  if (!topbar) return;
+
+  let identity = _$('.dash-topbar__identity', topbar);
+  if (!identity) {
+    identity = document.createElement('div');
+    identity.className = 'dash-topbar__identity';
+    topbar.insertBefore(identity, topbar.firstChild);
+  }
+
+  let brand = _$('.dash-topbar__brand', topbar);
+  if (!brand) {
+    brand = createDashBrand('dash-topbar__brand');
+  }
+  if (brand.parentElement !== identity) {
+    identity.appendChild(brand);
+  }
+
+  const title = _$('.dash-topbar__title', topbar);
+  if (title && title.parentElement !== identity) {
+    identity.appendChild(title);
+  }
+
+  const toggle = _$('#admin-sidebar-toggle', topbar);
+  if (toggle && toggle.parentElement !== topbar) {
+    topbar.appendChild(toggle);
+  }
+
+  _$$(':scope > div[style]', topbar).forEach(wrapper => {
+    if (wrapper === identity) return;
+    if (!wrapper.children.length && !wrapper.textContent.trim()) {
+      wrapper.remove();
+    }
+  });
+}
+
 /* ─────────────────────────────────────────────────────────────
    MOBILE TITLE SYNC
 ───────────────────────────────────────────────────────────── */
@@ -269,6 +335,8 @@ const AdminSearch = (() => {
    INIT
 ───────────────────────────────────────────────────────────── */
 function initDashModules() {
+  ensureSidebarBrand();
+  normalizeAdminTopbar();
   DashSidebar.init();
   DashPanels.init();
   DashNotifications.init();
@@ -281,6 +349,7 @@ function initDashModules() {
   }
 
   syncMobileUserTitle();
+  window.addEventListener('resize', syncMobileUserTitle, { passive: true });
 }
 
 if (document.readyState === 'loading') {

@@ -4848,6 +4848,21 @@ body.coming-soon-page .cs-page {
   gap        : var(--sp-2);
 }
 
+.dash-topbar__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+.dash-topbar__brand {
+  display: none;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
 .dash-inner { padding: var(--sp-6) var(--sp-7); }
 
 .dash-stats {
@@ -8269,6 +8284,23 @@ body.dashboard-page .dash-content {
   padding: 0;
 }
 
+body.dashboard-page .dash-section-head {
+  align-items: flex-start;
+}
+
+body.dashboard-page .dash-section-head > :last-child {
+  margin-inline-start: auto;
+  max-width: 100%;
+}
+
+body.dashboard-page .dash-section-head > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
 body.dashboard-page .dash-stats--compact {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -8294,6 +8326,15 @@ body.dashboard-page .dash-grid-2 > .dash-card,
 body.dashboard-page .dash-grid-3 > .dash-card,
 body.dashboard-page .dash-grid-main-side > .dash-card {
   height: 100%;
+}
+
+body.dashboard-page .dash-grid-main-side {
+  align-items: start;
+}
+
+body.dashboard-page .dash-grid-main-side > .dash-card {
+  height: auto;
+  align-self: start;
 }
 
 body.dashboard-page .dash-card__body,
@@ -8358,6 +8399,9 @@ body.dashboard-page .activity-item {
   letter-spacing: -0.02em;
   color         : var(--text-primary);
   min-width     : 0;
+  overflow      : hidden;
+  text-overflow : ellipsis;
+  white-space   : nowrap;
 }
 
 @media (max-width: 1024px) {
@@ -8375,7 +8419,60 @@ body.dashboard-page .activity-item {
   }
 
   body.dashboard-page .dash-logo__text {
+    display: inline;
+  }
+
+  body.dashboard-page .dash-section-head {
+    align-items: flex-start;
+  }
+
+  body.dashboard-page .dash-section-head > :last-child {
+    margin-inline-start: auto;
+  }
+
+  body.user-dashboard-page .dash-page-header {
+    margin-bottom: var(--sp-5);
+  }
+
+  body.user-dashboard-page .dash-page-header > :first-child {
     display: none;
+  }
+
+  body.user-dashboard-page .dash-page-header > :last-child {
+    margin-inline-start: 0;
+  }
+
+  #admin-main .dash-topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    row-gap: var(--sp-4);
+  }
+
+  #admin-main .dash-topbar__identity {
+    gap: var(--sp-3);
+  }
+
+  #admin-main .dash-topbar__brand {
+    display: inline-flex;
+  }
+
+  #admin-main .dash-topbar__title {
+    display: none;
+  }
+
+  #admin-main .dash-topbar__actions {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  #admin-main .dash-topbar .dash-icon-btn {
+    display: none;
+  }
+
+  #admin-main .dash-mobile-toggle {
+    justify-self: end;
   }
 
   body.dashboard-page .dash-stats--compact {
