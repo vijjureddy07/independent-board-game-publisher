@@ -125,7 +125,7 @@ const NavManager = (() => {
             </a>
             <a href="home-page-2.html" class="nav__dropdown-link" role="menuitem">
               <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-              <div>Home Page 2 <span>Campaign-focused layout</span></div>
+              <div>Home Page 2 <span>Designer showcase layout</span></div>
             </a>
           </div>
         </li>
@@ -135,20 +135,7 @@ const NavManager = (() => {
         </li>
 
         <li class="nav__item">
-          <a href="games.html" class="${linkClass('games', activeGroup)}" aria-haspopup="true" data-nav-group="games">
-            Games
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
-          </a>
-          <div class="nav__dropdown" role="menu">
-            <a href="games.html" class="nav__dropdown-link" role="menuitem">
-              <i class="fa-solid fa-dice" aria-hidden="true"></i>
-              <div>All Titles <span>Browse our full catalogue</span></div>
-            </a>
-            <a href="coming-soon.html" class="nav__dropdown-link" role="menuitem">
-              <i class="fa-solid fa-moon" aria-hidden="true"></i>
-              <div>Coming Soon <span>Upcoming campaigns</span></div>
-            </a>
-          </div>
+          <a href="games.html" class="${linkClass('games', activeGroup)}" data-nav-group="games">Games</a>
         </li>
 
         <li class="nav__item">
@@ -160,20 +147,7 @@ const NavManager = (() => {
         </li>
 
         <li class="nav__item">
-          <a href="forum.html" class="${linkClass('community', activeGroup)}" aria-haspopup="true" data-nav-group="community">
-            Community
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
-          </a>
-          <div class="nav__dropdown" role="menu">
-            <a href="forum.html" class="nav__dropdown-link" role="menuitem">
-              <i class="fa-solid fa-comments" aria-hidden="true"></i>
-              <div>Forum <span>Strategy, news &amp; community</span></div>
-            </a>
-            <a href="faq.html" class="nav__dropdown-link" role="menuitem">
-              <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
-              <div>FAQ <span>Common questions answered</span></div>
-            </a>
-          </div>
+          <a href="forum.html" class="${linkClass('community', activeGroup)}" data-nav-group="community">Forum</a>
         </li>
 
         <li class="nav__item">
@@ -188,7 +162,7 @@ const NavManager = (() => {
             </a>
             <a href="dashboard-admin.html" class="nav__dropdown-link" role="menuitem">
               <i class="fa-solid fa-gear" aria-hidden="true"></i>
-              <div>Admin Dashboard <span>Manage campaigns &amp; users</span></div>
+              <div>Admin Dashboard <span>Manage games &amp; designers</span></div>
             </a>
           </div>
         </li>
@@ -215,11 +189,9 @@ const NavManager = (() => {
   <a href="home-page-2.html" class="${mobileLinkClass('home-page-2.html', file, 'nav__mobile-sub')}">Home Page 2</a>
   <a href="about.html" class="${mobileLinkClass('about.html', file)}">About</a>
   <a href="games.html" class="${mobileLinkClass('games.html', file)}">Games</a>
-  <a href="coming-soon.html" class="${mobileLinkClass('coming-soon.html', file, 'nav__mobile-sub')}">Coming Soon</a>
   <a href="blog.html" class="${mobileLinkClass('blog.html', file)}">Blog</a>
   <a href="contact.html" class="${mobileLinkClass('contact.html', file)}">Contact</a>
   <a href="forum.html" class="${mobileLinkClass('forum.html', file)}">Forum</a>
-  <a href="faq.html" class="${mobileLinkClass('faq.html', file, 'nav__mobile-sub')}">FAQ</a>
   <a href="dashboard-user.html" class="${mobileLinkClass('dashboard-user.html', file)}">User Dashboard</a>
   <a href="dashboard-admin.html" class="${mobileLinkClass('dashboard-admin.html', file, 'nav__mobile-sub')}">Admin Dashboard</a>
   <div class="nav__mobile-controls">

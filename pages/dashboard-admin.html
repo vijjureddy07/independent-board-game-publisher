@@ -8,7 +8,7 @@
   <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>Overview — Admin Dashboard · TabletopForge</title>
-  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <meta name="description" content="TabletopForge admin panel. Manage games, designers, orders, fulfilment, blog posts, and community moderation." />
   <meta name="robots" content="noindex, nofollow" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,6 +28,18 @@
 
   <!-- ─── SIDEBAR ─────────────────────────────────────────────── -->
   <aside class="dash-sidebar" id="dash-sidebar-admin" aria-label="Admin navigation">
+
+    <a href="index.html" class="dash-logo" aria-label="TabletopForge — Back to site">
+      <div class="dash-logo__mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/>
+          <path d="M8 16V9a4 4 0 0 1 8 0v7"/>
+          <path d="M9 9h6"/>
+          <circle cx="12" cy="6" r="1"/>
+        </svg>
+      </div>
+      <span class="dash-logo__text">TabletopForge</span>
+    </a>
 
     <div class="dash-sidebar__top">
       <div class="dash-profile">
@@ -55,9 +67,9 @@
       </div>
 
       <div class="dash-nav-section">
-        <span class="dash-nav-label">Campaigns</span>
+        <span class="dash-nav-label">Games</span>
         <a href="dashboard-admin-campaigns.html" class="dash-nav-item" data-admin-panel="campaigns">
-          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Games
           <span class="dash-nav-badge">4</span>
         </a>
         <a href="dashboard-admin-orders.html" class="dash-nav-item" data-admin-panel="orders">
@@ -75,7 +87,7 @@
       <div class="dash-nav-section">
         <span class="dash-nav-label">Users</span>
         <a href="dashboard-admin-users.html" class="dash-nav-item" data-admin-panel="users">
-          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Designers
           <span class="dash-nav-badge">48.2K</span>
         </a>
         <a href="dashboard-admin-messages.html" class="dash-nav-item" data-admin-panel="messages">
@@ -108,12 +120,6 @@
     </nav>
 
     <div class="dash-sidebar__bottom">
-      <a href="dashboard-user.html" class="dash-nav-item">
-        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
-      </a>
-      <a href="index.html" class="dash-nav-item">
-        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
-      </a>
       <a href="index.html" class="dash-nav-item">
         <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
       </a>
@@ -167,16 +173,16 @@
         <div class="dash-stats">
           <div class="dash-stat-card">
             <div class="dash-stat-card__icon"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
-            <span class="dash-stat-card__value" data-count="48200">—</span>
-            <span class="dash-stat-card__label">Total backers</span>
+            <span class="dash-stat-card__value" data-count="12500">—</span>
+            <span class="dash-stat-card__label">Total designers</span>
             <div class="dash-stat-card__change change--up">
-              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +847 this week
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +247 this week
             </div>
           </div>
           <div class="dash-stat-card">
             <div class="dash-stat-card__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></div>
             <span class="dash-stat-card__value" data-count="284" data-prefix="$" data-suffix="K">—</span>
-            <span class="dash-stat-card__label">Raised this campaign</span>
+            <span class="dash-stat-card__label">Platform revenue (Apr)</span>
             <div class="dash-stat-card__change change--up">
               <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +$12K today
             </div>
@@ -204,7 +210,7 @@
           <div class="dash-card">
             <div class="dash-card__head">
               <h2 class="dash-card__title">
-                <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Daily Pledges — Citadels
+                <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Daily Orders — Citadels
               </h2>
               <span class="dash-card__link">Last 14 days</span>
             </div>
@@ -213,7 +219,7 @@
                 <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;">$284K</span>
                 <span style="font-size:0.78rem;color:var(--text-muted);">of $80K goal · 342% funded</span>
               </div>
-              <div class="mini-chart" aria-label="Daily pledge chart" role="img">
+              <div class="mini-chart" aria-label="Daily order chart" role="img">
                 <div class="mini-bar" style="height:35%;" title="Mar 11 — $8.2K"></div>
                 <div class="mini-bar" style="height:52%;" title="Mar 12 — $12.4K"></div>
                 <div class="mini-bar" style="height:44%;" title="Mar 13 — $10.5K"></div>
@@ -246,12 +252,12 @@
               <div class="activity-feed">
                 <div class="activity-item">
                   <div class="activity-item__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></div>
-                  <span class="activity-item__text"><strong>New pledge</strong> — Warlord tier ($145) from @aiko_naka</span>
+                  <span class="activity-item__text"><strong>New order</strong> — Deluxe edition ($145) from @aiko_naka</span>
                   <span class="activity-item__time">2 min</span>
                 </div>
                 <div class="activity-item">
                   <div class="activity-item__icon"><i class="fa-solid fa-user-plus" aria-hidden="true"></i></div>
-                  <span class="activity-item__text"><strong>New backer</strong> — <a href="mailto:marcus.r@email.com">marcus.r@email.com</a> joined via Kickstarter</span>
+                  <span class="activity-item__text"><strong>New designer</strong> — <a href="mailto:marcus.r@email.com">marcus.r@email.com</a> created an account</span>
                   <span class="activity-item__time">8 min</span>
                 </div>
                 <div class="activity-item">
@@ -266,7 +272,7 @@
                 </div>
                 <div class="activity-item">
                   <div class="activity-item__icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
-                  <span class="activity-item__text"><strong>Support message</strong> — Backer #4821 reports missing promo card</span>
+                  <span class="activity-item__text"><strong>Support message</strong> — Designer #4821 needs help with template upload</span>
                   <span class="activity-item__time">2h</span>
                 </div>
                 <div class="activity-item">
@@ -296,7 +302,7 @@
                 <thead>
                   <tr>
                     <th>Order</th>
-                    <th>Backer</th>
+                    <th>Designer</th>
                     <th>Issue</th>
                     <th>Status</th>
                   </tr>
@@ -349,7 +355,7 @@
                     <span class="status-pill status-pill--alert" style="font-size:0.62rem;">Spam</span>
                     <span class="dash-feed-item__meta">Citadels · flagged by 3 users · 5 min ago</span>
                   </div>
-                  <p class="dash-feed-item__content">Three backers flagged a suspicious sales link in the strategy forum and it is queued for review.</p>
+                  <p class="dash-feed-item__content">Three designers flagged a suspicious link in the designer forum and it is queued for review.</p>
                   <div class="dash-actions-row">
                     <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
                       <i class="fa-solid fa-check" aria-hidden="true"></i> Approve

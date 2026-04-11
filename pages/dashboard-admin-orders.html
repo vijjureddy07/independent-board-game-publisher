@@ -8,7 +8,7 @@
   <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>Orders — Admin Dashboard · TabletopForge</title>
-  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <meta name="description" content="TabletopForge admin panel. Manage games, users, orders, fulfilment, blog posts, and community moderation." />
   <meta name="robots" content="noindex, nofollow" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,9 +55,9 @@
       </div>
 
       <div class="dash-nav-section">
-        <span class="dash-nav-label">Campaigns</span>
+        <span class="dash-nav-label">Games</span>
         <a href="dashboard-admin-campaigns.html" class="dash-nav-item" data-admin-panel="campaigns">
-          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Games
           <span class="dash-nav-badge">4</span>
         </a>
         <a href="dashboard-admin-orders.html" class="dash-nav-item active" data-admin-panel="orders">
@@ -75,7 +75,7 @@
       <div class="dash-nav-section">
         <span class="dash-nav-label">Users</span>
         <a href="dashboard-admin-users.html" class="dash-nav-item" data-admin-panel="users">
-          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Designers
           <span class="dash-nav-badge">48.2K</span>
         </a>
         <a href="dashboard-admin-messages.html" class="dash-nav-item" data-admin-panel="messages">
@@ -108,12 +108,6 @@
     </nav>
 
     <div class="dash-sidebar__bottom">
-      <a href="dashboard-user.html" class="dash-nav-item">
-        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
-      </a>
-      <a href="index.html" class="dash-nav-item">
-        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
-      </a>
       <a href="index.html" class="dash-nav-item">
         <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
       </a>
@@ -166,7 +160,7 @@
         </div>
         <div class="dash-table-wrap">
           <table class="dash-table" aria-label="Order management">
-            <thead><tr><th>Order #</th><th>Backer</th><th>Campaign</th><th>Tier</th><th>Amount</th><th>Status</th><th>ETA</th><th>Actions</th></tr></thead>
+            <thead><tr><th>Order #</th><th>Designer</th><th>Game</th><th>Edition</th><th>Amount</th><th>Status</th><th>ETA</th><th>Actions</th></tr></thead>
             <tbody>
               <tr><td><span class="dash-table__name">#CD-2847</span></td><td>Marcus R.</td><td>Citadels</td><td>Warlord</td><td>$145</td><td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td><td>Q4 2026</td><td><button class="btn btn--ghost btn--sm" type="button" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></td></tr>
               <tr><td><span class="dash-table__name">#VE-4821</span></td><td>marcus@example.com</td><td>Verdant</td><td>Deluxe All-In</td><td>$145</td><td><span class="status-pill status-pill--alert"><i class="fa-solid fa-triangle-exclamation"></i> Flagged</span></td><td>Apr 1–5</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Resolve"><i class="fa-solid fa-check" aria-hidden="true"></i></button></td></tr>

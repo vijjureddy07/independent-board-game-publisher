@@ -19,21 +19,9 @@
 }
 
 /* ─── NAV ────────────────────────────────────────────────────── */
-[dir="rtl"] .nav__inner {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .nav__links {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .nav__controls {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .nav__link {
-  flex-direction: row-reverse;
-}
+/* direction:rtl (inherited from html) naturally reverses all flex rows;
+   no explicit flex-direction:row-reverse is needed — adding it would
+   double-reverse the axis, misaligning click targets from visual positions. */
 
 [dir="rtl"] .nav__dropdown {
   left     : auto;
@@ -47,8 +35,7 @@
 }
 
 [dir="rtl"] .nav__dropdown-link {
-  flex-direction: row-reverse;
-  text-align    : right;
+  text-align: right;
 }
 
 [dir="rtl"] .nav__mobile {
@@ -629,3 +616,193 @@
 [dir="rtl"] .e404-quick {
   direction: rtl;
 }
+
+/* ─── GAMES PAGE — STORE & MODE TOGGLE ──────────────────────── */
+[dir="rtl"] .games-mode-toggle {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .game-card__badge {
+  left: auto;
+  right: var(--sp-3);
+}
+
+[dir="rtl"] .games-featured__layout {
+  direction: rtl;
+}
+
+[dir="rtl"] .games-how-strip {
+  direction: rtl;
+}
+
+[dir="rtl"] .inner-hero-strip__item {
+  text-align: right;
+}
+
+[dir="rtl"] .filter-bar__inner {
+  flex-direction: row-reverse;
+}
+
+/* ─── MOBILE NAV ─────────────────────────────────────────────── */
+[dir="rtl"] .nav__mobile-sub {
+  padding-left : 0;
+  padding-right: var(--sp-5);
+}
+
+/* grid container — direction:rtl reverses column order */
+[dir="rtl"] .nav__mobile-controls {
+  direction: rtl;
+}
+
+/* right-align the Login button in the mobile drawer */
+[dir="rtl"] .nav__mobile-login {
+  text-align: right;
+}
+
+/* cancel LTR auto-margins that fight row-reverse on mobile */
+@media (max-width: 1024px) {
+  [dir="rtl"] .nav__logo      { margin-right: 0; }
+  [dir="rtl"] .nav__hamburger { margin-left: 0; }
+}
+
+/* ─── SECTION EYEBROW ────────────────────────────────────────── */
+[dir="rtl"] .section-eyebrow::before {
+  margin-right: 0;
+  margin-left : var(--sp-3);
+  order       : 1;
+}
+
+/* ─── COMPACT HERO / INNER HERO STRIP ───────────────────────── */
+[dir="rtl"] .compact-hero__row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .compact-hero__strip {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .inner-hero-strip {
+  direction: rtl;
+}
+
+/* ─── HERO (index) ───────────────────────────────────────────── */
+[dir="rtl"] .hero__inner {
+  direction: rtl;
+}
+
+/* ─── STEPS (how-it-works) ───────────────────────────────────── */
+[dir="rtl"] .steps-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .step-card { text-align: right; }
+
+[dir="rtl"] .step-card__head {
+  flex-direction: row-reverse;
+}
+
+/* ─── HOME-PAGE-2 ────────────────────────────────────────────── */
+[dir="rtl"] .h2-portal__grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .h2-portal-card { text-align: right; }
+
+[dir="rtl"] .h2-file-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-track-step {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .h2-forum-item {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .h2-featured-card__stats {
+  flex-direction: row-reverse;
+}
+
+/* ─── SHOWCASE CARDS (index) ─────────────────────────────────── */
+[dir="rtl"] .showcase-card__badge {
+  left : auto;
+  right: var(--sp-4);
+}
+
+[dir="rtl"] .showcase-card__meta {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .showcase-card__genre,
+[dir="rtl"] .showcase-card__title,
+[dir="rtl"] .showcase-card__desc { text-align: right; }
+
+/* ─── PRICING CARDS ──────────────────────────────────────────── */
+[dir="rtl"] .pricing-card__features {
+  text-align: right;
+}
+
+[dir="rtl"] .pricing-card__features li {
+  flex-direction: row-reverse;
+}
+
+/* ─── BLOG FEATURED ──────────────────────────────────────────── */
+[dir="rtl"] .blog-featured__body {
+  text-align: right;
+}
+
+/* ─── BLOG SINGLE ────────────────────────────────────────────── */
+[dir="rtl"] .bs-cover__caption {
+  flex-direction: row-reverse;
+}
+
+/* ─── GAME CARDS ─────────────────────────────────────────────── */
+[dir="rtl"] .game-card__genre,
+[dir="rtl"] .game-card__title,
+[dir="rtl"] .game-card__desc { text-align: right; }
+
+/* ─── GAME SINGLE ────────────────────────────────────────────── */
+[dir="rtl"] .gs-designer {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+/* ─── DASHBOARD SIDEBAR ──────────────────────────────────────── */
+[dir="rtl"] .dash-profile {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .dash-sidebar__footer {
+  text-align: right;
+}
+
+[dir="rtl"] .dash-sidebar__footer a {
+  flex-direction: row-reverse;
+}
+
+/* ─── FORMS ──────────────────────────────────────────────────── */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+  direction : rtl;
+}
+
+/* ─── FEED & PNP ITEMS ───────────────────────────────────────── */
+[dir="rtl"] .dash-feed-item {
+  flex-direction: row-reverse;
+  text-align    : right;
+}
+
+[dir="rtl"] .dash-feed-item__head {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .pnp-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .pnp-item__name { text-align: right; }

@@ -7,8 +7,8 @@
   <link rel="shortcut icon" href="../assets/images/icons/brand-favicon.svg?v=20260327h7" type="image/svg+xml" />
   <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
-  <title>Backers — Admin Dashboard · TabletopForge</title>
-  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <title>Designers — Admin Dashboard · TabletopForge</title>
+  <meta name="description" content="TabletopForge admin panel. Manage games, users, orders, fulfilment, blog posts, and community moderation." />
   <meta name="robots" content="noindex, nofollow" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,9 +55,9 @@
       </div>
 
       <div class="dash-nav-section">
-        <span class="dash-nav-label">Campaigns</span>
+        <span class="dash-nav-label">Games</span>
         <a href="dashboard-admin-campaigns.html" class="dash-nav-item" data-admin-panel="campaigns">
-          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Games
           <span class="dash-nav-badge">4</span>
         </a>
         <a href="dashboard-admin-orders.html" class="dash-nav-item" data-admin-panel="orders">
@@ -75,7 +75,7 @@
       <div class="dash-nav-section">
         <span class="dash-nav-label">Users</span>
         <a href="dashboard-admin-users.html" class="dash-nav-item active" data-admin-panel="users">
-          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Designers
           <span class="dash-nav-badge">48.2K</span>
         </a>
         <a href="dashboard-admin-messages.html" class="dash-nav-item" data-admin-panel="messages">
@@ -108,12 +108,6 @@
     </nav>
 
     <div class="dash-sidebar__bottom">
-      <a href="dashboard-user.html" class="dash-nav-item">
-        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
-      </a>
-      <a href="index.html" class="dash-nav-item">
-        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
-      </a>
       <a href="index.html" class="dash-nav-item">
         <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
       </a>
@@ -130,7 +124,7 @@
         <button class="dash-mobile-toggle" id="admin-sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="dash-sidebar-admin">
           <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
-        <span class="dash-topbar__title" id="admin-page-title">Backers</span>
+        <span class="dash-topbar__title" id="admin-page-title">Designers</span>
       </div>
       <div class="dash-topbar__actions">
         <div class="dash-topbar__search">
@@ -153,12 +147,12 @@
 
         <div class="dash-section-head">
           <h2 class="dash-section-title">
-            <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+            <i class="fa-solid fa-users" aria-hidden="true"></i> All Designers
           </h2>
           <div style="display:flex;gap:var(--sp-3);">
             <div class="dash-topbar__search" style="position:relative;">
               <i class="fa-solid fa-magnifying-glass dash-search-icon" aria-hidden="true"></i>
-              <input class="dash-search-input" type="search" placeholder="Search backers..." aria-label="Search backers" />
+              <input class="dash-search-input" type="search" placeholder="Search designers..." aria-label="Search designers" />
             </div>
             <button class="btn btn--ghost btn--sm" type="button">
               <i class="fa-solid fa-file-export" aria-hidden="true"></i> Export CSV
@@ -167,10 +161,10 @@
         </div>
 
         <div class="dash-table-wrap">
-          <table class="dash-table" aria-label="Backer management">
+          <table class="dash-table" aria-label="Designer management">
             <thead>
               <tr>
-                <th>Backer</th>
+                <th>Designer</th>
                 <th>Email</th>
                 <th>Campaigns</th>
                 <th>Total pledged</th>
@@ -193,7 +187,7 @@
                 <td>Mar 2021</td>
                 <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Active</span></td>
                 <td>
-                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View designer">
                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                   </button>
                 </td>
@@ -211,7 +205,7 @@
                 <td>Jan 2020</td>
                 <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Active</span></td>
                 <td>
-                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View designer">
                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                   </button>
                 </td>
@@ -229,7 +223,7 @@
                 <td>Nov 2022</td>
                 <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Active</span></td>
                 <td>
-                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View designer">
                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                   </button>
                 </td>
@@ -247,7 +241,7 @@
                 <td>Feb 2023</td>
                 <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Unverified</span></td>
                 <td>
-                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View backer">
+                  <button class="btn btn--ghost btn--sm" type="button" aria-label="View designer">
                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                   </button>
                 </td>

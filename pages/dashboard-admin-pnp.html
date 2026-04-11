@@ -8,7 +8,7 @@
   <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>PnP Files — Admin Dashboard · TabletopForge</title>
-  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <meta name="description" content="TabletopForge admin panel. Manage games, users, orders, fulfilment, blog posts, and community moderation." />
   <meta name="robots" content="noindex, nofollow" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,9 +55,9 @@
       </div>
 
       <div class="dash-nav-section">
-        <span class="dash-nav-label">Campaigns</span>
+        <span class="dash-nav-label">Games</span>
         <a href="dashboard-admin-campaigns.html" class="dash-nav-item" data-admin-panel="campaigns">
-          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Games
           <span class="dash-nav-badge">4</span>
         </a>
         <a href="dashboard-admin-orders.html" class="dash-nav-item" data-admin-panel="orders">
@@ -75,7 +75,7 @@
       <div class="dash-nav-section">
         <span class="dash-nav-label">Users</span>
         <a href="dashboard-admin-users.html" class="dash-nav-item" data-admin-panel="users">
-          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Designers
           <span class="dash-nav-badge">48.2K</span>
         </a>
         <a href="dashboard-admin-messages.html" class="dash-nav-item" data-admin-panel="messages">
@@ -108,12 +108,6 @@
     </nav>
 
     <div class="dash-sidebar__bottom">
-      <a href="dashboard-user.html" class="dash-nav-item">
-        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
-      </a>
-      <a href="index.html" class="dash-nav-item">
-        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
-      </a>
       <a href="index.html" class="dash-nav-item">
         <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
       </a>
@@ -156,12 +150,12 @@
         </div>
         <div class="dash-table-wrap">
           <table class="dash-table" aria-label="PnP file management">
-            <thead><tr><th>File</th><th>Campaign</th><th>Version</th><th>Size</th><th>Downloads</th><th>Access</th><th>Uploaded</th><th>Actions</th></tr></thead>
+            <thead><tr><th>File</th><th>Game</th><th>Version</th><th>Size</th><th>Downloads</th><th>Access</th><th>Uploaded</th><th>Actions</th></tr></thead>
             <tbody>
-              <tr><td><span class="dash-table__name">Citadels of the Deep v1.2</span></td><td>Citadels</td><td>v1.2</td><td>48 MB</td><td>2,341</td><td>All backers</td><td>Mar 10</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
-              <tr><td><span class="dash-table__name">Verdant Empires Deluxe</span></td><td>Verdant</td><td>v2.0</td><td>72 MB</td><td>4,890</td><td>Deluxe backers</td><td>Jan 5</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
-              <tr><td><span class="dash-table__name">Moonfall Chronicles Preview</span></td><td>Moonfall</td><td>v0.1</td><td>18 MB</td><td>1,204</td><td>All backers</td><td>Mar 15</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
-              <tr><td><span class="dash-table__name">The Iron Pact — Complete</span></td><td>Iron Pact</td><td>v3.1</td><td>55 MB</td><td>8,920</td><td>All backers</td><td>Feb 2024</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Citadels of the Deep v1.2</span></td><td>Citadels</td><td>v1.2</td><td>48 MB</td><td>2,341</td><td>All designers</td><td>Mar 10</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Verdant Empires Deluxe</span></td><td>Verdant</td><td>v2.0</td><td>72 MB</td><td>4,890</td><td>Deluxe edition</td><td>Jan 5</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">Moonfall Chronicles Preview</span></td><td>Moonfall</td><td>v0.1</td><td>18 MB</td><td>1,204</td><td>All designers</td><td>Mar 15</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
+              <tr><td><span class="dash-table__name">The Iron Pact — Complete</span></td><td>Iron Pact</td><td>v3.1</td><td>55 MB</td><td>8,920</td><td>All designers</td><td>Feb 2024</td><td><button class="btn btn--ghost btn--sm" type="button" style="margin-right:4px;" aria-label="Edit"><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button></td></tr>
             </tbody>
           </table>
         </div>

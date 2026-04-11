@@ -1458,8 +1458,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── 18. RTL SUPPORT ─────────────────────────────────────────── */
-[dir="rtl"] .nav__links           { flex-direction: row-reverse; }
-[dir="rtl"] .nav__controls        { flex-direction: row-reverse; }
 [dir="rtl"] .hero__label-line     { order: 1; }
 [dir="rtl"] .footer__top          { direction: rtl; }
 [dir="rtl"] .footer__col-links    { align-items: flex-end; }
@@ -2201,11 +2199,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .h2-portal-card {
-  background   : var(--bg-secondary);
-  border       : 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding      : var(--sp-6);
-  transition   : border-color var(--t-mid);
+  background     : var(--bg-secondary);
+  border         : 1px solid var(--border);
+  border-radius  : var(--r-lg);
+  padding        : var(--sp-6);
+  transition     : border-color var(--t-mid);
+  display        : flex;
+  flex-direction : column;
 }
 
 .h2-portal-card:hover { border-color: var(--border-hover); }
@@ -3173,9 +3173,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gs-designer__bio {
-  font-size  : 0.85rem;
-  color      : var(--text-secondary);
-  line-height: 1.6;
+  font-size    : 0.85rem;
+  color        : var(--text-secondary);
+  line-height  : 1.6;
+  margin-bottom: 0;
 }
 
 /* ─── SIDEBAR (game single) ──────────────────────────────────── */
@@ -8621,4 +8622,365 @@ body.dashboard-page .activity-item {
 
 .page-hero::before {
   content: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BOARD GAME SITE REDESIGN — IMAGE SUPPORT & NEW COMPONENTS
+═══════════════════════════════════════════════════════════════ */
+
+/* ─── HERO TWO-COLUMN LAYOUT WITH IMAGE MOSAIC ────────────── */
+
+.hero__two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+  padding: 60px 0 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__two-col .hero__content {
+  padding: 0;
+}
+
+.hero__visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 220px 180px;
+  gap: var(--sp-3);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+.hero__img-cell {
+  overflow: hidden;
+  border-radius: var(--r-md);
+  position: relative;
+}
+
+.hero__img-cell--tall {
+  grid-row: span 2;
+  border-radius: var(--r-lg);
+}
+
+.hero__img-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+  display: block;
+}
+
+.hero__img-cell:hover img {
+  transform: scale(1.06);
+}
+
+.hero__img-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@media (max-width: 1024px) {
+  .hero__two-col {
+    grid-template-columns: 1fr;
+    padding: 40px 0 28px;
+  }
+  .hero__visual { display: none; }
+}
+
+/* ─── CAMPAIGN CARD IMAGE THUMBNAIL ──────────────────────── */
+
+.campaign-card__thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: var(--sp-5);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.campaign-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+  display: block;
+}
+
+.campaign-card:hover .campaign-card__thumb img {
+  transform: scale(1.05);
+}
+
+.campaign-card__thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ─── GAME CARD THUMB IMAGE SUPPORT ──────────────────────── */
+
+.game-card__thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+  display: block;
+  z-index: 0;
+}
+
+.game-card:hover .game-card__thumb img {
+  transform: scale(1.07);
+}
+
+.game-card__thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.game-card__badge { z-index: 3; }
+
+/* ─── GAMES FEATURED VISUAL IMAGE SUPPORT ────────────────── */
+
+.games-featured__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  z-index: 0;
+  transition: transform var(--t-slow);
+  display: block;
+}
+
+.games-featured__visual:hover img {
+  transform: scale(1.04);
+}
+
+.games-featured__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ─── DASHBOARD BRAND LOGO ───────────────────────────────── */
+
+.dash-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-5) var(--sp-6);
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  transition: opacity var(--t-fast);
+}
+
+.dash-logo:hover { opacity: 0.85; }
+
+.dash-logo__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  border-radius: var(--r-sm);
+  color: #000;
+  flex-shrink: 0;
+}
+
+.dash-logo__text {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* ─── PNP ITEM ICON IMAGE SUPPORT ───────────────────────── */
+
+.pnp-item__img {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pnp-item__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── ABOUT PAGE TEAM CARD IMAGE ─────────────────────────── */
+
+.team-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+/* ─── ABOUT INTRO VISUAL IMAGE ───────────────────────────── */
+
+.about-intro__img-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  display: block;
+  border-radius: inherit;
+}
+
+/* ─── GAME SINGLE COVER FRAME IMAGE ─────────────────────── */
+
+.gs-cover__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  display: block;
+  border-radius: inherit;
+  transition: transform var(--t-slow);
+}
+
+.gs-cover__frame:hover img { transform: scale(1.03); }
+
+.gs-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+/* ─── GAME SINGLE — HERO IMAGE ───────────────────────────── */
+
+.game-single-hero__img {
+  aspect-ratio: 16/9;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: var(--sp-6);
+}
+
+.game-single-hero__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── BLOG CARD COVER IMAGE ──────────────────────────────── */
+
+.post-card__cover {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--r-md) var(--r-md) 0 0;
+  flex-shrink: 0;
+}
+
+.post-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+  display: block;
+}
+
+.post-card:hover .post-card__cover img {
+  transform: scale(1.05);
+}
+
+/* ─── BLOG POST CARD THUMB IMAGE ─────────────────────────── */
+
+.post-card__thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+  transition: transform var(--t-slow);
+}
+
+.post-card:hover .post-card__thumb img {
+  transform: scale(1.06);
+}
+
+/* ─── HOME-PAGE-2 CAMP CARD IMAGE ────────────────────────── */
+
+.h2-camp-card__thumb {
+  width: 100%;
+  height: 170px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: var(--sp-4);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.h2-camp-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-slow);
+}
+
+.h2-camp-card:hover .h2-camp-card__thumb img {
+  transform: scale(1.05);
+}
+
+/* ─── HOME-PAGE-2 FEATURED CARD IMAGE ────────────────────── */
+
+.h2-featured-card__thumb {
+  width: 100%;
+  height: 210px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: var(--sp-5);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.h2-featured-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-slow);
+}
+
+.h2-featured-card:hover .h2-featured-card__thumb img {
+  transform: scale(1.04);
 }

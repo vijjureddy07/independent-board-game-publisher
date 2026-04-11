@@ -8,7 +8,7 @@
   <link rel="manifest" href="../assets/images/icons/site.webmanifest?v=20260327h7" />
   <meta name="theme-color" content="#0B0D0F" />
   <title>Reports — Admin Dashboard · TabletopForge</title>
-  <meta name="description" content="TabletopForge admin panel. Manage campaigns, users, orders, fulfilment, blog posts, and community moderation." />
+  <meta name="description" content="TabletopForge admin panel. Manage games, users, orders, fulfilment, blog posts, and community moderation." />
   <meta name="robots" content="noindex, nofollow" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,9 +55,9 @@
       </div>
 
       <div class="dash-nav-section">
-        <span class="dash-nav-label">Campaigns</span>
+        <span class="dash-nav-label">Games</span>
         <a href="dashboard-admin-campaigns.html" class="dash-nav-item" data-admin-panel="campaigns">
-          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Campaigns
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> All Games
           <span class="dash-nav-badge">4</span>
         </a>
         <a href="dashboard-admin-orders.html" class="dash-nav-item" data-admin-panel="orders">
@@ -75,7 +75,7 @@
       <div class="dash-nav-section">
         <span class="dash-nav-label">Users</span>
         <a href="dashboard-admin-users.html" class="dash-nav-item" data-admin-panel="users">
-          <i class="fa-solid fa-users" aria-hidden="true"></i> All Backers
+          <i class="fa-solid fa-users" aria-hidden="true"></i> All Designers
           <span class="dash-nav-badge">48.2K</span>
         </a>
         <a href="dashboard-admin-messages.html" class="dash-nav-item" data-admin-panel="messages">
@@ -108,12 +108,6 @@
     </nav>
 
     <div class="dash-sidebar__bottom">
-      <a href="dashboard-user.html" class="dash-nav-item">
-        <i class="fa-solid fa-user" aria-hidden="true"></i> Switch to Backer View
-      </a>
-      <a href="index.html" class="dash-nav-item">
-        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to site
-      </a>
       <a href="index.html" class="dash-nav-item">
         <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out
       </a>
@@ -158,10 +152,10 @@
           <div class="dash-card">
             <div class="dash-card__head"><h3 class="dash-card__title"><i class="fa-solid fa-file-export" aria-hidden="true"></i> Quick Exports</h3></div>
             <div class="dash-card__body" style="display:flex;flex-direction:column;gap:var(--sp-3);">
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">All backer emails</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 48,200 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Citadels backer list</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 2,847 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">All designer emails</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 48,200 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Citadels customer list</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 2,847 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Verdant fulfilment report</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · 5,120 records</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Revenue summary — all campaigns</p><p style="font-size:0.75rem;color:var(--text-muted);">XLSX · Revenue, backers, dates</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">Revenue summary — all games</p><p style="font-size:0.75rem;color:var(--text-muted);">XLSX · Revenue, designers, dates</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);background:var(--bg-primary);border:1px solid var(--border);border-radius:var(--r-md);"><div><p style="font-size:0.88rem;font-weight:600;margin-bottom:2px;">PnP download stats</p><p style="font-size:0.75rem;color:var(--text-muted);">CSV · Downloads per file</p></div><button class="btn btn--ghost btn--sm" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> Export</button></div>
             </div>
           </div>
@@ -170,10 +164,10 @@
             <div class="dash-card__body" style="padding:0;">
               <table class="dash-table" aria-label="All-time stats">
                 <tbody>
-                  <tr><td style="color:var(--text-muted);">Total campaigns</td><td><strong>4</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Total games</td><td><strong>4</strong></td></tr>
                   <tr><td style="color:var(--text-muted);">Total revenue</td><td><strong>$1,208K</strong></td></tr>
-                  <tr><td style="color:var(--text-muted);">Unique backers</td><td><strong>48,200</strong></td></tr>
-                  <tr><td style="color:var(--text-muted);">Avg. pledge value</td><td><strong>$62</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Unique designers</td><td><strong>48,200</strong></td></tr>
+                  <tr><td style="color:var(--text-muted);">Avg. order value</td><td><strong>$62</strong></td></tr>
                   <tr><td style="color:var(--text-muted);">On-time fulfilment</td><td><strong style="color:#5EE89A;">97%</strong></td></tr>
                   <tr><td style="color:var(--text-muted);">PnP total downloads</td><td><strong>24,565</strong></td></tr>
                   <tr><td style="color:var(--text-muted);">Forum total posts</td><td><strong>3,225</strong></td></tr>
