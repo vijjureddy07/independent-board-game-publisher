@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260411r1" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260411r2" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css?v=20260411r1" />
   <link rel="stylesheet" href="../assets/css/rtl.css?v=20260411r1" />
 </head>
@@ -115,300 +115,179 @@
         <a href="dashboard-user-campaigns.html" class="btn btn--ghost btn--sm"><i class="fa-solid fa-plus" aria-hidden="true"></i> New Game</a>
       </div>
 
-    <div class="dash-stats">
+    <div class="dash-stats dash-stats--compact">
       <div class="dash-stat-card">
         <div class="dash-stat-card__label">
-          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Games Created
+          <i class="fa-solid fa-chess-rook" aria-hidden="true"></i> Active Projects
         </div>
-        <span class="dash-stat-card__value" data-count="6">-</span>
+        <span class="dash-stat-card__value" data-count="3">-</span>
         <div class="dash-stat-card__delta up">
-          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 in active production
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Citadels review due today
         </div>
       </div>
       <div class="dash-stat-card">
         <div class="dash-stat-card__label">
-          <i class="fa-solid fa-coins" aria-hidden="true"></i> Revenue Earned
+          <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Orders Moving
         </div>
-        <span class="dash-stat-card__value" data-count="1840" data-prefix="$">-</span>
+        <span class="dash-stat-card__value" data-count="2">-</span>
         <div class="dash-stat-card__delta up">
-          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +$240 this month
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Verdant dispatch window Apr 12-15
         </div>
       </div>
       <div class="dash-stat-card">
         <div class="dash-stat-card__label">
-          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Templates
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Ready Files
         </div>
-        <span class="dash-stat-card__value" data-count="14">-</span>
+        <span class="dash-stat-card__value" data-count="5">-</span>
         <div class="dash-stat-card__delta up">
-          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 3 new this week
-        </div>
-      </div>
-      <div class="dash-stat-card">
-        <div class="dash-stat-card__label">
-          <i class="fa-solid fa-comments" aria-hidden="true"></i> Forum Posts
-        </div>
-        <span class="dash-stat-card__value" data-count="38">-</span>
-        <div class="dash-stat-card__delta up">
-          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 12 unread replies
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> 2 uploads refreshed this week
         </div>
       </div>
     </div>
 
-    <div class="dash-grid-2">
+    <div class="dash-grid-main-side">
       <div class="dash-card">
         <div class="dash-card__header">
           <h2 class="dash-card__title">
-            <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
-            Print Order — Verdant Empires
+            <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+            Today&apos;s Focus
           </h2>
-          <a href="dashboard-user-orders.html" class="dash-card__action" data-panel="orders">
-            All orders <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          <a href="dashboard-user-campaigns.html" class="dash-card__action">
+            Open studio <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </a>
         </div>
-        <div class="dash-card__body">
-          <div class="dash-tracker" aria-label="Print order progress">
-            <div class="tracker-step done">
-              <span class="tracker-step__label">Order confirmed</span>
-              <span class="tracker-step__date">Jan 12, 2026</span>
+        <div class="dash-feed">
+          <div class="dash-feed-item">
+            <div class="dash-feed-item__avatar" aria-hidden="true">VE</div>
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head">
+                <strong class="dash-table__name">Confirm Verdant Empires dispatch details</strong>
+                <span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> Shipping</span>
+                <span class="dash-feed-item__meta">Due today</span>
+              </div>
+              <p class="dash-feed-item__content">Address lock is complete. Review the dispatch batch and carrier handoff before the fulfilment window opens.</p>
+              <div class="dash-actions-row">
+                <a href="dashboard-user-shipping.html" class="btn btn--ghost btn--sm">Track shipment</a>
+                <a href="dashboard-user-orders.html" class="btn btn--ghost btn--sm">Open orders</a>
+              </div>
             </div>
-            <div class="tracker-step done">
-              <span class="tracker-step__label">Print production complete</span>
-              <span class="tracker-step__date">Feb 28, 2026</span>
+          </div>
+          <div class="dash-feed-item dash-feed-item--secondary">
+            <div class="dash-feed-item__avatar" aria-hidden="true">MF</div>
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head">
+                <strong class="dash-table__name">Upload Moonfall playtest revision</strong>
+                <span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Next step</span>
+                <span class="dash-feed-item__meta">Files</span>
+              </div>
+              <p class="dash-feed-item__content">The next external test is queued. Replace the old build, then publish the updated notes so playtesters get the correct scenario deck.</p>
+              <div class="dash-actions-row">
+                <a href="dashboard-user-pnp.html" class="btn btn--ghost btn--sm">Upload files</a>
+              </div>
             </div>
-            <div class="tracker-step done">
-              <span class="tracker-step__label">Freight departed — Shenzhen</span>
-              <span class="tracker-step__date">Mar 5, 2026</span>
-            </div>
-            <div class="tracker-step done">
-              <span class="tracker-step__label">Arrived at fulfilment hub</span>
-              <span class="tracker-step__date">Mar 18, 2026</span>
-            </div>
-            <div class="tracker-step active">
-              <span class="tracker-step__label">Preparing for dispatch <span style="font-size:0.72rem;color:var(--text-muted);">&larr; You are here</span></span>
-              <span class="tracker-step__date">Est. Apr 12-15, 2026</span>
-            </div>
-            <div class="tracker-step">
-              <span class="tracker-step__label">Delivered</span>
-              <span class="tracker-step__date">Est. Apr 18-22, 2026</span>
+          </div>
+          <div class="dash-feed-item">
+            <div class="dash-feed-item__avatar" aria-hidden="true">DF</div>
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head">
+                <strong class="dash-table__name">Reply to watched designer threads</strong>
+                <span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> 2 unread</span>
+                <span class="dash-feed-item__meta">Community</span>
+              </div>
+              <p class="dash-feed-item__content">Two forum discussions need your input: one on card bleed zones and another on pricing structure for marketplace bundles.</p>
+              <div class="dash-actions-row">
+                <a href="dashboard-user-forum.html" class="btn btn--ghost btn--sm">Open forum</a>
+                <a href="dashboard-user-messages.html" class="btn btn--ghost btn--sm">Support inbox</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="dash-card">
-        <div class="dash-card__header">
-          <h2 class="dash-card__title">
-            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-            Templates &amp; Files
-          </h2>
-          <a href="dashboard-user-pnp.html" class="dash-card__action" data-panel="pnp">
-            View all <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-          </a>
+        <div class="dash-card__head">
+          <h2 class="dash-card__title"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Quick Routes</h2>
+        </div>
+        <div class="dash-card__body">
+          <div class="quick-actions">
+            <a href="dashboard-user-campaigns.html" class="quick-action"><i class="fa-solid fa-plus" aria-hidden="true"></i> New game</a>
+            <a href="dashboard-user-orders.html" class="quick-action"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Print orders</a>
+            <a href="dashboard-user-pnp.html" class="quick-action"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Templates</a>
+            <a href="dashboard-user-messages.html" class="quick-action"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Messages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-grid-2">
+      <div class="dash-card">
+        <div class="dash-card__head">
+          <h2 class="dash-card__title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Production Snapshot</h2>
+        </div>
+        <div class="dash-feed">
+          <div class="dash-feed-item">
+            <div class="dash-feed-item__avatar" aria-hidden="true">CD</div>
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head">
+                <strong class="dash-table__name">Citadels of the Deep</strong>
+                <span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Proofing</span>
+                <span class="dash-feed-item__meta">Prototype batch</span>
+              </div>
+              <p class="dash-feed-item__content">Final card backs are waiting for approval before the next proof set is sent to print.</p>
+            </div>
+          </div>
+          <div class="dash-feed-item dash-feed-item--secondary">
+            <div class="dash-feed-item__avatar" aria-hidden="true">VE</div>
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head">
+                <strong class="dash-table__name">Verdant Empires</strong>
+                <span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> Dispatching</span>
+                <span class="dash-feed-item__meta">200-copy run</span>
+              </div>
+              <p class="dash-feed-item__content">Labels are generating now. The next milestone is carrier handoff and final tracking sync.</p>
+            </div>
+          </div>
+          <div class="dash-feed-item">
+            <div class="dash-feed-item__avatar" aria-hidden="true">MC</div>
+            <div class="dash-feed-item__body">
+              <div class="dash-feed-item__head">
+                <strong class="dash-table__name">Moonfall Chronicles</strong>
+                <span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Playtest prep</span>
+                <span class="dash-feed-item__meta">Scenario update</span>
+              </div>
+              <p class="dash-feed-item__content">Revision notes are drafted. Upload the latest build to unblock tomorrow&apos;s closed-session playtest.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-card__head">
+          <h2 class="dash-card__title"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Ready Files</h2>
         </div>
         <div class="dash-card__body">
           <div class="pnp-list">
             <div class="pnp-item">
-              <div class="pnp-item__icon"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i></div>
-              <span class="pnp-item__name">Citadels of the Deep — Card Template</span>
+              <div class="pnp-item__img"><img src="../assets/images/Gemini_Generated_Image_9wyc2z9wyc2z9wyc.png" alt="" loading="lazy" /></div>
+              <span class="pnp-item__name">Citadels of the Deep — Card template</span>
               <span class="pnp-item__size">48 MB</span>
               <span class="pnp-item__new">New</span>
-              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Citadels of the Deep template">
-                <i class="fa-solid fa-download" aria-hidden="true"></i>
-              </button>
+              <a href="dashboard-user-pnp.html" class="btn btn--ghost btn--sm" aria-label="Open Citadels of the Deep files"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
             </div>
             <div class="pnp-item">
-              <div class="pnp-item__icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
-              <span class="pnp-item__name">Verdant Empires — Deluxe Print Kit</span>
+              <div class="pnp-item__img"><img src="../assets/images/Gemini_Generated_Image_n3jzyln3jzyln3jz.png" alt="" loading="lazy" /></div>
+              <span class="pnp-item__name">Verdant Empires — Deluxe print kit</span>
               <span class="pnp-item__size">72 MB</span>
-              <span class="pnp-item__new">New</span>
-              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Verdant Empires print kit">
-                <i class="fa-solid fa-download" aria-hidden="true"></i>
-              </button>
+              <span class="pnp-item__new">Updated</span>
+              <a href="dashboard-user-pnp.html" class="btn btn--ghost btn--sm" aria-label="Open Verdant Empires files"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
             </div>
             <div class="pnp-item">
-              <div class="pnp-item__icon"><i class="fa-solid fa-moon" aria-hidden="true"></i></div>
-              <span class="pnp-item__name">Moonfall Chronicles — Playtest Build</span>
+              <div class="pnp-item__img"><img src="../assets/images/Gemini_Generated_Image_3u5wjp3u5wjp3u5w.png" alt="" loading="lazy" /></div>
+              <span class="pnp-item__name">Moonfall Chronicles — Playtest build</span>
               <span class="pnp-item__size">18 MB</span>
-              <span class="pnp-item__new">New</span>
-              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download Moonfall Chronicles playtest build">
-                <i class="fa-solid fa-download" aria-hidden="true"></i>
-              </button>
+              <span class="pnp-item__new">Queued</span>
+              <a href="dashboard-user-pnp.html" class="btn btn--ghost btn--sm" aria-label="Open Moonfall Chronicles files"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
             </div>
-            <div class="pnp-item">
-              <div class="pnp-item__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
-              <span class="pnp-item__name">The Iron Pact — Complete Asset Pack</span>
-              <span class="pnp-item__size">55 MB</span>
-              <button class="btn btn--ghost btn--sm" type="button" aria-label="Download The Iron Pact asset pack">
-                <i class="fa-solid fa-download" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dash-grid-2">
-      <div class="dash-card">
-        <div class="dash-card__header">
-          <h2 class="dash-card__title">
-            <i class="fa-solid fa-box-open" aria-hidden="true"></i>
-            Active Print Orders
-          </h2>
-          <a href="dashboard-user-orders.html" class="dash-card__action" data-panel="orders">
-            Full history <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="dash-card__body" style="padding:0;">
-          <table class="dash-table" aria-label="Active print orders">
-            <thead>
-              <tr>
-                <th>Game</th>
-                <th>Edition</th>
-                <th>Status</th>
-                <th>ETA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Citadels of the Deep</strong></td>
-                <td>Prototype — 50 copies</td>
-                <td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle" style="font-size:6px;"></i> Printing</span></td>
-                <td>Q4 2026</td>
-              </tr>
-              <tr>
-                <td><strong>Verdant Empires</strong></td>
-                <td>Deluxe — 200 copies</td>
-                <td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck" style="font-size:8px;"></i> Shipping</span></td>
-                <td>Apr 18-22</td>
-              </tr>
-              <tr>
-                <td><strong>The Iron Pact</strong></td>
-                <td>Standard — 100 copies</td>
-                <td><span class="status-pill status-pill--delivered"><i class="fa-solid fa-check" style="font-size:8px;"></i> Delivered</span></td>
-                <td>Feb 10</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="dash-card">
-        <div class="dash-card__header">
-          <h2 class="dash-card__title">
-            <i class="fa-solid fa-comments" aria-hidden="true"></i>
-            Designer Forum
-          </h2>
-          <a href="dashboard-user-forum.html" class="dash-card__action">
-            Open forum <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="dash-card__body" style="padding:0;">
-          <div class="forum-list">
-            <div class="forum-thread-item">
-              <div class="forum-thread-item__avatar" aria-hidden="true">MR</div>
-              <span class="forum-thread-item__title">Best playtesting methods for solo games?</span>
-              <span class="forum-thread-item__meta">42 - 2h ago</span>
-            </div>
-            <div class="forum-thread-item">
-              <div class="forum-thread-item__avatar" aria-hidden="true">SL</div>
-              <span class="forum-thread-item__title">Card template sizing — bleed vs safe zone</span>
-              <span class="forum-thread-item__meta">28 - 5h ago</span>
-            </div>
-            <div class="forum-thread-item">
-              <div class="forum-thread-item__avatar" aria-hidden="true">TK</div>
-              <span class="forum-thread-item__title">How to price your game for the marketplace</span>
-              <span class="forum-thread-item__meta">15 - 1d ago</span>
-            </div>
-            <div class="forum-thread-item">
-              <div class="forum-thread-item__avatar" aria-hidden="true">AK</div>
-              <span class="forum-thread-item__title">Citadels playtest session recap — photos inside</span>
-              <span class="forum-thread-item__meta">67 - 3d ago</span>
-            </div>
-            <div class="forum-thread-item">
-              <div class="forum-thread-item__avatar" aria-hidden="true">PK</div>
-              <span class="forum-thread-item__title">Rulebook layout tips — community favorites</span>
-              <span class="forum-thread-item__meta">31 - 4d ago</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dash-grid-2">
-      <div class="dash-card">
-        <div class="dash-card__header">
-          <h2 class="dash-card__title">
-            <i class="fa-solid fa-bell" aria-hidden="true"></i>
-            Notifications
-          </h2>
-          <button class="dash-card__action" type="button" style="background:none;border:none;cursor:pointer;">
-            Mark all read <i class="fa-solid fa-check" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="dash-card__body" style="padding:0;">
-          <div class="notif-list">
-            <div class="notif-item unread">
-              <div class="notif-item__dot" aria-label="Unread"></div>
-              <span class="notif-item__text"><strong>Verdant Empires</strong> — Your print order is being prepared for dispatch.</span>
-              <span class="notif-item__time">2h ago</span>
-            </div>
-            <div class="notif-item unread">
-              <div class="notif-item__dot" aria-label="Unread"></div>
-              <span class="notif-item__text"><strong>New template:</strong> Moonfall Chronicles playtest build is ready to download.</span>
-              <span class="notif-item__time">5h ago</span>
-            </div>
-            <div class="notif-item">
-              <div class="notif-item__dot"></div>
-              <span class="notif-item__text"><strong>Citadels of the Deep</strong> — First print proof approved. Production begins soon.</span>
-              <span class="notif-item__time">1d ago</span>
-            </div>
-            <div class="notif-item">
-              <div class="notif-item__dot"></div>
-              <span class="notif-item__text">Forum reply: Someone responded to your post in <em>Card template sizing</em>.</span>
-              <span class="notif-item__time">2d ago</span>
-            </div>
-            <div class="notif-item">
-              <div class="notif-item__dot"></div>
-              <span class="notif-item__text"><strong>Marketplace:</strong> The Iron Pact sold 3 copies this week via TabletopForge.</span>
-              <span class="notif-item__time">3d ago</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="dash-card">
-        <div class="dash-card__header">
-          <h2 class="dash-card__title">
-            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-            Quick Actions
-          </h2>
-        </div>
-        <div class="dash-card__body">
-          <div class="quick-actions">
-            <a href="dashboard-user-campaigns.html" class="quick-action">
-              <i class="fa-solid fa-plus" aria-hidden="true"></i>
-              Start a new game
-            </a>
-            <a href="dashboard-user-pnp.html" class="quick-action" data-panel="pnp">
-              <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-              Download templates
-            </a>
-            <a href="forum.html" class="quick-action">
-              <i class="fa-solid fa-comments" aria-hidden="true"></i>
-              Designer forum
-            </a>
-            <a href="dashboard-user-profile.html" class="quick-action" data-panel="profile">
-              <i class="fa-solid fa-user-pen" aria-hidden="true"></i>
-              Edit profile
-            </a>
-            <a href="contact.html" class="quick-action">
-              <i class="fa-solid fa-headset" aria-hidden="true"></i>
-              Contact support
-            </a>
-            <a href="dashboard-user-settings.html" class="quick-action" data-panel="settings">
-              <i class="fa-solid fa-gear" aria-hidden="true"></i>
-              Account settings
-            </a>
           </div>
         </div>
       </div>
@@ -418,6 +297,6 @@
 </div>
 
 <script src="../assets/js/main.js?v=20260411r1"></script>
-<script src="../assets/js/dashboard.js?v=20260411r1"></script>
+<script src="../assets/js/dashboard.js?v=20260411r2"></script>
 </body>
 </html>

@@ -5,6 +5,26 @@
 const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
 const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
+function syncMobileUserTitle() {
+  const row = _$('.dash-sidebar-toggle-row');
+  if (!row) return;
+
+  let title = _$('.dash-sidebar-toggle-row__title', row);
+  if (!title) {
+    title = document.createElement('span');
+    title.className = 'dash-sidebar-toggle-row__title';
+    row.appendChild(title);
+  }
+
+  const activePanel = _$('#dash-main .dash-page.active') || _$('#admin-main .dash-page.active');
+  const heading = (activePanel && _$('.dash-page-header h1', activePanel))
+    || _$('.dash-page-header h1');
+  const fallbackTitle = _$('.dash-topbar__title');
+  title.textContent = heading
+    ? heading.textContent.trim()
+    : (fallbackTitle ? fallbackTitle.textContent.trim() : 'Dashboard');
+}
+
 /* ─────────────────────────────────────────────────────────────
    SIDEBAR
 ───────────────────────────────────────────────────────────── */
@@ -83,6 +103,8 @@ const DashPanels = (() => {
         titleEl.textContent = text;
       }
     }
+
+    syncMobileUserTitle();
 
     history.replaceState(null, '', `#${panelId}`);
   }
@@ -244,6 +266,8 @@ function initDashModules() {
     animateCounters(activePanel);
     animateChartBars(activePanel);
   }
+
+  syncMobileUserTitle();
 }
 
 if (document.readyState === 'loading') {

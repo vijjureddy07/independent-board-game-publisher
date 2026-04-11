@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260411r1" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260411r2" />
   <link rel="stylesheet" href="../assets/css/dark-mode.css?v=20260411r1" />
   <link rel="stylesheet" href="../assets/css/rtl.css?v=20260411r1" />
 </head>
@@ -170,83 +170,123 @@
           </a>
         </div>
 
-        <div class="dash-stats">
-          <div class="dash-stat-card">
-            <div class="dash-stat-card__icon"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
-            <span class="dash-stat-card__value" data-count="12500">—</span>
-            <span class="dash-stat-card__label">Total designers</span>
-            <div class="dash-stat-card__change change--up">
-              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +247 this week
-            </div>
-          </div>
-          <div class="dash-stat-card">
-            <div class="dash-stat-card__icon"><i class="fa-solid fa-coins" aria-hidden="true"></i></div>
-            <span class="dash-stat-card__value" data-count="284" data-prefix="$" data-suffix="K">—</span>
-            <span class="dash-stat-card__label">Platform revenue (Apr)</span>
-            <div class="dash-stat-card__change change--up">
-              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> +$12K today
-            </div>
-          </div>
+        <div class="dash-stats dash-stats--compact">
           <div class="dash-stat-card">
             <div class="dash-stat-card__icon"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
-            <span class="dash-stat-card__value" data-count="437">—</span>
-            <span class="dash-stat-card__label">Orders pending dispatch</span>
+            <span class="dash-stat-card__value" data-count="12">—</span>
+            <span class="dash-stat-card__label">Orders needing review</span>
             <div class="dash-stat-card__change change--down">
-              <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 12 flagged
+              <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 4 are blocking dispatch
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-card__icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+            <span class="dash-stat-card__value" data-count="5">—</span>
+            <span class="dash-stat-card__label">Support replies pending</span>
+            <div class="dash-stat-card__change change--up">
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Inbox clear in under 1 hour
             </div>
           </div>
           <div class="dash-stat-card">
             <div class="dash-stat-card__icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
             <span class="dash-stat-card__value" data-count="3">—</span>
-            <span class="dash-stat-card__label">Posts awaiting review</span>
+            <span class="dash-stat-card__label">Forum queue</span>
             <div class="dash-stat-card__change change--down">
-              <i class="fa-solid fa-flag" aria-hidden="true"></i> Needs attention
+              <i class="fa-solid fa-flag" aria-hidden="true"></i> 1 spam post, 2 clarifications
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid-main-side">
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h2 class="dash-card__title"><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Needs Attention</h2>
+              <a href="dashboard-admin-orders.html" class="dash-card__link">Open queue <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="dash-feed">
+              <div class="dash-feed-item dash-feed-item--alert">
+                <div class="dash-feed-item__avatar" aria-hidden="true">#1</div>
+                <div class="dash-feed-item__body">
+                  <div class="dash-feed-item__head">
+                    <strong class="dash-table__name">Flagged order #VE-4821 is blocking today&apos;s dispatch batch</strong>
+                    <span class="status-pill status-pill--alert">Open</span>
+                    <span class="dash-feed-item__meta">Orders</span>
+                  </div>
+                  <p class="dash-feed-item__content">The replacement-component issue needs resolution before the carrier handoff window opens this afternoon.</p>
+                  <div class="dash-actions-row">
+                    <a href="dashboard-admin-orders.html" class="btn btn--ghost btn--sm">Review order</a>
+                  </div>
+                </div>
+              </div>
+              <div class="dash-feed-item dash-feed-item--warning">
+                <div class="dash-feed-item__avatar" aria-hidden="true">#2</div>
+                <div class="dash-feed-item__body">
+                  <div class="dash-feed-item__head">
+                    <strong class="dash-table__name">Support queue needs one more pass before noon</strong>
+                    <span class="status-pill status-pill--pending">5 pending</span>
+                    <span class="dash-feed-item__meta">Messages</span>
+                  </div>
+                  <p class="dash-feed-item__content">Most requests are routine, but two file-upload tickets need a direct admin reply and not a canned response.</p>
+                  <div class="dash-actions-row">
+                    <a href="dashboard-admin-messages.html" class="btn btn--ghost btn--sm">Open inbox</a>
+                  </div>
+                </div>
+              </div>
+              <div class="dash-feed-item dash-feed-item--secondary">
+                <div class="dash-feed-item__avatar" aria-hidden="true">#3</div>
+                <div class="dash-feed-item__body">
+                  <div class="dash-feed-item__head">
+                    <strong class="dash-table__name">Forum clarification requested in Citadels strategy thread</strong>
+                    <span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live thread</span>
+                    <span class="dash-feed-item__meta">Moderation</span>
+                  </div>
+                  <p class="dash-feed-item__content">This is not a removal case. It needs an official rules response so the thread can stay visible without escalating.</p>
+                  <div class="dash-actions-row">
+                    <a href="dashboard-admin-forum.html" class="btn btn--ghost btn--sm">Open thread</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card__head">
+              <h2 class="dash-card__title"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Quick Routes</h2>
+            </div>
+            <div class="dash-card__body">
+              <div class="quick-actions">
+                <a href="dashboard-admin-orders.html" class="quick-action"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Orders</a>
+                <a href="dashboard-admin-users.html" class="quick-action"><i class="fa-solid fa-users" aria-hidden="true"></i> Designers</a>
+                <a href="dashboard-admin-messages.html" class="quick-action"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Inbox</a>
+                <a href="dashboard-admin-reports.html" class="quick-action"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i> Reports</a>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="dash-grid-2">
-
           <div class="dash-card">
             <div class="dash-card__head">
-              <h2 class="dash-card__title">
-                <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Daily Orders — Citadels
-              </h2>
-              <span class="dash-card__link">Last 14 days</span>
+              <h2 class="dash-card__title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Operations Snapshot</h2>
             </div>
-            <div class="dash-card__body">
-              <div style="display:flex;align-items:baseline;gap:var(--sp-3);margin-bottom:var(--sp-5);">
-                <span style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;">$284K</span>
-                <span style="font-size:0.78rem;color:var(--text-muted);">of $80K goal · 342% funded</span>
-              </div>
-              <div class="mini-chart" aria-label="Daily order chart" role="img">
-                <div class="mini-bar" style="height:35%;" title="Mar 11 — $8.2K"></div>
-                <div class="mini-bar" style="height:52%;" title="Mar 12 — $12.4K"></div>
-                <div class="mini-bar" style="height:44%;" title="Mar 13 — $10.5K"></div>
-                <div class="mini-bar" style="height:60%;" title="Mar 14 — $14.3K"></div>
-                <div class="mini-bar" style="height:48%;" title="Mar 15 — $11.5K"></div>
-                <div class="mini-bar" style="height:38%;" title="Mar 16 — $9.1K"></div>
-                <div class="mini-bar" style="height:55%;" title="Mar 17 — $13.2K"></div>
-                <div class="mini-bar highlight" style="height:72%;" title="Mar 18 — $17.2K"></div>
-                <div class="mini-bar" style="height:50%;" title="Mar 19 — $12.0K"></div>
-                <div class="mini-bar highlight" style="height:88%;" title="Mar 20 — $21.0K"></div>
-                <div class="mini-bar" style="height:62%;" title="Mar 21 — $14.8K"></div>
-                <div class="mini-bar" style="height:54%;" title="Mar 22 — $12.9K"></div>
-                <div class="mini-bar" style="height:68%;" title="Mar 23 — $16.2K"></div>
-                <div class="mini-bar highlight" style="height:100%;" title="Mar 24 — $23.8K"></div>
-              </div>
-              <div class="mini-chart__labels">
-                <span>Mar 11</span><span>Mar 14</span><span>Mar 17</span><span>Mar 20</span><span>Mar 24</span>
-              </div>
+            <div class="dash-table-wrap">
+              <table class="dash-table" aria-label="Operations snapshot">
+                <thead>
+                  <tr><th>Game</th><th>Stage</th><th>Open items</th><th>Next move</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><span class="dash-table__name">Citadels of the Deep</span></td><td><span class="status-pill status-pill--live"><i class="fa-solid fa-circle"></i> Live</span></td><td>2 production checks</td><td>Approve proof set</td></tr>
+                  <tr><td><span class="dash-table__name">Verdant Empires</span></td><td><span class="status-pill status-pill--shipping"><i class="fa-solid fa-truck"></i> Shipping</span></td><td>1 flagged order</td><td>Clear dispatch batch</td></tr>
+                  <tr><td><span class="dash-table__name">Moonfall Chronicles</span></td><td><span class="status-pill status-pill--pending"><i class="fa-solid fa-clock"></i> Playtest</span></td><td>Upload revision notes</td><td>Publish new build</td></tr>
+                  <tr><td><span class="dash-table__name">The Iron Pact</span></td><td><span class="status-pill status-pill--delivered"><i class="fa-solid fa-check"></i> Stable</span></td><td>0 blockers</td><td>Monitor support</td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
           <div class="dash-card">
             <div class="dash-card__head">
-              <h2 class="dash-card__title">
-                <i class="fa-solid fa-bolt" aria-hidden="true"></i> Recent Activity
-              </h2>
-              <span class="dash-card__link">Live</span>
+              <h2 class="dash-card__title"><i class="fa-solid fa-wave-square" aria-hidden="true"></i> Recent Activity</h2>
             </div>
             <div class="dash-card__body">
               <div class="activity-feed">
@@ -261,160 +301,26 @@
                   <span class="activity-item__time">8 min</span>
                 </div>
                 <div class="activity-item">
-                  <div class="activity-item__icon"><i class="fa-solid fa-flag" aria-hidden="true"></i></div>
-                  <span class="activity-item__text"><strong>Forum flag</strong> — Post in "Citadels strategy" reported for spam</span>
-                  <span class="activity-item__time">14 min</span>
-                </div>
-                <div class="activity-item">
                   <div class="activity-item__icon"><i class="fa-solid fa-truck" aria-hidden="true"></i></div>
                   <span class="activity-item__text"><strong>Shipment update</strong> — 127 Verdant Empires orders marked dispatched</span>
                   <span class="activity-item__time">1h</span>
                 </div>
                 <div class="activity-item">
                   <div class="activity-item__icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
-                  <span class="activity-item__text"><strong>Support message</strong> — Designer #4821 needs help with template upload</span>
+                  <span class="activity-item__text"><strong>Support reply</strong> — file-upload issue for designer #4821 is ready for review</span>
                   <span class="activity-item__time">2h</span>
                 </div>
-                <div class="activity-item">
-                  <div class="activity-item__icon"><i class="fa-solid fa-chess-rook" aria-hidden="true"></i></div>
-                  <span class="activity-item__text"><strong>Stretch goal unlocked</strong> — Citadels reached 300% · Deluxe boards added</span>
-                  <span class="activity-item__time">3h</span>
-                </div>
               </div>
             </div>
           </div>
-
-        </div>
-
-        <div class="dash-grid-2">
-
-          <div class="dash-card">
-            <div class="dash-card__head">
-              <h2 class="dash-card__title">
-                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Flagged Orders
-              </h2>
-              <a href="dashboard-admin-orders.html" class="dash-card__link">
-                All orders <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="dash-table-wrap">
-              <table class="dash-table" aria-label="Flagged orders">
-                <thead>
-                  <tr>
-                    <th>Order</th>
-                    <th>Designer</th>
-                    <th>Issue</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="dash-table__name">#VE-4821</span></td>
-                    <td><a href="mailto:sophie.l@email.com">sophie.l@email.com</a></td>
-                    <td>Missing promo card</td>
-                    <td><span class="status-pill status-pill--alert"><i class="fa-solid fa-circle"></i> Open</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="dash-table__name">#VE-3309</span></td>
-                    <td><a href="mailto:tomas.k@email.com">tomas.k@email.com</a></td>
-                    <td>Damaged box on arrival</td>
-                    <td><span class="status-pill status-pill--pending"><i class="fa-solid fa-circle"></i> In review</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="dash-table__name">#IP-1102</span></td>
-                    <td><a href="mailto:marcus.r@email.com">marcus.r@email.com</a></td>
-                    <td>Wrong address on label</td>
-                    <td><span class="status-pill status-pill--alert"><i class="fa-solid fa-circle"></i> Open</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="dash-table__name">#CD-0091</span></td>
-                    <td><a href="mailto:aiko.n@email.com">aiko.n@email.com</a></td>
-                    <td>Upgrade tier mismatch</td>
-                    <td><span class="status-pill status-pill--done"><i class="fa-solid fa-check"></i> Resolved</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="dash-card">
-            <div class="dash-card__head">
-              <h2 class="dash-card__title">
-                <i class="fa-solid fa-flag" aria-hidden="true"></i> Moderation Queue
-              </h2>
-              <a href="dashboard-admin-forum.html" class="dash-card__link">
-                Full queue <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="dash-feed">
-              <div class="dash-feed-item dash-feed-item--alert">
-                <div class="dash-feed-item__avatar" aria-hidden="true">??</div>
-                <div class="dash-feed-item__body">
-                  <div class="dash-feed-item__head">
-                    <strong class="dash-table__name">Spam post — "Buy cheap meeples at..."</strong>
-                    <span class="status-pill status-pill--alert" style="font-size:0.62rem;">Spam</span>
-                    <span class="dash-feed-item__meta">Citadels · flagged by 3 users · 5 min ago</span>
-                  </div>
-                  <p class="dash-feed-item__content">Three designers flagged a suspicious link in the designer forum and it is queued for review.</p>
-                  <div class="dash-actions-row">
-                    <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
-                      <i class="fa-solid fa-check" aria-hidden="true"></i> Approve
-                    </button>
-                    <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
-                      <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dash-feed-item dash-feed-item--warning">
-                <div class="dash-feed-item__avatar" aria-hidden="true">TK</div>
-                <div class="dash-feed-item__body">
-                  <div class="dash-feed-item__head">
-                    <strong class="dash-table__name">Off-topic: "Anyone want to trade Kickstarters?"</strong>
-                    <span class="dash-feed-item__meta">General · flagged by 1 user · 1h ago</span>
-                  </div>
-                  <p class="dash-feed-item__content">The thread is drifting away from the community guidelines and may need a moderator note instead of removal.</p>
-                  <div class="dash-actions-row">
-                    <button class="btn btn--ghost btn--sm" type="button" style="color:#5EE89A;border-color:rgba(94,232,154,0.3);" aria-label="Approve post">
-                      <i class="fa-solid fa-check" aria-hidden="true"></i> Keep live
-                    </button>
-                    <button class="btn btn--ghost btn--sm" type="button" style="color:#E85454;border-color:rgba(232,84,84,0.3);" aria-label="Delete post">
-                      <i class="fa-solid fa-trash" aria-hidden="true"></i> Remove
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dash-feed-item dash-feed-item--secondary">
-                <div class="dash-feed-item__avatar" aria-hidden="true">AN</div>
-                <div class="dash-feed-item__body">
-                  <div class="dash-feed-item__head">
-                    <strong class="dash-table__name">Disputed rules interpretation — needs mod clarity</strong>
-                    <span class="dash-feed-item__meta">Citadels Strategy · 2h ago</span>
-                  </div>
-                  <p class="dash-feed-item__content">Players are split on an ability timing edge case, so this thread needs an official clarification rather than moderation action.</p>
-                  <div class="dash-actions-row">
-                    <button class="btn btn--ghost btn--sm" type="button" aria-label="Reply with guidance">Reply with guidance</button>
-                    <button class="btn btn--ghost btn--sm" type="button" aria-label="Pin answer">Pin answer</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
-
-
-      <!-- ════════════════════════════════
-           PAGE: CAMPAIGNS
-      ════════════════════════════════ --></div>
+    </div>
   </main>
 </div>
 
 <script src="../assets/js/main.js?v=20260411r1"></script>
-<script src="../assets/js/dashboard.js?v=20260411r1"></script>
+<script src="../assets/js/dashboard.js?v=20260411r2"></script>
 </body>
 </html>
