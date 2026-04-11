@@ -1,3 +1,10 @@
+/* ═══════════════════════════════════════════════════════════════
+   TABLETOPFORGE ATMOSPHERE LAYER
+   Optional visual treatment overrides for shared surfaces.
+   Keep this file additive so it can be included or removed safely.
+═══════════════════════════════════════════════════════════════ */
+
+/* ─── TOKENS & PATTERNS ───────────────────────────────────── */
 :root {
   --atm-felt   : rgba(26, 74, 74, 1);
   --atm-amber  : rgba(139, 94, 26, 1);
@@ -30,6 +37,7 @@
   --pat-trace: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='0' cy='0' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='80' cy='0' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='0' cy='80' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='80' cy='80' r='1.8' fill='rgba(45,80,0,0.07)'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='rgba(45,80,0,0.09)'/%3E%3Cline x1='0' y1='0' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='80' y1='0' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='0' y1='80' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3Cline x1='80' y1='80' x2='40' y2='40' stroke='rgba(45,80,0,0.04)' stroke-width='0.5'/%3E%3C/svg%3E");
 }
 
+/* ─── LIGHT THEME OVERRIDES ───────────────────────────────── */
 [data-theme="light"] .tag--accent {
   color: #2D5000;
   background: rgba(45, 80, 0, 0.1);
@@ -58,6 +66,7 @@
 }
 
 
+/* ─── KEYFRAMES ───────────────────────────────────────────── */
 @keyframes atm-aurora {
   0%   { transform: translate(0, 0)       scale(1);    opacity: 0.55; }
   25%  { transform: translate(3%, -4%)    scale(1.03); opacity: 0.75; }
@@ -119,6 +128,7 @@
 }
 
 
+/* ─── SURFACE TREATMENTS ──────────────────────────────────── */
 .hero, .marquee-strip,
 .campaigns, .features, .testimonials, .newsletter,
 .page-hero, .about-intro, .values, .timeline, .team, .about-cta,

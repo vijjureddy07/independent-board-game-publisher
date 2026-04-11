@@ -1,4 +1,13 @@
-/* MAIN */
+/**
+ * TabletopForge — main.js
+ * Shared site UI and page-level interactions.
+ *
+ * Responsibilities:
+ *   - Normalize public navigation and sync brand marks
+ *   - Theme + RTL state
+ *   - Shared utilities used by page-specific modules
+ *   - Public page interactions for games, blog, contact, FAQ, profile, and more
+ */
 
 'use strict';
 

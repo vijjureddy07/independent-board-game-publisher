@@ -1,10 +1,23 @@
-/* DASHBOARD */
+/**
+ * TabletopForge — dashboard.js
+ * Shared dashboard behavior for designer and admin pages.
+ *
+ * Responsibilities:
+ *   - Sidebar toggle and mobile overlay
+ *   - Active panel switching
+ *   - Counter and mini-chart animation
+ *   - Mobile title sync for nested dashboard pages
+ *   - Admin search and lightweight notification state
+ */
 
 'use strict';
 
 const _$ = (sel, ctx = document) => (window.$ || ((s, c) => c.querySelector(s)))(sel, ctx);
 const _$$ = (sel, ctx = document) => (window.$$ || ((s, c) => [...c.querySelectorAll(s)]))(sel, ctx);
 
+/* ─────────────────────────────────────────────────────────────
+   MOBILE TITLE SYNC
+───────────────────────────────────────────────────────────── */
 function syncMobileUserTitle() {
   const row = _$('.dash-sidebar-toggle-row');
   if (!row) return;
