@@ -8268,6 +8268,28 @@ body.dashboard-page .dash-card__body {
   padding: var(--sp-4);
 }
 
+body.dashboard-page .dash-page > .dash-card:not(:last-child) {
+  margin-bottom: var(--sp-5);
+}
+
+body.dashboard-page .dash-card__body > * + .dash-note-box,
+body.dashboard-page .dash-feed-item__body > * + .dash-note-box {
+  margin-top: var(--sp-4);
+}
+
+body.dashboard-page .dash-card__body > .dash-note-box + *,
+body.dashboard-page .dash-feed-item__body > .dash-note-box + * {
+  margin-top: var(--sp-4);
+}
+
+body.dashboard-page .dash-feed-item__content + .dash-actions-row {
+  margin-top: var(--sp-4);
+}
+
+body.dashboard-page .dash-page > .dash-actions-row {
+  margin-top: var(--sp-5);
+}
+
 body.dashboard-page .dash-table th,
 body.dashboard-page .dash-table td {
   padding-left: var(--sp-3);
