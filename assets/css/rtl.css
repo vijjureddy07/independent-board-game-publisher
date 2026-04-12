@@ -634,7 +634,7 @@
 }
 
 [dir="rtl"] .games-featured__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .games-how-strip {
