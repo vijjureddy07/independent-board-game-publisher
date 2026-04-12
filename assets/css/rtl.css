@@ -402,7 +402,7 @@
 
 /* ─── DASHBOARD ──────────────────────────────────────────────── */
 [dir="rtl"] .dash-shell {
-  direction: ltr;
+  direction: rtl;
 }
 
 [dir="rtl"] .dash-page {
@@ -411,14 +411,27 @@
 
 [dir="rtl"] .dash-sidebar {
   direction   : rtl;
-  border-right: 1px solid var(--border);
-  border-left : none;
+  border-right: none;
+  border-left : 1px solid var(--border);
   order       : initial;
 }
 
 [dir="rtl"] .dash-main {
   direction: rtl;
   order    : initial;
+}
+
+[dir="rtl"] .dash-logo,
+[dir="rtl"] .dash-sidebar__utilities,
+[dir="rtl"] .dash-page-header,
+[dir="rtl"] .dash-section-head,
+[dir="rtl"] .dash-stats,
+[dir="rtl"] .dash-mini-stats,
+[dir="rtl"] .dash-grid-2,
+[dir="rtl"] .dash-grid-3,
+[dir="rtl"] .dash-grid-main-side,
+[dir="rtl"] .quick-actions {
+  direction: rtl;
 }
 
 [dir="rtl"] .dash-user-card {
@@ -852,3 +865,16 @@
 }
 
 [dir="rtl"] .pnp-item__name { text-align: right; }
+
+@media (max-width: 1024px) {
+  [dir="rtl"] .dash-sidebar {
+    left     : auto;
+    right    : 0;
+    transform: translateX(calc(100% + 12px));
+  }
+
+  [dir="rtl"] .dash-sidebar.open {
+    transform : translateX(0);
+    box-shadow: -4px 0 40px rgba(0,0,0,0.4);
+  }
+}
