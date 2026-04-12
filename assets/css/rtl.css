@@ -128,7 +128,8 @@
 
 /* ─── BUTTONS WITH ICONS ─────────────────────────────────────── */
 [dir="rtl"] .btn {
-  flex-direction: row-reverse;
+  direction: rtl;
+  flex-direction: row;
 }
 
 /* ─── FOOTER ─────────────────────────────────────────────────── */
@@ -421,42 +422,51 @@
 }
 
 [dir="rtl"] .dash-user-card {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
   text-align    : right;
 }
 
-[dir="rtl"] .dash-nav-item {
-  flex-direction : row-reverse;
+[dir="rtl"] .dash-nav-item,
+[dir="rtl"] .dash-nav__item {
+  direction      : rtl;
+  flex-direction : row;
   border-left    : none;
   border-right   : 2px solid transparent;
   text-align     : right;
   padding        : var(--sp-3) var(--sp-5);
 }
 
-[dir="rtl"] .dash-nav-item.active {
+[dir="rtl"] .dash-nav-item.active,
+[dir="rtl"] .dash-nav__item.active {
   border-right-color: var(--accent);
   border-left-color : transparent;
 }
 
-[dir="rtl"] .dash-nav-badge {
+[dir="rtl"] .dash-nav-badge,
+[dir="rtl"] .dash-nav__badge {
   margin-left : 0;
   margin-right: auto;
 }
 
 [dir="rtl"] .dash-topbar {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .dash-topbar__actions {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .dash-stat-card__header {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .dash-card__head {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .dash-table th,
@@ -479,7 +489,8 @@
 }
 
 [dir="rtl"] .file-item {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .file-item__size,
@@ -492,64 +503,74 @@
 [dir="rtl"] .forum-row__stats { text-align: right; }
 
 [dir="rtl"] .forum-row {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .forum-row__stats {
   margin-left : 0;
   margin-right: auto;
+  text-align  : left;
 }
 
 /* ─── FORUM PAGE ─────────────────────────────────────────────── */
 [dir="rtl"] .forum-hero__inner {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .forum-cat {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
   text-align    : right;
 }
 
 [dir="rtl"] .forum-cat__stats {
-  text-align : left;
-  margin-left: 0;
+  text-align  : left;
+  margin-left : 0;
   margin-right: auto;
 }
 
 [dir="rtl"] .thread-item {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .thread-item__meta {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .thread-item__stats {
-  text-align : left;
-  margin-left: 0;
+  text-align  : left;
+  margin-left : 0;
   margin-right: auto;
 }
 
 /* ─── PROFILE PAGE ───────────────────────────────────────────── */
 [dir="rtl"] .profile-header {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .profile-info { text-align: right; }
 
 [dir="rtl"] .profile-badges {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
   justify-content: flex-end;
 }
 
 [dir="rtl"] .profile-tabs {
   margin-left : 0;
   margin-right: auto;
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .settings-row {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .settings-row__info { text-align: right; }
@@ -777,7 +798,8 @@
 
 /* ─── DASHBOARD SIDEBAR ──────────────────────────────────────── */
 [dir="rtl"] .dash-profile {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
   text-align    : right;
 }
 
@@ -786,7 +808,8 @@
 }
 
 [dir="rtl"] .dash-sidebar__footer a {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 /* ─── FORMS ──────────────────────────────────────────────────── */
@@ -799,16 +822,33 @@
 
 /* ─── FEED & PNP ITEMS ───────────────────────────────────────── */
 [dir="rtl"] .dash-feed-item {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
   text-align    : right;
 }
 
 [dir="rtl"] .dash-feed-item__head {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
+}
+
+[dir="rtl"] .dash-feed-item__meta {
+  margin-left : 0;
+  margin-right: auto;
+  text-align  : left;
+}
+
+[dir="rtl"] .dash-actions-row,
+[dir="rtl"] .quick-action,
+[dir="rtl"] .dash-card__action,
+[dir="rtl"] .dash-sidebar__bottom a {
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .pnp-item {
-  flex-direction: row-reverse;
+  direction     : rtl;
+  flex-direction: row;
 }
 
 [dir="rtl"] .pnp-item__name { text-align: right; }
