@@ -97,7 +97,7 @@
 
 /* ─── FEATURES LAYOUT ────────────────────────────────────────── */
 [dir="rtl"] .features__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .feature-item__head {
@@ -158,7 +158,7 @@
 
 /* ─── ABOUT PAGE ─────────────────────────────────────────────── */
 [dir="rtl"] .about-intro__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .about-intro__card {
@@ -203,7 +203,7 @@
 }
 
 [dir="rtl"] .games-featured__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .games-featured__ctas {
@@ -227,7 +227,7 @@
 }
 
 [dir="rtl"] .gs-hero__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .gs-detail__breadcrumb {
@@ -264,7 +264,7 @@
 }
 
 [dir="rtl"] .gs-body__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .gs-tier__popular-badge {
@@ -278,7 +278,7 @@
 }
 
 [dir="rtl"] .blog-featured__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .blog-featured__eyebrow {
@@ -290,7 +290,7 @@
 }
 
 [dir="rtl"] .blog-layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .post-card {
@@ -330,7 +330,7 @@
 }
 
 [dir="rtl"] .bs-body__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .bs-article {
@@ -370,7 +370,7 @@
 
 /* ─── CONTACT PAGE ───────────────────────────────────────────── */
 [dir="rtl"] .contact-layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .contact-detail {
@@ -400,18 +400,24 @@
 }
 
 /* ─── DASHBOARD ──────────────────────────────────────────────── */
+[dir="rtl"] .dash-shell {
+  direction: ltr;
+}
+
 [dir="rtl"] .dash-page {
   direction: rtl;
 }
 
 [dir="rtl"] .dash-sidebar {
-  border-right: none;
-  border-left : 1px solid var(--border);
-  order       : 2;
+  direction   : rtl;
+  border-right: 1px solid var(--border);
+  border-left : none;
+  order       : initial;
 }
 
 [dir="rtl"] .dash-main {
-  order: 1;
+  direction: rtl;
+  order    : initial;
 }
 
 [dir="rtl"] .dash-user-card {
@@ -550,7 +556,7 @@
 
 /* ─── INDEX-2 LAYOUT ─────────────────────────────────────────── */
 [dir="rtl"] .h2-hero__inner {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .h2-hero__live-pill {
@@ -582,7 +588,7 @@
 }
 
 [dir="rtl"] .h2-editorial__layout {
-  direction: rtl;
+  direction: ltr;
 }
 
 [dir="rtl"] .h2-point {
@@ -687,7 +693,7 @@
 
 /* ─── HERO (index) ───────────────────────────────────────────── */
 [dir="rtl"] .hero__inner {
-  direction: rtl;
+  direction: ltr;
 }
 
 /* ─── STEPS (how-it-works) ───────────────────────────────────── */
