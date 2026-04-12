@@ -44,6 +44,28 @@ function ensureSidebarBrand() {
   });
 }
 
+function ensureSidebarUtilities() {
+  _$$('#dash-sidebar, #dash-sidebar-admin').forEach(sidebar => {
+    if (_$('.dash-sidebar__utilities', sidebar)) return;
+
+    const utilities = document.createElement('div');
+    utilities.className = 'dash-sidebar__utilities';
+    utilities.innerHTML = `
+      <button class="dash-sidebar__utility-btn" data-theme-toggle data-theme-label="Theme" type="button">Theme</button>
+      <button class="dash-sidebar__utility-btn" data-rtl-toggle type="button">RTL</button>
+    `;
+
+    const brand = _$('.dash-logo', sidebar);
+    if (brand && brand.nextSibling) {
+      sidebar.insertBefore(utilities, brand.nextSibling);
+    } else if (brand) {
+      sidebar.appendChild(utilities);
+    } else {
+      sidebar.insertBefore(utilities, sidebar.firstChild);
+    }
+  });
+}
+
 function normalizeAdminTopbar() {
   const topbar = _$('#admin-main .dash-topbar');
   if (!topbar) return;
@@ -336,7 +358,10 @@ const AdminSearch = (() => {
 ───────────────────────────────────────────────────────────── */
 function initDashModules() {
   ensureSidebarBrand();
+  ensureSidebarUtilities();
   normalizeAdminTopbar();
+  window.TTF?.syncThemeControls?.();
+  window.TTF?.syncDirControls?.();
   DashSidebar.init();
   DashPanels.init();
   DashNotifications.init();

@@ -194,6 +194,10 @@ const NavManager = (() => {
   function buildMobileMarkup(file) {
     return `
 <nav id="${SHARED_MOBILE_ID}" class="nav__mobile" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="nav__mobile-controls">
+    <button class="btn btn--ghost" data-theme-toggle data-theme-label="Theme" type="button">Theme</button>
+    <button class="btn btn--ghost" data-rtl-toggle type="button">RTL</button>
+  </div>
   <a href="index.html" class="${mobileLinkClass('index.html', file)}">Home</a>
   <a href="home-page-2.html" class="${mobileLinkClass('home-page-2.html', file, 'nav__mobile-sub')}">Home Page 2</a>
   <a href="about.html" class="${mobileLinkClass('about.html', file)}">About</a>
@@ -203,10 +207,6 @@ const NavManager = (() => {
   <a href="forum.html" class="${mobileLinkClass('forum.html', file)}">Forum</a>
   <a href="dashboard-user.html" class="${mobileLinkClass('dashboard-user.html', file)}">User Dashboard</a>
   <a href="dashboard-admin.html" class="${mobileLinkClass('dashboard-admin.html', file, 'nav__mobile-sub')}">Admin Dashboard</a>
-  <div class="nav__mobile-controls">
-    <button class="btn btn--ghost" data-theme-toggle type="button">Theme</button>
-    <button class="btn btn--ghost" data-rtl-toggle type="button">RTL</button>
-  </div>
   <a href="login.html" class="btn btn--primary nav__mobile-login">Login</a>
 </nav>`;
   }
@@ -288,21 +288,37 @@ const ThemeManager = (() => {
       || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   }
 
+  function updateButton(btn, theme) {
+    const icon = theme === 'dark' ? SUN_ICON : MOON_ICON;
+    const label = btn.dataset.themeLabel;
+
+    if (label) {
+      btn.innerHTML = `<span class="theme-toggle__icon" aria-hidden="true">${icon}</span><span>${label}</span>`;
+    } else {
+      btn.innerHTML = icon;
+    }
+
+    btn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+  }
+
   function apply(theme) {
     root.setAttribute('data-theme', theme);
     localStorage.setItem(KEY, theme);
 
     $$('[data-theme-toggle]').forEach(btn => {
-      btn.innerHTML = theme === 'dark' ? SUN_ICON : MOON_ICON;
-      btn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+      updateButton(btn, theme);
     });
   }
 
   function init() {
     apply(getCurrent());
+    window.TTF.syncThemeControls = () => apply(getCurrent());
 
-    $$('[data-theme-toggle]').forEach(btn => {
-      btn.addEventListener('click', () => apply(getCurrent() === 'dark' ? 'light' : 'dark'));
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-theme-toggle]');
+      if (!btn) return;
+      e.preventDefault();
+      apply(getCurrent() === 'dark' ? 'light' : 'dark');
     });
 
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
@@ -332,14 +348,16 @@ const RTLManager = (() => {
     const saved = localStorage.getItem(KEY) || 'ltr';
     root.setAttribute('dir', saved);
     updateBtns(saved);
+    window.TTF.syncDirControls = () => updateBtns(root.getAttribute('dir') || 'ltr');
 
-    $$('[data-rtl-toggle]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const next = root.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
-        root.setAttribute('dir', next);
-        localStorage.setItem(KEY, next);
-        updateBtns(next);
-      });
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-rtl-toggle]');
+      if (!btn) return;
+      e.preventDefault();
+      const next = root.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+      root.setAttribute('dir', next);
+      localStorage.setItem(KEY, next);
+      updateBtns(next);
     });
   }
 
@@ -522,6 +540,13 @@ const CursorManager = (() => {
       .ttf-cursor.hover .ttf-cursor__ring { width:52px;height:52px;border-color:rgba(212,245,60,.3); }
       .ttf-cursor.click .ttf-cursor__ring { width:20px;height:20px; }
       .ttf-cursor.hidden { opacity:0; }
+      [data-theme="light"] .ttf-cursor__ring {
+        border-color: rgba(152,194,23,.48);
+        box-shadow: 0 0 0 1px rgba(152,194,23,.14);
+      }
+      [data-theme="light"] .ttf-cursor.hover .ttf-cursor__ring {
+        border-color: rgba(152,194,23,.7);
+      }
     `;
     document.head.appendChild(s);
   }

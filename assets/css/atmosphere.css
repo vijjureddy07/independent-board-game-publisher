@@ -1162,7 +1162,8 @@
 
 [data-theme="light"] .dash-icon-btn,
 [data-theme="light"] .dash-mobile-toggle,
-[data-theme="light"] .dash-sidebar-toggle {
+[data-theme="light"] .dash-sidebar-toggle,
+[data-theme="light"] .dash-sidebar__utility-btn {
   background: rgba(255, 255, 255, 0.78);
 }
 

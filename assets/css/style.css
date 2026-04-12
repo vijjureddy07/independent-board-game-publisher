@@ -541,13 +541,26 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 2rem;
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav__mobile-controls .btn,
 .nav__mobile-login {
   width: 100%;
   justify-content: center;
+}
+
+.nav__mobile-controls [data-theme-toggle] {
+  gap: var(--sp-2);
+}
+
+.theme-toggle__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .nav__mobile-login {
@@ -1417,11 +1430,11 @@ h1, h2, h3, h4, h5, h6 {
   .footer__top             { grid-template-columns: 1fr 1fr; }
   .testi-card              { flex: 0 0 calc(50% - var(--sp-2)); }
   .hero__content           { padding: 32px 0 28px; }
-  .nav__inner              { gap: var(--sp-3); justify-content: flex-start; }
-  .nav__logo               { min-width: 0; margin-right: 0; }
+  .nav__inner              { gap: var(--sp-3); justify-content: space-between; }
+  .nav__logo               { min-width: 0; margin-right: 0; flex: 1 1 auto; }
   .nav__logo-text          { font-size: 1rem; }
   .nav__links              { display: none; }
-  .nav__hamburger          { display: flex; order: -1; margin-left: 0; margin-right: var(--sp-3); flex-shrink: 0; }
+  .nav__hamburger          { display: flex; order: 2; margin-left: auto; margin-right: 0; flex-shrink: 0; }
   .nav__mobile             { display: block; }
   .nav__mobile             { padding: var(--sp-5) 20px var(--sp-6); }
   .nav__controls           { display: none; }
@@ -8048,6 +8061,37 @@ body.dashboard-page .dash-main {
 .dash-sidebar__bottom a:hover { color: var(--text-secondary); }
 .dash-sidebar__bottom a i { font-size: 12px; width: 16px; text-align: center; }
 
+.dash-sidebar__utilities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-sidebar__utility-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 38px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
+}
+
+.dash-sidebar__utility-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--border);
+}
+
 .dash-nav-section { margin-bottom: var(--sp-2); }
 
 .dash-nav-label {
@@ -8408,10 +8452,21 @@ body.dashboard-page .activity-item {
   .dash-sidebar-toggle-row {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--sp-3);
     margin-bottom: var(--sp-5);
     padding-bottom: var(--sp-4);
     border-bottom: 1px solid var(--border);
+  }
+
+  .dash-sidebar-toggle-row__title {
+    order: 1;
+    flex: 1 1 auto;
+  }
+
+  .dash-sidebar-toggle {
+    order: 2;
+    margin-left: auto;
   }
 
   body.dashboard-page .dash-logo {
@@ -8477,6 +8532,38 @@ body.dashboard-page .activity-item {
 
   body.dashboard-page .dash-stats--compact {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  body.dashboard-page .dash-grid-main-side {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  body.dashboard-page .dash-main {
+    padding: var(--sp-3);
+  }
+
+  body.dashboard-page .dash-grid-2,
+  body.dashboard-page .dash-grid-3,
+  body.dashboard-page .dash-grid-main-side,
+  body.dashboard-page .dash-stats--compact,
+  body.dashboard-page .dash-mini-stats {
+    grid-template-columns: 1fr;
+  }
+
+  body.dashboard-page .dash-grid-2 > .dash-card,
+  body.dashboard-page .dash-grid-3 > .dash-card,
+  body.dashboard-page .dash-grid-main-side > .dash-card {
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  body.dashboard-page .dash-main {
+    padding: 12px;
   }
 }
 
@@ -8697,7 +8784,7 @@ body.dashboard-page .activity-item {
   .nav__inner {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 12px;
   }
 
@@ -8714,9 +8801,9 @@ body.dashboard-page .activity-item {
   }
 
   .nav__hamburger {
-    order: -1;
-    margin-left: 0;
-    margin-right: 12px;
+    order: 2;
+    margin-left: auto;
+    margin-right: 0;
     flex-shrink: 0;
   }
 
