@@ -6,7 +6,7 @@
  *   - Sidebar toggle and mobile overlay
  *   - Active panel switching
  *   - Counter and mini-chart animation
- *   - Mobile title sync for nested dashboard pages
+ *   - Mobile header normalization for nested dashboard pages
  *   - Admin search and lightweight notification state
  */
 
@@ -66,6 +66,24 @@ function ensureSidebarUtilities() {
   });
 }
 
+function normalizeUserTopbar() {
+  const row = _$('.dash-sidebar-toggle-row');
+  if (!row) return;
+
+  _$$('.dash-sidebar-toggle-row__title', row).forEach(title => title.remove());
+
+  let brand = _$('.dash-topbar__brand', row);
+  if (!brand) {
+    brand = createDashBrand('dash-topbar__brand');
+    const toggle = _$('#sidebar-toggle', row) || _$('.dash-sidebar-toggle', row);
+    if (toggle) {
+      row.insertBefore(brand, toggle);
+    } else {
+      row.appendChild(brand);
+    }
+  }
+}
+
 function normalizeAdminTopbar() {
   const topbar = _$('#admin-main .dash-topbar');
   if (!topbar) return;
@@ -104,26 +122,11 @@ function normalizeAdminTopbar() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   MOBILE TITLE SYNC
+   MOBILE HEADER SYNC
 ───────────────────────────────────────────────────────────── */
-function syncMobileUserTitle() {
-  const row = _$('.dash-sidebar-toggle-row');
-  if (!row) return;
-
-  let title = _$('.dash-sidebar-toggle-row__title', row);
-  if (!title) {
-    title = document.createElement('span');
-    title.className = 'dash-sidebar-toggle-row__title';
-    row.appendChild(title);
-  }
-
-  const activePanel = _$('#dash-main .dash-page.active') || _$('#admin-main .dash-page.active');
-  const heading = (activePanel && _$('.dash-page-header h1', activePanel))
-    || _$('.dash-page-header h1');
-  const fallbackTitle = _$('.dash-topbar__title');
-  title.textContent = heading
-    ? heading.textContent.trim()
-    : (fallbackTitle ? fallbackTitle.textContent.trim() : 'Dashboard');
+function syncMobileDashboardHeader() {
+  normalizeUserTopbar();
+  normalizeAdminTopbar();
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -205,7 +208,7 @@ const DashPanels = (() => {
       }
     }
 
-    syncMobileUserTitle();
+    syncMobileDashboardHeader();
 
     history.replaceState(null, '', `#${panelId}`);
   }
@@ -359,7 +362,7 @@ const AdminSearch = (() => {
 function initDashModules() {
   ensureSidebarBrand();
   ensureSidebarUtilities();
-  normalizeAdminTopbar();
+  syncMobileDashboardHeader();
   window.TTF?.syncThemeControls?.();
   window.TTF?.syncDirControls?.();
   DashSidebar.init();
@@ -373,8 +376,8 @@ function initDashModules() {
     animateChartBars(activePanel);
   }
 
-  syncMobileUserTitle();
-  window.addEventListener('resize', syncMobileUserTitle, { passive: true });
+  syncMobileDashboardHeader();
+  window.addEventListener('resize', syncMobileDashboardHeader, { passive: true });
 }
 
 if (document.readyState === 'loading') {

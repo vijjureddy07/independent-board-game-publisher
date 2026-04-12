@@ -8322,6 +8322,7 @@ body.dashboard-page .dash-grid-main-side {
 
 body.dashboard-page .dash-main {
   padding: clamp(var(--sp-4), 2vw, var(--sp-6));
+  overflow: visible;
 }
 
 body.dashboard-page .dash-content {
@@ -8449,24 +8450,40 @@ body.dashboard-page .activity-item {
 }
 
 @media (max-width: 1024px) {
+  .dash-sidebar-toggle-row,
+  #admin-main .dash-topbar {
+    position: sticky;
+    top: clamp(12px, 2vw, var(--sp-4));
+    z-index: 45;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: var(--sp-3) var(--sp-4);
+    margin-bottom: var(--sp-5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  }
+
   .dash-sidebar-toggle-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--sp-3);
-    margin-bottom: var(--sp-5);
-    padding-bottom: var(--sp-4);
-    border-bottom: 1px solid var(--border);
+  }
+
+  .dash-sidebar-toggle-row .dash-topbar__brand {
+    display: inline-flex;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .dash-sidebar-toggle-row__title {
-    order: 1;
-    flex: 1 1 auto;
+    display: none;
   }
 
   .dash-sidebar-toggle {
     order: 2;
     margin-left: auto;
+    flex-shrink: 0;
   }
 
   body.dashboard-page .dash-logo {
@@ -8490,7 +8507,7 @@ body.dashboard-page .activity-item {
   }
 
   body.user-dashboard-page .dash-page-header > :first-child {
-    display: none;
+    display: block;
   }
 
   body.user-dashboard-page .dash-page-header > :last-child {
@@ -8501,11 +8518,12 @@ body.dashboard-page .activity-item {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    row-gap: var(--sp-4);
+    gap: var(--sp-3);
   }
 
   #admin-main .dash-topbar__identity {
     gap: var(--sp-3);
+    min-width: 0;
   }
 
   #admin-main .dash-topbar__brand {
@@ -8517,9 +8535,7 @@ body.dashboard-page .activity-item {
   }
 
   #admin-main .dash-topbar__actions {
-    grid-column: 1 / -1;
-    width: 100%;
-    justify-content: stretch;
+    display: none;
   }
 
   #admin-main .dash-topbar .dash-icon-btn {
