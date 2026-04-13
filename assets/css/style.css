@@ -2123,13 +2123,14 @@ h1, h2, h3, h4, h5, h6 {
 .h2-campaigns { background: var(--bg-secondary); }
 
 .h2-campaigns__scroll {
-  display   : flex;
+  display   : grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap       : var(--sp-4);
-  overflow-x: auto;
-  padding-bottom: var(--sp-3);
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-hover) transparent;
-  scroll-snap-type: x mandatory;
+  overflow  : visible;
+  padding-bottom: 0;
+  scrollbar-width: none;
+  scroll-snap-type: none;
+  align-items: stretch;
 }
 
 .h2-campaigns__scroll::-webkit-scrollbar         { height: 4px; }
@@ -2141,9 +2142,9 @@ h1, h2, h3, h4, h5, h6 {
   border       : 1px solid var(--border);
   border-radius: var(--r-lg);
   padding      : var(--sp-6);
-  min-width    : 280px;
-  flex-shrink  : 0;
-  scroll-snap-align: start;
+  min-width    : 0;
+  width        : 100%;
+  height       : 100%;
   transition   : border-color var(--t-mid), transform var(--t-slow);
   position     : relative;
   overflow     : hidden;
@@ -9265,6 +9266,18 @@ body.dashboard-page .activity-item {
 
 .h2-camp-card:hover .h2-camp-card__thumb img {
   transform: scale(1.05);
+}
+
+@media (max-width: 1180px) {
+  .h2-campaigns__scroll {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .h2-campaigns__scroll {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ─── HOME-PAGE-2 FEATURED CARD IMAGE ────────────────────── */
