@@ -74,6 +74,8 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -82,6 +84,8 @@ body {
   color           : var(--text-primary);
   line-height     : 1.6;
   overflow-x      : hidden;
+  overflow-x      : clip;
+  max-width       : 100%;
   transition      : background-color var(--t-mid), color var(--t-mid);
 }
 
@@ -8882,6 +8886,96 @@ body.dashboard-page .activity-item {
   .nav__inner {
     gap: 10px;
   }
+}
+
+/* ─── PUBLIC PAGE OVERFLOW GUARD ──────────────────────────── */
+
+body:not(.dashboard-page) #main-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body:not(.dashboard-page) :where(
+  .nav__inner,
+  .nav__logo,
+  .nav__controls,
+  .nav__mobile-controls,
+  .section-head,
+  .about-intro__layout,
+  .features__layout,
+  .newsletter__inner,
+  .games-hero__layout,
+  .games-featured__layout,
+  .blog-hero__inner,
+  .blog-featured__layout,
+  .blog-layout,
+  .page-hero__actions,
+  .bs-body__layout,
+  .forum-hero__inner,
+  .forum-layout,
+  .thread-body-layout,
+  .compact-hero__row,
+  .contact-layout,
+  .h2-hero__inner,
+  .h2-campaigns__scroll,
+  .h2-editorial__layout,
+  .h2-portal__grid,
+  .hero__two-col,
+  .hero__visual,
+  .footer__top,
+  .footer__bottom
+) {
+  max-width: 100%;
+}
+
+body:not(.dashboard-page) :where(
+  .nav__logo,
+  .nav__controls,
+  .nav__mobile-controls,
+  .compact-hero__copy,
+  .compact-hero__aside,
+  .blog-featured__cover,
+  .blog-featured__body,
+  .games-featured__visual,
+  .forum-hero-preview,
+  .hero__content,
+  .hero__visual,
+  .hero__img-cell
+) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body:not(.dashboard-page) :where(
+  .section-head,
+  .about-intro__layout,
+  .features__layout,
+  .newsletter__inner,
+  .games-hero__layout,
+  .games-featured__layout,
+  .blog-hero__inner,
+  .blog-featured__layout,
+  .blog-layout,
+  .page-hero__actions,
+  .bs-body__layout,
+  .forum-hero__inner,
+  .forum-layout,
+  .thread-body-layout,
+  .compact-hero__row,
+  .contact-layout,
+  .h2-hero__inner,
+  .h2-campaigns__scroll,
+  .h2-editorial__layout,
+  .h2-portal__grid,
+  .hero__two-col,
+  .hero__visual,
+  .footer__top,
+  .footer__bottom
+) > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* ─── BACKGROUND RESET ───────────────────────────────────── */
