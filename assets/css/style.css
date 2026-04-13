@@ -2142,6 +2142,8 @@ h1, h2, h3, h4, h5, h6 {
   border       : 1px solid var(--border);
   border-radius: var(--r-lg);
   padding      : var(--sp-6);
+  display      : flex;
+  flex-direction: column;
   min-width    : 0;
   width        : 100%;
   height       : 100%;
@@ -2200,6 +2202,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size    : 0.78rem;
   color        : var(--text-muted);
   margin-bottom: 0;
+}
+
+.h2-camp-card > .btn {
+  margin-top: auto;
 }
 
 /* ─── PORTAL SECTION ─────────────────────────────────────────── */
